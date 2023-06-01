@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Least-Squares Regression | Linear Models</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Least-Squares Regression | Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Least-Squares Regression | Linear Models" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Barry Kurt" />
+
+
+<meta name="date" content="2023-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="complete-balanced-factorial-experiments.html"/>
+<link rel="next" href="maximum-likelihood-estimation-and-related-topics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra and Related Introductory Topics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#elementary-matrix-concepts"><i class="fa fa-check"></i><b>1.1</b> ELEMENTARY MATRIX CONCEPTS</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#kronecker-products"><i class="fa fa-check"></i><b>1.2</b> KRONECKER PRODUCTS</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#random-vectors"><i class="fa fa-check"></i><b>1.3</b> RANDOM VECTORS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#multivariate-normal-distribution-function"><i class="fa fa-check"></i><b>2.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="2.2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#conditional-distributions-of-multivariate-normal-random-vectors"><i class="fa fa-check"></i><b>2.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="2.3" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#distributions-of-certain-quadratic-forms"><i class="fa fa-check"></i><b>2.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="2.4" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#exercises-1"><i class="fa fa-check"></i><b>2.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html"><i class="fa fa-check"></i><b>3</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-function-1"><i class="fa fa-check"></i><b>3.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="3.2" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#conditional-distributions-of-multivariate-normal-random-vectors-1"><i class="fa fa-check"></i><b>3.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="3.3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#distributions-of-certain-quadratic-forms-1"><i class="fa fa-check"></i><b>3.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="3.4" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#exercises-2"><i class="fa fa-check"></i><b>3.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html"><i class="fa fa-check"></i><b>4</b> Distributions of Quadratic Forms</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#quadratic-forms-of-normal-random-vectors"><i class="fa fa-check"></i><b>4.1</b> QUADRATIC FORMS OF NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#independence"><i class="fa fa-check"></i><b>4.2</b> INDEPENDENCE</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#the-boldsymbolt-and-boldsymbolf-distributions"><i class="fa fa-check"></i><b>4.3</b> THE <span class="math inline">\(\boldsymbol{t}\)</span> AND <span class="math inline">\(\boldsymbol{F}\)</span> DISTRIBUTIONS</a></li>
+<li class="chapter" data-level="4.4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#bhats-lemma"><i class="fa fa-check"></i><b>4.4</b> BHAT’S LEMMA</a></li>
+<li class="chapter" data-level="4.5" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html"><i class="fa fa-check"></i><b>5</b> Complete, Balanced Factorial Experiments</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-admit-restrictions-finite-models"><i class="fa fa-check"></i><b>5.1</b> MODELS THAT ADMIT RESTRICTIONS (FINITE MODELS)</a></li>
+<li class="chapter" data-level="5.2" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-do-not-admit-restrictions-infinite-models"><i class="fa fa-check"></i><b>5.2</b> MODELS THAT DO NOT ADMIT RESTRICTIONS (INFINITE MODELS)</a></li>
+<li class="chapter" data-level="5.3" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#sum-of-squares-and-covariance-matrix-algorithms"><i class="fa fa-check"></i><b>5.3</b> SUM OF SQUARES AND COVARIANCE MATRIX ALGORITHMS</a></li>
+<li class="chapter" data-level="5.4" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#expected-mean-squares"><i class="fa fa-check"></i><b>5.4</b> EXPECTED MEAN SQUARES</a></li>
+<li class="chapter" data-level="5.5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#algorithm-applications"><i class="fa fa-check"></i><b>5.5</b> ALGORITHM APPLICATIONS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="least-squares-regression.html"><a href="least-squares-regression.html"><i class="fa fa-check"></i><b>6</b> Least-Squares Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="least-squares-regression.html"><a href="least-squares-regression.html#ordinary-least-squares-estimation"><i class="fa fa-check"></i><b>6.1</b> ORDINARY LEAST-SQUARES ESTIMATION</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html"><i class="fa fa-check"></i><b>7</b> Maximum Likelihood Estimation and Related Topics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimators-of-beta-and-sigma2"><i class="fa fa-check"></i><b>7.1</b> MAXIMUM LIKELIHOOD ESTIMATORS OF <span class="math inline">\(\beta\)</span> AND <span class="math inline">\(\sigma^{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="least-squares-regression" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Least-Squares Regression<a href="least-squares-regression.html#least-squares-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter the least-squares estimation procedure is examined. The
+topic is introduced through a regression example. Later in the chapter
+the regression model format is applied to a broad class of problems,
+including factorial experiments.</p>
+<div id="ordinary-least-squares-estimation" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> ORDINARY LEAST-SQUARES ESTIMATION<a href="least-squares-regression.html#ordinary-least-squares-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We begin with a simple example. An engineer wants to relate the fuel
+consumption of a new type of automobile to the speed of the vehicle and
+the grade of the road traveled. He has a fleet of <span class="math inline">\(n\)</span> vehicles. Each
+vehicloe is assigned to operate at a constant speed (in miles per hour)
+on a specific grade (in percent grade) and the fuel consumption (in
+<span class="math inline">\(\mathrm{ml} / \mathrm{sec}\)</span> ) is recorded. The engineer believes that
+the expected fuel consumption is a linear function of the speed of the
+vehicle and the speed of the vehicle times the grade of the road. Let
+<span class="math inline">\(Y_{i}\)</span> be a random variable that represents the observed fuel
+consumption of the <span class="math inline">\(i^{\text {th }}\)</span> vehicle, operating at a fixed
+speed, on a road with a constant grade. Let <span class="math inline">\(x_{i 1}\)</span> represent the
+speed of the <span class="math inline">\(i^{\text {th }}\)</span> vehicle and let <span class="math inline">\(x_{i 2}\)</span> represent the
+speed times the grade of the <span class="math inline">\(i^{\text {th }}\)</span> vehicle. The expected
+fuel consumption of the <span class="math inline">\(t^{\text {th }}\)</span> vehicle can be represented by
+<span class="math display">\[\mathrm{E}\left(Y_{i}\right)=\beta_{0}+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}\]</span>
+where <span class="math inline">\(\beta_{0}, \beta_{1}\)</span>, and <span class="math inline">\(\beta_{2}\)</span> are unknown parameters.
+Due to qualities intrinsic to each vehicle, the observed fuel
+consumptions differ somewhat from the expected fuel consumptions.
+Therefore, the observed fuel consumption of the <span class="math inline">\(i^{\text {th }}\)</span>
+vehicle is represented by <span class="math display">\[Y_{i}=\mathrm{E}\left(Y_{i}\right)+E_{i}\]</span>
+<span class="math display">\[Y_{i}=\beta_{0}+\beta_{1} x_{i 1}+\]</span> or
+<span class="math display">\[Y_{i}=\beta_{0}+\beta_{1} x_{i 1}+\beta_{2} x_{i 2}+E_{i}\]</span> where
+<span class="math inline">\(E_{i}\)</span> is a random variable representing the difference between the
+observed fuel consumption and the expected fuel consumption of the
+<span class="math inline">\(i^{\text {th }}\)</span> vehicle. An example data set for this fuel, speed,
+grade experiment is provided in Table 5.1.1. In a more general setting
+consider a problem where the expected value of a random variable <span class="math inline">\(Y_{i}\)</span>
+is assumed to be a linear combination of <span class="math inline">\(p-1\)</span> different variables
+<span class="math inline">\(x_{i 1}, x_{i 2}, \ldots, x_{i, p-1}\)</span>. That is,
+<span class="math display">\[\mathrm{E}\left(Y_{i}\right)=\beta_{0}+\beta_{1} x_{i 1}+\cdots+\beta_{p-1} x_{i, p-1}\]</span>
+Adding a component of error, <span class="math inline">\(E_{i}\)</span>, to represent the difference
+between the observed value of <span class="math inline">\(Y_{i}\)</span> and the expected value of <span class="math inline">\(Y_{i}\)</span>
+we obtain
+<span class="math display">\[Y_{i}=\beta_{0}+\beta_{1} x_{i 1}+\cdots+\beta_{p-1} x_{i, p-1}+E_{i} .\]</span>
+By taking expectations on the right and left sides of the preceding two
+equations, we obtain <span class="math inline">\(\mathrm{E}\left(E_{i}\right)=0\)</span> for all
+<span class="math inline">\(i=1, \ldots, n\)</span>. Table 5.1.1 Fuel, Speed, Grade Data Set</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right"><span class="math inline">\(i\)</span></th>
+<th align="left">Fuel <span class="math inline">\(Y_{i}\)</span></th>
+<th align="left">Speed <span class="math inline">\(x_{i 1}\)</span></th>
+<th align="left">Grade</th>
+<th align="center">Speed <span class="math inline">\(\times\)</span> Grade <span class="math inline">\(x_{i 2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left"><span class="math inline">\(1.7\)</span></td>
+<td align="left">20</td>
+<td align="left">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left"><span class="math inline">\(2.0\)</span></td>
+<td align="left">20</td>
+<td align="left">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left"><span class="math inline">\(1.9\)</span></td>
+<td align="left">20</td>
+<td align="left">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left"><span class="math inline">\(1.6\)</span></td>
+<td align="left">20</td>
+<td align="left">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left"><span class="math inline">\(3.2\)</span></td>
+<td align="left">20</td>
+<td align="left">6</td>
+<td align="center">120</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left"><span class="math inline">\(2.0\)</span></td>
+<td align="left">50</td>
+<td align="left">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left"><span class="math inline">\(2.5\)</span></td>
+<td align="left">50</td>
+<td align="left">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left"><span class="math inline">\(5.4\)</span></td>
+<td align="left">50</td>
+<td align="left">6</td>
+<td align="center">300</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left"><span class="math inline">\(5.7\)</span></td>
+<td align="left">50</td>
+<td align="left">6</td>
+<td align="center">300</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left"><span class="math inline">\(5.1\)</span></td>
+<td align="left">50</td>
+<td align="left">6</td>
+<td align="center">300</td>
+</tr>
+</tbody>
+</table>
+<p>5 Least-Squares Regression 83 The model just discussed can be expressed
+in matrix form by noting that <span class="math display">\[\begin{array}{cc}
+Y_{1}=\beta_{0}+\beta_{1} x_{11}+\cdots+\beta_{p-1} x_{1, p-1}+E_{1} \\
+Y_{2}=\beta_{0}+\beta_{1} x_{21}+\cdots+\beta_{p-1} x_{2, p-1}+E_{2} \\
+\vdots &amp; \vdots \\
+Y_{n}=\beta_{0}+\beta_{1} x_{n 1}+\cdots+\beta_{p-1} x_{n, p-1}+E_{n}
+\end{array}\]</span> or <span class="math display">\[\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\]</span>
+where the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime}\)</span>, the
+<span class="math inline">\(p \times 1\)</span> vector <span class="math inline">\(\boldsymbol{\beta}=\)</span>
+<span class="math inline">\(\left(\beta_{0}, \beta_{1} \ldots, \beta_{p-1}\right)^{\prime}\)</span>, the
+<span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{E}=\left(E_{1}, \ldots, E_{n}\right)^{\prime}\)</span> and the
+<span class="math inline">\(n \times p\)</span> matrix <span class="math display">\[\mathbf{X}=\left[\begin{array}{cccc}
+1 &amp; x_{11} &amp; \cdots &amp; x_{1, p-1} \\
+1 &amp; x_{21} &amp; \cdots &amp; x_{2, p-1} \\
+\vdots &amp; \vdots &amp; &amp; \vdots \\
+1 &amp; x_{n 1} &amp; \cdots &amp; x_{n, p-1}
+\end{array}\right]\]</span> Furthermore, <span class="math inline">\(\mathrm{E}\left(E_{i}\right)=0\)</span> for
+all <span class="math inline">\(i=1, \ldots, n\)</span> implies
+<span class="math inline">\(\mathrm{E}(\mathbf{E})=\mathbf{0}_{n \times 1}\)</span>. Therefore
+<span class="math inline">\(\mathrm{E}(\mathbf{Y})=\mathbf{X} \boldsymbol{\beta} .\)</span> For the
+present, assume that the <span class="math inline">\(E_{i}\)</span> ’s are independent, identically
+distributed random variables where
+<span class="math inline">\(\operatorname{var}\left(E_{i}\right)=\sigma^{2}\)</span> for all
+<span class="math inline">\(i=1, \ldots, n\)</span>. Since the <span class="math inline">\(E_{i}\)</span> ’s are independent,
+<span class="math inline">\(\operatorname{cov}\left(E_{i}, E_{j}\right)=0\)</span> for all <span class="math inline">\(i \neq j\)</span>.
+Therefore, the covariance matrix of <span class="math inline">\(\mathbf{E}\)</span> is given by
+<span class="math inline">\(\boldsymbol{\Sigma}=\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{I}_{n}\)</span>.
+In later sections of this chapter more complicated error structures are
+considered.</p>
+<p>Note that <span class="math inline">\(\Sigma\)</span> has been used to represent the covariance matrix of
+the <span class="math inline">\(n \times 1\)</span> random error vector <span class="math inline">\(\mathbf{E}\)</span>. However,
+<span class="math inline">\(\mathbf{\Sigma}\)</span> is also the covariance matrix of the <span class="math inline">\(n \times 1\)</span>
+random vector <span class="math inline">\(\mathbf{Y}\)</span> since <span class="math display">\[\begin{aligned}
+\operatorname{cov}(\mathbf{Y}) &amp;=\mathrm{E}\left[(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})^{\prime}\right] \\
+&amp;=\mathrm{E}\left[\mathbf{E} \mathbf{E}^{\prime}\right] \\
+&amp;=\boldsymbol{\Sigma}
+\end{aligned}\]</span> Since the <span class="math inline">\(x_{i j}\)</span> values are known for
+<span class="math inline">\(i=1, \ldots, n\)</span> and <span class="math inline">\(j=1, \ldots, p-1, \bar{x}_{, j}=\)</span>
+<span class="math inline">\(\sum_{i=1}^{n} x_{i j} / n\)</span> can be calculated for any <span class="math inline">\(j\)</span>. Therefore,
+the preceding model can be equivalently written as
+<span class="math display">\[Y_{i}=\beta_{0}^{*}+\beta_{1}\left(x_{i 1}-\bar{x}_{.1}\right)+\cdots+\beta_{p-1}\left(x_{i, p-1}-\bar{x}_{. p-1}\right)+E_{i}\]</span>
+where
+<span class="math inline">\(\beta_{0}=\beta_{0}^{*}-\beta_{1} \bar{x}_{.1}-\cdots-\beta_{p-1} \bar{x}_{p-1}\)</span>.
+In matrix form
+<span class="math display">\[\mathbf{Y}=\mathbf{X}^{*} \boldsymbol{\beta}^{*}+\mathbf{E}\]</span></p>
+<p>84 Linear Models where <span class="math display">\[\begin{array}{c}
+\boldsymbol{\beta}^{*}=\left(\beta_{0}^{*}, \beta_{1}, \ldots, \beta_{p-1}\right)^{\prime} \\
+{\left[\begin{array}{cccc}
+1 &amp; x_{11}-\bar{x}_{.1} &amp; \cdots &amp; x_{1, p-1}-\bar{x}_{. p-1} \\
+1 &amp; x_{21}-x_{.1} &amp; \cdots &amp; x_{2, p-1}-\bar{x}_{. p-1} \\
+\vdots &amp; \vdots &amp; &amp; \vdots \\
+1 &amp; x_{n 1}-\bar{x}_{.1} &amp; \cdots &amp; x_{n, p-1}-\bar{x}_{. p-1}
+\end{array}\right]=\left[\mathbf{1}_{n} \mid \mathbf{X}_{c}\right]}
+\end{array}\]</span> and <span class="math inline">\(\mathbf{X}_{c}\)</span> is an <span class="math inline">\(n \times(p-1)\)</span> matrix such
+that
+<span class="math inline">\(\mathbf{1}_{n}^{\prime} \mathbf{X}_{c}=\mathbf{0}_{1 \times(p-1)} .\)</span>
+This later model form is called a centered model. Without loss of
+generality, a model can always be assumed to be centered since any model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> can be written as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X}^{*} \boldsymbol{\beta}^{*}+\mathbf{E}\)</span>. The
+asterisks on the centered model are subsequently dropped since
+<span class="math inline">\(\mathbf{X}\)</span> can always be considered a centered matrix if necessary.</p>
+<p>In the next example, the <span class="math inline">\(10 \times 3\)</span> centered matrix <span class="math inline">\(\mathbf{X}\)</span> is
+derived for the example data set.</p>
+<p>Example 5.1.1 For the example data given in Table 5.1.1, the average
+speed is <span class="math inline">\(\bar{x}_{.1}=[5(20)+5(50)] / 10=35\)</span> and the average value of
+speed <span class="math inline">\(\times\)</span> grade is <span class="math inline">\(\bar{x}_{.2}=[6(0)+(1) 120+3(300)] / 10=102\)</span>.
+Therefore, the <span class="math inline">\(10 \times 3\)</span> centered matrix
+<span class="math inline">\(\mathbf{X}=\left(\mathbf{1}_{10} \mid \mathbf{X}_{c}\right)\)</span> where
+<span class="math display">\[\mathbf{X}_{c}=\left[\begin{array}{rrrl}
+(-15, &amp; -102) &amp; \otimes &amp; \mathbf{1}_{4} \\
+(-15, &amp; 18) &amp; \otimes &amp; 1 \\
+(15, &amp; -102) &amp; \otimes &amp; \mathbf{1}_{2} \\
+(15, &amp; 198) &amp; \otimes &amp; \mathbf{1}_{3}
+\end{array}\right]\]</span> The main objective to this section is to develop a
+procedure to estimate the <span class="math inline">\(p\)</span> unknown parameters
+<span class="math inline">\(\beta_{1}, \beta_{1}, \ldots, \beta_{p-1}\)</span>. One method that provides
+such estimators is called the ordinary least-squares procedure. The
+ordinary least-squares estimators of
+<span class="math inline">\(\beta_{0}, \beta_{1}, \ldots, \beta_{p-1}\)</span> are obtained by minimizing
+the quadratic form <span class="math inline">\(Q\)</span> with respect to the <span class="math inline">\(p \times 1\)</span> vector <span class="math inline">\(\beta\)</span>
+where <span class="math display">\[\begin{aligned}
+Q &amp;=(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})^{\prime}(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta}) \\
+&amp;=\mathbf{Y}^{\prime} \mathbf{Y}-2 \boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{Y}+\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}
+\end{aligned}\]</span> To derive the estimators, take the derivative of <span class="math inline">\(Q\)</span>
+with respect to the vector <span class="math inline">\(\beta\)</span>, set the resulting expression equal
+to zero, and solve for <span class="math inline">\(\boldsymbol{\beta}\)</span>. That is,
+<span class="math display">\[\partial Q / \partial \boldsymbol{\beta}=-2 \mathbf{X}^{\prime} \mathbf{Y}+2 \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}=\mathbf{0}_{p \times 1}\]</span>
+or
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}=\mathbf{X}^{\prime} \mathbf{Y} .\)</span>
+If <span class="math inline">\(\mathbf{X}^{\prime} \mathbf{X}\)</span> is nonsingular <span class="math display">\[i.e.,
+$\operatorname{rank}\left(\mathbf{X}^{\prime} \mathbf{X}\right)=p$ \]</span>
+then the leastsquares estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span> is
+<span class="math display">\[\hat{\boldsymbol{\beta}}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} .\]</span></p>
+<p>5 Least-Squares Regression 85 Thus, the ordinary least-squares estimator
+of the <span class="math inline">\(p \times 1\)</span> vector <span class="math inline">\(\boldsymbol{\beta}\)</span> is a set of linear
+transformations of the random vector <span class="math inline">\(\mathbf{Y}\)</span> where
+<span class="math inline">\(\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\)</span>
+is the <span class="math inline">\(p \times n\)</span> transformation matrix. If
+<span class="math inline">\(E(\mathbf{Y})=\mathbf{X} \boldsymbol{\beta}, \hat{\boldsymbol{\beta}}\)</span>
+is an unbiased estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span> since <span class="math display">\[\begin{aligned}
+\mathrm{E}(\hat{\boldsymbol{\beta}}) &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathrm{E}(\mathbf{Y}) \\
+&amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}=\boldsymbol{\beta}
+\end{aligned}\]</span> Furthermore, the <span class="math inline">\(p \times p\)</span> covariance matrix of
+<span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> is given by <span class="math display">\[\begin{aligned}
+\operatorname{cov}(\hat{\boldsymbol{\beta}}) &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \\
+&amp;=\sigma^{2}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1}
+\end{aligned}\]</span> <span class="math display">\[\begin{array}{c}
+\operatorname{cov}(\hat{\boldsymbol{\beta}}) \\
+=\sigma^{2} \mathbf{I}_{n}
+\end{array}\]</span> when
+<span class="math inline">\(\boldsymbol{\Sigma}=\operatorname{cov}(\mathbf{Y})=\sigma^{2} \mathbf{I}_{n}\)</span>.
+It is also generally of interest to estimate the unknown parameter
+<span class="math inline">\(\sigma^{2}\)</span>. The quadratic form
+<span class="math display">\[\hat{\sigma}^{2}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} /(n-p)\]</span>
+provides an unbiased estimator of <span class="math inline">\(\sigma^{2}\)</span> when
+<span class="math inline">\(\Sigma=\sigma^{2} \mathbf{I}_{n}\)</span> since <span class="math display">\[\begin{aligned}
+\mathrm{E}\left(\hat{\sigma}^{2}\right)=&amp; \mathrm{E}\left\{\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} /(n-p)\right\} \\
+=&amp;\left\{\operatorname{tr}\left[\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right)\left(\sigma^{2} \mathbf{I}_{n}\right)\right]\right.\\
+&amp;\left.+\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{X} \boldsymbol{\beta}\right\} /(n-p) \\
+=&amp;\left\{\sigma^{2}(n-p)+\left(\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}\right.\right.\\
+&amp;\left.\left.-\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}\right)\right\} /(n-p) \\
+=&amp; \sigma^{2}
+\end{aligned}\]</span> In the next example the ordinary least-squares estimates
+of <span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\sigma^{2}\)</span> are calculated for the example
+data set. The IML procedure in SAS has been used to generate all the
+example calculations in this chapter. The PROC IML programs and outputs
+for this chapter are presented in Appendix <span class="math inline">\(1 .\)</span></p>
+<p>Example 5.1.2 For the example data given in Table 5.1.1, the
+least-squares estimate of <span class="math inline">\(\boldsymbol{\beta}\)</span> is given by
+<span class="math display">\[\hat{\boldsymbol{\beta}}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}=(3.11,0.01348,0.01061)^{\prime} .\]</span>
+Therefore, the prediction equation is
+<span class="math display">\[\hat{Y}=3.11+0.01348\left(x_{1}-35\right)+0.01061\left(x_{2}-102\right)\]</span>
+or <span class="math display">\[\hat{Y}=1.556+0.01348 x_{1}+0.01061 x_{2}\]</span></p>
+<p>86 Linear Models The ordinary least-squares estimator of <span class="math inline">\(\sigma^{2}\)</span> is
+given by
+<span class="math display">\[\hat{\sigma}^{2}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} / 7=0.05988\]</span>
+5.2 BEST LINEAR UNBIASED ESTIMATORS In many problems it is of interest
+to estimate linear combinations of <span class="math inline">\(\beta_{0}, \ldots, \beta_{p-1}\)</span>,
+say, <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span>, where <span class="math inline">\(\mathbf{t}\)</span> is any
+nonzero <span class="math inline">\(p \times 1\)</span> vector of known constants. In the next definition
+the "best" linear unbiased estimator of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> is identified.</p>
+<p>Definition 5.2.1 Best Linear Unbiased Estimator <span class="math inline">\((B L U E)\)</span> of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> : The best linear unbiased
+estimator of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> is (i) a linear
+function of the observed vector <span class="math inline">\(\mathbf{Y}\)</span>, that is, a function of the
+form <span class="math inline">\(\mathbf{a}^{\prime} \mathbf{Y}+a_{0}\)</span> where <span class="math inline">\(\mathbf{a}\)</span> is an
+<span class="math inline">\(n \times 1\)</span> vector of constants and <span class="math inline">\(a_{0}\)</span> is a scalar and (ii) the
+unbiased estimator of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> with the
+smallest variance. In the next important theorem
+<span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}=\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>
+is shown to be the BLUE of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> when
+<span class="math inline">\(\mathrm{E}(\mathbf{E})=\mathbf{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{I}_{n} .\)</span> The theorem
+is called the Gauss-Markov theorem.</p>
+<p>Theorem 5.2.1 Let <span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathrm{E}(\mathbf{E})=\mathbf{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{I}_{n}\)</span>. Then the
+least-squares estimator of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> is
+given by
+<span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}=\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>
+and <span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}\)</span> is the <span class="math inline">\(B L U E\)</span> of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta} .\)</span></p>
+<p>Proof: First, the least-squares estimator of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> is shown to be
+<span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}\)</span>. Let <span class="math inline">\(\mathbf{T}\)</span> be a
+<span class="math inline">\(p \times p\)</span> nonsingular matrix such that
+<span class="math inline">\(\mathbf{T}=\left(\mathbf{t} \mid \mathbf{T}_{0}\right)\)</span> where
+<span class="math inline">\(\mathbf{t}\)</span> is a <span class="math inline">\(p \times 1\)</span> vector and <span class="math inline">\(\mathbf{T}_{0}\)</span> is a
+<span class="math inline">\(p \times(p-1)\)</span> matrix. If <span class="math inline">\(\mathbf{R}=\mathbf{T}^{\prime-1}\)</span> then
+<span class="math display">\[\begin{aligned}
+\mathbf{Y} &amp;=\mathbf{X} \beta+\mathbf{E} \\
+&amp;=\mathbf{X R T}^{\prime} \boldsymbol{\beta}+\mathbf{E} \\
+&amp;=\mathbf{U} \boldsymbol{\omega}+\mathbf{E}
+\end{aligned}\]</span> where <span class="math inline">\(\mathbf{U}=\mathbf{X R}\)</span> and
+<span class="math display">\[\boldsymbol{\omega}=\mathbf{T}^{\prime} \boldsymbol{\beta}=\left[\begin{array}{c}
+\mathbf{t}^{\prime} \boldsymbol{\beta} \\
+\mathbf{T}_{0}^{\prime} \boldsymbol{\beta}
+\end{array}\right]\]</span> The least-squares estimate of <span class="math inline">\(\boldsymbol{\omega}\)</span>
+is given by <span class="math display">\[\begin{aligned}
+\hat{\boldsymbol{\omega}} &amp;=\left(\mathbf{U}^{\prime} \mathbf{U}\right)^{-1} \mathbf{U}^{\prime} \mathbf{Y} \\
+&amp;=\left(\mathbf{R}^{\prime} \mathbf{X}^{\prime} \mathbf{X} \mathbf{R}\right)^{-1} \mathbf{R}^{\prime} \mathbf{X}^{\prime} \mathbf{Y} \\
+&amp;=\mathbf{R}^{-1}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{R}^{\prime-1} \mathbf{R}^{\prime} \mathbf{X}^{\prime} \mathbf{Y}
+\end{aligned}\]</span></p>
+<p>5 Least-Squares Regression 87 <span class="math display">\[\begin{array}{l}
+=\mathbf{T}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}=\mathbf{T}^{\prime} \hat{\boldsymbol{\beta}} \\
+=\left[\begin{array}{c}
+\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}} \\
+\mathbf{T}_{0}^{\prime} \hat{\boldsymbol{\beta}}
+\end{array}\right] .
+\end{array}\]</span> Therefore, <span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}\)</span>
+is the least-squares estimator of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span>. Next,
+<span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}\)</span> is shown to be the BLUE
+of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span>. Linear estimators of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> take the form
+<span class="math inline">\(\mathbf{a}^{\prime} \mathbf{Y}+a_{0}\)</span>. Since
+<span class="math inline">\(\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\)</span>
+is known, without loss of generality, let
+<span class="math inline">\(\mathbf{a}^{\prime}=\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}+\mathbf{b}^{\prime}\)</span>.
+Then linear unbiased estimators of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> satisfy the relationship
+<span class="math display">\[\begin{aligned}
+\mathbf{t}^{\prime} \boldsymbol{\beta}=\mathrm{E}\left(\mathbf{a}^{\prime} \mathbf{Y}+a_{0}\right) &amp;=\mathrm{E}\left(\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}+\mathbf{b}^{\prime} \mathbf{Y}+a_{0}\right) \\
+&amp;=\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}+\mathbf{b}^{\prime} \mathbf{X} \boldsymbol{\beta}+a_{0} \\
+&amp;=\mathbf{t}^{\prime} \boldsymbol{\beta}+\mathbf{b}^{\prime} \mathbf{X} \boldsymbol{\beta}+a_{0}
+\end{aligned}\]</span> Therefore, in the class of linear unbiased estimators
+<span class="math inline">\(\mathbf{b}^{\prime} \mathbf{X} \boldsymbol{\beta}+a_{0}=0\)</span> for all
+<span class="math inline">\(\boldsymbol{\beta}\)</span>. But for this expression to hold for all
+<span class="math inline">\(\boldsymbol{\beta}, \mathbf{b}^{\prime} \mathbf{X}=\mathbf{0}_{1 \times p}\)</span>
+and <span class="math inline">\(a_{0}=0\)</span>. Now calculate and minimize the variance of the estimator
+<span class="math inline">\(\mathbf{a}^{\prime} \mathbf{Y}+a_{0}\)</span> within the class of unbiased
+estimators of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span>, (i.e., when
+<span class="math inline">\(\mathbf{b}^{\prime} \mathbf{X}=\mathbf{0}_{1 \times p}\)</span> and <span class="math inline">\(a_{0}=0\)</span>
+). <span class="math display">\[\begin{aligned}
+\operatorname{var}\left(\mathbf{a}^{\prime} \mathbf{Y}+a_{0}\right) &amp;=\operatorname{var}\left(\mathbf{a}^{\prime} \mathbf{Y}\right) \\
+&amp;=\operatorname{var}\left(\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}+\mathbf{b}^{\prime} \mathbf{Y}\right) \\
+&amp;=\sigma^{2}\left(\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{t}+\mathbf{b}^{\prime} \mathbf{b}\right)
+\end{aligned}\]</span> But <span class="math inline">\(\sigma^{2}\)</span> and
+<span class="math inline">\(\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{t}\)</span>
+are constants. Therefore,
+<span class="math inline">\(\operatorname{var}\left(\mathbf{a}^{\prime} \mathbf{Y}+a_{0}\right)\)</span> is
+minimized when <span class="math inline">\(\mathbf{b}^{\prime} \mathbf{b}=0\)</span> or when
+<span class="math inline">\(\mathbf{b}=\mathbf{0}_{p \times 1} .\)</span> Therefore, the BLUE of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> has variance
+<span class="math inline">\(\sigma^{2} \mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{t} .\)</span>
+But <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> is a linear unbiased
+estimator of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> with variance
+<span class="math inline">\(\sigma^{2} \mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{t}\)</span>.
+Therefore, <span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}\)</span> is the BLUE of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span>.</p>
+<p>Example 5.2.1 Consider the example data set given in Table 5.1.1. By the
+Gauss-Markov theorem, the best linear unbiased estimate of
+<span class="math inline">\(\beta_{1}-\beta_{2}\)</span> is <span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}=\)</span>
+<span class="math inline">\((0,1,-1)(3.11,0.01348,0.01061)^{\prime}=0.00287\)</span>. 5.3 ANOVA TABLE FOR
+THE ORDINARY LEAST-SQUARES REGRESSION FUNCTION An ANOVA table can be
+constructed that partitions the total sum of squares into the sum of
+squares due to the overall mean, the sum of squares due to
+<span class="math inline">\(\beta_{1}, \ldots, \beta_{p-1}\)</span>, and the sum of squares due to the
+residual. The ANOVA table for this model is given in Table 5.3.1. The
+sum of squares under the column "SS"’ can be applied to any form of
+the <span class="math inline">\(n \times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span>. The sum of squares under the
+column "SS Centered" can be applied to centered matrices
+<span class="math inline">\(\mathbf{X}=\left[\mathbf{1}_{n} \mid \mathbf{X}_{c}\right]\)</span> where
+<span class="math inline">\(\mathbf{1}_{n}^{\prime} \mathbf{X}_{c}=\mathbf{0}_{1 \times(p-1)} .\)</span></p>
+<p>88 Linear Models Table <span class="math inline">\(\mathbf{5 . 3 . 1}\)</span> east-Squares ANOVA Table</p>
+<div class="tabular">
+<p>ll SS &amp; SS Centered<br />
+&amp; <span class="math inline">\(=\mathbf{Y}^{\prime} \frac{1}{n} \mathbf{J}_{n} \mathbf{Y}\)</span><br />
+1 &amp;
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y}=\)</span>
+&amp;
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{\prime} \mathbf{Y}\)</span><br />
+<span class="math inline">\(p\)</span> &amp;
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y}\)</span>
+&amp;
+<span class="math inline">\(=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right.\)</span><br />
+&amp; &amp;
+<span class="math inline">\(\left.-\mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}_{c}^{\prime}\right] \mathbf{Y}\)</span><br />
+&amp; &amp;<br />
+&amp; &amp;</p>
+</div>
+<p>The expected mean squares for each effect are calculated using Theorem
+1.3.2: <span class="math display">\[\begin{aligned}
+\text { EMS (overall mean) } &amp;=\mathrm{E}\left(\mathbf{Y}^{\prime} \frac{1}{n} \mathbf{J}_{n} \mathbf{Y}\right) \\
+&amp;=\operatorname{tr}\left[\left(\sigma^{2} / n\right) \mathbf{J}_{n}\right]+\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \frac{1}{n} \mathbf{J}_{n} \mathbf{X} \boldsymbol{\beta} \\
+&amp;=\sigma^{2}+\boldsymbol{\beta}^{\prime}\left[\mathbf{1}_{n} \mid \mathbf{X}_{c}\right]^{\prime} \frac{1}{n} \mathbf{J}_{n}\left[\mathbf{1}_{n} \mid \mathbf{X}_{c}\right] \boldsymbol{\beta} \\
+&amp;=\sigma^{2}+\boldsymbol{\beta}^{\prime}\left[\begin{array}{c}
+\mathbf{1}_{n}^{\prime} \mathbf{1}_{n} \\
+\mathbf{X}_{c}^{\prime} \mathbf{1}_{n}
+\end{array}\right]\left[\mathbf{1}_{n}^{\prime} \mathbf{1}_{n} \mid \mathbf{1}_{n}^{\prime} \mathbf{X}_{c}\right] \boldsymbol{\beta} / n \\
+&amp;=\sigma^{2}+\boldsymbol{\beta}^{\prime}\left[\begin{array}{cc}
+n^{2} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \mathbf{0}
+\end{array}\right] \boldsymbol{\beta} / n \\
+&amp;=\sigma^{2}+n \beta_{0}^{* 2}
+\end{aligned}\]</span> <span class="math display">\[\begin{aligned}
+\operatorname{EMS}(\text { Regression })=&amp; E\left[\mathbf{Y}^{\prime} \mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{\prime} \mathbf{Y} /(p-1)\right] \\
+=&amp;\left\{\operatorname{tr}\left[\sigma^{2} \mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{\prime}\right]\right.\\
+&amp;\left.+\beta^{\prime} \mathbf{X}^{\prime} \mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{\prime} \mathbf{X} \boldsymbol{\beta}\right\} /(p-1) \\
+=&amp;\left\{\sigma^{2}(p-1)\right.\\
+&amp;\left.+\boldsymbol{\beta}^{\prime}\left[\begin{array}{c}
+\mathbf{1}_{n}^{\prime} \\
+\mathbf{X}_{c}^{\prime}
+\end{array}\right] \mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{\prime}\left[\mathbf{1}_{n} \mid \mathbf{X}_{c}\right] \boldsymbol{\beta}\right\} /(p-1) \\
+=&amp; \sigma^{2}+\left(\beta_{1}, \ldots, \beta_{p-1}\right) \mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\left(\beta_{1}, \ldots, \beta_{p-1}\right)^{\prime} /(p-1)
+\end{aligned}\]</span> and EMS (residual)
+<span class="math inline">\(=\mathrm{E}\left(\hat{\sigma}^{2}\right)=\sigma^{2}\)</span> as derived in
+Section 5.1. The ANOVA table for the fuel, speed, grade data set is
+provided in the next example.</p>
+<p>5 Least-Squares Regression 89 Example 5.3.1 The ANOVA table for the data
+in Table 5.1.1 is given here: 5.4 WEIGHTED LEAST-SQUARES REGRESSION In
+the first three sections of this chapter the model was confined to
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E}(\mathbf{E})=\mathbf{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{I}_{n}\)</span>. In this
+section, the model <span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> is
+considered when
+<span class="math inline">\(\mathrm{E}(\mathbf{E})=\mathbf{0}, \operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{V}\)</span>,
+and <span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric, positive definite matrix
+of known constants. Because <span class="math inline">\(\mathbf{V}\)</span> is positive definite, there
+exists an <span class="math inline">\(n \times n\)</span> nonsingular matrix <span class="math inline">\(\mathbf{T}\)</span> such that
+<span class="math inline">\(\mathbf{V}=\mathbf{T T}^{\prime} .\)</span> Premultiplying both sides of the
+model <span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> by <span class="math inline">\(\mathbf{T}^{-1}\)</span> we
+obtain <span class="math display">\[\begin{array}{c}
+\mathbf{T}^{-1} \mathbf{Y}=\mathbf{T}^{-1} \mathbf{X} \boldsymbol{\beta}+\mathbf{T}^{-1} \mathbf{E} \\
+\mathbf{Y}_{\mathrm{w}}=\mathbf{X}_{\mathrm{w}} \boldsymbol{\beta}+\mathbf{E}_{\mathrm{w}}
+\end{array}\]</span> where
+<span class="math inline">\(\mathbf{Y}_{\mathrm{w}}=\mathbf{T}^{-1} \mathbf{Y}, \mathbf{X}_{\mathrm{w}}=\mathbf{T}^{-1} \mathbf{X}\)</span>,
+and <span class="math inline">\(\mathbf{E}_{\mathrm{w}}=\mathbf{T}^{-1} \mathbf{E} .\)</span> Therefore,
+<span class="math inline">\(\mathrm{E}\left(\mathbf{E}_{\mathrm{w}}\right)=\)</span>
+<span class="math inline">\(\mathbf{T}^{-1} \mathrm{E}(\mathbf{E})=\mathbf{0}_{p \times 1}\)</span> and
+<span class="math inline">\(\operatorname{cov}\left(\mathbf{E}_{\mathrm{w}}\right)=\operatorname{cov}\left(\mathbf{T}^{-1} \mathbf{E}\right)=\mathbf{T}^{-1}\left(\sigma^{2} \mathbf{V}\right) \mathbf{T}^{-1 \prime}=\sigma^{2} \mathbf{I}_{n} .\)</span>
+The weighted least-squares estimators of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma^{2}\)</span> are
+derived using the ordinary leastsquares estimator formulas with the
+model
+<span class="math inline">\(\mathbf{Y}_{\mathrm{w}}=\mathbf{X}_{\mathrm{w}} \boldsymbol{\beta}+\mathbf{E}_{\mathrm{w}}\)</span>.
+That is, the weighted least-squares estimators of <span class="math inline">\(\beta\)</span> and
+<span class="math inline">\(\sigma^{2}\)</span> are given by <span class="math display">\[\begin{aligned}
+\hat{\boldsymbol{\beta}}_{\mathrm{w}} &amp;=\left(\mathbf{X}_{\mathrm{w}}^{\prime} \mathbf{X}_{\mathrm{w}}\right)^{-1} \mathbf{X}_{\mathrm{w}}^{\prime} \mathbf{Y}_{\mathrm{w}} \\
+&amp;=\left(\mathbf{X}^{\prime} \mathbf{T}^{-1 /} \mathbf{T}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{T}^{-1 /} \mathbf{T}^{-1} \mathbf{Y} \\
+&amp;=\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{Y}
+\end{aligned}\]</span> and <span class="math display">\[\begin{aligned}
+\hat{\sigma}_{\mathrm{w}}^{2} &amp;=\left(\mathbf{Y}_{\mathrm{w}}-\mathbf{X}_{\mathrm{w}} \hat{\beta}_{\mathrm{w}}\right)^{\prime}\left(\mathbf{Y}_{\mathrm{w}}-\mathbf{X}_{\mathrm{w}} \hat{\beta}_{\mathrm{w}}\right) /(n-p) \\
+&amp;=\left[\mathbf{Y}^{\prime}\left(\mathbf{V}^{-1}-\mathbf{V}^{-1} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1}\right) \mathbf{Y}\right] /(n-p)
+\end{aligned}\]</span> The Gauss-Markov theorem can also be generalized for the
+model <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathrm{E}(\mathbf{E})=\mathbf{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{V}\)</span>. For this model,
+the weighted least-squares estimator of
+<span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span> is given by
+<span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}_{\mathrm{w}}=\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{Y}\)</span>
+and <span class="math inline">\(\mathbf{t}^{\prime} \hat{\boldsymbol{\beta}}_{\mathrm{w}}\)</span> is the
+BLUE of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta}\)</span>. The proof is left to
+the reader.</p>
+<p>Table 5.4.1</p>
+<p>Weighted Least-Squares ANOVA Table</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">df</th>
+<th align="left">SS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Overall mean</td>
+<td align="left">1</td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{V}^{-1} \mathbf{1}_{n}\left(\mathbf{1}_{n}^{\prime} \mathbf{V}^{-1} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime} \mathbf{V}^{-1} \mathbf{Y}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Regression (<span class="math inline">\(\beta_1 , \dots, \beta_{p-1}\)</span>)</td>
+<td align="left"><span class="math inline">\(p-1\)</span></td>
+<td align="left"><span class="math inline">\(\mathbf { Y } ^ { \prime } \mathbf { V } ^ { - 1 } [ \mathbf { X } ( \mathbf { X } ^ { \prime } \mathbf { V } ^ { - 1 } \mathbf { X } ) ^ { - 1 } \mathbf { X } ^ { \prime } - \mathbf { 1 } _ { n } ( \mathbf { 1 } _ { n } ^ { \prime } \mathbf { V } ^ { - 1 } \mathbf { 1 } _ { n } ) ^ { - 1 } \mathbf { 1 } _ { n } ^ { \prime } ] \mathbf { V } ^ { - 1 } \mathbf { Y }\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Residual</td>
+<td align="left"><span class="math inline">\(n-p\)</span></td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime} \left[\mathbf{V}^{-1} - \mathbf{V}^{-1} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1}\right] \mathbf{Y}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left">n</td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{V}^{-1} \mathbf{Y}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The ANOVA table for weighted least-squares regression functions can be
+constructed using Table <span class="math inline">\(5.3 .1\)</span> and substituting
+<span class="math inline">\(\mathbf{T}^{-1} \mathbf{X}\)</span> for <span class="math inline">\(\mathbf{X}\)</span> and
+<span class="math inline">\(\mathbf{T}^{-1} \mathbf{Y}\)</span> for <span class="math inline">\(\mathbf{Y}\)</span>. The weighted
+least-squares ANOVA table is provided in Table 5.4.1. In the next
+example a w el, speed, grade data set. fuel, speed, grade data set.
+Example 5.4.1 Consider the data in Table 5.1.1. Suppose the fuel
+consumption observations are independent but the variance of the
+observations at speed <span class="math inline">\(50 \mathrm{mph}\)</span> is twice the variance of
+observations at speed <span class="math inline">\(20 \mathrm{mph}\)</span>. Then
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{V}\)</span> where the
+<span class="math inline">\(10 \times 10\)</span> matrix <span class="math display">\[\mathbf{V}=\left[\begin{array}{ll}
+1 &amp; 0 \\
+0 &amp; 2
+\end{array}\right] \otimes \mathbf{I}_{5}\]</span> The weighted least-squares
+estimates of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma^{2}\)</span> are
+<span class="math display">\[\hat{\boldsymbol{\beta}}_{\mathrm{w}}=\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{Y}=(3.11,0.013,0.0107)^{\prime}\]</span>
+Therefore, the prediction equation is
+<span class="math display">\[\hat{Y}=3.11+0.013\left(x_{1}-35\right)+0.01072\left(x_{2}-102\right)\]</span>
+or <span class="math display">\[\hat{Y}=1.563+0.013 x_{1}+0.01072 x_{2}\]</span> The weighted
+least-squares estimator of <span class="math inline">\(\sigma^{2}\)</span> is given by
+<span class="math display">\[\hat{\sigma}_{\mathrm{w}}^{2}=\left[\mathbf{Y}^{\prime}\left(\mathbf{V}^{-1}-\mathbf{V}^{-1} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1}\right) \mathbf{Y}\right] / 7=0.0379\]</span></p>
+<p>๖ Least-Squares Regression 91 The weighted least-squares ANOVA table is</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="right">df</th>
+<th align="right">SS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Overall mean</td>
+<td align="right">1</td>
+<td align="right"><span class="math inline">\(57.4083\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Regression <span class="math inline">\(\left(\beta_{1}, \beta_{2}\right)\)</span></td>
+<td align="right">2</td>
+<td align="right"><span class="math inline">\(14.5813\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Residual</td>
+<td align="right">7</td>
+<td align="right"><span class="math inline">\(0.2654\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="right">10</td>
+<td align="right"><span class="math inline">\(72.2550\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Thus far in Chapter 5 no assumptions have been made about the functional
+form of the distribution of the <span class="math inline">\(n \times 1\)</span> random vector <span class="math inline">\(\mathbf{E}\)</span>
+(and hence about the distribution of Y). However, if we want to test
+hypotheses or construct confidence bands on model parameters, then we
+need to make an assumption about the functional form of the distribution
+of <span class="math inline">\(\mathbf{E}\)</span>. It is common to assume that the <span class="math inline">\(n \times 1\)</span> random
+vector <span class="math inline">\(\mathbf{E}\)</span> has a multivariate normal distribution where
+<span class="math inline">\(E(\mathbf{E})=\mathbf{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\mathbf{\Sigma} .\)</span> In the simplest case
+the <span class="math inline">\(E_{i}\)</span> ’s are independent, identically distributed normal random
+variables such that
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+In more complicated problems, it is assumed that
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}(\mathbf{0}, \mathbf{\Sigma})\)</span> where
+<span class="math inline">\(\mathbf{\Sigma}\)</span> is an <span class="math inline">\(n \times n\)</span> matrix whose elements are functions
+of a series of unknown variance components. In Section <span class="math inline">\(5.5\)</span> model
+adequacy is discussed when
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+In Section <span class="math inline">\(5.6\)</span> least-squares regression is developed for complete,
+balanced factorial experiments where the <span class="math inline">\(n \times n\)</span> covariance matrix
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span> is a function of a series of unknown variance
+components. Later in Chapter 6 a general discussion on confidence bands
+and hypothesis testing is provided. <span class="math inline">\(5.5\)</span> LACK OF FIT TEST In this
+section assume that the <span class="math inline">\(n \times 1\)</span> random error vector
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+It is of interest to check whether the proposed model adequately fits
+the data. This lack of fit test requires replicate observations at one
+or more of the combinations of the <span class="math inline">\(x_{1}, x_{2}, \ldots, x_{p-1}\)</span>
+values.</p>
+<p>Since the elements of the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime}\)</span> can be listed in
+any order, we adopt the convention that sets of <span class="math inline">\(Y_{i}\)</span> values that
+share the same <span class="math inline">\(x_{1}, \ldots, x_{p-1}\)</span> values are listed next to each
+other in the <span class="math inline">\(\mathbf{Y}\)</span> vector. For example, in the data set from
+Table <span class="math inline">\(5.1 .1\)</span>, the <span class="math inline">\(10 \times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}=(1.7,2.0,1.9,1.6,3.2,2.0,2.5,\)</span>, <span class="math inline">\(5.4,5.7,5.1)^{\prime}\)</span> with
+<span class="math inline">\(Y_{1}-Y_{4}\)</span> sharing a speed equal to 20 and a speed <span class="math inline">\(\times\)</span> grade
+equal to <span class="math inline">\(0, Y_{5}\)</span> having a speed equal to 20 and a speed <span class="math inline">\(\times\)</span>
+grade equal to <span class="math inline">\(120, Y_{6}-Y_{7}\)</span> sharing a speed equal to 50 and a
+speed <span class="math inline">\(\times\)</span> grade equal to 0 , and <span class="math inline">\(Y_{8}-Y_{10}\)</span> sharing a speed
+equal to 50 and a speed <span class="math inline">\(\times\)</span> grade equal to 300 .</p>
+<p>When replicate observations exist within combinations of the
+<span class="math inline">\(x_{1}, \ldots, x_{p-1}\)</span> values, the residual sum of squares can be
+partitioned into a sum of squares due to pure error plus a sum of
+squares due to lack of fit. The pure error component is a measure of the
+variation between <span class="math inline">\(Y_{i}\)</span> observations that share the same
+<span class="math inline">\(x_{1}, \ldots, x_{p-1}\)</span> values.</p>
+<p>In the example data set from Table <span class="math inline">\(5.1 .1\)</span>, the pure error sum of
+squares is the sum of squares of <span class="math inline">\(Y_{1}-Y_{4}\)</span> around their mean plus
+the sum of squares of <span class="math inline">\(Y_{5}\)</span> around its mean (zero in this case), plus
+the sum of squares of <span class="math inline">\(Y_{6}-Y_{7}\)</span> around their mean plus the sum of
+squares of <span class="math inline">\(Y_{8}-Y_{10}\)</span> around their mean. In general the sum of
+squares pure error is given by
+<span class="math display">\[\mathrm{SS} \text { (pure error) }=\mathbf{Y}^{\prime} \mathbf{A}_{\mathrm{pe}} \mathbf{Y}\]</span>
+where <span class="math inline">\(\mathbf{A}_{\mathrm{pe}}\)</span> is an <span class="math inline">\(n \times n\)</span> block diagonal
+matrix with the <span class="math inline">\(j^{\text {th }}\)</span> block equal to
+<span class="math inline">\(\mathbf{I}_{r_{j}}-\frac{1}{r_{j}} \mathbf{J}_{r_{j}}\)</span> for
+<span class="math inline">\(j=1, \ldots, k\)</span> where <span class="math inline">\(k\)</span> is the number of combinations of
+<span class="math inline">\(x_{1}, \ldots, x_{p-1}\)</span> values that contain at least one observation
+and <span class="math inline">\(r_{j}\)</span> is the number of <span class="math inline">\(Y_{i}\)</span> values in the <span class="math inline">\(j^{\text {th }}\)</span>
+combination with <span class="math inline">\(n=\sum_{j=1}^{k} r_{j} .\)</span> Note that
+<span class="math inline">\(\mathbf{A}_{\mathrm{pe}}\)</span> is an idempotent matrix of rank <span class="math inline">\(n-k\)</span> and
+<span class="math inline">\(\mathbf{J}_{n} \mathbf{A}_{\mathrm{pe}}=\mathbf{0}_{n \times n} .\)</span>
+Furthermore, the first <span class="math inline">\(r_{1}\)</span> rows of the matrix <span class="math inline">\(\mathbf{X}\)</span> are the
+same, the next <span class="math inline">\(r_{2}\)</span> rows of <span class="math inline">\(\mathbf{X}\)</span> are the same, etc.
+Therefore,
+<span class="math inline">\(\mathbf{A}_{\mathrm{pe}} \mathbf{X}=\mathbf{0}_{n \times p}\)</span>. In
+balanced data structures <span class="math inline">\(r_{1}=r_{2}=\cdots=r_{k}=r, n=r k\)</span>, and the
+<span class="math inline">\(n \times n\)</span> pure error matrix <span class="math inline">\(\mathbf{A}_{\mathrm{pe}}\)</span> can be
+expressed as the Kronecker product
+<span class="math inline">\(\mathbf{I}_{k} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) .\)</span></p>
+<p>For the fuel, speed, grade data set, the <span class="math inline">\(10 \times 10\)</span> pure error sum
+of squares matrix <span class="math inline">\(\mathbf{A}_{\mathrm{pe}}\)</span> is derived in the next
+example.</p>
+<p>Example 5.5.1 From the Table 5.1.1 data set, four groups of <span class="math inline">\(Y_{i}\)</span> ’s
+share the same speed and grade values. Therefore,
+<span class="math inline">\(k=4, r_{1}=4, r_{2}=1, r_{3}=2, r_{4}=3\)</span>, and
+<span class="math inline">\(\mathbf{A}_{\mathrm{pe}}\)</span> is given by
+<span class="math display">\[\mathbf{A}_{\mathrm{pe}}=\left[\begin{array}{cccc}
+\mathbf{I}_{4}-\frac{1}{4} \mathbf{J}_{4} &amp; \multicolumn{3}{c}{\mathbf{0}} \\
+&amp; 0_{1 \times 1} &amp; \\
+&amp; &amp; \mathbf{I}_{2}-\frac{1}{2} \mathbf{J}_{2} &amp; \\
+&amp; \mathbf{0} &amp; \mathbf{I}_{3}-\frac{1}{3} \mathbf{J}_{3}
+\end{array}\right]\]</span> In this example, <span class="math inline">\(r_{2}=1\)</span> so
+<span class="math inline">\(\mathbf{I}_{r_{2}}-\frac{1}{r_{2}} \mathbf{J}_{r_{2}}=1-\frac{1}{1} 1=0 .\)</span>
+Thus, the fifth diagonal element of <span class="math inline">\(\mathbf{A}_{\mathrm{pe}}\)</span> equals
+the scalar 0 , indicating that observation <span class="math inline">\(Y_{5}\)</span> does not contribute
+to the pure error sum of squares. The
+<span class="math inline">\(\operatorname{rank}\left(\mathbf{A}_{\mathrm{pe}}\right)=10-4=6\)</span>. The
+sum of squares lack of fit is calculated by subtraction. Therefore,
+<span class="math display">\[\begin{aligned}
+\mathrm{SS}(\text { lack of fit }) &amp;=\mathrm{SS}(\text { residual })-\mathrm{SS} \text { (pure error) } \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right] \mathbf{Y}
+\end{aligned}\]</span> The sums of squares due to the overall mean, regression,
+lack of fit, pure error, and total are provided in Table <span class="math inline">\(5.5 .1 .\)</span></p>
+<p>Note that
+<span class="math inline">\(\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right] \sigma^{2} \mathbf{I}_{n}=\sigma^{2}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right]\)</span>
+where
+<span class="math inline">\(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\)</span>
+is an idempotent matrix of rank <span class="math inline">\(k-p\)</span>. Likewise,
+<span class="math inline">\(\left[\mathbf{A}_{\mathrm{pe}}\right] \sigma^{2} \mathbf{I}_{n}=\sigma^{2} \mathbf{A}_{\mathrm{pe}}\)</span>
+where <span class="math inline">\(\mathbf{A}_{\mathrm{pe}}\)</span> is an idempotent matrix of rank <span class="math inline">\(n-k\)</span>.
+Therefore, by Table 5.5.1 ANOVA Table with Pure Error and Lack of Fit</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">df</th>
+<th align="left">SS</th>
+<th align="left">SS Centered</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Overall mean</td>
+<td align="left">1</td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime} \frac{1}{n} \mathbf{J}_{n} \mathbf{Y}\)</span></td>
+<td align="left"><span class="math inline">\(=\mathbf{Y}^{\prime} \frac{1}{n} \mathbf{J}_{n} \mathbf{Y}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Regression <span class="math inline">\(\left(\beta_{1}, \ldots, \beta_{p-1}\right)\)</span></td>
+<td align="left"><span class="math inline">\(p-1\)</span></td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y}\)</span></td>
+<td align="left"><span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{\prime} \mathbf{Y}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Lack of fit</td>
+<td align="left"><span class="math inline">\(k-p\)</span></td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right] \mathbf{Y}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}-\mathbf{A}_{\mathrm{pe}}\right.\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(\left.-\mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}_{c}^{\prime}\right] \mathbf{Y}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Pure error</td>
+<td align="left"><span class="math inline">\(n-k\)</span></td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{\mathrm{pe}} \mathbf{Y}\)</span></td>
+<td align="left"><span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{A}_{\mathrm{pe}} \mathbf{Y}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left"><span class="math inline">\(n\)</span></td>
+<td align="left"><span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{Y}\)</span></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Corollary 3.1.2(a), the sum of squares lack of fit
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right] \mathbf{Y} \sim\)</span>
+<span class="math inline">\(\sigma^{2} \chi_{k-p}^{2}\left(\lambda_{\text {lof }}\right)\)</span> and the
+sum of squares pure error
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{\mathrm{pe}} \mathbf{Y} \sim \sigma^{2} \chi_{n-k}^{2}\left(\lambda_{\mathrm{pe}}\right)\)</span>
+where
+<span class="math display">\[\lambda_{\text {lof }}=[\mathrm{E}(\mathbf{Y})]^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right][\mathrm{E}(\mathbf{Y})] /\left(2 \sigma^{2}\right) \geq 0\]</span>
+and
+<span class="math display">\[\lambda_{\mathrm{pe}}=[\mathrm{E}(\mathbf{Y})]^{\prime} \mathbf{A}_{\mathrm{pe}}[\mathrm{E}(\mathbf{Y})] /\left(2 \sigma^{2}\right)=\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{A}_{\mathrm{pe}} \mathbf{X} \boldsymbol{\beta} /\left(2 \sigma^{2}\right)=0\]</span>
+Furthermore, by Theorem 3.2.1, the lack of fit sum of squares and the
+pure error sum of squares are independent since <span class="math display">\[\begin{aligned}
+\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right]\left(\sigma^{2} \mathbf{I}_{n}\right)\left(\mathbf{A}_{\mathrm{pe}}\right) &amp;=\sigma^{2}\left[\mathbf{A}_{\mathrm{pe}}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{A}_{\mathrm{pe}}-\mathbf{A}_{\mathrm{pe}}\right] \\
+&amp;=\sigma^{2}\left[\mathbf{A}_{\mathrm{pe}}-\mathbf{A}_{\mathrm{pe}}\right] \\
+&amp;=\mathbf{0}_{n \times n} .
+\end{aligned}\]</span> Therefore, the statistic
+<span class="math display">\[F^{*}=\frac{\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right] \mathbf{Y} /(k-p)}{\mathbf{Y}^{\prime} \mathbf{A}_{\mathrm{pe}} \mathbf{Y} /(n-k)} \sim F_{k-p, n-k}\left(\lambda_{\mathrm{lof}}\right)\]</span>
+Note that if <span class="math inline">\(\mathrm{E}(\mathbf{Y})=\mathbf{X} \beta\)</span>, then
+<span class="math display">\[\begin{aligned}
+\lambda_{\text {lof }} &amp;=[\mathrm{E}(\mathbf{Y})]^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right][\mathrm{E}(\mathbf{Y})] /\left(2 \sigma^{2}\right) \\
+&amp;=\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{A}_{\mathrm{pe}}\right] \mathbf{X} \boldsymbol{\beta} /\left(2 \sigma^{2}\right) \\
+&amp;=\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}-\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}-\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{A}_{\mathrm{pe}} \mathbf{X} \boldsymbol{\beta} \\
+&amp;=0
+\end{aligned}\]</span> If
+<span class="math inline">\(\mathrm{E}(\mathbf{Y}) \neq \mathbf{X} \boldsymbol{\beta}\)</span> then
+<span class="math inline">\(\lambda_{\text {lof }}&gt;0\)</span>. Therefore, the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \lambda_{\text {lof }}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \lambda_{\text {lof }}&gt;0\)</span> is equivalent to
+<span class="math inline">\(\mathrm{H}_{0}: \mathrm{E}(\mathbf{Y})=\mathbf{X} \boldsymbol{\beta}\)</span>
+versus
+<span class="math inline">\(\mathrm{H}_{1}: \mathrm{E}(\mathbf{Y}) \neq \mathbf{X} \boldsymbol{\beta} .\)</span>
+The statement <span class="math inline">\(\mathrm{E}(\mathbf{Y})=\mathbf{X} \boldsymbol{\beta}\)</span>
+implies that the model being used in the estimation</p>
+<p>94 Linear Models provides a good fit and therefore may be appropriate.
+Thus, a <span class="math inline">\(\gamma\)</span> level rejection region for the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}\)</span> versus <span class="math inline">\(\mathrm{H}_{1}\)</span> is as follows: Reject
+<span class="math inline">\(\mathrm{H}_{0}\)</span> if <span class="math inline">\(F^{*}&gt;F_{k-p, n-k}^{\gamma} .\)</span> In the next example,
+the pure error and lack of fit ANOVA table is provided for the fuel,
+speed, grade data set.</p>
+<p>Example 5.5.2 The ANOVA table with lack of fit and pure error
+calculations is provided below for Table <span class="math inline">\(5.1 .1\)</span> data set.</p>
+<p>The lack of fit test statistic <span class="math inline">\(F^{*}=0.21&lt;F_{1,6}^{0.05}=5.99\)</span>
+indicating that the equation
+<span class="math inline">\(\hat{Y}=1.556+0.013848 x_{1}+0.01601 x_{i 2}\)</span> provides a good fit of
+the data. 5.6 PARTITIONING THE SUM OF SQUARES REGRESSION In Table
+<span class="math inline">\(5.3 .1\)</span> the sum of squares regression was expressed with <span class="math inline">\(p-1\)</span> degrees
+of freedom. This sum of squares represented the total influence of the
+variables <span class="math inline">\(x_{1}, \ldots, x_{p-1}\)</span> in the ordinary least-squares
+regression. It is often of interest to check the contribution of a
+particular variable (or variables) given that other variables are
+already in the model. Such contributions can be calculated by
+partitioning the <span class="math inline">\(n \times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span> as
+<span class="math display">\[\mathbf{X}=\left(\mathbf{X}_{1}\left|\mathbf{X}_{2}\right| \cdots \mid \mathbf{X}_{m}\right)\]</span>
+where <span class="math inline">\(\mathbf{X}_{j}\)</span> is an <span class="math inline">\(n \times p_{j}\)</span> matrix for
+<span class="math inline">\(j=1, \ldots, m, p=\sum_{j=1}^{m} p_{j}\)</span>, and
+<span class="math inline">\(\mathbf{X}_{1}=\mathbf{1}_{n} .\)</span> If
+<span class="math inline">\(R_{1}=\mathbf{X}_{1}, R_{2}=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right), \ldots, R_{m-1}=\left(\mathbf{X}_{1}\left|\mathbf{X}_{2}\right| \cdots \mid \mathbf{X}_{m-1}\right)\)</span>
+and <span class="math inline">\(\mathbf{R}_{m}=\mathbf{X}\)</span>, then the sum of squares due to the
+<span class="math inline">\(p_{j}\)</span> variables in <span class="math inline">\(\mathbf{X}_{j}\)</span> given that
+<span class="math inline">\(\mathbf{X}_{1}, \mathbf{X}_{2}, \ldots, X_{j-1}\)</span> are already in the
+model is given by <span class="math display">\[\begin{aligned}
+\operatorname{SS}\left(\mathbf{X}_{j} \mid \mathbf{X}_{1}, \mathbf{X}_{2}, \ldots, \mathbf{X}_{j-1}\right)=&amp; \mathbf{Y}^{\prime}\left[\mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}\right.\\
+&amp;\left.-\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\right] \mathbf{Y}
+\end{aligned}\]</span> Such conditional sums of squares are often called Type I
+sums of squares. The entire ANOVA table with the Type I sums of squares
+is presented in Table 5.6.1.</p>
+<p>5 Least-Squares Regression 95 Table 5.6.1</p>
+<div class="tabular">
+<p>ll<br />
+&amp; df &amp; Type I SS<br />
+<span class="math inline">\(p_{1}=1\)</span> &amp;
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{R}_{1}\left(\mathbf{R}_{1}^{\prime} \mathbf{R}_{1}\right)^{-1} \mathbf{R}_{1}^{\prime} \mathbf{Y}=\mathbf{Y}^{\prime} \frac{1}{n} \mathbf{J}_{n} \mathbf{Y}\)</span><br />
+<span class="math inline">\(p_{2}\)</span> &amp;
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{R}_{2}\left(\mathbf{R}_{2}^{\prime} \mathbf{R}_{2}\right)^{-1} \mathbf{R}_{2}^{\prime}-\mathbf{R}_{1}\left(\mathbf{R}_{1}^{\prime} \mathbf{R}_{1}\right)^{-1} \mathbf{R}_{1}^{\prime}\right] \mathbf{Y}\)</span><br />
+<span class="math inline">\(p_{3}\)</span> &amp;
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{R}_{3}\left(\mathbf{R}_{3}^{\prime} \mathbf{R}_{3}\right)^{-1} \mathbf{R}_{3}^{\prime}-\mathbf{R}_{2}\left(\mathbf{R}_{2}^{\prime} \mathbf{R}_{2}\right)^{-1} \mathbf{R}_{2}^{\prime}\right] \mathbf{Y}\)</span><br />
+<span class="math inline">\(\vdots\)</span> &amp; <span class="math inline">\(\vdots\)</span><br />
+<span class="math inline">\(p_{m}\)</span> &amp;
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{R}_{m-1}\left(\mathbf{R}_{m-1}^{\prime} \mathbf{R}_{m-1}\right)^{-1} \mathbf{R}_{m-1}^{\prime}\right] \mathbf{Y}\)</span><br />
+&amp; <span class="math inline">\(n-p\)</span> &amp;
+<span class="math inline">\(\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y}\)</span><br />
+&amp; <span class="math inline">\(n\)</span> &amp; <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{Y}\)</span></p>
+</div>
+<p>Note that the sum of squares due to all sources of variations still add
+up to the total sum of squares <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{Y}\)</span>.</p>
+<p>The Type I sums of squares for the fuel, speed, grade data set are
+provided below with the output provided in Appendix <span class="math inline">\(1 .\)</span></p>
+<p>Example 5.6.1 Using the example data set from Table 5.1.1, the Type I
+sums of squares are provided for the overall mean, for the speed
+variable <span class="math inline">\(x_{1}\)</span> given the overall mean, and for the speed <span class="math inline">\(\times\)</span>
+grade variable <span class="math inline">\(x_{2}\)</span> given the overall mean and <span class="math inline">\(x_{1}\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="right">df</th>
+<th align="right">SS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Overall mean</td>
+<td align="right">1</td>
+<td align="right"><span class="math inline">\(96.721\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(x_{1} \mid\)</span> overall mean</td>
+<td align="right">1</td>
+<td align="right"><span class="math inline">\(10.609\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(x_{2}\)</span> |overall mean, <span class="math inline">\(x_{1}\)</span></td>
+<td align="right">1</td>
+<td align="right"><span class="math inline">\(13.461\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Residual</td>
+<td align="right">7</td>
+<td align="right"><span class="math inline">\(0.419\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">10</td>
+<td align="right"><span class="math inline">\(121.210\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Some useful relationships are developed next. Note
+<span class="math inline">\(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}=\mathbf{R}_{j}^{\prime}\)</span>
+for any <span class="math inline">\(j=1, \ldots, m\)</span>. That is, <span class="math display">\[\left[\begin{array}{c}
+\mathbf{X}_{1}^{\prime} \\
+\mathbf{X}_{2}^{\prime} \\
+\vdots \\
+\mathbf{X}_{j}^{\prime}
+\end{array}\right] \mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}=\left[\begin{array}{c}
+\mathbf{X}_{1}^{\prime} \\
+\mathbf{X}_{2}^{\prime} \\
+\vdots \\
+\mathbf{X}_{j}^{\prime}
+\end{array}\right]\]</span></p>
+<p>96 Linear Models Therefore, for any <span class="math inline">\(1 \leq i \leq j \leq m\)</span>
+<span class="math display">\[\mathbf{X}_{i}^{\prime} \mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}=\mathbf{X}_{i}^{\prime}\]</span>
+and
+<span class="math display">\[\mathbf{R}_{i}^{\prime} \mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}=\mathbf{R}_{i}^{\prime} .\]</span>
+It is left to the reader to show that the above relationships imply that
+the matrices
+<span class="math inline">\(\mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}-\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\)</span>
+are idempotent of rank <span class="math inline">\(p_{j}\)</span> for any <span class="math inline">\(j=\)</span> <span class="math inline">\(2, \ldots, m\)</span> and to show
+that any two matrices
+<span class="math inline">\(\mathbf{R}_{i}\left(\mathbf{R}_{i}^{\prime} \mathbf{R}_{i}\right)^{-1} \mathbf{R}_{i}^{\prime}-\mathbf{R}_{i-1}\left(\mathbf{R}_{i-1}^{\prime} \mathbf{R}_{i-1}\right)^{-1}\)</span>
+<span class="math inline">\(\mathbf{R}_{i-1}^{\prime}\)</span> and
+<span class="math inline">\(\mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}-\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\)</span>
+are orthogonal for any <span class="math inline">\(i \neq j\)</span>. In certain problems the
+<span class="math inline">\(n \times p_{j}\)</span> matrix <span class="math inline">\(\mathbf{X}_{j}\)</span> is orthogonal to the
+<span class="math inline">\(n \times p_{i}\)</span> matrix <span class="math inline">\(\mathbf{X}_{i}\)</span> for all
+<span class="math inline">\(i \neq j, i, j=1, \ldots, m .\)</span> In such cases the Type I sums of squares
+due to <span class="math inline">\(\mathbf{X}_{j} \mid \mathbf{X}_{1}, \ldots, \mathbf{X}_{j-1}\)</span>
+reduce to much simpler forms for all <span class="math inline">\(j=1, \ldots, m .\)</span> That is, if
+<span class="math inline">\(\mathbf{X}_{i}^{\prime} \mathbf{X}_{j}=\mathbf{0}_{p_{i} \times p_{j}}\)</span>
+for all <span class="math inline">\(i \neq j\)</span>, then <span class="math display">\[\begin{aligned}
+\mathbf{X}_{j}^{\prime} \mathbf{R}_{j-1} &amp;=\mathbf{X}_{j}^{\prime}\left(\mathbf{X}_{1}\left|\mathbf{X}_{2}\right| \cdots \mid \mathbf{X}_{j-1}\right) \\
+&amp;=\left(\mathbf{X}_{j}^{\prime} \mathbf{X}_{1}\left|\mathbf{X}_{j}^{\prime} \mathbf{X}_{2}\right| \cdots \mid \mathbf{X}_{j}^{\prime} \mathbf{X}_{j-1}\right) \\
+&amp;=\mathbf{0}_{p_{j} \times\left(p_{1}+p_{2}+\cdots+p_{j-1}\right)}
+\end{aligned}\]</span> Therefore, the Type I sum of squares due to
+<span class="math inline">\(\mathbf{X}_{j} \mid \mathbf{X}_{1}, \ldots, \mathbf{X}_{j-1}\)</span> for any
+<span class="math inline">\(j=1, \ldots, m\)</span> is given by <span class="math display">\[\begin{aligned}
+\operatorname{SS}\left(\mathbf{X}_{j} \mid \mathbf{X}_{1}, \ldots, \mathbf{X}_{j-1}\right)=&amp; \mathbf{Y}^{\prime}\left[\mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}-\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\right] \mathbf{Y} \\
+=&amp; \mathbf{Y}^{\prime}\left\{\left(\mathbf{R}_{j-1} \mid \mathbf{X}_{j}\right)\left[\left(\mathbf{R}_{j-1} \mid \mathbf{X}_{j}\right)^{\prime}\left(\mathbf{R}_{j-1} \mid \mathbf{X}_{j}\right)\right]^{-1}\left(\mathbf{R}_{j-1} \mid \mathbf{X}_{j}\right)^{\prime}\right.\\
+&amp;\left.-\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\right\} \mathbf{Y} \\
+=&amp; \mathbf{Y}^{\prime}\left[\left(\mathbf{R}_{j-1} \mid \mathbf{X}_{j}\right)\left[\begin{array}{cc}
+\mathbf{R}_{j-1}^{\prime} &amp; \mathbf{R}_{j-1} \quad \mathbf{R}_{j-1}^{\prime} \mathbf{X}_{j} \\
+\mathbf{X}_{j}^{\prime} \mathbf{R}_{j-1} &amp; \mathbf{X}_{j}^{\prime} \mathbf{X}_{j}
+\end{array}\right]^{-1}\left[\begin{array}{c}
+\mathbf{R}_{j-1}^{\prime} \\
+\mathbf{X}_{j}^{\prime}
+\end{array}\right]\right.\\
+&amp;\left.-\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\right\} \mathbf{Y} \\
+=&amp; \mathbf{Y}^{\prime}\left[\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}+\mathbf{X}_{j}\left(\mathbf{X}_{j}^{\prime} \mathbf{X}_{j}\right)^{-1} \mathbf{X}_{j}^{\prime}\right.\\
+&amp;\left.-\mathbf{R}_{j-1}\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\right\} \mathbf{Y} \\
+=&amp; \mathbf{Y}^{\prime} \mathbf{X}_{j}\left(\mathbf{X}_{j}^{\prime} \mathbf{X}_{j}\right)^{-1} \mathbf{X}_{j}^{\prime} \mathbf{Y}
+\end{aligned}\]</span> In the previous sections, the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> was introduced
+within the context of a regression analysis. However,
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> is a very general
+model form that can be used to describe a very broad class of
+experiments, including complete, balanced factorial experiments. In the
+next section the general linear model,
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span>, is adapted to
+complete, balanced factorial experiments where the <span class="math inline">\(n \times n\)</span>
+covariance matrix, <span class="math inline">\(\operatorname{cov}(\mathbf{E})=\mathbf{\Sigma}\)</span>, may
+be a complicated function of many</p>
+<p>5 Least-Squares Regression 97 variance components. In Chapters 6 and 7
+more general applications of the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> are introduced.
+5.7 THE MODEL Y = X <span class="math inline">\(\beta+\)</span> E IN COMPLETE, BALANCED FACTORIALS The
+experiment presented in Section 4.1 has <span class="math inline">\(b\)</span> random blocks, <span class="math inline">\(t\)</span> fixed
+treatments, and <span class="math inline">\(r\)</span> random replicates nested in each block treatment
+combination. The btr <span class="math inline">\(\times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 r}, \ldots, Y_{b t 1}, \ldots, Y_{b t r}\right)^{\prime} \sim \mathrm{N}_{b t r}(\mu, \Sigma)\)</span>
+where the <span class="math inline">\(b t r \times 1\)</span> mean vector and the <span class="math inline">\(b t r \times b t r\)</span>
+covariance matrix are given by
+<span class="math display">\[\boldsymbol{\mu}=\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\]</span>
+<span class="math display">\[\begin{aligned}
+\text { and } \quad \boldsymbol{\Sigma}=&amp; \sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t} \otimes \mathbf{J}_{r}\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \mathbf{J}_{r}\right] \\
+&amp;+\sigma_{R(B T)}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]
+\end{aligned}\]</span> This experiment can be characterized by the general
+linear model <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span>.
+First, <span class="math inline">\(\operatorname{cov}(\mathbf{E})\)</span> equals the <span class="math inline">\(b t r \times b t r\)</span>
+covariance matrix <span class="math inline">\(\Sigma\)</span>. Next, the <span class="math inline">\(b t r \times 1\)</span> vector
+<span class="math inline">\(\boldsymbol{\mu}\)</span> must be reconciled with the
+<span class="math inline">\(b \operatorname{tr} \times 1\)</span> mean vector
+<span class="math inline">\(\mathbf{E}(\mathbf{Y})=\mathbf{X} \beta\)</span> from the general linear model.
+Note that the btr <span class="math inline">\(\times 1\)</span> mean vector <span class="math inline">\(\mu\)</span> is a function of the <span class="math inline">\(t\)</span>
+unknown parameters <span class="math inline">\(\mu_{1}, \ldots, \mu_{t} .\)</span> Therefore, the general
+linear model mean vector <span class="math inline">\(\mathbf{X} \boldsymbol{\beta}\)</span> must also be
+written as a function of <span class="math inline">\(\mu_{1}, \ldots, \mu_{t} .\)</span> One simple
+approach is to let the <span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\boldsymbol{\beta}=\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime}\)</span> and
+let the btr <span class="math inline">\(\times t\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\mathbf{1}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{1}_{r}\)</span>.
+Then the btr <span class="math inline">\(\times 1\)</span> mean vector of the general linear model is
+<span class="math display">\[\begin{aligned}
+\mathbf{X} \boldsymbol{\beta} &amp;=\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \\
+&amp;=\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left[1 \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes 1\right] \\
+&amp;=\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}=\boldsymbol{\mu} .
+\end{aligned}\]</span> The preceding example suggests a general approach for
+writing the mean vector <span class="math inline">\(\boldsymbol{\mu}\)</span> as
+<span class="math inline">\(\mathbf{X} \boldsymbol{\beta}\)</span> for complete, balanced factorial
+experiments. First, if <span class="math inline">\(\boldsymbol{\mu}\)</span> is a function of <span class="math inline">\(p\)</span> unknown
+parameters, then let <span class="math inline">\(\beta\)</span> be a <span class="math inline">\(p \times 1\)</span> vector whose elements are
+the <span class="math inline">\(p\)</span> unknown parameters in <span class="math inline">\(\boldsymbol{\mu}\)</span>. In general these
+elements will be subscripted, such as <span class="math inline">\(\mu_{i j k}\)</span>. The elements of
+<span class="math inline">\(\boldsymbol{\beta}\)</span> should be ordered so the last subscript changes
+first, the second to the last subscript changes next, etc. The
+corresponding <span class="math inline">\(\mathbf{X}\)</span> matrix can then be constructed using a simple
+algorithm. The previous experiment is used to develop the algorithm
+rules.</p>
+<p>Rule X1 Construct column headings where the first column heading
+designates main factor letters and the second heading designates the
+number of levels of the factor, <span class="math inline">\(\ell\)</span>. Place Kronecker product symbols
+<span class="math inline">\(\otimes\)</span> as described in Example 5.7.1.</p>
+<p>98 Linear Models Rule <span class="math inline">\(\mathbf{X} 2\)</span> Place <span class="math inline">\(\mathbf{1}_{\ell}\)</span> in the
+Kronecker product under the random factor columns. Rule X3 Place
+<span class="math inline">\(\mathbf{I}_{\ell}\)</span> elsewhere. Example 5.7.1 Rules
+<span class="math inline">\(\mathbf{X} 1, \mathbf{X} 2\)</span>, and <span class="math inline">\(\mathbf{X} 3\)</span> for the example model.
+Factor <span class="math inline">\(\quad B \quad T \quad R\)</span> Levels <span class="math inline">\(\ell \quad b \quad t \quad r\)</span>
+<span class="math inline">\(\mathbf{X}=\underline{\mathbf{1}_{b}} \otimes \mathbf{I}_{t} \otimes \underline{\mathbf{1}}_{r}\)</span>
+where Rule <span class="math inline">\(\mathbf{X} 2\)</span> is designated by - and Rule <span class="math inline">\(\mathbf{X} 3\)</span> is
+designated by .…. This formulation of the <span class="math inline">\(\mathbf{X}\)</span> matrix and its
+associated <span class="math inline">\(\boldsymbol{\beta}\)</span> vector is not unique. Another
+<span class="math inline">\(\mathbf{X}\)</span> matrix and <span class="math inline">\(\boldsymbol{\beta}\)</span> vector can be generated for
+the same experiment. This second formulation of <span class="math inline">\(\mathbf{X}\)</span> and
+<span class="math inline">\(\boldsymbol{\beta}\)</span> is motivated by the sum of squares matrices
+<span class="math inline">\(\mathbf{A}_{m}\)</span> from Section 4.2. In the example experiment, the sum of
+squares matrices for the mean, blocks, treatments, block by treatment
+interaction, and the nested replicates are given by <span class="math display">\[\begin{array}{l}
+\mathbf{A}_{1}=\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{2}=\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{3}=\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{4}=\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{5}=\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)
+\end{array}\]</span> respectively. Matrices <span class="math inline">\(\mathbf{A}_{1}\)</span> through
+<span class="math inline">\(\mathbf{A}_{5}\)</span> can be rewritten as
+<span class="math inline">\(\mathbf{A}_{1}=\mathbf{X}_{1} \mathbf{X}_{1}^{\prime}, \mathbf{A}_{2}=\mathbf{Z}_{1} \mathbf{Z}_{1}^{\prime}\)</span>,
+<span class="math inline">\(\mathbf{A}_{3}=\mathbf{X}_{2} \mathbf{X}_{2}^{\prime}, \mathbf{A}_{4}=\mathbf{Z}_{2} \mathbf{Z}_{2}^{\prime}\)</span>,
+and <span class="math inline">\(\mathbf{A}_{5}=\mathbf{Z}_{3} \mathbf{Z}_{3}^{\prime}\)</span> where
+<span class="math display">\[\begin{aligned}
+\mathbf{X}_{1} &amp;=(1 / \sqrt{b}) \mathbf{1}_{b} \otimes(1 / \sqrt{t}) \mathbf{1}_{t} \otimes(1 / \sqrt{r}) \mathbf{1}_{r} \\
+\mathbf{Z}_{1} &amp;=\mathbf{P}_{b} \otimes(1 / \sqrt{t}) \mathbf{1}_{t} \otimes(1 / \sqrt{r}) \mathbf{1}_{r} \\
+\mathbf{X}_{2} &amp;=(1 / \sqrt{b}) \mathbf{1}_{b} \otimes \mathbf{P}_{t} \otimes(1 / \sqrt{r}) \mathbf{1}_{r} \\
+\mathbf{Z}_{2} &amp;=\mathbf{P}_{b} \otimes \mathbf{P}_{t} \otimes(1 / \sqrt{r}) \mathbf{1}_{r} \\
+\mathbf{Z}_{3} &amp;=\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{P}_{r}
+\end{aligned}\]</span> where the <span class="math inline">\((\ell-1) \times \ell\)</span> matrix
+<span class="math inline">\(\mathbf{P}_{\ell}^{\prime}\)</span> is the lower portion of an
+<span class="math inline">\(\ell\)</span>-dimensional Helmert matrix. Note that <span class="math inline">\(\mathbf{X}_{1}\)</span> and
+<span class="math inline">\(\mathbf{X}_{2}\)</span> are associated with the fixed factor matrices and</p>
+<p>5 Least-Squares Regression 99 <span class="math inline">\(\mathbf{Z}_{1}, \mathbf{Z}_{2}\)</span>, and
+<span class="math inline">\(\mathbf{Z}_{3}\)</span> are associated with the random factor matrices. In this
+form <span class="math inline">\(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}=\)</span>
+<span class="math inline">\(1, \mathbf{Z}_{1}^{\prime} \mathbf{Z}_{1}=\mathbf{I}_{b-1}, \mathbf{X}_{2}^{\prime} \mathbf{X}_{2}=\mathbf{I}_{t-1}, \mathbf{Z}_{2}^{\prime} \mathbf{Z}_{2}=\mathbf{I}_{(b-1)(t-1)}\)</span>,
+and <span class="math inline">\(\mathbf{Z}_{3}^{\prime} \mathbf{Z}_{3}=\mathbf{I}_{b t(r-1)} .\)</span> Now
+let the <span class="math inline">\(b t r \times t\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\)</span> where
+<span class="math inline">\(\mathbf{X}_{1}\)</span> and <span class="math inline">\(\mathbf{X}_{2}\)</span> are the <span class="math inline">\(b t r \times 1\)</span> and
+<span class="math inline">\(b t r \times(t-1)\)</span> matrices defined earlier. Note that
+<span class="math inline">\(\mathbf{X}_{1}^{\prime} \mathbf{X}_{2}=\mathbf{0}_{1 \times(t-1)}\)</span>.
+Then define the <span class="math inline">\(t \times 1\)</span> vector <span class="math inline">\(\boldsymbol{\beta}\)</span> such that
+<span class="math inline">\(\mathbf{X} \boldsymbol{\beta}=\boldsymbol{\mu}\)</span>. Premultiplying this
+expression by
+<span class="math inline">\(\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\)</span>
+we obtain <span class="math display">\[\begin{aligned}
+\boldsymbol{\beta} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \boldsymbol{\mu}=\left[\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)^{\prime}\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\right]^{-1}\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)^{\prime} \boldsymbol{\mu} \\
+&amp;=\left[\begin{array}{c}
+\left(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}\right)^{-1} \mathbf{X}_{1}^{\prime} \\
+\left.\mathbf{X}_{2}^{\prime} \mathbf{X}_{2}\right)^{-1} \mathbf{X}_{2}^{\prime}
+\end{array}\right] \boldsymbol{\mu}
+\end{aligned}\]</span> or <span class="math display">\[\begin{array}{l}
+\beta_{1}=\sum_{j=1}^{t} \mu_{j} / \sqrt{b r / t} \\
+\beta_{2}=\left(\mu_{1}-\mu_{2}\right) / \sqrt{b r / 2} \\
+\beta_{3}=\left(\mu_{1}+\mu_{2}-2 \mu_{3}\right) / \sqrt{b r / 6}
+\end{array}\]</span> <span class="math display">\[\begin{array}{l}
+\vdots \\
+\vdots \\
+=\left(\mu_{1}+\mu_{2}+\cdots+\mu_{t-1}-(t-1) \mu_{t}\right) / \sqrt{b r /[t(t-1)]}
+\end{array}\]</span> A third formulation of the matrix <span class="math inline">\(\mathbf{X}\)</span> can be
+constructed by writing <span class="math inline">\(\mathbf{A}_{1}=\mathbf{X}_{1}\)</span>
+<span class="math inline">\(\left(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}\right)^{-1} \mathbf{X}_{1}^{\prime}, \mathbf{A}_{2}=\mathbf{Z}_{1}\left(\mathbf{Z}_{1}^{\prime} \mathbf{Z}_{1}\right)^{-1} \mathbf{Z}_{1}^{\prime}, \mathbf{A}_{3}=\mathbf{X}_{2}\left(\mathbf{X}_{2}^{\prime} \mathbf{X}_{2}\right)^{-1} \mathbf{X}_{2}^{\prime}, \mathbf{A}_{4}=\mathbf{Z}_{2}\left(\mathbf{Z}_{2}^{\prime} \mathbf{Z}_{2}\right)^{-1} \mathbf{Z}_{2}^{\prime}\)</span>,
+and
+<span class="math inline">\(\mathbf{A}_{5}=\mathbf{Z}_{3}\left(\mathbf{Z}_{3}^{\prime} \mathbf{Z}_{3}\right)^{-1} \mathbf{Z}_{3}^{\prime}\)</span>
+where <span class="math display">\[\begin{array}{l}
+\mathbf{X}_{1}=\mathbf{1}_{b} \otimes \mathbf{1}_{t} \otimes \mathbf{1}_{r} \\
+\mathbf{Z}_{1}=\mathbf{Q}_{b} \otimes \mathbf{1}_{t} \otimes \mathbf{1}_{r} \\
+\mathbf{X}_{2}=\mathbf{1}_{b} \otimes \mathbf{Q}_{t} \otimes \mathbf{1}_{r} \\
+\mathbf{Z}_{2}=\mathbf{Q}_{b} \otimes \mathbf{Q}_{t} \otimes \mathbf{1}_{r} \\
+\mathbf{Z}_{3}=\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{Q}_{r}
+\end{array}\]</span> and where the <span class="math inline">\(\ell \times(\ell-1)\)</span> matrix
+<span class="math inline">\(\mathbf{Q}_{\ell}\)</span> is given by
+<span class="math display">\[\mathbf{Q}_{\ell}=\left[\begin{array}{rrrcc}
+1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\
+-1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\
+0 &amp; -2 &amp; 1 &amp; \cdots &amp; 1 \\
+0 &amp; 0 &amp; -3 &amp; \cdots &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; -(\ell-1)
+\end{array}\right] .\]</span></p>
+<p>100 Linear Models Note that the columns of <span class="math inline">\(\mathbf{Q}_{\ell}\)</span> equal
+<span class="math inline">\(\sqrt{j(j+1)}\)</span> times the columns of <span class="math inline">\(\mathbf{P}_{\ell}\)</span> where <span class="math inline">\(j\)</span> is
+the column number for <span class="math inline">\(j=1, \ldots, \ell-1\)</span>. Now let the
+<span class="math inline">\(b t r \times t\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\)</span> where
+<span class="math inline">\(\mathbf{X}_{1}\)</span> and <span class="math inline">\(\mathbf{X}_{2}\)</span> are the <span class="math inline">\(b t r \times 1\)</span> and
+<span class="math inline">\(b t r \times(t-1)\)</span> matrices defined above. Note
+<span class="math inline">\(\mathbf{X}_{1}^{\prime} \mathbf{X}_{2}=\mathbf{0}_{1 \times(t-1)} .\)</span></p>
+<p>It is apparent that a number of different forms of the matrices
+<span class="math inline">\(\mathbf{X}, \mathbf{X}_{1}, \mathbf{X}_{2}, \ldots, \mathbf{Z}_{1}\)</span>,
+<span class="math inline">\(\mathbf{Z}_{2}, \ldots\)</span> can be constructed in complete balanced
+factorial designs.</p>
+<p>Furthermore, in any particular problem, one form of the matrix
+<span class="math inline">\(\mathbf{X}\)</span> can be defined while another form of the
+<span class="math inline">\(\mathbf{X}_{1}, \mathbf{X}_{2}, \ldots, \mathbf{Z}_{1}, \mathbf{Z}_{2}, \ldots\)</span>
+matrices can be used to construct the sum of squares matrices. For
+example, in the previous experiment, the <span class="math inline">\(b t r \times t\)</span> matrix
+<span class="math inline">\(\mathbf{X}\)</span> can be defined as
+<span class="math inline">\(\mathbf{X}=\mathbf{1}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{1}_{r}\)</span>.
+Then with <span class="math inline">\(\mathbf{X}_{1}=\mathbf{1}_{b} \otimes \mathbf{1}_{t} \otimes\)</span>
+<span class="math inline">\(\mathbf{1}_{r}, \mathbf{Z}_{1}=\mathbf{Q}_{b} \otimes \mathbf{1}_{t} \otimes \mathbf{1}_{r}, \mathbf{X}_{2}=\mathbf{1}_{b} \otimes \mathbf{Q}_{t} \otimes \mathbf{1}_{r}, \mathbf{Z}_{2}=\mathbf{Q}_{b} \otimes \mathbf{Q}_{t} \otimes \mathbf{1}_{r}, \mathbf{Z}_{3}=\mathbf{I}_{b} \otimes\)</span>
+<span class="math inline">\(\mathbf{I}_{t} \otimes \mathbf{Q}_{r}\)</span>, the sum of squares matrices can
+be constructed as
+<span class="math inline">\(\mathbf{A}_{1}=\mathbf{X}_{1}\left(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}\right)^{-1} \mathbf{X}_{1}^{\prime}\)</span>,
+<span class="math inline">\(\mathbf{A}_{2}=\mathbf{Z}_{1}\left(\mathbf{Z}_{1}^{\prime} \mathbf{Z}_{1}\right)^{-1} \mathbf{Z}_{1}^{\prime}, \mathbf{A}_{3}=\mathbf{X}_{2}\left(\mathbf{X}_{2}^{\prime} \mathbf{X}_{2}\right)^{-1} \mathbf{X}_{2}^{\prime}, \mathbf{A}_{4}=\mathbf{Z}_{2}\left(\mathbf{Z}_{2}^{\prime} \mathbf{Z}_{2}\right)^{-1} \mathbf{Z}_{2}^{\prime}\)</span>,
+and <span class="math inline">\(\mathbf{A}_{5}=\)</span>
+<span class="math inline">\(\mathbf{Z}_{3}\left(\mathbf{Z}_{3}^{\prime} \mathbf{Z}_{3}\right)^{-1} \mathbf{Z}_{3}^{\prime} .\)</span>
+In general, any acceptable form of the <span class="math inline">\(\mathbf{X}\)</span> matrix can be used
+with any acceptable form of the matrices
+<span class="math inline">\(\mathbf{X}_{1}, \mathbf{X}_{2}, \ldots, \mathbf{Z}_{1}, \mathbf{Z}_{2}, \ldots\)</span>,
+where the later set of matrices is used to construct the sums of squares
+matrices. EXERCISES 1. From Table <span class="math inline">\(5.3 .1\)</span>, let
+<span class="math inline">\(\mathbf{B}_{1}, \mathbf{B}_{2}\)</span>, and <span class="math inline">\(\mathbf{B}_{3}\)</span> represent the
+matrices for the sums of squares due to the overall mean, regression and
+residual, respectively. Prove <span class="math inline">\(\mathbf{B}_{r}^{2}=\mathbf{B}_{r}\)</span> for
+<span class="math inline">\(r=1,2,3\)</span> and <span class="math inline">\(\mathbf{B}_{r} \mathbf{B}_{s}=\mathbf{0}\)</span> for
+<span class="math inline">\(r \neq s .\)</span> 2. Let
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where <span class="math inline">\(\mathbf{X}\)</span>
+is an <span class="math inline">\(n \times p\)</span> matrix and
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{V}\right)\)</span>
+for any <span class="math inline">\(n \times n\)</span> symmetric, positive definite matrix <span class="math inline">\(\mathbf{V}\)</span>.
+(a) Is
+<span class="math inline">\(\hat{\boldsymbol{\beta}}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>
+an unbiased estimator of <span class="math inline">\(\boldsymbol{\beta} ?\)</span> (b) Prove that if there
+exists a <span class="math inline">\(p \times p\)</span> nonsingular matrix <span class="math inline">\(\mathbf{F}\)</span> such that
+<span class="math inline">\(\mathbf{V X}=\mathbf{X F}\)</span> then
+<span class="math inline">\(\hat{\boldsymbol{\beta}}=\hat{\boldsymbol{\beta}}_{\mathrm{w}}\)</span> where
+<span class="math inline">\(\hat{\boldsymbol{\beta}}_{\mathrm{w}}\)</span> is the weighted least-squares
+estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span>. 3. Let
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where <span class="math inline">\(\mathbf{X}\)</span>
+is an <span class="math inline">\(n \times p\)</span> matrix and
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{V}\right)\)</span>
+for any <span class="math inline">\(n \times n\)</span> symmetric, positive definite matrix of known
+constants <span class="math inline">\(\mathbf{V}\)</span>. Prove that
+<span class="math inline">\(\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{Y}\)</span>
+is the BLUE of <span class="math inline">\(\mathbf{t}^{\prime} \boldsymbol{\beta} .\)</span> 4. From Table
+<span class="math inline">\(5.4 .1\)</span>, let <span class="math inline">\(\mathbf{B}_{1}, \mathbf{B}_{2}\)</span>, and <span class="math inline">\(\mathbf{B}_{3}\)</span>
+represent the matrices for the sums of squares due to the overall mean,
+regression, and residual, respectively. Prove
+<span class="math inline">\(\mathbf{B}_{r} \mathbf{V}\)</span> is an idempotent matrix for <span class="math inline">\(r=1,2,3\)</span> and
+<span class="math inline">\(\mathbf{B}_{r} \mathbf{V B}_{s}=\mathbf{0}\)</span> for <span class="math inline">\(r \neq s\)</span>. 5. Let
+<span class="math inline">\(R_{j}\)</span> be defined as in Section <span class="math inline">\(5.6 .\)</span> Let
+<span class="math inline">\(\mathbf{B}_{j}=\mathbf{R}_{j}\left(\mathbf{R}_{j}^{\prime} \mathbf{R}_{j}\right)^{-1} \mathbf{R}_{j}^{\prime}-\mathbf{R}_{j-1}\)</span>
+<span class="math inline">\(\left(\mathbf{R}_{j-1}^{\prime} \mathbf{R}_{j-1}\right)^{-1} \mathbf{R}_{j-1}^{\prime}\)</span>
+(a) Prove <span class="math inline">\(\mathbf{B}_{j}\)</span> is an idempotent matrix of rank
+<span class="math inline">\(\mathbf{P}_{j}\)</span> for <span class="math inline">\(j=2, \ldots, m\)</span>. (b) Prove
+<span class="math inline">\(\mathbf{B}_{i} \mathbf{B}_{j}=\mathbf{0}\)</span> for
+<span class="math inline">\(i \neq j, i, j=2, \ldots, m\)</span>.</p>
+<p>5 Least-Squares Regression 101 6. Assume the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> where <span class="math inline">\(\mathbf{X}\)</span> is defined
+as in Section <span class="math inline">\(5.6\)</span> and
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+Find the distributions of all the Type I sums of squares in Table 5.6.1.
+7. Let <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where the
+<span class="math inline">\(n \times(a+b)\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\left[\mathbf{X}_{1} \mid \mathbf{X}_{2}\right]\)</span> with
+<span class="math inline">\(n \times a\)</span> and <span class="math inline">\(n \times b\)</span> matrices <span class="math inline">\(\mathbf{X}_{1}\)</span> and
+<span class="math inline">\(\mathbf{X}_{2}\)</span>, the <span class="math inline">\((a+b) \times 1\)</span> vector
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{a} \mid \beta_{a+1}, \ldots, \beta_{a+b}\right)^{\prime}\)</span>,
+and
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(0, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+Let
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{X}_{1}\left(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}\right)^{-1} \mathbf{X}_{1}^{\prime} \mathbf{Y}, \mathbf{Y}^{\prime}\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{X}_{1}\right.\)</span>
+<span class="math inline">\(\left.\left(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}\right)^{-1} \mathbf{X}_{1}^{\prime}\right] \mathbf{Y}\)</span>,
+and
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y}\)</span>
+be the sum of squares due to
+<span class="math inline">\(\beta_{1}, \ldots, \beta_{a}, \beta_{a+1}, \ldots, \beta_{a+b} \mid \beta_{1}, \ldots, \beta_{a}\)</span>
+and the residual, respectively. (a) Prove
+<span class="math inline">\(\mathbf{X}_{i}^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}=\mathbf{X}_{i}^{\prime}\)</span>
+for <span class="math inline">\(i=1,2\)</span>. [Hint: Show
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}=\)</span>
+<span class="math inline">\(\left.\mathbf{X}^{\prime} .\right]\)</span> (b) Find the distributions of the
+sums of squares due to
+<span class="math inline">\(\beta_{a+1}, \ldots, \beta_{a+b} \mid \beta_{1}, \ldots\)</span>, <span class="math inline">\(\beta_{a}\)</span>
+and the residual and show they are independent. (c) Construct a
+statistic to test the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \beta_{a+1}=\cdots=\beta_{a+b}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}\)</span> : at least one
+<span class="math inline">\(\beta_{a+1}, \ldots, \beta_{a+b} \neq 0\)</span>. What is the distribution of
+the statistic? 8. Consider the experiment from Exercise 7 in Chapter 4 .
+Write the model as <span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> defining all
+terms and the appropriate distributions explicitly. 9. Let
+<span class="math inline">\(Y_{i j}=a+b_{i} x_{j}+E_{i j}\)</span> for <span class="math inline">\(i=1,2\)</span> and <span class="math inline">\(j=1, \ldots, n\)</span>. Assume
+<span class="math inline">\(\mathrm{E}\left(E_{i j}\right)=\)</span>
+<span class="math inline">\(0, \operatorname{var}\left(E_{i j}\right)=\sigma^{2}\)</span>, the <span class="math inline">\(E_{i j}\)</span> ’s
+are uncorrelated, and <span class="math inline">\(\sum_{j=1}^{n} x_{j}=0\)</span>. (a) Find the BLUE of
+<span class="math inline">\(b_{1}-b_{2}\)</span>. Write your answer in terms of the <span class="math inline">\(Y_{i j}\)</span> ’s and
+<span class="math inline">\(x_{j}\)</span> ’s. (b) Find the variance of the BLUE of <span class="math inline">\(b_{1}-b_{2}\)</span>. 10. Let
+<span class="math inline">\(Y_{1}=\mu_{1}+E_{1}, Y_{2}=\mu_{2}+E_{2}\)</span>, and
+<span class="math inline">\(Y_{3}=\mu_{1}+\mu_{2}+E_{3}\)</span> where <span class="math inline">\(\mathrm{E}\left(E_{i}\right)=0\)</span> and
+<span class="math inline">\(\mathrm{E}\left(E_{i}^{2}\right)=2, \mathrm{E}\left(E_{i} E_{j}\right)=1\)</span>
+for <span class="math inline">\(i \neq j=1,2,3\)</span>. (a) Find the BLUEs of <span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span>. (b)
+Find the covariance between the BLUEs of <span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span>. (c)
+Find the BLUE and the variance of the BLUE of <span class="math inline">\(2 \mu_{1}+3 \mu_{2}\)</span>. 11.
+Let <span class="math inline">\(Y_{i}=x_{i} \beta+U_{i}\)</span> for <span class="math inline">\(i=1, \ldots, n\)</span> and
+<span class="math inline">\(0&lt;x_{1}&lt;x_{2}&lt;\cdots&lt;x_{n}\)</span> where <span class="math inline">\(U_{i}=E_{1}+E_{2}+\cdots+E_{i}\)</span> and
+the <span class="math inline">\(E_{i}\)</span> ’s are uncorrelated with <span class="math inline">\(\mathrm{E}\left(E_{i}\right)=\)</span>
+<span class="math inline">\(0, \operatorname{var}\left(E_{i}\right)=\sigma^{2}\left(x_{i}-x_{i-1}\right)\)</span>
+for <span class="math inline">\(i&gt;1\)</span> and <span class="math inline">\(\operatorname{var}\left(E_{1}\right)=\sigma^{2} x_{1} .\)</span>
+(a) Find the BLUE of <span class="math inline">\(\beta\)</span> and show it depends only on
+<span class="math inline">\(\left(Y_{n}, x_{n}\right)\)</span>. (b) Find the variance of the BLUE of
+<span class="math inline">\(\beta\)</span>. (Hint: Transform the <span class="math inline">\(Y_{i}\)</span> values into <span class="math inline">\(Y_{i}^{*}\)</span> values
+such that <span class="math inline">\(Y_{i}^{*}=Y_{i}-Y_{i-1}\)</span> for <span class="math inline">\(i&gt;1\)</span> and
+<span class="math inline">\(\left.Y_{1}^{*}=Y_{1} .\right)\)</span></p>
+<p>102 Linear Models 12. Consider the following design layout: Let
+<span class="math inline">\(\mathbf{Y}-\beta_{0} \mathbf{1}_{a} \otimes \mathbf{1}_{n}+\mathbf{X} \beta+\mathbf{E}\)</span>
+where
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, \ldots, Y_{1 n}, \ldots, Y_{a 1}, \ldots, Y_{a n}\right)^{\prime}\)</span>,
+<span class="math inline">\(\beta_{0}\)</span> is an unknown scalar parameter,
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{p}\right)^{\prime}\)</span>
+is a <span class="math inline">\(p \times 1\)</span> vector of unknown parameters,
+<span class="math inline">\(\mathbf{X}=\mathbf{X}^{*} \otimes \mathbf{1}_{n}\)</span> with <span class="math inline">\(\mathbf{X}^{*}\)</span>
+an <span class="math inline">\(a \times p\)</span> matrix of known values,
+<span class="math inline">\(p&lt;a-1, \mathbf{1}_{a}^{\prime} \mathbf{X}^{*}=\mathbf{0}_{1 \times p}\)</span>,
+and the an <span class="math inline">\(\times 1\)</span> vector
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{a n}(\mathbf{0}, \mathbf{\Sigma})\)</span> with
+<span class="math inline">\(\left.\boldsymbol{\Sigma}=\mathbf{I}_{a} \otimes\left(\sigma_{1}^{2} \mathbf{I}_{n}+\sigma_{2}^{2} \mathbf{J}_{n}\right)\right]\)</span>
+(a) Let
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{1} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span>,
+and <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span> be the sum of
+squares due to <span class="math inline">\(\beta_{0}, \beta\)</span>, lack of fit, and pure error,
+respectively. Find <span class="math inline">\(\mathbf{A}_{1}, \mathbf{A}_{2}, \mathbf{A}_{3}\)</span>, and
+<span class="math inline">\(\mathbf{A}_{\mathbf{4}}\)</span>. (b) Find the distributions of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{1} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span>,
+and <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span>. (c) Are
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{1} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span>,
+and <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span> mutually
+independent? (d) Assume no significant lack of fit in the model.
+Construct a test for the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \boldsymbol{\beta}=\mathbf{0}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \boldsymbol{\beta} \neq \mathbf{0}\)</span>. 13. Consider this
+factorial layout: Let the <span class="math inline">\(8 \times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, Y_{112}, Y_{121}, Y_{122}, Y_{211}, Y_{212}, Y_{221}, Y_{222}\right)^{\prime}\)</span>.
+Assume the model <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span>
+where
+<span class="math inline">\(\mathbf{X}=\left[\mathbf{X}_{1}\left|\mathbf{X}_{2}\right| \mathbf{X}_{3} \mid \mathbf{X}_{4}\right], \mathbf{X}_{1}=\mathbf{1}_{2} \otimes \mathbf{1}_{2} \otimes \mathbf{1}_{2}\)</span>,
+<span class="math inline">\(\mathbf{X}_{2}=\mathbf{Q}_{2} \otimes \mathbf{1}_{2} \otimes \mathbf{1}_{2}, \mathbf{X}_{3}=\mathbf{1}_{2} \otimes \mathbf{Q}_{2} \otimes \mathbf{1}_{2}, \mathbf{X}_{4}=\mathbf{Q}_{2} \otimes \mathbf{Q}_{2} \otimes \mathbf{1}_{2}, \mathbf{Q}_{2}=(1,-1)^{\prime}, \boldsymbol{\beta}=\)</span>
+<span class="math inline">\(\left(\beta_{1}, \beta_{2}, \beta_{3}, \beta_{4}\right)\)</span>, and
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{8}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{8}\right) .\)</span>
+Note that the vector <span class="math inline">\(\beta_{1}\)</span> corresponds to the overall mean,
+<span class="math inline">\(\beta_{2}\)</span> to the fixed factor <span class="math inline">\(A, \beta_{3}\)</span> to the fixed factor <span class="math inline">\(B\)</span>,
+and <span class="math inline">\(\beta_{4}\)</span> to the interaction of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. (a) Define the sums
+of squares due to <span class="math inline">\(\beta_{1}, \beta_{2}, \beta_{3}\)</span>, and <span class="math inline">\(\beta_{4}\)</span>.
+(b) Find <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>, the least-squares estimator of
+<span class="math inline">\(\boldsymbol{\beta}\)</span>. (c) Calculate the standard error of <span class="math inline">\(\hat{\beta}\)</span>.</p>
+<p>5 Least-Squares Regression 103 14. Let <span class="math inline">\(Y_{i j}=\mu+B_{i}+R(B)_{(i) j}\)</span>
+where <span class="math inline">\(\mu\)</span> is an unknown constant, and the <span class="math inline">\(B_{i}\)</span> ’s and
+<span class="math inline">\(R(B)_{(i) j}\)</span> ’s are uncorrelated random variables with 0 means and
+variances <span class="math inline">\(\sigma_{B}^{2}\)</span> and <span class="math inline">\(\sigma_{R(B)}^{2}\)</span>, respectively, for
+<span class="math inline">\(i=1, \ldots, b\)</span> and <span class="math inline">\(j=1, \ldots, r\)</span>. (a) Write the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathrm{E}(\mathbf{E})=\mathbf{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\mathbf{\Sigma}\)</span>. Identify all terms
+explicitly. (b) Construct the matrices for the sums of squares for the
+usual ANOVA table for this model and derive the corresponding expected
+mean squares. (c) Assume the <span class="math inline">\(Y_{i j}\)</span> ’s are normally distributed. Find
+the distributions of the sums of squares defined in part <span class="math inline">\(b\)</span>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="complete-balanced-factorial-experiments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="maximum-likelihood-estimation-and-related-topics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Linear Models</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linear Models" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Barry Kurt" />
+
+
+<meta name="date" content="2023-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="multivariate-normal-distribution.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra and Related Introductory Topics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#elementary-matrix-concepts"><i class="fa fa-check"></i><b>1.1</b> ELEMENTARY MATRIX CONCEPTS</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#kronecker-products"><i class="fa fa-check"></i><b>1.2</b> KRONECKER PRODUCTS</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#random-vectors"><i class="fa fa-check"></i><b>1.3</b> RANDOM VECTORS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#multivariate-normal-distribution-function"><i class="fa fa-check"></i><b>2.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="2.2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#conditional-distributions-of-multivariate-normal-random-vectors"><i class="fa fa-check"></i><b>2.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="2.3" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#distributions-of-certain-quadratic-forms"><i class="fa fa-check"></i><b>2.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="2.4" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#exercises-1"><i class="fa fa-check"></i><b>2.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html"><i class="fa fa-check"></i><b>3</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-function-1"><i class="fa fa-check"></i><b>3.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="3.2" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#conditional-distributions-of-multivariate-normal-random-vectors-1"><i class="fa fa-check"></i><b>3.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="3.3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#distributions-of-certain-quadratic-forms-1"><i class="fa fa-check"></i><b>3.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="3.4" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#exercises-2"><i class="fa fa-check"></i><b>3.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html"><i class="fa fa-check"></i><b>4</b> Distributions of Quadratic Forms</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#quadratic-forms-of-normal-random-vectors"><i class="fa fa-check"></i><b>4.1</b> QUADRATIC FORMS OF NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#independence"><i class="fa fa-check"></i><b>4.2</b> INDEPENDENCE</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#the-boldsymbolt-and-boldsymbolf-distributions"><i class="fa fa-check"></i><b>4.3</b> THE <span class="math inline">\(\boldsymbol{t}\)</span> AND <span class="math inline">\(\boldsymbol{F}\)</span> DISTRIBUTIONS</a></li>
+<li class="chapter" data-level="4.4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#bhats-lemma"><i class="fa fa-check"></i><b>4.4</b> BHAT’S LEMMA</a></li>
+<li class="chapter" data-level="4.5" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html"><i class="fa fa-check"></i><b>5</b> Complete, Balanced Factorial Experiments</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-admit-restrictions-finite-models"><i class="fa fa-check"></i><b>5.1</b> MODELS THAT ADMIT RESTRICTIONS (FINITE MODELS)</a></li>
+<li class="chapter" data-level="5.2" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-do-not-admit-restrictions-infinite-models"><i class="fa fa-check"></i><b>5.2</b> MODELS THAT DO NOT ADMIT RESTRICTIONS (INFINITE MODELS)</a></li>
+<li class="chapter" data-level="5.3" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#sum-of-squares-and-covariance-matrix-algorithms"><i class="fa fa-check"></i><b>5.3</b> SUM OF SQUARES AND COVARIANCE MATRIX ALGORITHMS</a></li>
+<li class="chapter" data-level="5.4" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#expected-mean-squares"><i class="fa fa-check"></i><b>5.4</b> EXPECTED MEAN SQUARES</a></li>
+<li class="chapter" data-level="5.5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#algorithm-applications"><i class="fa fa-check"></i><b>5.5</b> ALGORITHM APPLICATIONS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="least-squares-regression.html"><a href="least-squares-regression.html"><i class="fa fa-check"></i><b>6</b> Least-Squares Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="least-squares-regression.html"><a href="least-squares-regression.html#ordinary-least-squares-estimation"><i class="fa fa-check"></i><b>6.1</b> ORDINARY LEAST-SQUARES ESTIMATION</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html"><i class="fa fa-check"></i><b>7</b> Maximum Likelihood Estimation and Related Topics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimators-of-beta-and-sigma2"><i class="fa fa-check"></i><b>7.1</b> MAXIMUM LIKELIHOOD ESTIMATORS OF <span class="math inline">\(\beta\)</span> AND <span class="math inline">\(\sigma^{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Linear Models</h1>
+<p class="author"><em>Barry Kurt</em></p>
+<p class="date"><em>2023-06-01</em></p>
+</div>
+<div id="ch:1" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Linear Algebra and Related Introductory Topics<a href="index.html#ch:1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A summary of relevant linear algebra concepts is presented in this
+chapter. Throughout the text boldfaced letters such as
+<span class="math inline">\(\mathbf{A}, \mathbf{U}, \mathbf{T}, \mathbf{X}, \mathbf{Y}, \mathbf{t}, \mathbf{g}, \mathbf{u}\)</span>
+are used to represent matrices and vectors, italicized capital letters
+such as <span class="math inline">\(Y, U, T, E, F\)</span> are used to represent random variables, and
+lowercase italicized letters such as <span class="math inline">\(r, s, t, n, c\)</span> are used as
+constants.</p>
+<div id="elementary-matrix-concepts" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> ELEMENTARY MATRIX CONCEPTS<a href="index.html#elementary-matrix-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following list of definitions provides a brief summary of some
+useful matrix operations.</p>
+<div class="defn">
+<p>Matrix: An <span class="math inline">\(r \times s\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> is a rectangular array of
+elements with <span class="math inline">\(r\)</span> rows and <span class="math inline">\(s\)</span> columns. An <span class="math inline">\(r \times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}\)</span> is a matrix with <span class="math inline">\(r\)</span> rows and 1 column. Matrix elements are
+restricted to real numbers throughout the text.</p>
+</div>
+<div class="defn">
+<p>Transpose: If <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times s\)</span> matrix, then the transpose
+of <span class="math inline">\(\mathbf{A}\)</span>, denoted by <span class="math inline">\(\mathbf{A}^{\prime}\)</span>, is an <span class="math inline">\(s \times n\)</span>
+matrix formed by interchanging the rows and columns of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+</div>
+<div class="defn">
+<p>Identity Matrix, Matrix of Ones and Zeros: <span class="math inline">\(\mathbf{I}_{n}\)</span> represents
+an <span class="math inline">\(n \times n\)</span> identity matrix, <span class="math inline">\(\mathbf{J}_{n}\)</span> is an <span class="math inline">\(n \times n\)</span>
+matrix of ones, <span class="math inline">\(\mathbf{1}_{n}\)</span> is an <span class="math inline">\(n \times 1\)</span> vector of ones, and
+<span class="math inline">\(\mathbf{0}_{m \times n}\)</span> is an <span class="math inline">\(m \times n\)</span> matrix of zeros.</p>
+</div>
+<div class="defn">
+<p>Multiplication of Matrices: Let <span class="math inline">\(a_{i j}\)</span> represent the
+<span class="math inline">\(i j^{\text {th }}\)</span> element of an <span class="math inline">\(r \times s\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> with
+<span class="math inline">\(i=1, \ldots, r\)</span> rows and <span class="math inline">\(j=1, \ldots, s\)</span> columns. Likewise, let
+<span class="math inline">\(b_{j k}\)</span> represent the <span class="math inline">\(j k^{\text {th }}\)</span> element of an <span class="math inline">\(s \times t\)</span>
+matrix <span class="math inline">\(\mathbf{B}\)</span> with <span class="math inline">\(j=1, \ldots, s\)</span> rows and <span class="math inline">\(k=1, \ldots, t\)</span>
+columns. The matrix multiplication of <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> is
+represented by <span class="math inline">\(\mathbf{A B}=\mathbf{C}\)</span> where <span class="math inline">\(\mathbf{C}\)</span> is an
+<span class="math inline">\(r \times t\)</span> matrix whose <span class="math inline">\(i k^{\text {th }}\)</span> element
+<span class="math inline">\(c_{i k}=\sum_{j=1}^{s} a_{i j} b_{j k} .\)</span> If the <span class="math inline">\(r \times s\)</span> matrix
+<span class="math inline">\(\mathbf{A}\)</span> is multiplied by a scalar <span class="math inline">\(d\)</span>, then the resulting
+<span class="math inline">\(r \times s\)</span> matrix <span class="math inline">\(d \mathbf{A}\)</span> has <span class="math inline">\(i j^{\text {th }}\)</span> element
+<span class="math inline">\(d a_{i j} .\)</span></p>
+</div>
+<div class="eje">
+<p>The following matrix multiplications commonly occur. <span class="math display">\[\begin{aligned}
+\mathbf{1}_{n}^{\prime} \mathbf{1}_{n} &amp;=n \\
+\mathbf{1}_{n} \mathbf{1}_{n}^{\prime} &amp;=\mathbf{J}_{n} \\
+\mathbf{J}_{n} \mathbf{J}_{n} &amp;=n \mathbf{J}_{n} \\
+\mathbf{1}_{n}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) &amp;=\mathbf{0}_{1 \times n} \\
+\mathbf{J}_{n}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) &amp;=\mathbf{0}_{n \times n} \\
+\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) &amp;=\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) .
+\end{aligned}\]</span></p>
+</div>
+<div class="defn">
+<p>Addition of Matrices: The sum of two <span class="math inline">\(r \times s\)</span> matrices <span class="math inline">\(\mathbf{A}\)</span>
+and <span class="math inline">\(\mathbf{B}\)</span> is represented by <span class="math inline">\(\mathbf{A}+\mathbf{B}=\mathbf{C}\)</span>
+where <span class="math inline">\(\mathbf{C}\)</span> is the <span class="math inline">\(r \times s\)</span> matrix whose <span class="math inline">\(i j^{\text {th }}\)</span>
+element <span class="math inline">\(c_{i j}=a_{i j}+b_{i j} .\)</span></p>
+</div>
+<div class="defn">
+<p>Inverse of a Matrix: An <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> has an inverse
+if <span class="math inline">\(\mathbf{A A}^{-1}=\mathbf{A}^{-1} \mathbf{A}=\mathbf{I}_{n}\)</span> where
+the <span class="math inline">\(n \times n\)</span> inverse matrix is denoted by <span class="math inline">\(\mathbf{A}^{-1}\)</span>.</p>
+</div>
+<div class="defn">
+<p>Singularity: If an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> has an inverse then
+<span class="math inline">\(\mathbf{A}\)</span> is a nonsingular matrix. If <span class="math inline">\(\mathbf{A}\)</span> does not have an
+inverse then <span class="math inline">\(\mathbf{A}\)</span> is a singular matrix.</p>
+</div>
+<div class="defn">
+<p>Diagonal Matrix: Let <span class="math inline">\(a_{i i}\)</span> be the <span class="math inline">\(i^{\text {th }}\)</span> diagonal element
+of an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span>. Let <span class="math inline">\(a_{i j}\)</span> be the
+<span class="math inline">\(i j^{\text {th }}\)</span> off-diagonal element of <span class="math inline">\(\mathbf{A}\)</span> for <span class="math inline">\(i \neq j\)</span>.
+Then <span class="math inline">\(\mathbf{A}\)</span> is a diagonal matrix if all the off-diagonal elements
+<span class="math inline">\(a_{i j}\)</span> equal zero.</p>
+</div>
+<div class="defn">
+<p>Trace of a Square Matrix: The trace of an <span class="math inline">\(n \times n\)</span> matrix
+<span class="math inline">\(\mathbf{A}\)</span>, denoted by <span class="math inline">\(\operatorname{tr}(\mathbf{A})\)</span>, is the sum of
+the diagonal elements of <span class="math inline">\(\mathbf{A} .\)</span> That is,
+<span class="math inline">\(\operatorname{tr}(\mathbf{A})=\)</span> <span class="math inline">\(\sum_{i=1}^{n} a_{i i} .\)</span></p>
+</div>
+<p>It is assumed that the reader is familiar with the definition of the
+determinant of a square matrix. Therefore, a rigorous definition is
+omitted. The next definition actually provides the notation used for a
+determinant.</p>
+<div class="defn">
+<p>Determinant of a Square Matrix: Let
+<span class="math inline">\(\operatorname{det}(\mathbf{A})=|\mathbf{A}|\)</span> denote the determinant of
+an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span>. Note
+<span class="math inline">\(\operatorname{det}(\mathbf{A})=0\)</span> if <span class="math inline">\(\mathbf{A}\)</span> is singular.</p>
+</div>
+<div class="defn">
+<p>Symmetric Matrix: An <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> is symmetric if
+<span class="math inline">\(\mathbf{A}=\mathbf{A}^{\prime}\)</span>.</p>
+</div>
+<div class="defn">
+<p>Linear Dependence and the Rank of a Matrix: Let <span class="math inline">\(\mathbf{A}\)</span> be an
+<span class="math inline">\(n \times s\)</span> matrix <span class="math inline">\((s \leq n)\)</span> where
+<span class="math inline">\(\mathbf{a}_{1}, \ldots, \mathbf{a}_{s}\)</span> represent the <span class="math inline">\(s\)</span> <span class="math inline">\(n \times 1\)</span>
+column vectors of <span class="math inline">\(\mathbf{A}\)</span>. The <span class="math inline">\(s\)</span> vectors
+<span class="math inline">\(\mathbf{a}_{1}, \ldots, \mathbf{a}_{s}\)</span> are linearly dependent provided
+there exists <span class="math inline">\(s\)</span> elements <span class="math inline">\(k_{1}, \ldots, k_{s}\)</span>, not all zero, such
+that <span class="math inline">\(k_{1} \mathbf{a}_{1}+\cdots+k_{s} \mathbf{a}_{s}=0 .\)</span> Otherwise,
+the <span class="math inline">\(s\)</span> vectors are linearly independent. Furthermore, if there are
+exactly <span class="math inline">\(r \leq s\)</span> vectors of the set
+<span class="math inline">\(\mathbf{a}_{1}, \ldots, \mathbf{a}_{s}\)</span> which are linearly independent,
+while the remaining <span class="math inline">\(s-r\)</span> can be expressed as a linear combination of
+these <span class="math inline">\(r\)</span> vectors, then the rank of <span class="math inline">\(\mathbf{A}\)</span>, denoted by
+<span class="math inline">\(\operatorname{rank}(\mathbf{A})\)</span>, is <span class="math inline">\(r\)</span>.</p>
+</div>
+<p>The following list shows the results of the preceding definitions and
+are stated without proof:</p>
+<ol style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> each be <span class="math inline">\(n \times n\)</span> nonsingular
+matrices. Then
+<span class="math inline">\((\mathbf{A B})^{-1}=\mathbf{B}^{-1} \mathbf{A}^{-1}.\)</span></p></li>
+<li><p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be any two matrices such that
+<span class="math inline">\(\mathbf{A B}\)</span> is defined. Then
+<span class="math inline">\((\mathbf{A B})^{\prime}=\mathbf{B}^{\prime} \mathbf{A}^{\prime} .\)</span></p></li>
+<li><p>Let <span class="math inline">\(\mathbf{A}\)</span> be any matrix. The <span class="math inline">\(\mathbf{A}^{\prime} \mathbf{A}\)</span>
+and <span class="math inline">\(\mathbf{A} \mathbf{A}^{\prime}\)</span> are symmetric.</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> each be <span class="math inline">\(n \times n\)</span> matrices.
+Then
+<span class="math inline">\(\operatorname{det}(\mathbf{A B})= [\operatorname{det}(\mathbf{A})][\operatorname{det}(\mathbf{B})] \text {. }\)</span></p></li>
+<li><p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be <span class="math inline">\(m \times n\)</span> and <span class="math inline">\(n \times m\)</span>
+matrices, respectively. Then
+<span class="math inline">\(\operatorname{tr}(\mathbf{A B})=\operatorname{tr}(\mathbf{B A}) .\)</span></p></li>
+</ol>
+<p>Quadratic forms play a key role in linear model theory. The following
+definitions introduce quadratic forms.</p>
+<div class="defn">
+<p>Quadratic Forms: A function <span class="math inline">\(f\left(x_{1}, \ldots, x_{n}\right)\)</span> is a
+quadratic form if
+<span class="math inline">\(f\left(x_{1}, \ldots, x_{n}\right)=\sum_{i=1}^{n} \sum_{j=1}^{n} a_{i j} x_{i} x_{j}=\mathbf{X}^{\prime} \mathbf{A X}\)</span>
+where <span class="math inline">\(\mathbf{X}=\left(x_{1}, \ldots, x_{n}\right)^{\prime}\)</span> is an
+<span class="math inline">\(n \times 1\)</span> vector and <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric matrix
+whose <span class="math inline">\(i j^{\text {th }}\)</span> element is <span class="math inline">\(a_{i j}\)</span>.</p>
+</div>
+<div class="eje">
+<p>Let
+<span class="math inline">\(f\left(x_{1}, x_{2}, x_{3}\right)=x_{1}^{2}+3 x_{2}^{2}+4 x_{3}^{2}+x_{1} x_{2}+2 x_{2} x_{3}\)</span>.
+Then
+<span class="math inline">\(f\left(x_{1}, x_{2}, x_{3}\right)=\mathbf{X}^{\prime} \mathbf{A} \mathbf{X}\)</span>
+is a quadratic form with
+<span class="math inline">\(\mathbf{X}=\left(x_{1}, x_{2}, x_{3}\right)^{\prime}\)</span> and
+<span class="math display">\[\mathbf{A}=\left[\begin{array}{ccc}
+1 &amp; 0.5 &amp; 0 \\
+0.5 &amp; 3 &amp; 1 \\
+0 &amp; 1 &amp; 4
+\end{array}\right]\]</span> The symmetric matrix <span class="math inline">\(\mathbf{A}\)</span> is constructed by
+setting <span class="math inline">\(a_{i j}\)</span> and <span class="math inline">\(a_{j i}\)</span> equal to one-half the coefficient on the
+<span class="math inline">\(x_{i} x_{j}\)</span> term for <span class="math inline">\(i \neq j\)</span>.</p>
+</div>
+<div class="eje">
+<p>Quadratic forms are very useful for defining sums of squares. For
+example, let
+<span class="math display">\[f\left(x_{1}, \ldots, x_{n}\right)=\sum_{i=1}^{n} x_{i}^{2}=\mathbf{X}^{\prime} \mathbf{X}=\mathbf{X}^{\prime} \mathbf{I}_{n} \mathbf{X}\]</span>
+where the <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{X}=\left(x_{1}, \ldots, x_{n}\right)^{\prime}\)</span>. The sum of
+squares around the sample mean is another common example. Let
+<span class="math display">\[\begin{aligned}
+f\left(x_{1}, \ldots, x_{n}\right) &amp;=\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2} \\
+&amp;=\sum_{i=1}^{n} x_{i}^{2}-n \bar{x}^{2} \\
+&amp;=\mathbf{X}^{\prime} \mathbf{X}-\frac{1}{n}\left(\sum_{i=1}^{n} x_{i}\right)\left(\sum_{i=1}^{n} x_{i}\right) \\
+&amp;=\mathbf{X}^{\prime} \mathbf{X}-\frac{1}{n}\left(\mathbf{X}^{\prime} \mathbf{1}_{n}\right)\left(\mathbf{1}_{n}^{\prime} \mathbf{X}\right) \\
+&amp;=\mathbf{X}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{1}_{n} \mathbf{1}_{n}^{\prime}\right] \mathbf{X} \\
+&amp;=\mathbf{X}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{X}
+\end{aligned}\]</span></p>
+</div>
+<div class="defn">
+<p>Orthogonal Matrix: An <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathrm{P}\)</span> is orthogonal if
+and only if <span class="math inline">\(\mathbf{P}^{-1}=\mathbf{P}^{\prime} .\)</span> Therefore,
+<span class="math inline">\(\mathbf{P P}^{\prime}=\mathbf{P}^{\prime} \mathbf{P}=\mathbf{I}_{n} .\)</span>
+If <span class="math inline">\(\mathbf{P}\)</span> is written as
+<span class="math inline">\(\left(\mathbf{p}_{1}, \mathbf{p}_{2}, \ldots, \mathbf{p}_{n}\right)\)</span>
+where <span class="math inline">\(\mathbf{p}_{i}\)</span> is an <span class="math inline">\(n \times 1\)</span> column vector of <span class="math inline">\(\mathbf{P}\)</span>
+for <span class="math inline">\(i=1, \ldots, n\)</span>, then necessary and sufficient conditions for
+<span class="math inline">\(\mathbf{P}\)</span> to be orthogonal are</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(\mathbf{p}_{i}^{\prime} \mathbf{p}_{i}=1\)</span> for each <span class="math inline">\(i=1, \ldots, n\)</span>
+and</p></li>
+<li><p><span class="math inline">\(\mathbf{p}_{i}^{\prime} \mathbf{p}_{j}=0\)</span> for any <span class="math inline">\(i \neq j\)</span>.</p></li>
+</ol>
+</div>
+<div class="eje">
+<p>Let the <span class="math inline">\(n \times n\)</span> matrix <span class="math display">\[\mathbf{P}=\left[\begin{array}{ccccc}
+1 / \sqrt{n} &amp; 1 / \sqrt{2} &amp; 1 / \sqrt{6} &amp; \cdots &amp; 1 / \sqrt{n(n-1)} \\
+1 / \sqrt{n} &amp; -1 / \sqrt{2} &amp; 1 / \sqrt{6} &amp; \cdots &amp; 1 / \sqrt{n(n-1)} \\
+1 / \sqrt{n} &amp; 0 &amp; -2 / \sqrt{6} &amp; \cdots &amp; 1 / \sqrt{n(n-1)} \\
+1 / \sqrt{n} &amp; 0 &amp; 0 &amp; \cdots &amp; 1 / \sqrt{n(n-1)} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 / \sqrt{n} &amp; 0 &amp; 0 &amp; \cdots &amp; -\sqrt{(n-1) / n}
+\end{array}\right]\]</span> where
+<span class="math inline">\(\mathbf{P P}^{\prime}=\mathbf{P}^{\prime} \mathbf{P}=\mathbf{I}_{n} .\)</span>
+The columns of <span class="math inline">\(\mathbf{P}\)</span> are created as follows: <span class="math display">\[\begin{aligned}
+\mathbf{p}_{1} &amp;=\left(1 / \sqrt{1^{2}+1^{2}+\cdots+1^{2}}\right)(1,1,1,1, \ldots, 1)^{\prime}=(1 / \sqrt{n}) \mathbf{1}_{n} \\
+\mathbf{p}_{2} &amp;=\left(1 / \sqrt{1^{2}+(-1)^{2}}\right)(1,-1,0,0, \ldots, 0)^{\prime} \\
+\mathbf{p}_{3} &amp;=\left(1 / \sqrt{1^{2}+1^{2}+(-2)^{2}}\right)(1,1,-2,0, \ldots, 0)^{\prime} \\
+&amp; \vdots \\
+\mathbf{p}_{n} &amp;=\left(1 / \sqrt{1^{2}+1^{2}+\cdots+1^{2}+(-(n-1))^{2}}\right)(1,1, \ldots, 1,-(n-1))^{\prime}.
+\end{aligned}\]</span> The matrix <span class="math inline">\(\mathbf{P}^{\prime}\)</span> in Example <span class="math inline">\(1.1 .4\)</span> is
+generally referred to as an <span class="math inline">\(n\)</span>-dimensional Helmert matrix. The Helmert
+matrix has some interesting properties. Write <span class="math inline">\(\mathbf{P}\)</span> as
+<span class="math inline">\(\mathbf{P}=\left(\mathbf{p}_{1} \mid \mathbf{P}_{n}\right)\)</span> where the
+<span class="math inline">\(n \times 1\)</span> vector <span class="math inline">\(\mathbf{p}_{1}=(1 / \sqrt{n}) \mathbf{1}_{n}\)</span> and
+the <span class="math inline">\(n \times(n-1)\)</span> matrix
+<span class="math inline">\(\mathbf{P}_{n}=\left(\mathbf{p}_{2}, \mathbf{p}_{3}, \ldots, \mathbf{p}_{n}\right)\)</span>
+then</p>
+<p><span class="math display">\[\begin{aligned}
+\mathbf{p}_{1} \mathbf{p}_{1}^{\prime} &amp;=\frac{1}{n} \mathbf{J}_{n} \\
+\mathbf{p}_{1}^{\prime} \mathbf{p}_{1}&amp;=1 \\
+\mathbf{p}_{1}^{\prime} \mathbf{P}_{n}&amp;=\mathbf{0}_{1 \times(n-1)} \\
+\mathbf{P}_{n} \mathbf{P}_{n}^{\prime} &amp;=\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \\
+\mathbf{P}_{n}^{\prime} \mathbf{P}_{n}&amp;=\mathbf{I}_{n-1}.\end{aligned}\]</span></p>
+<p>The <span class="math inline">\((n-1) \times n\)</span> matrix <span class="math inline">\(\mathbf{P}_{n}^{\prime}\)</span> will be referred
+to as the lower portion of an <span class="math inline">\(n\)</span>-dimensional Helmert matrix.</p>
+</div>
+<p>If <span class="math inline">\(\mathbf{X}\)</span> is an <span class="math inline">\(n \times 1\)</span> vector and <span class="math inline">\(\mathbf{A}\)</span> is an
+<span class="math inline">\(n \times n\)</span> matrix, then <span class="math inline">\(\mathbf{A X}\)</span> defines <span class="math inline">\(n\)</span> linear combinations
+of the elements of <span class="math inline">\(\mathbf{X}\)</span>. Such transformations from <span class="math inline">\(\mathbf{X}\)</span>
+to <span class="math inline">\(\mathbf{A X}\)</span> are very useful in linear models. Of particular
+interest are transformations of the vector <span class="math inline">\(\mathbf{X}\)</span> that produce
+multiples of <span class="math inline">\(\mathbf{X}\)</span>. That is, we are interested in transformations
+that satisfy the relationship <span class="math display">\[\mathbf{A X}=\lambda \mathbf{X}\]</span> where
+<span class="math inline">\(\lambda\)</span> is a scalar multiple. The above relationship holds if and only
+if <span class="math display">\[\left|\lambda \mathbf{I}_{n}-\mathbf{A}\right|=0 .\]</span> But the
+determinant of <span class="math inline">\(\lambda \mathbf{I}_{n}-\mathbf{A}\)</span> is an
+<span class="math inline">\(n^{\text {th }}\)</span> degree polynomial in <span class="math inline">\(\lambda\)</span>. Thus, there are
+exactly <span class="math inline">\(n\)</span> values of <span class="math inline">\(\lambda\)</span> that satisfy
+<span class="math inline">\(\left|\lambda \mathbf{I}_{n}-\mathbf{A}\right|=0\)</span>. These <span class="math inline">\(n\)</span> values of
+<span class="math inline">\(\lambda\)</span> are called the <span class="math inline">\(n\)</span> eigenvalues of the matrix <span class="math inline">\(\mathbf{A}\)</span>.
+They are denoted by <span class="math inline">\(\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}\)</span>.
+Corresponding to each eigenvalue <span class="math inline">\(\lambda_{i}\)</span> there is an <span class="math inline">\(n \times 1\)</span>
+vector <span class="math inline">\(\mathbf{X}_{i}\)</span> that satisfies
+<span class="math display">\[\mathbf{A X}_{i}=\lambda_{i} \mathbf{X}_{i}\]</span> where <span class="math inline">\(\mathbf{X}_{i}\)</span>
+is called the <span class="math inline">\(i^{\text {th}}\)</span> eigenvector of the matrix <span class="math inline">\(\mathbf{A}\)</span>
+corresponding to the eigenvalue <span class="math inline">\(\lambda_{i}\)</span>.</p>
+<div class="eje">
+<p>Find the eigenvalues and vectors of the <span class="math inline">\(3 \times 3\)</span> matrix
+<span class="math inline">\(\mathbf{A}=0.6 \mathbf{I}_{3}+\)</span> <span class="math inline">\(0.4 \mathbf{J}_{3}\)</span>. First, set
+<span class="math inline">\(\left|\lambda \mathbf{I}_{3}-\mathbf{A}\right|=0\)</span>. This relationship
+produces the cubic equation
+<span class="math display">\[\lambda^{3}-3 \lambda^{2}+2.52 \lambda-0.648=0\]</span> or
+<span class="math display">\[(\lambda-1.8)(\lambda-0.6)(\lambda-0.6)=0 .\]</span> Therefore, the
+eigenvalues of <span class="math inline">\(\mathbf{A}\)</span> are
+<span class="math inline">\(\lambda_{1}=1.8, \lambda_{2}=\lambda_{3}=0.6\)</span>. Next, find vectors
+<span class="math inline">\(\mathbf{X}_{i}\)</span> that satisfy
+<span class="math inline">\(\left(\mathbf{A}-\lambda_{i} \mathbf{I}_{3}\right) \mathbf{X}_{i}=\mathbf{0}_{3 \times 1}\)</span>
+for each <span class="math inline">\(i=1,2,3\)</span>. For <span class="math inline">\(\lambda_{1}=\)</span> <span class="math inline">\(1.8\)</span>,
+<span class="math inline">\(\left(\mathbf{A}-1.8 \mathbf{I}_{3}\right) \mathbf{X}_{1}=\mathbf{0}_{3 \times 1}\)</span>
+or
+<span class="math inline">\(\left(-1.2 \mathbf{I}_{3}+0.4 \mathbf{J}_{3}\right) \mathbf{X}_{1}=\mathbf{0}_{3 \times 1}\)</span>.
+The vector <span class="math inline">\(\mathbf{X}_{1}=\)</span> <span class="math inline">\((1 / \sqrt{3}) \mathbf{I}_{3}\)</span> satisfies
+this relationship. For
+<span class="math inline">\(\lambda_{2}=\lambda_{3}=0.6,\left(\mathbf{A}-0.6 \mathbf{I}_{3}\right) \mathbf{X}_{i}=\mathbf{0}_{3 \times 1}\)</span>
+or <span class="math inline">\(\mathbf{1}_{3}^{\prime} \mathbf{X}_{i}=\mathbf{0}_{3 \times 1}\)</span> for
+<span class="math inline">\(i=2,3\)</span>. The vectors
+<span class="math inline">\(\mathbf{X}_{2}=(1 / \sqrt{2},-1 / \sqrt{2}, 0)^{\prime}\)</span> and
+<span class="math inline">\(\mathbf{X}_{3}=(1 / \sqrt{6}, 1 / \sqrt{6},-2 / \sqrt{6})^{\prime}\)</span>
+satisfy this condition. Note that vectors
+<span class="math inline">\(\mathbf{X}_{1}, \mathbf{X}_{2}, \mathbf{X}_{3}\)</span> are normalized and
+orthogonal since
+<span class="math inline">\(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}=\mathbf{X}_{2}^{\prime} \mathbf{X}_{2}=\mathbf{X}_{3}^{\prime} \mathbf{X}_{3}=1\)</span>
+and <span class="math inline">\(\mathbf{X}_{1}^{\prime} \mathbf{X}_{2}=\)</span>
+<span class="math inline">\(\mathbf{X}_{1}^{\prime} \mathbf{X}_{3}=\mathbf{X}_{2}^{\prime} \mathbf{X}_{3}=0 .\)</span></p>
+</div>
+<p>The following theorems address the uniqueness or nonuniqueness of the
+eigenvector associated with each eigenvalue.</p>
+<div class="teo">
+<p>There exists at least one eigenvector corresponding to each eigenvalue.</p>
+</div>
+<div class="teo">
+<p>If an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> has <span class="math inline">\(n\)</span> distinct eigenvalues,
+then there exist exactly <span class="math inline">\(n\)</span> linearly independent eigenvectors, one
+associated with each eigenvalue.</p>
+</div>
+<p>In the next theorem and corollary a symmetric matrix is defined in terms
+of its eigenvalues and eigenvectors.</p>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(n \times n\)</span> symmetric matrix. There exists an
+<span class="math inline">\(n \times n\)</span> orthogonal matrix <span class="math inline">\(\mathbf{P}\)</span> such that
+<span class="math inline">\(\mathbf{P}^{\prime} \mathbf{A P}=\mathbf{D}\)</span> where <span class="math inline">\(\mathbf{D}\)</span> is a
+diagonal matrix whose diagonal elements are the eigenvalues of
+<span class="math inline">\(\mathbf{A}\)</span> and where the columns of <span class="math inline">\(\mathbf{P}\)</span> are the orthogonal,
+normalized eigenvectors of <span class="math inline">\(\mathbf{A}\)</span>. The <span class="math inline">\(i^{\text {th }}\)</span> column of
+<span class="math inline">\(\mathbf{P}\)</span> (i.e., the <span class="math inline">\(i^{\text {th }}\)</span> eigenvectors of <span class="math inline">\(\mathbf{A}\)</span> )
+corresponds to the <span class="math inline">\(i^{t h}\)</span> diagonal element of <span class="math inline">\(\mathbf{D}\)</span> for
+<span class="math inline">\(i=1, \ldots, n\)</span>.</p>
+</div>
+<div class="eje">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be the <span class="math inline">\(3 \times 3\)</span> matrix from Example 1.1.5. Then
+<span class="math inline">\(\mathbf{P}^{\prime} \mathbf{A P}=\mathbf{D}\)</span> or
+<span class="math display">\[\left[\begin{array}{ccc}
+1 / \sqrt{3} &amp; 1 / \sqrt{3} &amp; 1 / \sqrt{3} \\
+1 / \sqrt{2} &amp; -1 / \sqrt{2} &amp; 0 \\
+1 / \sqrt{6} &amp; 1 / \sqrt{6} &amp; -2 / \sqrt{6}
+\end{array}\right]\left[\begin{array}{ccc}
+1 &amp; 0.4 &amp; 0.4 \\
+0.4 &amp; 1 &amp; 0.4 \\
+0.4 &amp; 0.4 &amp; 1
+\end{array}\right]\left[\begin{array}{ccc}
+1 / \sqrt{3} &amp; 1 / \sqrt{2} &amp; 1 / \sqrt{6} \\
+1 / \sqrt{3} &amp; -1 / \sqrt{2} &amp; 1 / \sqrt{6} \\
+1 / \sqrt{3} &amp; 0 &amp; -2 / \sqrt{6}
+\end{array}\right]\]</span> <span class="math display">\[=\left[\begin{array}{ccc}
+1.8 &amp; 0 &amp; 0 \\
+0 &amp; 0.6 &amp; 0 \\
+0 &amp; 0 &amp; 0.6
+\end{array}\right]\]</span></p>
+</div>
+<p>Theorem 1.1.3 can be used to relate the trace and determinant of a
+symmetric matrix to its eigenvalues.</p>
+<div class="teo">
+<p>If <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric matrix then
+<span class="math inline">\(\operatorname{tr}(\mathbf{A})=\sum_{i=1}^{n} \lambda_{i}\)</span> and
+<span class="math inline">\(\operatorname{det}(\mathbf{A})=\prod_{i=1}^{n} \lambda_{i}\)</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math display">\[\begin{aligned}
+\text{Let } \mathbf{P}^{\prime} \mathbf{A P} &amp;=\mathbf{D} \text{ then}\\
+\operatorname{tr}(\mathbf{A}) &amp;=\operatorname{tr}\left(\mathbf{A P P}^{\prime}\right)=\operatorname{tr}\left(\mathbf{P}^{\prime} \mathbf{A P}\right)=\operatorname{tr}(\mathbf{D})=\sum_{i=1}^{n} \lambda_{i} \\
+\operatorname{det}(\mathbf{A}) &amp;=\operatorname{det}\left(\mathbf{A P P}^{\prime}\right)=\operatorname{det}\left(\mathbf{P}^{\prime} \mathbf{A} \mathbf{P}\right)=\operatorname{det}(\mathbf{D}) \prod_{i=1}^{n} \lambda_{i}\end{aligned}\]</span> ◻</p>
+</div>
+<p>The number of times an eigenvalue occurs is the multiplicity of the
+value. This idea is formalized in the next definition.</p>
+<div class="defn">
+<p>Multiplicity: The <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> has eigenvalue
+<span class="math inline">\(\lambda^{*}\)</span> with multiplicity <span class="math inline">\(m \leq n\)</span> if <span class="math inline">\(m\)</span> of the eigenvalues of
+<span class="math inline">\(\mathbf{A}\)</span> equal <span class="math inline">\(\lambda^{*}\)</span>.</p>
+</div>
+<div class="eje">
+<p>All the <span class="math inline">\(n\)</span> eigenvalues of the identity matrix <span class="math inline">\(\mathbf{I}_{n}\)</span> equal 1.
+Therefore, <span class="math inline">\(\mathbf{I}_{n}\)</span> has eigenvalue 1 with multiplicity <span class="math inline">\(n\)</span>.</p>
+</div>
+<div class="eje">
+<p>Find the eigenvalues and eigenvectors of the <span class="math inline">\(n \times n\)</span> matrix
+<span class="math inline">\(\mathbf{G}=\)</span> <span class="math inline">\((a-b) \mathbf{I}_{n}+b \mathbf{J}_{n} .\)</span> First, note that
+<span class="math display">\[\mathbf{G}\left[(1 / \sqrt{n}) \mathbf{1}_{n}\right]=[a+(n-1) b](1 / \sqrt{n}) \mathbf{1}_{n} .\]</span></p>
+<p>Therefore, <span class="math inline">\(a+(n-1) b\)</span> is an eigenvalue of matrix <span class="math inline">\(\mathbf{G}\)</span> with
+corresponding normalized eigenvector <span class="math inline">\((1 \sqrt{n}) \mathbf{1}_{n}\)</span>.
+Next, take any <span class="math inline">\(n \times 1\)</span> vector <span class="math inline">\(\mathbf{X}\)</span> such that
+<span class="math inline">\(\mathbf{1}_{n}^{\prime} \mathbf{X}=0\)</span>. (One set of <span class="math inline">\(n-1\)</span> vectors that
+satisfies <span class="math inline">\(\mathbf{1}_{n}^{\prime} \mathbf{X}=0\)</span> are the column vectors
+<span class="math inline">\(\mathbf{p}_{2}, \mathbf{p}_{3}, \ldots, \mathbf{p}_{n}\)</span> from Example
+1.1.4.) Rewrite
+<span class="math inline">\(\mathbf{G}=(a-b) \mathbf{I}_{n}+b \mathbf{1}_{n} \mathbf{1}_{n}^{\prime}\)</span>.
+Therefore,
+<span class="math display">\[\mathbf{G X}=(a-b) \mathbf{X}+b \mathbf{1}_{n} \mathbf{1}_{n}^{\prime} \mathbf{X}=(a-b) \mathbf{X}\]</span>
+and matrix <span class="math inline">\(\mathbf{G}\)</span> has eigenvalue <span class="math inline">\(a-b\)</span>. Furthermore,
+<span class="math display">\[\begin{aligned}
+\left|\lambda \mathbf{I}_{n}-\mathbf{G}\right| &amp;=\left|(\lambda-a+b) \mathbf{I}_{n}-b \mathbf{J}_{n}\right| \\
+&amp;=[a+(n-1) b](a-b)^{n-1} .
+\end{aligned}\]</span> Therefore, eigenvalue <span class="math inline">\(a+(n-1) b\)</span> has multiplicity 1 and
+eigenvalue <span class="math inline">\(a-b\)</span> has multiplicity <span class="math inline">\(n-1\)</span>. Note that the <span class="math inline">\(3 \times 3\)</span>
+matrix <span class="math inline">\(\mathbf{A}\)</span> in Example 1.1 .5 is a special case of matrix
+<span class="math inline">\(\mathbf{G}\)</span> with <span class="math inline">\(a=1, b=0.4\)</span>, and <span class="math inline">\(n=3\)</span>.</p>
+</div>
+<p>It will be convenient at times to separate a matrix into its submatrix
+components. Such a separation is called partitioning.</p>
+<div class="defn">
+<p>Partitioning a Matrix: If <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(m \times n\)</span> matrix then
+<span class="math inline">\(\mathbf{A}\)</span> can be separated or partitioned as
+<span class="math display">\[\mathbf{A}=\left[\begin{array}{ll}
+\mathbf{A}_{11} &amp; \mathbf{A}_{12} \\
+\mathbf{A}_{21} &amp; \mathbf{A}_{22}
+\end{array}\right]\]</span> where <span class="math inline">\(\mathbf{A}_{i j}\)</span> is an <span class="math inline">\(m_{i} \times n_{j}\)</span>
+matrix for <span class="math inline">\(i, j=1,2, m=m_{1}+m_{2}\)</span> and <span class="math inline">\(n=n_{1}+n_{2}\)</span>.</p>
+</div>
+<p>Most of the square matrices used in this text are either positive
+definite or positive semidefinite. These two general matrix types are
+described in the following definitions.</p>
+<div class="defn">
+<p>Positive Semidefinite Matrix: An <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> is
+positive semidefinite if</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(\mathbf{A}=\mathbf{A}^{\prime}\)</span>,</p></li>
+<li><p><span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y} \geq 0\)</span> for all
+<span class="math inline">\(n \times 1\)</span> real vectors <span class="math inline">\(\mathbf{Y}\)</span>, and</p></li>
+<li><p><span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}=0\)</span> for at least one
+<span class="math inline">\(n \times 1\)</span> nonzero real vector <span class="math inline">\(\mathbf{Y}\)</span>.</p></li>
+</ol>
+</div>
+<div class="eje">
+<p>The matrix <span class="math inline">\(\mathbf{J}_{n}\)</span> is positive semidefinite because
+<span class="math inline">\(\mathbf{J}_{n}=\mathbf{J}_{n}^{\prime}, \mathbf{Y}^{\prime} \mathbf{J}_{n} \mathbf{Y}=\)</span>
+<span class="math inline">\(\left(\mathbf{1}_{n}^{\prime} \mathbf{Y}\right)^{\prime}\left(\mathbf{1}_{n}^{\prime} \mathbf{Y}\right)=\left(\sum_{i=1}^{n} y_{i}\right)^{2} \geq 0\)</span>
+for <span class="math inline">\(\mathbf{Y}=\left(y_{1}, \ldots, y_{n}\right)^{\prime}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{J}_{n} \mathbf{Y}=0\)</span> for <span class="math inline">\(\mathbf{Y}=\)</span>
+<span class="math inline">\((1,-1,0, \ldots, 0)^{\prime}\)</span>.</p>
+</div>
+<div class="defn">
+<p>Positive Definite Matrix: An <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span> is
+positive definite if</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(\mathbf{A}=\mathbf{A}^{\prime}\)</span> and</p></li>
+<li><p><span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}&gt;0\)</span> for all nonzero
+<span class="math inline">\(n \times 1\)</span> real vectors <span class="math inline">\(\mathbf{Y}\)</span>.</p></li>
+</ol>
+</div>
+<div class="eje">
+<p>The <span class="math inline">\(n \times n\)</span> identity matrix <span class="math inline">\(\mathbf{I}_{n}\)</span> is positive definite
+because <span class="math inline">\(\mathbf{I}_{n}\)</span> is symmetric and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{I}_{n} \mathbf{Y}&gt;0\)</span> for all nonzero
+<span class="math inline">\(n \times 1\)</span> real vectors <span class="math inline">\(\mathbf{Y}\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(n \times n\)</span> positive definite matrix. Then</p>
+<ol style="list-style-type: lower-roman">
+<li><p>there exists an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{B}\)</span> of rank <span class="math inline">\(n\)</span> such
+that <span class="math inline">\(\mathbf{A}=\mathbf{B B}^{\prime}\)</span> and</p></li>
+<li><p>the eigenvalues of <span class="math inline">\(\mathbf{A}\)</span> are all positive.</p></li>
+</ol>
+</div>
+<p>The following example demonstrates how the matrix B in Theorem <span class="math inline">\(1.1 .5\)</span>
+can be constructed.</p>
+<div class="eje">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(n \times n\)</span> positive definite matrix. Thus,
+<span class="math inline">\(\mathbf{A}=\mathbf{A}^{\prime}\)</span> and by Theorem 1.1.3 there exists
+<span class="math inline">\(n \times n\)</span> matrices <span class="math inline">\(\mathbf{P}\)</span> and <span class="math inline">\(\mathbf{D}\)</span> such that
+<span class="math inline">\(\mathbf{P}^{\prime} \mathbf{A P}=\mathbf{D}\)</span> where <span class="math inline">\(\mathbf{P}\)</span> is the
+orthogonal matrix whose columns are the eigenvectors of <span class="math inline">\(\mathbf{A}\)</span>,
+and <span class="math inline">\(\mathbf{D}\)</span> is the corresponding diagonal matrix of eigenvalues.
+Therefore, <span class="math inline">\(\mathbf{A}=\mathbf{P D P}^{\prime}=\)</span>
+<span class="math inline">\(\mathbf{P D}^{1 / 2} \mathbf{D}^{1 / 2} \mathbf{P}^{\prime}=\mathbf{B B}^{\prime}\)</span>
+where <span class="math inline">\(\mathbf{D}^{1 / 2}\)</span> is an <span class="math inline">\(n \times n\)</span> diagonal matrix whose
+<span class="math inline">\(i^{\text {th }}\)</span> diagonal element is <span class="math inline">\(\lambda_{i}^{1 / 2}\)</span> and
+<span class="math inline">\(\mathbf{B}=\mathbf{P D}^{1 / 2}\)</span>.</p>
+</div>
+<p>Certain square matrices have the characteristic that
+<span class="math inline">\(\mathbf{A}^{2}=\mathbf{A} .\)</span> For example, let
+<span class="math inline">\(\mathbf{A}=\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\)</span>. Then
+<span class="math display">\[\begin{aligned}
+\mathbf{A}^{2}=\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)^{2} &amp;=\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \\
+&amp;=\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}-\frac{1}{n} \mathbf{J}_{n}+\frac{1}{n} \mathbf{J}_{n} \\
+&amp;=\mathbf{A}
+\end{aligned}\]</span></p>
+<p>Matrices of this type are introduced in the next definition.</p>
+<div class="defn">
+<p>Idempotent Matrices: Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(n \times n\)</span> matrix. Then</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(\mathbf{A}\)</span> is idempotent if <span class="math inline">\(\mathbf{A}^{2}=\mathbf{A}\)</span> and</p></li>
+<li><p><span class="math inline">\(\mathbf{A}\)</span> is symmetric, idempotent if
+<span class="math inline">\(\mathbf{A}=\mathbf{A}^{2}\)</span> and <span class="math inline">\(\mathbf{A}=\mathbf{A}^{\prime}\)</span>.</p></li>
+</ol>
+<p>Note that if <span class="math inline">\(\mathbf{A}\)</span> is idempotent of rank <span class="math inline">\(n\)</span> then
+<span class="math inline">\(\mathbf{A}=\mathbf{I}_{n}\)</span>.</p>
+</div>
+<p>In linear model applications, idempotent matrices generally occur in the
+context of quadratic forms. Since the matrix in a quadratic form is
+symmetric, we generally restrict our attention to symmetric, idempotent
+matrices.</p>
+<p>Theorem 1.1.7 Let <span class="math inline">\(\mathbf{A}_{1}, \ldots, \mathbf{A}_{m}\)</span> be
+<span class="math inline">\(n \times n\)</span> symmetric matrices where rank
+<span class="math inline">\(\left(\mathbf{A}_{s}\right)=\)</span> <span class="math inline">\(n_{s}\)</span> for <span class="math inline">\(s=1, \ldots, m\)</span> and
+<span class="math inline">\(\sum_{s=1}^{m} \mathbf{A}_{s}=\mathbf{I}_{n}\)</span>. If
+<span class="math inline">\(\sum_{s=1}^{m} n_{s}=n\)</span>, then</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(\mathbf{A}_{r} \mathbf{A}_{s}=\mathbf{0}_{n \times n}\)</span> for
+<span class="math inline">\(r \neq s, r, s=1, \ldots, m\)</span> and</p></li>
+<li><p><span class="math inline">\(\mathbf{A}_{s}=\mathbf{A}_{s}^{2}\)</span> for <span class="math inline">\(s=1, \ldots, m\)</span>.</p></li>
+</ol>
+<p>The eigenvalues of the matrix
+<span class="math inline">\(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\)</span> are derived in the next
+example.</p>
+<div class="eje">
+<p>The symmetric, idempotent matrix
+<span class="math inline">\(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\)</span> takes the form
+<span class="math inline">\((a-b) \mathbf{I}_{n}+b \mathbf{J}_{n}\)</span> with <span class="math inline">\(a=1-\frac{1}{n}\)</span> and
+<span class="math inline">\(b=-\frac{1}{n}\)</span>. Therefore, by Example 1.1.8, the eigenvalues of
+<span class="math inline">\(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\)</span> are
+<span class="math inline">\(a+(n-1) b=\left(1-\frac{1}{n}\right)+(n-1)\left(-\frac{1}{n}\right)=0\)</span>
+with multiplicity 1 and
+<span class="math inline">\(a-b=\left(1-\frac{1}{n}\right)-\left(-\frac{1}{n}\right)=1\)</span> with
+multiplicity <span class="math inline">\(n-1\)</span>.</p>
+</div>
+<p>The result that the eigenvalues of an idempotent matrix are all zeros
+and ones is generalized in the next theorem.</p>
+<div class="teo">
+<p>The eigenvalues of an <span class="math inline">\(n \times n\)</span> symmetric matrix <span class="math inline">\(\mathbf{A}\)</span> of rank
+<span class="math inline">\(r \leq n\)</span> are 1, multiplicity <span class="math inline">\(r\)</span> and 0, multiplicity <span class="math inline">\(n-r\)</span> if and only
+if <span class="math inline">\(\mathbf{A}\)</span> is idempotent.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span><em>Proof.</em> The proof is given by Graybill (1976, p. 39). ◻</p>
+</div>
+<p>The following theorem relates the trace and the rank of a symmetric,
+idempotent matrix.</p>
+<div class="teo">
+<p>Theorem 1.1.9 If <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric, idempotent
+matrix then <span class="math inline">\(\operatorname{tr}(\mathbf{A})=\)</span>
+<span class="math inline">\(\operatorname{rank}(\mathbf{A})\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-3" class="proof"><em>Proof</em>. </span><em>Proof.</em> Proof: The proof is left to the reader. In the next example the
+matrix <span class="math inline">\(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\)</span> is written as a
+function of <span class="math inline">\(n-1\)</span> of its eigenvalues. ◻</p>
+</div>
+<div class="eje">
+<p>The <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\)</span>
+takes the form <span class="math inline">\((a-b) \mathbf{I}_{n}+b \mathbf{J}_{n}\)</span> with
+<span class="math inline">\(a=1-\frac{1}{n}\)</span> and <span class="math inline">\(b=-\frac{1}{n}\)</span>. By Examples <span class="math inline">\(1.1 .8\)</span> and 1.1.12,
+the <span class="math inline">\(n-1\)</span> eigenvalues equal to 1 have corresponding eigenvectors equal
+to the <span class="math inline">\(n-1\)</span> columns of <span class="math inline">\(\mathbf{P}_{n}\)</span> where <span class="math inline">\(\mathbf{P}_{n}^{\prime}\)</span>
+is the <span class="math inline">\((n-1) \times n\)</span> lower portion of an <span class="math inline">\(n\)</span>-dimensional Helmert
+matrix. Further,
+<span class="math inline">\(\mathbf{I}_{n}^{n}-\frac{1}{n} \mathbf{J}_{n}=\mathbf{P}_{n} \mathbf{P}_{n}^{\prime}\)</span>.</p>
+</div>
+<p>This representation of a symmetric idempotent matrix is generalized in
+the next theorem.</p>
+<div class="teo">
+<p>If <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric, idempotent matrix of rank
+<span class="math inline">\(r\)</span> then <span class="math inline">\(\mathbf{A}=\mathbf{P P}^{\prime}\)</span> where <span class="math inline">\(\mathbf{P}\)</span> is an
+<span class="math inline">\(n \times r\)</span> matrix whose columns are the eigenvectors of <span class="math inline">\(\mathbf{A}\)</span>
+associated with the <span class="math inline">\(r\)</span> eigenvalues equal to 1.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-4" class="proof"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(n \times n\)</span> symmetric, idempotent
+matrix of rank <span class="math inline">\(r\)</span>. By Theorem 1.1.3,
+<span class="math display">\[\mathbf{R}^{\prime} \mathbf{A} \mathbf{R}=\left[\begin{array}{cc}
+    \mathbf{I}_{r} &amp; \mathbf{0} \\
+    \mathbf{0} &amp; \mathbf{0}
+    \end{array}\right]\]</span> where <span class="math inline">\(\mathbf{R}=[\mathbf{P} \mid \mathbf{Q}]\)</span>
+is the <span class="math inline">\(n \times n\)</span> matrix of eigenvectors of <span class="math inline">\(\mathbf{A}, \mathbf{P}\)</span>
+is the <span class="math inline">\(n \times r\)</span> matrix whose <span class="math inline">\(r\)</span> columns are the eigenvectors
+associated with the <span class="math inline">\(r\)</span> eigenvalues 1 , and <span class="math inline">\(\mathbf{Q}\)</span> is the
+<span class="math inline">\(n \times(n-r)\)</span> matrix of eigenvectors associated with the <span class="math inline">\((n-r)\)</span>
+eigenvalues 0 . Therefore,
+<span class="math display">\[\mathbf{A}=[\mathbf{P ~ Q}]\left[\begin{array}{ll}
+    \mathbf{I}_{r} &amp; \mathbf{0} \\
+    \mathbf{0} &amp; \mathbf{0}
+    \end{array}\right]\left[\begin{array}{l}
+    \mathbf{P}^{\prime} \\
+    \mathbf{Q}^{\prime}
+    \end{array}\right]=\mathbf{P P}^{\prime} .\]</span> Furthermore,
+<span class="math inline">\(\mathbf{P}^{\prime} \mathbf{P}=\mathbf{I}_{r}\)</span> because <span class="math inline">\(\mathbf{P}\)</span> is
+an <span class="math inline">\(n \times r\)</span> matrix of orthogonal eigenvectors. ◻</p>
+</div>
+<p>If <span class="math inline">\(\mathbf{X}^{\prime} \mathbf{A X}\)</span> is a quadratic form with
+<span class="math inline">\(n \times 1\)</span> vector <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(n \times n\)</span> symmetric matrix
+<span class="math inline">\(\mathbf{A}\)</span>, then <span class="math inline">\(\mathbf{X}^{\prime} \mathbf{A X}\)</span> is a quadratic
+form constructed from an <span class="math inline">\(n\)</span>-dimensional vector. The following example
+uses Theorem 1.1.10 to show that if <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span>
+symmetric, idempotent matrix of rank <span class="math inline">\(r \leq n\)</span> then the quadratic form
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{A} \mathbf{X}\)</span> can be rewritten as a
+quadratic form constructed from an <span class="math inline">\(r\)</span>-dimensional vector.</p>
+<div class="eje">
+<p>Let <span class="math inline">\(\mathbf{X}^{\prime} \mathbf{A} \mathbf{X}\)</span> be a quadratic form with
+<span class="math inline">\(n \times 1\)</span> vector <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(n \times n\)</span> symmetric, idempotent
+matrix <span class="math inline">\(\mathbf{A}\)</span> of rank <span class="math inline">\(r \leq n\)</span>. By Theorem 1.1.10,
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{A X}=\)</span>
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{P P} \mathbf{X}^{\prime} \mathbf{X}=\mathbf{Z}^{\prime} \mathbf{Z}\)</span>
+where <span class="math inline">\(\mathbf{P}\)</span> is an <span class="math inline">\(n \times r\)</span> matrix of eigenvectors of
+<span class="math inline">\(\mathbf{A}\)</span> associated with the eigenvalues 1 and
+<span class="math inline">\(\mathbf{Z}=\mathbf{P}^{\prime} \mathbf{X}\)</span> is an <span class="math inline">\(r \times 1\)</span> vector.
+For a more specific example, note that
+<span class="math inline">\(\mathbf{X}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \mathbf{X}=\mathbf{X}^{\prime} \mathbf{P}_{n} \mathbf{P}_{n}^{\prime} \mathbf{X}=\mathbf{Z}^{\prime} \mathbf{Z}\)</span>
+where <span class="math inline">\(\mathbf{P}_{n}^{\prime}\)</span> is the <span class="math inline">\((n-1) \times n\)</span> lower portion of
+an <span class="math inline">\(n\)</span>-dimensional Helmert matrix and
+<span class="math inline">\(\mathbf{Z}=\mathbf{P}_{n}^{\prime} \mathbf{X}\)</span> is an <span class="math inline">\((n-1) \times 1\)</span>
+vector.</p>
+</div>
+<p>Later sections of the text cover covariance matrices and quadratic forms
+within the context of complete, balanced data structures. A data set is
+complete if all combinations of the levels of the factors contain data.
+A data set is balanced if the number of observations in each level of
+any factor is constant. Kronecker product notation will prove very
+useful when discussing covariance matrices and quadratic forms for
+balanced data structures. The next section of the text therefore
+provides some useful Kronecker product results.</p>
+</div>
+<div id="kronecker-products" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> KRONECKER PRODUCTS<a href="index.html#kronecker-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Kronecker products will be used extensively in this text. In this
+section the Kronecker product operation is defined and a number of
+related theorems are listed without proof.</p>
+<div class="defn">
+<p>Kronecker Product: If <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(r \times s\)</span> matrix with
+<span class="math inline">\(i j^{\text {th }}\)</span> element <span class="math inline">\(a_{i j}\)</span> for <span class="math inline">\(i=1, \ldots, r\)</span> and
+<span class="math inline">\(j=1, \ldots, s\)</span>, and <span class="math inline">\(\mathbf{B}\)</span> is any <span class="math inline">\(t \times v\)</span> matrix, then the
+Kronecker product of <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>, denoted by
+<span class="math inline">\(\mathbf{A} \otimes \mathbf{B}\)</span>, is the <span class="math inline">\(r t \times s v\)</span> matrix formed
+by multiplying each <span class="math inline">\(a_{i j}\)</span> element by the entire matrix B. That is,
+<span class="math display">\[\mathbf{A} \otimes \mathbf{B}=\left[\begin{array}{cccc}
+    a_{11} \mathbf{B} &amp; a_{12} \mathbf{B} &amp; \cdots &amp; a_{1 s} \mathbf{B} \\
+    a_{21} \mathbf{B} &amp; a_{22} \mathbf{B} &amp; \cdots &amp; a_{2 s} \mathbf{B} \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    a_{r 1} \mathbf{B} &amp; a_{r 2} \mathbf{B} &amp; \cdots &amp; a_{r s} \mathbf{B}
+    \end{array}\right]\]</span></p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be any matrices. Then
+<span class="math inline">\((\mathbf{A} \otimes \mathbf{B})^{\prime}=\mathbf{A}^{\prime} \otimes \mathbf{B}^{\prime}\)</span>.</p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\left[\mathbf{1}_{a} \otimes(2,1,4)\right]^{\prime}=\mathbf{1}_{a}^{\prime} \otimes(2,1,4)^{\prime}\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}, \mathbf{B}\)</span>, and <span class="math inline">\(\mathbf{C}\)</span> be any matrices and let a
+be a scalar. Then
+<span class="math inline">\(a \mathbf{A} \otimes \mathbf{B} \otimes \mathbf{C}=a(\mathbf{A} \otimes \mathbf{B}) \otimes \mathbf{C}=\mathbf{A} \otimes(a \mathbf{B} \otimes \mathbf{C}) .\)</span></p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\frac{1}{a} \mathbf{J}_{a} \otimes \mathbf{J}_{b} \otimes \mathbf{J}_{c}=\frac{1}{a}\left[\left(\mathbf{J}_{a} \otimes \mathbf{J}_{b}\right) \otimes \mathbf{J}_{c}\right]=\mathbf{J}_{a} \otimes\left(\frac{1}{a} \mathbf{J}_{b} \otimes \mathbf{J}_{c}\right)\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be any square matrices. Then
+<span class="math inline">\(\operatorname{tr}(\mathbf{A} \otimes \mathbf{B})=\)</span>
+<span class="math inline">\([\operatorname{tr}(\mathbf{A})][\operatorname{tr}(\mathbf{B})]\)</span>.</p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\operatorname{tr}\left[\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\right]=\operatorname{tr}\left[\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right)\right] \operatorname{tr}\left[\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\right]=\)</span>
+<span class="math inline">\((a-1)(n-1)\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(r \times s\)</span> matrix, B be a <span class="math inline">\(t \times u\)</span> matrix,
+<span class="math inline">\(\mathbf{C}\)</span> be an <span class="math inline">\(s \times v\)</span> matrix, and <span class="math inline">\(\mathbf{D}\)</span> be a
+<span class="math inline">\(u \times w\)</span> matrix. Then
+<span class="math inline">\((\mathbf{A} \otimes \mathbf{B})(\mathbf{C} \otimes \mathbf{D})=\mathbf{A C} \otimes \mathbf{B D}\)</span>.</p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\left[\mathbf{I}_{a} \otimes \mathbf{J}_{n}\right]\left[\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes \frac{1}{n} \mathbf{J}_{n}\right]=\mathbf{I}_{a}\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes \frac{1}{n} \mathbf{J}_{n} \mathbf{J}_{n}=\left(\mathbf{I}_{a}-\right.\)</span>
+<span class="math inline">\(\left.\frac{1}{a} \mathbf{J}_{a}\right) \otimes \mathbf{J}_{n}\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be <span class="math inline">\(m \times m\)</span> and <span class="math inline">\(n \times n\)</span>
+nonsingular matrices, respectively. Then the inverse of
+<span class="math inline">\(\mathbf{A} \otimes \mathbf{B}\)</span> is
+<span class="math inline">\((\mathbf{A} \otimes \mathbf{B})^{-1}=\mathbf{A}^{-1} \otimes \mathbf{B}^{-1}\)</span>.</p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\left[\left(\mathbf{I}_{a}+\alpha \mathbf{J}_{a}\right) \otimes\left(\mathbf{I}_{n}+\beta \mathbf{J}_{n}\right)\right]^{-1}=\left[\mathbf{I}_{a}-(\alpha /(1+a \alpha)) \mathbf{J}_{a}\right] \otimes\left[\mathbf{I}_{n}-\right.\)</span>
+<span class="math inline">\(\left.(\beta /(1+n \beta)) \mathbf{J}_{n}\right]\)</span> for
+<span class="math inline">\(0&lt;\alpha, \beta\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be <span class="math inline">\(m \times n\)</span> matrices and let
+<span class="math inline">\(\mathbf{C}\)</span> be a <span class="math inline">\(p \times q\)</span> matrix. Then
+<span class="math inline">\((\mathbf{A}+\mathbf{B}) \otimes \mathbf{C}=(\mathbf{A} \otimes \mathbf{C})+(\mathbf{B} \otimes \mathbf{C})\)</span>.</p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)=\left[\mathbf{I}_{a} \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\right]-\left[\frac{1}{a} \mathbf{J}_{a} \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\right]=\)</span>
+<span class="math inline">\(\mathbf{I}_{a} \otimes \mathbf{I}_{n}-\mathbf{I}_{a} \otimes \frac{1}{n} \mathbf{J}_{n}-\frac{1}{a} \mathbf{J}_{a} \otimes \mathbf{I}_{n}+\frac{1}{a} \mathbf{J}_{a} \frac{1}{n} \mathbf{J}_{n} .\)</span></p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(m \times m\)</span> matrix with eigenvalues
+<span class="math inline">\(\alpha_{1}, \ldots, \alpha_{m}\)</span> and let <span class="math inline">\(\mathbf{B}\)</span> be an <span class="math inline">\(n \times n\)</span>
+matrix with eigenvalues <span class="math inline">\(\beta_{1}, \ldots, \beta_{n}\)</span>. Then the
+eigenvalues of <span class="math inline">\(\mathbf{A} \otimes \mathbf{B}\)</span> (or
+<span class="math inline">\(\mathbf{B} \otimes \mathbf{A}\)</span> ) are the <span class="math inline">\(m n\)</span> values
+<span class="math inline">\(\alpha_{i} \beta_{j}\)</span> for <span class="math inline">\(i=1, \ldots, m\)</span> and <span class="math inline">\(j=1, \ldots, n\)</span>.</p>
+</div>
+<div class="eje">
+<p>From Example 1.1.8, the eigenvalues of
+<span class="math inline">\(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\)</span> are 1 with multiplicity
+<span class="math inline">\(n-1\)</span> and 0 with multiplicity 1 . Likewise,
+<span class="math inline">\(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\)</span> has eigenvalues 1 with
+multiplicity <span class="math inline">\(a-1\)</span> and 0 with multiplicity 1 . Therefore, the
+eigenvalues of
+<span class="math inline">\(\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\)</span>
+are 1 with multiplicity <span class="math inline">\((a-1)(n-1)\)</span> and 0 with multiplicity <span class="math inline">\(a+n-1\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(m \times n\)</span> matrix of rank <span class="math inline">\(r\)</span> and let
+<span class="math inline">\(\mathbf{B}\)</span> be a <span class="math inline">\(p \times q\)</span> matrix of rank s. Then
+<span class="math inline">\(\mathbf{A} \otimes \mathbf{B}\)</span> has rank rs.</p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\operatorname{rank}\left[\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes \mathbf{I}_{n}\right]=\left[\operatorname{rank}\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right)\right]\left[\operatorname{rank}\left(\mathbf{I}_{n}\right)\right]=(a-1) n\)</span>.</p>
+</div>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be an <span class="math inline">\(m \times m\)</span> symmetric, idempotent matrix of rank
+<span class="math inline">\(r\)</span> and let <span class="math inline">\(\mathbf{B}\)</span> be an <span class="math inline">\(n \times n\)</span> symmetric, idempotent matrix
+of rank s. Then <span class="math inline">\(\mathbf{A} \otimes \mathbf{B}\)</span> is an <span class="math inline">\(m n \times m n\)</span>
+symmetric, idempotent matrix where
+<span class="math inline">\(\operatorname{tr}(\mathbf{A} \otimes \mathbf{B})=\operatorname{rank}(\mathbf{A} \otimes \mathbf{B})=r s\)</span>.</p>
+</div>
+<div class="eje">
+<p><span class="math inline">\(\operatorname{tr}\left[\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes \mathbf{I}_{n}\right]=\operatorname{rank}\left[\left(\mathbf{I}_{a}-\frac{1}{a} \mathbf{J}_{a}\right) \otimes \mathbf{I}_{n}\right]=(a-1) n\)</span>.</p>
+</div>
+<p>The following example demonstrates that Kronecker products are useful
+for describing sums of squares in complete, balanced ANOVA problems.</p>
+<div class="eje">
+<p>Consider a one-way classification where there are <span class="math inline">\(r\)</span> replicate
+observations nested in each of the <span class="math inline">\(t\)</span> levels of a fixed factor. Let
+<span class="math inline">\(y_{i j}\)</span> represent the <span class="math inline">\(j^{\text {th }}\)</span> replicate observation in the
+<span class="math inline">\(i^{\text {th }}\)</span> level of the fixed factor for <span class="math inline">\(i=\)</span> <span class="math inline">\(1, \ldots, t\)</span> and
+<span class="math inline">\(j=1, \ldots, r\)</span>. Define the <span class="math inline">\(t r \times 1\)</span> vector of observations
+<span class="math inline">\(\mathbf{Y}=\)</span>
+<span class="math inline">\(\left(y_{11}, \ldots, y_{1 r}, \ldots, y_{t 1}, \ldots, y_{t r}\right)^{\prime}\)</span>.
+The layout for this experiment is given in Figure 1.2.1. The ANOVA table
+is presented in Table 1.2.1. Note that the sums of squares are written
+in summation notation and as quadratic forms,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span>, for <span class="math inline">\(m=1, \ldots, 4\)</span>.
+The objective is to demonstrate that the
+<span class="math inline">\(\operatorname{tr} \times \operatorname{tr}\)</span> matrices <span class="math inline">\(\mathbf{A}_{m}\)</span>
+can be expressed as Kronecker products. Each matrix <span class="math inline">\(\mathbf{A}_{m}\)</span> is
+derived later. Note
+<span class="math display">\[\bar{y}_{\cdot \cdot}=[1 /(r t)] \mathbf{1}_{t r}^{\prime} \mathbf{Y}=[1 /(r t)]\left(\mathbf{1}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y}\]</span></p>
+<p>Figure 1.2.1 One-Way Layout. Table <span class="math inline">\(1.2 .1\)</span> One-Way ANOVA Table</p>
+<p>and</p>
+<p><span class="math display">\[\left(\bar{y}_{1 \cdot}, \ldots, \bar{y}_{t \cdot}\right)^{\prime}=\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y}\]</span></p>
+<p>Therefore, the sum of squares due to the mean is given by</p>
+<p><span class="math display">\[\begin{aligned}
+\sum_{i=1}^{t} \sum_{j=1}^{r} \bar{y}^{2}_{\cdot \cdot} &amp;=r t \bar{y}^{2}_{\cdot \cdot} \\
+&amp;=r t\left\{[1 /(r t)]\left(\mathbf{1}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y}\right\}^{\prime}\left\{[1 /(r t)]\left(\mathbf{1}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y}\right\} \\
+&amp;=\mathbf{Y}^{\prime}\left[\frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime} \mathbf{A}_{1} \mathbf{Y}
+\end{aligned}\]</span></p>
+<p>where the <span class="math inline">\(t r \times t r\)</span> matrix
+<span class="math inline">\(\mathbf{A}_{1}=\frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\)</span>.
+The sum of squares due to the fixed factor is</p>
+<p><span class="math display">\[\begin{aligned}
+\sum_{i=1}^{t} \sum_{j=1}^{r}\left(\bar{y}_{i \cdot}-\bar{y}_{\cdot \cdot}\right)^{2} &amp;=r \sum_{i=1}^{t} \bar{y}_{i \cdot}^{2}-t r \bar{y}^{2}_{\cdot \cdot} \\
+&amp;=r\left[\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y}\right]^{\prime}\left[\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y}\right]-\mathbf{Y}^{\prime}\left[\frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y}-\mathbf{Y}^{\prime}\left[\frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}
+\end{aligned}\]</span> where the <span class="math inline">\(\operatorname{tr} \times \operatorname{tr}\)</span>
+matrix
+<span class="math inline">\(\mathbf{A}_{2}=\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\)</span>.
+The sum of squares due to the nested replicates is <span class="math display">\[\begin{aligned}
+\sum_{i=1}^{t} \sum_{j=1}^{r}\left(y_{i j}-\bar{y}_{i \cdot}\right)^{2} &amp;=\sum_{i=1}^{t} \sum_{j=1}^{r} y_{i j}^{2}-r \sum_{i=1}^{t} \bar{y}_{i}^{2} \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes \mathbf{I}_{r}\right] \mathbf{Y}-\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}
+\end{aligned}\]</span> where the <span class="math inline">\(\operatorname{tr} \times \operatorname{tr}\)</span>
+matrix
+<span class="math inline">\(\mathbf{A}_{3}=\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\)</span>.
+Finally, the sum of squares total is
+<span class="math display">\[\sum_{i=1}^{t} \sum_{j=1}^{r} y_{i j}^{2}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes \mathbf{I}_{r}\right] \mathbf{Y}=\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\]</span>
+where the <span class="math inline">\(t r \times \operatorname{tr}\)</span> matrix
+<span class="math inline">\(\mathbf{A}_{4}=\mathbf{I}_{t} \otimes \mathbf{I}_{r}\)</span>.</p>
+</div>
+<p>The derivations of the sums of squares matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> can be
+tedious. In Chapter 4 an algorithm is provided for determining the sums
+of squares matrices for complete, balanced designs with any number of
+main effects, interactions, or nested factors. This algorithm makes the
+calculation of sums of squares matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> very simple.
+This section concludes with a matrix operator that will prove useful in
+Chapter 8.</p>
+<div class="defn">
+<p>BIB Product: If <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(c \times d\)</span> matrix and <span class="math inline">\(\mathbf{A}\)</span>
+is an <span class="math inline">\(a \times b\)</span> matrix where each column of <span class="math inline">\(\mathbf{A}\)</span> has
+<span class="math inline">\(c \leq a\)</span> nonzero elements and <span class="math inline">\(a-c\)</span> zero elements, then the BIB
+product of matrices <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>, denoted by
+<span class="math inline">\(\mathbf{A} \square \mathbf{B}\)</span>, is the <span class="math inline">\(a \times b d\)</span> matrix formed by
+multiplying each zero element in the <span class="math inline">\(i^{\text {th }}\)</span> column of
+<span class="math inline">\(\mathbf{A}\)</span> by a <span class="math inline">\(1 \times d\)</span> row vector of zeros and multiplying the
+<span class="math inline">\(j^{\text {th }}\)</span> nonzero element in the <span class="math inline">\(i^{\text {th }}\)</span> column of
+<span class="math inline">\(\mathbf{A}\)</span> by the <span class="math inline">\(j^{\text {th }}\)</span> row of <span class="math inline">\(\mathbf{B}\)</span> for
+<span class="math inline">\(i=1, \ldots, b\)</span> and <span class="math inline">\(j=1, \ldots, c\)</span>.</p>
+</div>
+<div class="eje">
+<p>Let the <span class="math inline">\(3 \times 3\)</span> matrix <span class="math inline">\(\mathbf{A}=\mathbf{J}_{3}-\mathbf{I}_{3}\)</span>
+and the <span class="math inline">\(2 \times 2\)</span> matrix <span class="math inline">\(\mathbf{B}=\)</span>
+<span class="math inline">\(\mathbf{I}_{2}-\frac{1}{2} \mathbf{J}_{2}\)</span>. Then the <span class="math inline">\(3 \times 6\)</span> BIB
+product matrix</p>
+<p><span class="math display">\[\begin{aligned}
+    \mathbf{A} \square \mathbf{B} &amp; =\left[\begin{array}{lll}0 &amp; 1 &amp; 1 \\ 1 &amp; 0 &amp; 1 \\ 1 &amp; 1 &amp; 0\end{array}\right] \square\left[\begin{array}{rr}1 / 2 &amp; -1 / 2 \\ -1 / 2 &amp; 1 / 2\end{array}\right]\\
+    &amp; =\left[\begin{array}{cccccc}0 &amp; 0 &amp; 1 / 2 &amp; -1 / 2 &amp; 1 / 2 &amp; -1 / 2 \\ 1 / 2 &amp; -1 / 2 &amp; 0 &amp; 0 &amp; -1 / 2 &amp; 1 / 2 \\ -1 / 2 &amp; 1 / 2 &amp; -1 / 2 &amp; 1 / 2 &amp; 0 &amp; 0\end{array}\right].
+    \end{aligned}\]</span></p>
+</div>
+<div class="teo">
+<p>If <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(a \times b\)</span> matrix with <span class="math inline">\(c \leq a\)</span> nonzero
+elements per column and <span class="math inline">\(a-c\)</span> zeros per column;
+<span class="math inline">\(\mathbf{B}_{1}, \mathbf{B}_{2}\)</span>, and <span class="math inline">\(\mathbf{B}\)</span> are each <span class="math inline">\(c \times d\)</span>
+matrices; <span class="math inline">\(\mathbf{D}\)</span> is <span class="math inline">\(a b \times\)</span> diagonal matrix of rank
+<span class="math inline">\(b ; \mathbf{Z}\)</span> is a <span class="math inline">\(d \times 1\)</span> vector; and <span class="math inline">\(\mathbf{Y}\)</span> is
+<span class="math inline">\(a c \times 1\)</span> vector, then</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\([\mathbf{A} \square \mathbf{B}][\mathbf{D} \otimes \mathbf{Z}]=\mathbf{A D} \square \mathbf{B Z}\)</span></p></li>
+<li><p><span class="math inline">\([\mathbf{A} \square \mathbf{Y}]\left[\mathbf{D} \otimes \mathbf{Z}^{\prime}\right]=\mathbf{A D} \square \mathbf{Y} \mathbf{Z}^{\prime}\)</span></p></li>
+<li><p><span class="math inline">\(\mathbf{D} \square \mathbf{Y}^{\prime}=\mathbf{D} \otimes \mathbf{Y}^{\prime}\)</span></p></li>
+<li><p><span class="math inline">\(\left[\mathbf{A} \square\left(\mathbf{B}_{1}+\mathbf{B}_{2}\right)\right]=\left[\mathbf{A} \square \mathbf{B}_{1}\right]+\left[\mathbf{A} \square \mathbf{B}_{2}\right]\)</span>.</p></li>
+</ol>
+</div>
+<div class="eje">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> be any <span class="math inline">\(3 \times 3\)</span> matrix with two nonzero elements
+per column and let
+<span class="math inline">\(\mathbf{B}=\mathbf{I}_{2}-\frac{1}{2} \mathbf{J}_{2}\)</span>. Then
+<span class="math display">\[\begin{aligned}
+{[\mathbf{A} \square \mathbf{B}]\left[\mathbf{I}_{3} \otimes \mathbf{J}_{2}\right] } &amp;=\left[\mathbf{A} \square\left(\mathbf{I}_{2}-\frac{1}{2} \mathbf{J}_{2}\right)\right]\left[\mathbf{I}_{3} \otimes \mathbf{1}_{2}\right]\left[\mathbf{I}_{3} \otimes \mathbf{1}_{2}^{\prime}\right] \\
+&amp;=\left[\mathbf{A} \square\left(\left(\mathbf{I}_{2}-\frac{1}{2} \mathbf{J}_{2}\right) \mathbf{1}_{2}\right)\right]\left[\mathbf{I}_{3} \otimes \mathbf{1}_{2}^{\prime}\right] \\
+&amp;=\left[\mathbf{A} \square \mathbf{0}_{2 \times 1}\right]\left[\mathbf{I}_{3} \otimes \mathbf{1}_{2}^{\prime}\right] \\
+&amp;=\mathbf{0}_{3 \times 6}
+\end{aligned}\]</span></p>
+</div>
+</div>
+<div id="random-vectors" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> RANDOM VECTORS<a href="index.html#random-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, \ldots, Y_{n}\right)^{\prime}\)</span> where
+<span class="math inline">\(Y_{i}\)</span> is a random variable for <span class="math inline">\(i=1, \ldots, n\)</span>. The vector
+<span class="math inline">\(\mathbf{Y}\)</span> is a random entity. Therefore, <span class="math inline">\(\mathbf{Y}\)</span> has an
+expectation; each element of <span class="math inline">\(\mathbf{Y}\)</span> has a variance; and any two
+elements of <span class="math inline">\(\mathbf{Y}\)</span> have a covariance (assuming the expectations,
+variances, and covariances exist). The following definitions and
+theorems describe the structure of random vectors.</p>
+<div class="defn">
+<p>Joint Probability Distribution: The probability distribution of the
+<span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime}\)</span> equals the joint
+probability distribution of <span class="math inline">\(Y_{1}, \ldots, Y_{n}\)</span>. Denote the
+distribution of <span class="math inline">\(\mathbf{Y}\)</span> by
+<span class="math inline">\(f_{\mathbf{Y}}(y)-f_{\mathbf{Y}}\left(y_{1}, \ldots, y_{n}\right)\)</span>.</p>
+</div>
+<div class="defn">
+<p>Expectation of a Random Vector: The expected value of the <span class="math inline">\(n \times 1\)</span>
+random vector <span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime}\)</span> is
+given by
+<span class="math inline">\(\mathrm{E}(\mathbf{Y})=\left[\mathrm{E}\left(Y_{1}\right), \ldots, \mathrm{E}\left(Y_{n}\right)\right]^{\prime}\)</span>.</p>
+</div>
+<div class="defn">
+<p>Covariance Matrix of a Random Vector <span class="math inline">\(\mathbf{Y}\)</span>: The <span class="math inline">\(n \times 1\)</span>
+random vector <span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime}\)</span>
+has <span class="math inline">\(n \times n\)</span> covariance matrix given by
+<span class="math display">\[\operatorname{cov}(\mathbf{Y})=\mathrm{E}\left\{[\mathbf{Y}-\mathrm{E}(\mathbf{Y})][\mathbf{Y}-\mathrm{E}(\mathbf{Y})]^{\prime}\right\}\]</span>
+The <span class="math inline">\(i j^{\text {th }}\)</span> element of <span class="math inline">\(\operatorname{cov}(\mathbf{Y})\)</span>
+equals
+<span class="math inline">\(\mathrm{E}\left\{\left[Y_{i}-\mathrm{E}\left(Y_{i}\right)\right]\left[Y_{j}-\mathrm{E}\left(Y_{j}\right)\right]\right\}\)</span>
+for <span class="math inline">\(i, j=1, \ldots, n\)</span>.</p>
+</div>
+<div class="defn">
+<p>Linear Transformations of a Random Vector <span class="math inline">\(\mathbf{Y}\)</span> : If B is an
+<span class="math inline">\(m \times n\)</span> matrix of constants and <span class="math inline">\(\mathbf{Y}\)</span> is an <span class="math inline">\(n \times 1\)</span>
+random vector, then the <span class="math inline">\(m \times 1\)</span> random vector BY represents <span class="math inline">\(m\)</span>
+linear transformations of Y.</p>
+</div>
+<p>The following theorem provides the covariance matrix of linear
+transformations of a random vector.</p>
+<div class="teo">
+<p>If <span class="math inline">\(\mathbf{B}\)</span> is an <span class="math inline">\(m \times n\)</span> matrix of constants, <span class="math inline">\(\mathbf{Y}\)</span> is
+an <span class="math inline">\(n \times 1\)</span> random vector, and <span class="math inline">\(\operatorname{cov}(\mathbf{Y})\)</span> is
+the <span class="math inline">\(n \times n\)</span> covariance matrix of <span class="math inline">\(\mathbf{Y}\)</span>, then the
+<span class="math inline">\(m \times 1\)</span> random vector BY has an <span class="math inline">\(m \times m\)</span> covariance matrix
+given by
+<span class="math inline">\(\mathbf{B}[\operatorname{cov}(\mathbf{Y})] \mathbf{B}^{\prime}\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-5" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math display">\[\begin{aligned}
+\operatorname{cov}(\mathbf{B Y}) &amp;=\mathrm{E}\left\{[\mathbf{B} \mathbf{Y}-\mathrm{E}(\mathbf{B} \mathbf{Y})][\mathbf{B} \mathbf{Y}-\mathrm{E}(\mathbf{B Y})]^{\prime}\right\} \\
+&amp;=\mathrm{E}\left\{\mathbf{B}[\mathbf{Y}-\mathrm{E}(\mathbf{Y})][\mathbf{Y}-\mathrm{E}(\mathbf{Y})]^{\prime} \mathbf{B}^{\prime}\right\} \\
+&amp;=\mathbf{B}\left\{\mathrm{E}\left\{[\mathbf{Y}-\mathrm{E}(\mathbf{Y})][\mathbf{Y}-\mathrm{E}(\mathbf{Y})]^{\prime}\right\}\right\} \mathbf{B}^{\prime} \\
+&amp;=\mathbf{B}[\operatorname{cov}(\mathbf{Y})] \mathbf{B}^{\prime}
+\end{aligned}\]</span> ◻</p>
+</div>
+<p>The next theorem provides the expected value of a quadratic form.</p>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{Y}\)</span> be an <span class="math inline">\(n \times 1\)</span> random vector with mean vector
+<span class="math inline">\(\mu=\mathrm{E}(\mathbf{Y})\)</span> and <span class="math inline">\(n \times n\)</span> covariance matrix
+<span class="math inline">\(\mathbf{\Sigma}=\operatorname{cov}(\mathbf{Y})\)</span> then
+<span class="math inline">\(\mathrm{E}\left(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\right)=\operatorname{tr}(\mathbf{A} \mathbf{\Sigma})+\mu^{\prime} \mathbf{A} \mu\)</span>
+where <span class="math inline">\(\mathbf{A}\)</span> is any <span class="math inline">\(n \times n\)</span> symmetric matrix of constants.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span><em>Proof.</em> Since <span class="math inline">\((\mathbf{Y}-\mu)^{\prime} \mathbf{A}(\mathbf{Y}-\mu)\)</span> is
+a scalar and using Result <span class="math inline">\(1.5\)</span>,
+<span class="math display">\[(\mathbf{Y}-\mu)^{\prime} \mathbf{A}(\mathbf{Y}-\mu)=\operatorname{tr}\left[(\mathbf{Y}-\mu)^{\prime} \mathbf{A}(\mathbf{Y}-\mu)\right]=\operatorname{tr}\left[\mathbf{A}(\mathbf{Y}-\mu)(\mathbf{Y}-\mu)^{\prime}\right]\]</span>
+Therefore, <span class="math display">\[\begin{aligned}
+\mathrm{E}\left[\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\right] &amp;=\mathrm{E}\left[(\mathbf{Y}-\mu)^{\prime} \mathbf{A}(\mathbf{Y}-\mu)+2 \mathbf{Y}^{\prime} \mathbf{A} \mu-\mu^{\prime} \mathbf{A} \mu\right] \\
+&amp;=\mathrm{E}\left\{\operatorname{tr}\left[\mathbf{A}(\mathbf{Y}-\mu)(\mathbf{Y}-\mu)^{\prime}\right]\right\}+2 \mathrm{E}\left(\mathbf{Y}^{\prime} \mathbf{A} \mu\right)-\mu^{\prime} \mathbf{A} \mu \\
+&amp;=\operatorname{tr}\left[\mathbf{A E}\left\{(\mathbf{Y}-\mu)(\mathbf{Y}-\mu)^{\prime}\right\}\right]+\mu^{\prime} \mathbf{A} \mu \\
+&amp;=\operatorname{tr}[\mathbf{A} \boldsymbol{\Sigma}]+\mu^{\prime} \mathbf{A} \mu .
+\end{aligned}\]</span> ◻</p>
+</div>
+<p>The moment generating function of a random vector is used extensively in
+the next chapter. The following definitions and theorems provide some
+general moment generating function results.</p>
+<div class="defn">
+<p>Moment Generating Function (MGF) of a Random Vector <span class="math inline">\(\mathbf{Y}\)</span> : The
+MGF of an <span class="math inline">\(n \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y}\)</span> is given by
+<span class="math display">\[m_{\mathbf{Y}}(\mathbf{t})=\mathrm{E}\left(e^{\mathbf{t}^{\prime} \mathbf{Y}}\right)\]</span>
+where the <span class="math inline">\(n \times 1\)</span> vector of constants
+<span class="math inline">\(\mathbf{t}=\left(t_{1}, \ldots, t_{n}\right)^{\prime}\)</span> if the
+expectation exists for <span class="math inline">\(-h&lt;t_{i}&lt;h\)</span> where <span class="math inline">\(h&gt;0\)</span> and <span class="math inline">\(i=1, \ldots, n\)</span>.</p>
+</div>
+<p>There is a one-to-one correspondence between the probability
+distribution of <span class="math inline">\(\mathbf{Y}\)</span> and the MGF of <span class="math inline">\(\mathbf{Y}\)</span>, if the MGF
+exists. Therefore, the probability distribution of <span class="math inline">\(\mathbf{Y}\)</span> can be
+identified if the MGF of <span class="math inline">\(\mathbf{Y}\)</span> can be found. The following two
+theorems and corollary are used to derive the MGF of a random vector
+<span class="math inline">\(\mathbf{Y}\)</span>.</p>
+<div class="teo">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(\mathbf{Y}_{1}^{\prime}, \mathbf{Y}_{2}^{\prime}, \ldots, \mathbf{Y}_{m}^{\prime}\right)^{\prime}\)</span>
+where <span class="math inline">\(\mathbf{Y}_{i}\)</span> is an <span class="math inline">\(n_{i} \times 1\)</span> random vector for
+<span class="math inline">\(i=1, \ldots, m\)</span> and <span class="math inline">\(n=\sum_{i=1}^{m} n_{i}\)</span>. Let
+<span class="math inline">\(m_{\mathbf{Y}}(.), m_{\mathbf{Y}_{1}}(.), \ldots, m_{\mathbf{Y}_{m}}(.)\)</span>
+represent the <span class="math inline">\(M G F s\)</span> of
+<span class="math inline">\(\mathbf{Y}, \mathbf{Y}_{1}, \ldots, \mathbf{Y}_{m}\)</span> respectively. The
+vectors <span class="math inline">\(\mathbf{Y}_{1}, \ldots, \mathbf{Y}_{m}\)</span> are mutually
+independent if and only if
+<span class="math display">\[m_{\mathbf{Y}}(\mathbf{t})=m_{\mathbf{Y}_{1}}\left(\mathbf{t}_{1}\right) m_{\mathbf{Y}_{2}}\left(\mathbf{t}_{2}\right) \ldots m_{\mathbf{Y}_{m}}\left(\mathbf{t}_{m}\right)\]</span>
+for all
+<span class="math inline">\(\mathbf{t}=\left(\mathbf{t}_{1}^{\prime}, \ldots . \mathbf{t}_{m}^{\prime}\right)^{\prime}\)</span>
+on the open rectangle around 0.</p>
+</div>
+<div class="teo">
+<p>If <span class="math inline">\(\mathbf{Y}\)</span> is an <span class="math inline">\(n \times 1\)</span> random vector, <span class="math inline">\(\mathrm{g}\)</span> is an
+<span class="math inline">\(n \times 1\)</span> vector of constants, and <span class="math inline">\(c\)</span> is a scalar constant, then
+<span class="math display">\[m_{\mathbf{g}^{\prime} \mathbf{Y}}(c)=m_{\mathbf{Y}}(c \mathbf{g})\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-7" class="proof"><em>Proof</em>. </span><em>Proof.</em>
+<span class="math inline">\(\quad m_{\mathbf{g}^{\prime} \mathbf{Y}}(c)=\mathrm{E}\left[e^{c \mathbf{g}^{\prime} \mathbf{Y}}\right]=\mathrm{E}\left[e^{(c \mathbf{g})^{\prime} \mathbf{Y}}\right]=m_{\mathbf{Y}}(c \mathbf{g})\)</span> ◻</p>
+</div>
+<div class="coro">
+<p>Let <span class="math inline">\(m_{\mathbf{Y}_{1}}\)</span> (.), ..., <span class="math inline">\(m_{\mathbf{Y}_{m}}\)</span> (.) represent
+the MGFs of the independent random variables <span class="math inline">\(Y_{1}, \ldots, Y_{m}\)</span>,
+respectively. If <span class="math inline">\(\mathbf{Z}=\sum_{i=1}^{m} Y_{i}\)</span> then the <span class="math inline">\(M G F\)</span> of
+<span class="math inline">\(\mathbf{Z}\)</span> is given by
+<span class="math display">\[m_{\mathbf{Z}}(s)=\prod_{i=1}^{m} m_{Y_{i}}(s)\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-8" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math display">\[\begin{aligned}
+m_{\mathbf{Z}}(s)=m_{1_{m}^{\prime} \mathbf{Y}}(s) &amp;=m_{\mathbf{Y}}\left(s \mathbf{1}_{m}\right) \quad \text { by Theorem 1.3.4 } \\
+&amp;=\prod_{i=1}^{m} m_{Y_{i}}(s) \quad \text { by Theorem 1.3.3. }
+\end{aligned}\]</span> ◻</p>
+</div>
+<p>Moment generating functions are used in the next example to derive the
+distribution of the sum of independent chi-square random variables.</p>
+<div class="exe">
+<p>Let <span class="math inline">\(Y_{1}, \ldots, Y_{m}\)</span> be <span class="math inline">\(m\)</span> independent central chi-square random
+variables where <span class="math inline">\(Y_{i}\)</span> and <span class="math inline">\(n_{i}\)</span> degrees of freedom for
+<span class="math inline">\(i=1, \ldots, m\)</span>. For any <span class="math inline">\(i\)</span> <span class="math display">\[\begin{aligned}
+m_{Y_{i}}(t) &amp;=\mathrm{E}\left(e^{t Y_{i}}\right) \\
+&amp;=\int_{0}^{\infty} e^{t y_{i}}\left[\Gamma\left(n_{i} / 2\right) 2^{n_{i} / 2}\right]^{-1} y_{i}^{n_{i} / 2-1} e^{-y_{i} / 2} d y_{i} \\
+&amp;=\left[\Gamma\left(n_{i} / 2\right) 2^{n_{i} / 2}\right]^{-1} \int_{0}^{\infty} y_{i}^{n_{i} / 2-1} e^{-y_{i} /(1 / 2-t)^{-1}} d y_{i} \\
+&amp;=\left[\Gamma\left(n_{i} / 2\right) 2^{n_{i} / 2}\right]^{-1}\left[\Gamma\left(n_{i} / 2\right)(1 / 2-t)^{-n_{i} / 2}\right] \\
+&amp;=(1-2 t)^{-n_{i} / 2}
+\end{aligned}\]</span> Let <span class="math inline">\(\mathbf{Z}=\sum_{i=1}^{m} Y_{i}\)</span>. By Corollary
+1.3.4, <span class="math display">\[\begin{aligned}
+m_{\mathbf{Z}}(t) &amp;=\prod_{i=1}^{m} m_{Y_{i}}(t) \\
+&amp;=(1-2 t)^{-\sum_{i=1}^{m} n_{i} / 2}
+\end{aligned}\]</span> Therefore, <span class="math inline">\(\sum_{i=1}^{m} Y_{i}\)</span> is distributed as a
+central chi-square random variable with <span class="math inline">\(\sum_{i=1}^{m} n_{i}\)</span> degrees
+of freedom.</p>
+</div>
+<p>The next theorem is useful when dealing with functions of independent
+random vectors.</p>
+<div class="teo">
+<p>Let
+<span class="math inline">\(g_{1}\left(\mathbf{Y}_{1}\right), \ldots g_{m}\left(\mathbf{Y}_{m}\right)\)</span>
+be <span class="math inline">\(m\)</span> functions of the random vectors
+<span class="math inline">\(\mathbf{Y}_{1}, \ldots, \mathbf{Y}_{m}\)</span>, respectively. If
+<span class="math inline">\(\mathbf{Y}_{1}, \ldots, \mathbf{Y}_{m}\)</span> are mutually independent, then
+<span class="math inline">\(g_{1}, \ldots, g_{m}\)</span> are mutually independent.</p>
+</div>
+<p>The next example demonstrates that the sum of squares of <span class="math inline">\(n\)</span> independent
+<span class="math inline">\(\mathrm{N}_{1}(0,1)\)</span> random variables has a central chi-square
+distribution with <span class="math inline">\(n\)</span> degrees of freedom.</p>
+<div class="eje">
+<p>Let <span class="math inline">\(Z_{1}, \ldots, Z_{n}\)</span> be a random sample of normally distributed
+random variables with mean 0 and variance 1 . Let <span class="math inline">\(Y_{i}=Z_{i}^{2}\)</span> for
+<span class="math inline">\(i=1, \ldots, n\)</span>. The moment generating function of <span class="math inline">\(Y_{i}\)</span> is
+<span class="math display">\[\begin{aligned}
+m_{Y_{i}}(t)=m_{Z_{i}^{2}}(t) &amp;=\mathrm{E}\left(e^{t Z_{i}^{2}}\right) \\
+&amp;=\int_{-\infty}^{\infty}(2 \pi)^{-1 / 2} e^{t z_{i}^{2}-z_{i}^{2} / 2} d z_{i} \\
+&amp;=\int_{-\infty}^{\infty}(2 \pi)^{-1 / 2} e^{-(1-2 t) z_{i}^{2} / 2} d z_{i} \\
+&amp;=(1-2 t)^{-1 / 2}
+\end{aligned}\]</span> That is, each <span class="math inline">\(Y_{i}\)</span> has a central chi-square
+distribution with one degree of freedom. Furthermore, by Theorem 1.3.5,
+the <span class="math inline">\(Y_{i}\)</span> ’s are independent random variables. Therefore, by Example
+1.3.1, <span class="math inline">\(\sum_{i=1}^{n} Y_{i}=\sum_{i=1}^{n} Z_{i}^{2}\)</span> is a central
+chi-square random variable with <span class="math inline">\(n\)</span> degrees of freedom.</p>
+</div>
+</div>
+<div id="exercises" class="section level2 unnumbered hasAnchor">
+<h2>EXERCISES<a href="index.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Find an <span class="math inline">\(m n \times(n-1)\)</span> matrix <span class="math inline">\(\mathbf{P}\)</span> such that
+<span class="math inline">\(\mathbf{P P}^{\prime}=\frac{1}{m} \mathbf{J}_{m} \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\)</span>.</p></li>
+<li><p>Let
+<span class="math inline">\(S_{1}=\sum_{i=1}^{n} U_{i}\left(V_{i}-\bar{V}\right), S_{2}=\sum_{i=1}^{n}\left(U_{i}-\bar{U}\right)^{2}\)</span>,
+and <span class="math inline">\(S_{3}=\sum_{i=1}^{n}\left(V_{i}-\bar{V}\right)^{2}\)</span>. If
+<span class="math inline">\(\mathbf{A}=\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\left(\mathbf{I}_{n}-\mathbf{V} \mathbf{V}^{\prime}\right)\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right), \mathbf{U}=\left(U_{1}, \ldots, U_{n}\right)^{\prime}\)</span>,
+and <span class="math inline">\(\mathbf{V}=\)</span> <span class="math inline">\(\left(V_{1}, \ldots, V_{n}\right)^{\prime}\)</span>, is
+the statement
+<span class="math inline">\(S_{2}-\left(S_{1}^{2} / S_{3}\right)=\mathbf{U}^{\prime} \mathbf{A U}\)</span>
+true or false? If the statement is true, verify that <span class="math inline">\(\mathbf{A}\)</span> is
+correct. If the statement <span class="math inline">\(\mathbf{A}\)</span> is false, find the correct
+form of <span class="math inline">\(\mathbf{A}\)</span>.</p></li>
+<li><p>Let
+<span class="math inline">\(\mathbf{V}=\mathbf{I}_{m} \otimes\left[\sigma_{1}^{2} \mathbf{I}_{n}+\sigma_{2}^{2} \mathbf{J}_{n}\right], \mathbf{A}_{1}=\left(\mathbf{I}_{m}-\frac{1}{m} \mathbf{J}_{m}\right) \otimes \frac{1}{n} \mathbf{J}_{n}\)</span>,
+and
+<span class="math inline">\(\mathbf{A}_{2}=\mathbf{I}_{m} \otimes\left(\mathbf{I}_{n}-\right.\)</span>
+<span class="math inline">\(\left.\frac{1}{n} \mathbf{J}_{n}\right) .\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Show
+<span class="math inline">\(\mathbf{A}_{1} \mathbf{A}_{2}=\mathbf{0}_{m n \times m n}\)</span>.</p></li>
+<li><p>Define an <span class="math inline">\(m n \times m n\)</span> matrix <span class="math inline">\(\mathbf{C}\)</span> such that
+<span class="math inline">\(\mathbf{I}_{m n}=\mathbf{A}_{1}+\mathbf{A}_{2}+\mathbf{C}\)</span>.</p></li>
+<li><p>Let the <span class="math inline">\(m n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, \ldots, Y_{m n}\right)^{\prime}\)</span> and
+let <span class="math inline">\(\mathbf{C}\)</span> be defined as in part b. Is the following
+statement true or false?:
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{C Y}=\left[\sum_{i=1}^{m} \sum_{j=1}^{n} Y_{i j}\right]^{2} /\)</span>
+<span class="math inline">\((m n)\)</span>. If the statement is true, verify it. If the statement
+is false, redefine <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{C Y}\)</span> in terms
+of the <span class="math inline">\(Y_{i j}\)</span> ’s.</p></li>
+<li><p>Define constants <span class="math inline">\(k_{1}, k_{2}\)</span>, and <span class="math inline">\(m n \times m n\)</span> idempotent
+matrices <span class="math inline">\(\mathbf{C}_{1}\)</span> and <span class="math inline">\(\mathbf{C}_{2}\)</span> such that
+<span class="math inline">\(\mathbf{A}_{1} \mathbf{V}=k_{1} \mathbf{C}_{1}\)</span> and
+<span class="math inline">\(\mathbf{A}_{2} \mathbf{V}=k_{2} \mathbf{C}_{2}\)</span>. Verify that
+<span class="math inline">\(\mathbf{C}_{1}\)</span> and <span class="math inline">\(\mathbf{C}_{2}\)</span> are idempotent.</p></li>
+</ol></li>
+<li><p>Find the inverse of the matrix
+<span class="math inline">\(0.4 \mathbf{I}_{4}+0.6 \mathbf{J}_{4}\)</span>.</p></li>
+<li><p>Show that the inverse of the matrix
+<span class="math inline">\(\left(\mathbf{I}_{n}+\mathbf{V V}^{\prime}\right)\)</span> is
+<span class="math inline">\(\left(\frac{\mathbf{I}_{n}-\mathbf{V V}^{\prime}}{1+\mathbf{V}^{\prime} \mathbf{V}}\right)\)</span>
+where <span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times 1\)</span> vector.</p></li>
+<li><p>Use the result in Exercise 5 to find the inverse of matrix
+<span class="math inline">\((a-b) \mathbf{I}_{n}+b \mathbf{J}_{n}\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are
+positive constants.</p></li>
+<li><p>Let
+<span class="math inline">\(\mathbf{V}=\mathbf{I}_{n} \otimes\left[(1-\rho) \mathbf{I}_{2}+\rho \mathbf{J}_{2}\right]\)</span>
+where <span class="math inline">\(-1&lt;\rho&lt;1\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Find the <span class="math inline">\(2 n\)</span> eigenvalues of <span class="math inline">\(\mathbf{V}\)</span>.</p></li>
+<li><p>Find a nonsingular <span class="math inline">\(2 n \times 2 n\)</span> matrix <span class="math inline">\(\mathbf{Q}\)</span> such
+that <span class="math inline">\(\mathbf{V}=\mathbf{Q Q}^{\prime}\)</span>.</p></li>
+</ol></li>
+<li><p>Let
+<span class="math inline">\(\mathbf{A}_{1}=\frac{1}{m} \mathbf{J}_{m} \otimes \frac{1}{n} \mathbf{J}_{n}, \mathbf{A}_{2}=\left(\mathbf{I}_{m}-\frac{1}{m} \mathbf{J}_{m}\right) \otimes \frac{1}{n} \mathbf{J}_{n}\)</span>,
+and
+<span class="math inline">\(\mathbf{A}_{3}=\mathbf{I}_{m} \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\)</span>.
+Find <span class="math inline">\(\sum_{i=1}^{3} \mathbf{A}_{i}, \mathbf{A}_{i} \mathbf{A}_{j}\)</span>
+for all <span class="math inline">\(i, j=1,2,3\)</span> and <span class="math inline">\(\sum_{i=1}^{3} c_{i} \mathbf{A}_{i}\)</span> where
+<span class="math inline">\(c_{1}=c_{2}=\)</span> <span class="math inline">\(1+(m-1) b\)</span> and <span class="math inline">\(c_{3}=1-b\)</span> for
+<span class="math inline">\(-\frac{1}{(m-1)}&lt;b&lt;1\)</span></p></li>
+<li><p>Define <span class="math inline">\(n \times n\)</span> matrices <span class="math inline">\(\mathbf{P}\)</span> and <span class="math inline">\(\mathbf{D}\)</span> such that
+<span class="math inline">\((a-b) \mathbf{I}_{n}+b \mathbf{J}_{n}=\mathbf{P D P}^{\prime}\)</span>
+where <span class="math inline">\(\mathbf{D}\)</span> is a diagonal matrix and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are
+constants.</p></li>
+<li><p>Let <span class="math display">\[\mathbf{B}=\left[\begin{array}{cc}
+\mathbf{I}_{n_{1}} &amp; -\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \\
+\mathbf{0} &amp; \mathbf{I}_{n_{2}}
+\end{array}\right] \quad \text { and } \quad \boldsymbol{\Sigma}=\left[\begin{array}{cc}
+\boldsymbol{\Sigma}_{11} &amp; \boldsymbol{\Sigma}_{12} \\
+\boldsymbol{\Sigma}_{21} &amp; \boldsymbol{\Sigma}_{22}
+\end{array}\right]\]</span> where <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is a symmetric
+matrix and the <span class="math inline">\(\boldsymbol{\Sigma}_{i j}\)</span> are <span class="math inline">\(n_{i} \times n_{j}\)</span>
+matrices. Find <span class="math inline">\(\mathbf{B} \boldsymbol{\Sigma} \mathbf{B}^{\prime}\)</span>.</p></li>
+<li><p>Let
+<span class="math inline">\(\mathbf{A}_{1}=\frac{1}{m} \mathbf{J}_{m} \otimes \frac{1}{n} \mathbf{J}_{n}, \mathbf{A}_{2}=\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}, \mathbf{A}_{3}=\mathbf{I}_{m} \otimes\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\)</span>
+and <span class="math inline">\(\mathbf{X}=\)</span> <span class="math inline">\(\mathbf{X}^{+} \otimes \mathbf{1}_{n}\)</span> where
+<span class="math inline">\(\mathbf{X}^{+}\)</span>is an <span class="math inline">\(m \times p\)</span> matrix such that
+<span class="math inline">\(\mathbf{1}_{m}^{\prime} \mathbf{X}^{+}=\mathbf{0}_{1 \times p}\)</span>.
+Find the <span class="math inline">\(m n \times m n\)</span> matrix <span class="math inline">\(\mathbf{A}_{4}\)</span> such that
+<span class="math inline">\(\mathbf{I}_{m} \otimes \mathbf{I}_{n}=\sum_{i=1}^{4} \mathbf{A}_{i}\)</span>.
+Express <span class="math inline">\(\mathbf{A}_{4}\)</span> in its simplest form.</p></li>
+<li><p>Is the matrix <span class="math inline">\(\mathbf{A}_{4}\)</span> in Exercise 11 idempotent?</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{Y}\)</span> be an <span class="math inline">\(n \times 1\)</span> random vector with <span class="math inline">\(n \times n\)</span>
+covariance matrix <span class="math inline">\(\operatorname{cov}(\mathbf{Y})=\)</span>
+<span class="math inline">\(\sigma_{1}^{2} \mathbf{I}_{n}+\sigma_{2}^{2} \mathbf{J}_{n}\)</span>.
+Define <span class="math inline">\(\mathbf{Z}=\mathbf{P}^{\prime} \mathbf{Y}\)</span> where the
+<span class="math inline">\(n \times n\)</span> matrix
+<span class="math inline">\(\mathbf{P}=\left(\mathbf{1}_{n} \mid \mathbf{P}_{n}\right)\)</span> and the
+<span class="math inline">\(n \times(n-1)\)</span> matrix <span class="math inline">\(\mathbf{P}_{n}\)</span> are defined in Example
+1.1.4. Find
+<span class="math inline">\(\operatorname{cov}\left(\mathbf{P}^{\prime} \mathbf{Y}\right)\)</span></p></li>
+<li><p>Let <span class="math inline">\(\mathbf{Y}\)</span> be a <span class="math inline">\(b t \times 1\)</span> random vector with
+<span class="math inline">\(E(\mathbf{Y})=\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime}\)</span>
+and <span class="math inline">\(\operatorname{cov}(\mathbf{Y})=\)</span>
+<span class="math inline">\(\sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t}\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] .\)</span>
+Define
+<span class="math inline">\(\mathbf{A}_{1}=\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{t} \mathbf{J}_{t}, \mathbf{A}_{2}=\left(\mathbf{I}_{b}-\right.\)</span>
+<span class="math inline">\(\left.\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t}, \mathbf{A}_{3}=\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) .\)</span>
+Find
+<span class="math inline">\(\mathrm{E}\left(\mathbf{Y}^{\prime} \mathbf{A}_{i} \mathbf{Y}\right)\)</span>
+for <span class="math inline">\(i=1,2,3 .\)</span></p></li>
+<li><p>Let the btr <span class="math inline">\(\times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 r}, Y_{121}, \ldots, Y_{12 r}, \ldots, Y_{b t 1}, \ldots\right.\)</span>
+<span class="math inline">\(\left.Y_{b t r}\right)^{\prime}\)</span> and let</p>
+<p><span class="math display">\[\begin{aligned}
+S_{1} &amp;=\sum_{i=1}^{b} \sum_{j=1}^{t} \sum_{k=1}^{r} \bar{Y}^{2}_{\ldots}, \\
+S_{2} &amp;=\sum_{i=1}^{b} \sum_{j=1}^{t} \sum_{k=1}^{r}\left(\bar{Y}_{i . .}-\bar{Y}_{\ldots}\right)^{2}, \\
+S_{3} &amp;=\sum_{i=1}^{b} \sum_{j=1}^{t} \sum_{k=1}^{r}\left(\bar{Y}_{. j .}-\bar{Y}_{\ldots}\right)^{2}, \\
+S_{4} &amp;=\sum_{i=1}^{b} \sum_{j=1}^{t} \sum_{k=1}^{r}\left(\bar{Y}_{i j .}-\bar{Y}_{i . .}-\bar{Y}_{. j .}+\bar{Y}_{\ldots}\right)^{2}, \\
+S_{5} &amp;=\sum_{i=1}^{b} \sum_{j=1}^{t} \sum_{k=1}^{r}\left(Y_{i j k}-\bar{Y}_{i j .}\right)^{2} .\end{aligned}\]</span></p>
+<p>Derive <span class="math inline">\(b t r \times b t r\)</span> matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> for
+<span class="math inline">\(m=1, \ldots, 5\)</span> where
+<span class="math inline">\(S_{m}=\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span>.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="multivariate-normal-distribution.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Multivariate Normal Distribution | Linear Models</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Multivariate Normal Distribution | Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Multivariate Normal Distribution | Linear Models" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Barry Kurt" />
+
+
+<meta name="date" content="2023-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multivariate-normal-distribution.html"/>
+<link rel="next" href="distributions-of-quadratic-forms.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra and Related Introductory Topics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#elementary-matrix-concepts"><i class="fa fa-check"></i><b>1.1</b> ELEMENTARY MATRIX CONCEPTS</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#kronecker-products"><i class="fa fa-check"></i><b>1.2</b> KRONECKER PRODUCTS</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#random-vectors"><i class="fa fa-check"></i><b>1.3</b> RANDOM VECTORS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#multivariate-normal-distribution-function"><i class="fa fa-check"></i><b>2.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="2.2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#conditional-distributions-of-multivariate-normal-random-vectors"><i class="fa fa-check"></i><b>2.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="2.3" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#distributions-of-certain-quadratic-forms"><i class="fa fa-check"></i><b>2.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="2.4" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#exercises-1"><i class="fa fa-check"></i><b>2.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html"><i class="fa fa-check"></i><b>3</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-function-1"><i class="fa fa-check"></i><b>3.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="3.2" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#conditional-distributions-of-multivariate-normal-random-vectors-1"><i class="fa fa-check"></i><b>3.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="3.3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#distributions-of-certain-quadratic-forms-1"><i class="fa fa-check"></i><b>3.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="3.4" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#exercises-2"><i class="fa fa-check"></i><b>3.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html"><i class="fa fa-check"></i><b>4</b> Distributions of Quadratic Forms</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#quadratic-forms-of-normal-random-vectors"><i class="fa fa-check"></i><b>4.1</b> QUADRATIC FORMS OF NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#independence"><i class="fa fa-check"></i><b>4.2</b> INDEPENDENCE</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#the-boldsymbolt-and-boldsymbolf-distributions"><i class="fa fa-check"></i><b>4.3</b> THE <span class="math inline">\(\boldsymbol{t}\)</span> AND <span class="math inline">\(\boldsymbol{F}\)</span> DISTRIBUTIONS</a></li>
+<li class="chapter" data-level="4.4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#bhats-lemma"><i class="fa fa-check"></i><b>4.4</b> BHAT’S LEMMA</a></li>
+<li class="chapter" data-level="4.5" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html"><i class="fa fa-check"></i><b>5</b> Complete, Balanced Factorial Experiments</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-admit-restrictions-finite-models"><i class="fa fa-check"></i><b>5.1</b> MODELS THAT ADMIT RESTRICTIONS (FINITE MODELS)</a></li>
+<li class="chapter" data-level="5.2" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-do-not-admit-restrictions-infinite-models"><i class="fa fa-check"></i><b>5.2</b> MODELS THAT DO NOT ADMIT RESTRICTIONS (INFINITE MODELS)</a></li>
+<li class="chapter" data-level="5.3" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#sum-of-squares-and-covariance-matrix-algorithms"><i class="fa fa-check"></i><b>5.3</b> SUM OF SQUARES AND COVARIANCE MATRIX ALGORITHMS</a></li>
+<li class="chapter" data-level="5.4" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#expected-mean-squares"><i class="fa fa-check"></i><b>5.4</b> EXPECTED MEAN SQUARES</a></li>
+<li class="chapter" data-level="5.5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#algorithm-applications"><i class="fa fa-check"></i><b>5.5</b> ALGORITHM APPLICATIONS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="least-squares-regression.html"><a href="least-squares-regression.html"><i class="fa fa-check"></i><b>6</b> Least-Squares Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="least-squares-regression.html"><a href="least-squares-regression.html#ordinary-least-squares-estimation"><i class="fa fa-check"></i><b>6.1</b> ORDINARY LEAST-SQUARES ESTIMATION</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html"><i class="fa fa-check"></i><b>7</b> Maximum Likelihood Estimation and Related Topics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimators-of-beta-and-sigma2"><i class="fa fa-check"></i><b>7.1</b> MAXIMUM LIKELIHOOD ESTIMATORS OF <span class="math inline">\(\beta\)</span> AND <span class="math inline">\(\sigma^{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multivariate-normal-distribution-1" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Multivariate Normal Distribution<a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In later chapters we will investigate linear models with normally
+distributed error structures. Therefore, this chapter concentrates on
+some important concepts related to the multivariate normal distribution.</p>
+<div id="multivariate-normal-distribution-function-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION<a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(Z_{1}, \ldots, Z_{n}\)</span> be independent, identically distributed
+normal random variables with mean 0 and variance 1 . The marginal
+distribution of <span class="math inline">\(Z_{i}\)</span> is
+<span class="math display">\[f_{Z_{i}}\left(z_{i}\right)=(2 \pi)^{-1 / 2} e^{-z_{i}^{2} / 2} \quad-\infty&lt;z_{i}&lt;\infty\]</span>
+for <span class="math inline">\(i=1, \ldots, n .\)</span> Since the <span class="math inline">\(Z_{i}\)</span> ’s are independent random
+variables, the joint probability distribution of the <span class="math inline">\(n \times 1\)</span> random
+vector <span class="math inline">\(\mathbf{Z}=\left(Z_{1}, \ldots, Z_{n}\right)^{\prime}\)</span> is
+<span class="math display">\[\begin{aligned}
+f_{\mathbf{Z}}(\mathbf{z}) &amp;=(2 \pi)^{-n / 2} e^{-\sum_{i=1}^{n} z_{i}^{2} / 2} \\
+&amp;=(2 \pi)^{-n / 2} e^{-\mathbf{z} \mathbf{z} / 2} \quad-\infty&lt;z_{i}&lt;\infty
+\end{aligned}\]</span></p>
+<p>for <span class="math inline">\(i=1, \ldots, n\)</span>. Let the <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}=\mathbf{G Z}+\boldsymbol{\mu}\)</span> where <span class="math inline">\(\mathbf{G}\)</span> is an
+<span class="math inline">\(n \times n\)</span> nonsingular matrix and <span class="math inline">\(\boldsymbol{\mu}\)</span> is an
+<span class="math inline">\(n \times 1\)</span> vector. The joint distribution of the <span class="math inline">\(n \times 1\)</span> random
+vector <span class="math inline">\(\mathbf{Y}\)</span> is
+<span class="math display">\[f_{\mathbf{Y}}(\mathbf{y})=|\boldsymbol{\Sigma}|^{-1 / 2}(2 \pi)^{-n / 2} e^{-\left\{(\mathbf{y}-\mu)^{\prime} \boldsymbol{\Sigma}^{-1}(\mathbf{y}-\mu)\right\} / 2}\]</span>
+where <span class="math inline">\(\boldsymbol{\Sigma}=\mathbf{G G}^{\prime}\)</span> is an <span class="math inline">\(n \times n\)</span>
+positive definite matrix and the Jacobian for the transformation
+<span class="math inline">\(\mathbf{Z}=\mathbf{G}^{-1}(\mathbf{Y}-\mu)\)</span> is
+<span class="math inline">\(\left|\mathbf{G G}^{\prime}\right|^{-1 / 2}=|\boldsymbol{\Sigma}|^{-1 / 2}\)</span>.</p>
+<p>The function <span class="math inline">\(f_{\mathbf{Y}}(\mathbf{y})\)</span> is the multivariate normal
+distribution of an <span class="math inline">\(n \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y}\)</span> with
+<span class="math inline">\(n \times 1\)</span> mean vector <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(n \times n\)</span> positive
+definite covariance matrix <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. The following notation
+will be used to represent this distribution: the <span class="math inline">\(n \times 1\)</span> random
+vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma}) .\)</span></p>
+<p>The moment generating function of an <span class="math inline">\(n\)</span>-dimensional multivariate normal
+random vector is provided in the next theorem.</p>
+<div class="teo">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\mu, \boldsymbol{\Sigma}) .\)</span> The MGF of
+<span class="math inline">\(\mathbf{Y}\)</span> is
+<span class="math display">\[m_{\mathbf{Y}}(\mathbf{t})=e^{\mathbf{t}^{\prime} \mu+\mathbf{t}^{\prime} \Sigma \mathbf{t} / 2}\]</span>
+where the <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{t}=\left(t_{1}, \ldots, t_{n}\right)^{\prime}\)</span> for
+<span class="math inline">\(-h&lt;t_{i}&lt;h, h&gt;0\)</span>, and <span class="math inline">\(i=1, \ldots, n\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math inline">\(\quad\)</span> Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Z}=\left(Z_{1}, \ldots, Z_{n}\right)^{\prime}\)</span> where <span class="math inline">\(Z_{i}\)</span>
+are independent. identically distributed <span class="math inline">\(\mathrm{N}_{1}(0,1)\)</span> random
+variables. The <span class="math inline">\(n \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y}=\)</span>
+<span class="math inline">\(\mathbf{G Z}+\boldsymbol{\mu} \sim \mathbf{N}_{n}(\boldsymbol{\mu}, \mathbf{\Sigma})\)</span>
+where <span class="math inline">\(\mathbf{\Sigma}=\mathbf{G G}^{\prime} .\)</span> Therefore,
+<span class="math display">\[\begin{aligned}
+m_{\mathbf{Y}}(\mathbf{t}) &amp;=\mathrm{E}_{\mathbf{Y}}\left[e^{\mathbf{t}^{\prime} \mathbf{Y}}\right] \\
+&amp;=\mathrm{E}_{\mathbf{Z}}=\left[e^{\mathbf{t}^{\prime}(\mathbf{G Z}+\boldsymbol{\mu})}\right] \\
+&amp;=\int \cdots \int(2 \pi)^{-n / 2} e^{t^{\prime}(\mathbf{G} \mathbf{z}+\boldsymbol{\mu})} e^{-\mathbf{z}^{\prime} \mathbf{z} / 2} d \mathbf{z} \\
+&amp;=e^{\mathbf{t}^{\prime} \mu+\mathbf{t}^{\prime} \Sigma \mathbf{t} / 2} \int \cdots \int(2 \pi)^{-n / 2} e^{\left(-\left(\mathbf{z}-\mathbf{G}^{\prime} \mathbf{t}\right)^{\prime}\left(\mathbf{z}-\mathbf{G}^{\prime} \mathbf{t}\right)\right] / 2} d \mathbf{z} \\
+&amp;=e^{\mathrm{t}^{\prime} \boldsymbol{\mu}+\mathbf{t}^{\prime} \Sigma \mathbf{t} / 2}
+\end{aligned}\]</span> ◻</p>
+</div>
+<p>We will now consider distributions of linear transformations of the
+random vector <span class="math inline">\(\mathbf{Y}\)</span> when
+<span class="math inline">\(\mathbf{Y} \sim \mathbf{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>.
+The following theorem provides the joint probability distribution of the
+<span class="math inline">\(m \times 1\)</span> random vector BY <span class="math inline">\(+\mathbf{b}\)</span> where <span class="math inline">\(\mathbf{B}\)</span> is an
+<span class="math inline">\(m \times n\)</span> matrix of constants and <span class="math inline">\(\mathbf{b}\)</span> is an <span class="math inline">\(m \times 1\)</span>
+vector of constants.</p>
+<div class="teo">
+<p>If <span class="math inline">\(\mathbf{Y}\)</span> is an <span class="math inline">\(n \times 1\)</span> random vector distributed
+<span class="math inline">\(\mathbf{N}_{n}(\mu, \mathbf{\Sigma}), \mathbf{B}\)</span> is an <span class="math inline">\(m \times n\)</span>
+matrix of constants with <span class="math inline">\(m \leq n\)</span>, and <span class="math inline">\(\mathbf{b}\)</span> is an <span class="math inline">\(m \times 1\)</span>
+vector of constants, then the <span class="math inline">\(m \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{B Y}+\mathbf{b} \sim \mathrm{N}_{m}\left(\mathbf{B} \boldsymbol{\mu}+\mathbf{b}, \mathbf{B} \mathbf{\Sigma B}^{\prime}\right)\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math display">\[\begin{aligned}
+m_{\mathbf{B Y}+\mathbf{b}}(\mathbf{t})=\mathrm{E}_{\mathbf{Y}}\left[e^{\mathfrak{t}^{\prime}(\mathbf{B Y}+\mathbf{b})}\right] &amp;=e^{\mathbf{t}^{\prime} \mathbf{b}} \mathrm{E}_{\mathbf{Y}}\left[e^{\left(\mathbf{B}^{\prime} \mathbf{t}\right)^{\prime} \mathbf{Y}}\right] \\
+&amp;=e^{\mathbf{t}^{\prime} \mathbf{b}} e^{\left(\mathbf{B}^{\prime} \mathbf{t}^{\prime} \boldsymbol{\mu}+\left(\mathbf{B}^{\prime} \mathbf{t}^{\prime} \mathbf{\Sigma}\left(\mathbf{B}^{\prime} \mathbf{t}\right) / 2\right.\right.} \\
+&amp;=e^{\mathrm{t}^{\prime}(\mathbf{B} \mu+\mathbf{b})+\mathbf{t}^{\prime}\left(\mathbf{B} \mathbf{\Sigma} \mathbf{B}^{\prime}\right) \mathbf{t} / 2}
+\end{aligned}\]</span> The MGF of BY + b takes the form of a multivariate
+normal random vector with dimension <span class="math inline">\(m\)</span>, mean vector
+<span class="math inline">\(\mathbf{B} \boldsymbol{\mu}+\mathbf{b}\)</span> and covariance matrix
+<span class="math inline">\(\mathbf{B} \Sigma \mathbf{B}^{\prime}\)</span> and the proof is complete. ◻</p>
+</div>
+<div class="eje">
+<p>Find the distribution of
+<span class="math inline">\(\bar{Y}=(1 / n) \mathbf{1}_{n}^{\prime} \mathbf{Y}\)</span> when the
+<span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathbf{N}_{n}\left(\alpha \mathbf{1}_{n}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+By Theorem <span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\(1 \times n\)</span> matrix
+<span class="math inline">\(\mathbf{B}=(1 / n) \mathbf{1}_{n}^{\prime}\)</span> and scalar
+<span class="math inline">\(\mathbf{b}=0, \bar{Y} \sim \mathrm{N}_{1}\left(\alpha, \sigma^{2} / n\right)\)</span>
+since <span class="math display">\[\begin{aligned}
+\mathbf{B}\left(\alpha \mathbf{1}_{n}\right)+\mathbf{b} &amp;=(1 / n) \mathbf{1}_{n}^{\prime}\left(\alpha \mathbf{1}_{n}\right)+0=\alpha \quad \text { and } \\
+\mathbf{B}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{B}^{\prime} &amp;=(1 / n) \mathbf{1}_{n}^{\prime}\left(\sigma^{2} \mathbf{I}_{n}\right)\left(\mathbf{1}_{n}^{\prime} / n\right)^{\prime}=\sigma^{2} / n
+\end{aligned}\]</span></p>
+</div>
+<div class="eje">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y}\)</span> be defined as in Example
+<span class="math inline">\(2.1 .1\)</span>. Find the distribution of the <span class="math inline">\((n-1) \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{U}=\left(U_{1}, \ldots, U_{n-1}\right)^{\prime}=\)</span>
+<span class="math inline">\((1 / \sigma) \mathbf{P}_{n}^{\prime} \mathbf{Y}\)</span> where
+<span class="math inline">\(\mathbf{P}_{n}^{\prime}\)</span> is the <span class="math inline">\((n-1) \times n\)</span> lower portion of an
+<span class="math inline">\(n\)</span>-dimensional Helmert matrix. By Theorem <span class="math inline">\(2.1 .2\)</span> with
+<span class="math inline">\((n-1) \times n\)</span> matrix
+<span class="math inline">\(\mathbf{B}=(1 / \sigma) \mathbf{P}_{n}^{\prime}\)</span> and <span class="math inline">\((n-1) \times 1\)</span>
+vector
+<span class="math inline">\(\mathbf{b}=\mathbf{0}_{(n-1) \times 1}, \mathbf{U} \sim \mathbf{N}_{n-1}\left(\mathbf{0}, \mathbf{I}_{n-1}\right)\)</span>
+since <span class="math display">\[\begin{aligned}
+\mathbf{B}\left(\alpha \mathbf{1}_{n}\right)+\mathbf{b} &amp;=(1 / \sigma) \mathbf{P}_{n}^{\prime}\left(\alpha \mathbf{1}_{n}\right)=\mathbf{0}_{n-1 \times 1} \quad \text { and } \\
+\mathbf{B}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{B}^{\prime} &amp;=(1 / \sigma) \mathbf{P}_{n}^{\prime}\left(\sigma^{2} \mathbf{I}_{n}\right)\left[(1 / \sigma) \mathbf{P}_{n}^{\prime}\right]^{\prime}=\mathbf{I}_{n-1}
+\end{aligned}\]</span></p>
+</div>
+<p>The <span class="math inline">\(n \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y}\)</span> can be partitioned as
+<span class="math inline">\(\mathbf{Y}=\left(\mathbf{Y}_{1}^{\prime}, \mathbf{Y}_{2}^{\prime}\right)^{\prime}\)</span>
+where <span class="math inline">\(\mathbf{Y}_{i}\)</span> is an <span class="math inline">\(n_{i} \times 1\)</span> vector for <span class="math inline">\(i=1,2\)</span> and
+<span class="math inline">\(n=n_{1}+n_{2}\)</span>. Theorem 2.1.2 is used to derive the marginal
+distributions of the <span class="math inline">\(n_{i} \times 1\)</span> random vectors <span class="math inline">\(\mathbf{Y}_{i}\)</span>.</p>
+<div class="teo">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(\mathbf{Y}_{1}^{\prime}, \mathbf{Y}_{2}^{\prime}\right)^{\prime} \sim \mathrm{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>
+where
+<span class="math inline">\(\boldsymbol{\mu}=\left(\mu_{1}^{\prime}, \mu_{2}^{\prime}\right)^{\prime}\)</span>
+is the <span class="math inline">\(n \times 1\)</span> mean vector,
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{ll}
+\boldsymbol{\Sigma}_{11} &amp; \boldsymbol{\Sigma}_{12} \\
+\boldsymbol{\Sigma}_{21} &amp; \boldsymbol{\Sigma}_{22}
+\end{array}\right]\]</span> is the <span class="math inline">\(n \times n\)</span> covariance matrix,
+<span class="math inline">\(\mathbf{Y}_{i}\)</span> and <span class="math inline">\(\mu_{i}\)</span> are <span class="math inline">\(n_{i} \times 1\)</span> vectors,
+<span class="math inline">\(\boldsymbol{\Sigma}_{i j}\)</span> is an <span class="math inline">\(n_{i} \times n_{j}\)</span> matrix for
+<span class="math inline">\(i, j=1,2\)</span> and <span class="math inline">\(n=n_{1}+n_{2}\)</span>. The marginal distribution of the
+<span class="math inline">\(n_{i} \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y}_{i}\)</span> is
+<span class="math inline">\(\mathbf{N}_{n_{i}}\left(\boldsymbol{\mu}_{i}, \mathbf{\Sigma}_{i i}\right) .\)</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-3" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math inline">\(\quad\)</span> By Theorem 2.1.2 with <span class="math inline">\(n_{1} \times n\)</span> matrix
+<span class="math inline">\(\mathbf{B}=\left[\mathbf{I}_{n_{1}} \mid \mathbf{0}_{n_{1} \times n_{2}}\right]\)</span>
+and <span class="math inline">\(n_{1} \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=\mathbf{0}_{n_{1} \times 1^{\prime}} \mathbf{Y}_{1}=\mathbf{B Y}+\mathbf{b} \sim \mathbf{N}_{n_{1}}\left(\mu_{1}, \mathbf{\Sigma}_{11}\right) .\)</span>
+The marginal distribution of <span class="math inline">\(\mathbf{Y}_{2}\)</span> is derived in the same way
+with <span class="math inline">\(n_{2} \times 1\)</span> matrix
+<span class="math inline">\(\mathbf{B}=\left[\mathbf{0}_{n_{2} \times n_{1}} \mid \mathbf{I}_{n_{2}}\right]\)</span>
+and <span class="math inline">\(n_{2} \times 1\)</span> vector <span class="math inline">\(\mathbf{b}=\mathbf{0}_{n_{2}} \times 1 .\)</span> ◻</p>
+</div>
+<p>The results of Theorem <span class="math inline">\(2.1 .3\)</span> are generalized as follows. If the
+<span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>,
+then any subset of elements of <span class="math inline">\(\mathbf{Y}\)</span> has a multivariate normal
+distribution where the mean vector of the subset is obtained by choosing
+the corresponding elements of <span class="math inline">\(\boldsymbol{\mu}\)</span>, and the covariance
+matrix of the subset is obtained by choosing the corresponding rows and
+columns of <span class="math inline">\(\Sigma\)</span>.</p>
+<p>Two normally distributed random vectors have the unique characteristic
+that the two vectors are independent if and only if they are
+uncorrelated. This result is given in the next theorem.</p>
+<div class="teo">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(\mathbf{Y}_{1}^{\prime}, \ldots, \mathbf{Y}_{m}^{\prime}\right)^{\prime} \sim \mathbf{N}_{n}(\boldsymbol{\mu}, \mathbf{\Sigma})\)</span>
+where
+<span class="math inline">\(\boldsymbol{\mu}=\left(\boldsymbol{\mu}_{1}^{\prime}, \ldots, \boldsymbol{\mu}_{m}^{\prime}\right)^{\prime}\)</span>
+is the <span class="math inline">\(n \times 1\)</span> mean vector,
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{cccc}
+\boldsymbol{\Sigma}_{11} &amp; \boldsymbol{\Sigma}_{12} &amp; \cdots &amp; \boldsymbol{\Sigma}_{1 m} \\
+\boldsymbol{\Sigma}_{21} &amp; \boldsymbol{\Sigma}_{22} &amp; \cdots &amp; \boldsymbol{\Sigma}_{2 m} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\boldsymbol{\Sigma}_{m 1} &amp; \boldsymbol{\Sigma}_{m 2} &amp; \cdots &amp; \boldsymbol{\Sigma}_{m m}
+\end{array}\right]\]</span> is the <span class="math inline">\(n \times n\)</span> covariance matrix,
+<span class="math inline">\(\mathbf{Y}_{i}\)</span> and <span class="math inline">\(\mu_{i}\)</span> are <span class="math inline">\(n_{i} \times 1\)</span> vectors,
+<span class="math inline">\(\Sigma_{i j}\)</span> is an <span class="math inline">\(n_{i} \times n_{j}\)</span> matrix for <span class="math inline">\(i, j=1, \ldots, m\)</span>
+and <span class="math inline">\(n=\sum_{i=1}^{m} n_{i} .\)</span> The random vectors
+<span class="math inline">\(\mathbf{Y}_{1}, \ldots, \mathbf{Y}_{m}\)</span> are independent if and only if
+<span class="math inline">\(\Sigma_{i j}=\mathbf{0}_{n_{i} \times n_{j}}\)</span> for all <span class="math inline">\(i \neq j\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-4" class="proof"><em>Proof</em>. </span><em>Proof.</em> First assume
+<span class="math inline">\(\boldsymbol{\Sigma}_{i j}=\mathbf{0}_{n_{i} \times n_{j}}\)</span> for all
+<span class="math inline">\(i \neq j\)</span>. The moment generating function of <span class="math inline">\(\mathbf{Y}\)</span> is
+<span class="math display">\[\begin{aligned}
+m_{\mathbf{Y}}(\mathbf{t})=\mathrm{E}\left[e^{\mathbf{t}^{\prime} \mathbf{Y}}\right] &amp;=e^{\mathbf{t}^{\prime} \mu+\mathbf{t}^{\prime} \Sigma \mathrm{t} / 2} \\
+&amp;=e^{\mathbf{t}^{\prime} \mu+\sum_{i=1}^{m} \sum_{j=1}^{m} \mathbf{t}_{i}^{\prime} \Sigma_{i j} \mathbf{t}_{j} / 2} \\
+&amp;=e^{\mathbf{t}^{\prime} \mu+\sum_{i=1}^{m} \mathbf{t}_{i}^{\prime} \Sigma_{i i} \mathbf{t}_{i} / 2} \\
+&amp;=\prod_{i=1}^{m} e^{\mathbf{t}_{i}^{\prime} \boldsymbol{\mu}_{i}+\mathbf{t}_{i}^{\prime} \mathbf{\Sigma}_{i i} \mathbf{t}_{i} / 2} \\
+&amp;=\prod_{i=1}^{m} m_{\mathbf{Y}_{i}}\left(\mathbf{t}_{i}\right)
+\end{aligned}\]</span> where
+<span class="math inline">\(\mathbf{t}=\left(\mathbf{t}_{1}^{\prime}, \ldots, \mathbf{t}_{m}^{\prime}\right)^{\prime}\)</span>
+with <span class="math inline">\(n_{i} \times 1\)</span> vector <span class="math inline">\(\mathbf{t}_{i}\)</span> for <span class="math inline">\(i=1, \ldots, m\)</span>.
+Therefore, by Theorem 1.3.3, the vectors <span class="math inline">\(\mathbf{Y}_{i}\)</span> are mutually
+independent. Now assume the vector; <span class="math inline">\(\mathbf{Y}_{i}\)</span> are mutually
+independent. For any <span class="math inline">\(i \neq j\)</span>,
+<span class="math display">\[{\boldsymbol{\Sigma}}_{i j}=\mathrm{E}\left\{\left[\mathbf{Y}_{i}-\boldsymbol{\mu}_{i}\right]\left[\mathbf{Y}_{j}-\boldsymbol{\mu}_{j}\right]^{\prime}\right\}=\mathrm{E}\left[\mathbf{Y}_{i}-\boldsymbol{\mu}_{i}\right] \mathrm{E}\left[\mathbf{Y}_{j}-\boldsymbol{\mu}_{j}\right]^{\prime}=\mathbf{0}_{n_{i} \times n_{j}}\]</span> ◻</p>
+</div>
+<p>In the following examples mean vectors and covariance matrices are
+derived for a few common problems.</p>
+<div class="eje">
+<p>Let <span class="math inline">\(Y_{1}, \ldots, Y_{n}\)</span> be independent, identically distributed
+<span class="math inline">\(\mathrm{N}_{1}\left(\alpha, \sigma^{2}\right)\)</span> random variables. By
+Theorem 2.1.4, <span class="math inline">\(\operatorname{cov}\left(Y_{i}, Y_{j}\right)=0\)</span> for
+<span class="math inline">\(i \neq j\)</span>. Furthermore, <span class="math inline">\(\mathrm{E}\left(Y_{i}\right)=\alpha\)</span> and the
+<span class="math inline">\(\operatorname{var}\left(Y_{i}\right)=\sigma^{2}\)</span> for all
+<span class="math inline">\(i=1, \ldots, n\)</span>. Therefore, the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathbf{N}_{n}\left(\alpha \mathbf{1}_{n}, \sigma^{2} \mathbf{I}_{n}\right)\)</span></p>
+</div>
+<div class="eje">
+<p>Consider the one-way classification described in Example 1.2.10. Let
+<span class="math inline">\(Y_{i j}\)</span> be a random variable representing the <span class="math inline">\(j^{\text {th }}\)</span>
+replicate observation in the <span class="math inline">\(i^{\text {th }}\)</span> level of the fixed factor
+for <span class="math inline">\(i=1, \ldots, t\)</span> and <span class="math inline">\(j=1, \ldots, r\)</span>. Let the
+<span class="math inline">\(\operatorname{tr} \times 1\)</span> random vector
+<span class="math inline">\(\left.\mathbf{Y}=Y_{11}, \ldots, Y_{1 r}, \ldots, Y_{t 1}, \ldots, Y_{t r}\right)^{\prime}\)</span>
+where the <span class="math inline">\(Y_{i j}\)</span> ’s are assumed to be independent, normally
+distributed random variables with
+<span class="math inline">\(\mathrm{E}\left(Y_{i j}\right)=\mu_{i}\)</span> and
+<span class="math inline">\(\operatorname{var}\left(Y_{i j}\right)=\sigma^{2}\)</span>. This experiment can
+be characterized with the model <span class="math display">\[Y_{i j}=\mu_{i}+R(T)_{(i) j}\]</span> where
+the <span class="math inline">\(R(T)_{(i) j}\)</span> are independent, identically distributed normal
+random variables with mean 0 and variance <span class="math inline">\(\sigma^{2}\)</span>. The letter <span class="math inline">\(R\)</span>
+signifies replicates and the letter <span class="math inline">\(T\)</span> signifies the fixed factor or
+fixed treatments. Therefore, <span class="math inline">\(R(T)\)</span> represents the effect of the random
+replicates nested in the fixed treatment levels. The parentheses around
+<span class="math inline">\(T\)</span> identify the nesting. By Theorems <span class="math inline">\(2.1 .2\)</span> and
+<span class="math inline">\(2.1 .4, \mathbf{Y} \sim \mathrm{N}_{t r}(\mu, \Sigma)\)</span> where the
+<span class="math inline">\(\operatorname{tr} \times 1\)</span> mean vector <span class="math inline">\(\mu\)</span> is given by
+<span class="math display">\[\begin{aligned}
+\boldsymbol{\mu} &amp;=\left[\mathrm{E}\left(Y_{11}\right), \ldots, \mathrm{E}\left(Y_{1 r}\right), \ldots, \mathrm{E}\left(Y_{t 1}\right), \ldots, \mathrm{E}\left(Y_{t r}\right)\right]^{\prime} \\
+&amp;=\left[\mu_{1}, \ldots, \mu_{1}, \ldots, \mu_{t}, \ldots, \mu_{t}\right]^{\prime} \\
+&amp;=\left[\mu_{1} \mathbf{1}_{r}^{\prime}, \ldots, \mu_{t} \mathbf{1}_{r}^{\prime}\right]^{\prime} \\
+&amp;=\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}
+\end{aligned}\]</span> and using Definition <span class="math inline">\(1.3 .3\)</span> the elements of the
+<span class="math inline">\(\operatorname{tr} \times \operatorname{tr}\)</span> covariance matrix
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span> are <span class="math display">\[\begin{aligned}
+\operatorname{cov}\left(Y_{i j}, Y_{i^{\prime} j^{\prime}}\right) &amp;=\mathrm{E}\left[\left(Y_{i j}-\mathrm{E}\left(Y_{i j}\right)\right)\left(Y_{i^{\prime} j^{\prime}}-\mathrm{E}\left(Y_{i^{\prime} j^{\prime}}\right)\right)\right] \\
+&amp;=\mathrm{E}\left[\left(\mu_{i}+R(T)_{(i) j}-\mu_{i}\right)\left(\mu_{i^{\prime}}+R(T)_{\left(i^{\prime}\right) j^{\prime}}-\mu_{i^{\prime}}\right)\right] \\
+&amp;=\mathrm{E}\left[R(T)_{(i) j} R(T)_{\left(i^{\prime}\right) j^{\prime}}\right] \\
+&amp;=\left\{\begin{array}{ll}
+\sigma^{2} &amp; \text { if } i=i^{\prime} \text { and } j=j^{\prime} \\
+0 &amp; \text { otherwise. }
+\end{array}\right.
+\end{aligned}\]</span> That is,
+<span class="math inline">\(\boldsymbol{\Sigma}=\sigma^{2} \mathbf{I}_{t} \otimes \mathbf{I}_{r}\)</span>.</p>
+</div>
+<p>The preceding model is composed of two parts: a fixed portion
+represented by the <span class="math inline">\(t\)</span> fixed constants <span class="math inline">\(\mu_{i}\)</span> and a random portion
+represented by the <span class="math inline">\(t r\)</span> random variables <span class="math inline">\(R(T)_{(i) j} .\)</span> In models of
+this type, each constant in the fixed portion equals 28 Linear Models
+the expected value of observations in particular combinations of the
+levels of the fixed factor(s). Models whose fixed portions are
+represented in this way are called mean models. Numerous examples of
+mean models are presented in this text and a specific discussion on mean
+models is provided in Chapters 9 and 10 .</p>
+<div class="eje">
+<p>Consider a two-way cross classification where both factors are random.
+Let <span class="math inline">\(Y_{i j}\)</span> be a random variable representing the observation in the
+<span class="math inline">\(i^{\text {th }}\)</span> level of the first random factor <span class="math inline">\(S\)</span> and the
+<span class="math inline">\(j^{\text {th }}\)</span> level of the second random factor <span class="math inline">\(T\)</span> for
+<span class="math inline">\(i=1, \ldots, s\)</span> and <span class="math inline">\(j=1, \ldots, t\)</span>. Let the <span class="math inline">\(s t \times 1\)</span> random
+vector <span class="math inline">\(\mathbf{Y}=\)</span>
+<span class="math inline">\(\left.Y_{11}, \ldots, Y_{1 t}, \ldots, Y_{s 1}, \ldots, Y_{s t}\right)^{\prime}\)</span>.
+This experiment can be characterized with the model
+<span class="math display">\[Y_{i j}=\alpha+S_{i}+T_{j}+S T_{i j}\]</span> where <span class="math inline">\(\alpha\)</span> is a constant
+representing the overall mean; the random variable <span class="math inline">\(S_{i}\)</span> represents
+the effect of the <span class="math inline">\(i^{\text {th }}\)</span> level of the first random factor;
+the random variable <span class="math inline">\(T_{j}\)</span> represents the effect of the
+<span class="math inline">\(j^{\text {th }}\)</span> level of the second random factor; and the random
+variable <span class="math inline">\(S T_{i j}\)</span> represents the interaction effect of the
+<span class="math inline">\(i^{\text {th }}\)</span> level of factor <span class="math inline">\(S\)</span> and the <span class="math inline">\(j^{\text {th }}\)</span> level of
+factor <span class="math inline">\(T\)</span>. Furthermore, <span class="math inline">\(S_{1}, \ldots, S_{s}, T_{1}, \ldots, T_{t}\)</span>
+and <span class="math inline">\(S T_{11}, \ldots, S T_{s t}\)</span> are assumed to be independent normal
+random variables with zero expectations and variances given by
+<span class="math inline">\(\operatorname{var}\left(S_{i}\right)=\sigma_{S}^{2}, \operatorname{var}\left(T_{j}\right)=\sigma_{T}^{2}\)</span>,
+and <span class="math inline">\(\operatorname{var}\left[S T_{i j}\right]=\sigma_{S T}^{2}\)</span> for
+<span class="math inline">\(i=1, \ldots, s\)</span> and <span class="math inline">\(j=1, \ldots, t .\)</span> Therefore, by Theorems <span class="math inline">\(2.1 .2\)</span>
+and
+<span class="math inline">\(2.1 .4, \mathbf{Y} \sim \mathbf{N}_{s t}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>
+where the <span class="math inline">\(s t \times 1\)</span> mean vector <span class="math inline">\(\mu\)</span> is given by <span class="math display">\[\begin{aligned}
+\boldsymbol{\mu} &amp;=\left[\mathrm{E}\left(Y_{11}\right), \ldots, \mathrm{E}\left(Y_{1 t}\right), \ldots, \mathrm{E}\left(Y_{s 1}\right), \ldots, \mathrm{E}\left(Y_{s t}\right)\right]^{\prime} \\
+&amp;=[\alpha, \ldots, \alpha, \ldots, \alpha, \ldots, \alpha]^{\prime} \\
+&amp;=\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}
+\end{aligned}\]</span> and the elements of the <span class="math inline">\(s t \times s t\)</span> covariance
+matrix <span class="math inline">\(\boldsymbol{\Sigma}\)</span> are <span class="math display">\[\begin{aligned}
+\operatorname{cov}\left(Y_{i j}, Y_{i^{\prime} j^{\prime}}\right) &amp;=\mathrm{E}\left[\left(Y_{i j}-\mathrm{E}\left(Y_{i j}\right)\right)\left(Y_{i^{\prime} j^{\prime}}-\mathrm{E}\left(Y_{i^{\prime} j^{\prime}}\right)\right)\right] \\
+&amp;=\mathrm{E}\left[\left(\alpha+S_{i}+T_{j}+S T_{i j}-\alpha\right)\left(\alpha+S_{i^{\prime}}+T_{j^{\prime}}+S T_{i^{\prime} j^{\prime}}-\alpha\right)\right] \\
+&amp;=\mathrm{E}\left[S_{i} S_{i^{\prime}}\right]+\mathrm{E}\left[T_{j} T_{j^{\prime}}\right]+\mathrm{E}\left[S T_{i j} S T_{i^{\prime} j^{\prime}}\right] \\
+&amp;=\left\{\begin{array}{ll}
+\sigma_{S}^{2}+\sigma_{T}^{2}+\sigma_{S T}^{2} &amp; \text { if } i=i^{\prime} \text { and } j=j^{\prime} \\
+\sigma_{S}^{2} &amp; \text { if } i=i^{\prime} \text { but } j \neq j^{\prime} \\
+\sigma_{T}^{2} &amp; \text { if } j=j^{\prime} \text { but } i \neq i^{\prime} \\
+0 &amp; \text { otherwise. }
+\end{array}\right.
+\end{aligned}\]</span> That is,
+<span class="math inline">\(\boldsymbol{\Sigma}=\sigma_{S}^{2}\left(\mathbf{I}_{s} \otimes \mathbf{J}_{t}\right)+\sigma_{T}^{2}\left(\mathbf{J}_{s} \otimes \mathbf{I}_{t}\right)+\sigma_{S T}^{2}\left(\mathbf{I}_{s} \otimes \mathbf{I}_{t}\right)\)</span></p>
+</div>
+<p>Direct derivation of the covariance matrix <span class="math inline">\(\boldsymbol{\Sigma}\)</span> can be
+difficult even for balanced design structures. In Chapter 4 a simple
+algorithm is provided for determining 2 Multivariate Normal Distribution
+29 the covariance matrix for complete, balanced designs with any number
+of fixed or random main effects, interactions, and nested factors.</p>
+</div>
+<div id="conditional-distributions-of-multivariate-normal-random-vectors-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS<a href="multivariate-normal-distribution-1.html#conditional-distributions-of-multivariate-normal-random-vectors-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section conditional multivariate normal distributions are
+discussed.</p>
+<div class="teo">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(\mathbf{Y}_{1}^{\prime}, \mathbf{Y}_{2}^{\prime}\right)^{\prime} \sim \mathrm{N}_{n}(\mu, \boldsymbol{\Sigma})\)</span>
+where
+<span class="math inline">\(\boldsymbol{\mu}=\left(\boldsymbol{\mu}_{1}^{\prime}, \boldsymbol{\mu}_{2}^{\prime}\right)^{\prime}\)</span>
+is the <span class="math inline">\(n \times 1\)</span> mean vector,
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{ll}
+\boldsymbol{\Sigma}_{11} &amp; \boldsymbol{\Sigma}_{12} \\
+\boldsymbol{\Sigma}_{21} &amp; \boldsymbol{\Sigma}_{22}
+\end{array}\right]\]</span> is the <span class="math inline">\(n \times n\)</span> positive definite covariance
+matrix, <span class="math inline">\(\mathbf{Y}_{i}\)</span> and <span class="math inline">\(\mu_{i}\)</span> are <span class="math inline">\(n_{i} \times 1\)</span> vectors,
+<span class="math inline">\(\boldsymbol{\Sigma}_{i j}\)</span> is an <span class="math inline">\(n_{i} \times n_{j}\)</span> matrix for
+<span class="math inline">\(i, j=1,2\)</span> and <span class="math inline">\(n=n_{1}+n_{2}\)</span>. The conditional distribution of the
+<span class="math inline">\(n_{1} \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y}_{1}\)</span> given the
+<span class="math inline">\(n_{2} \times 1\)</span> vector of constants <span class="math inline">\(\mathbf{Y}_{2}=\mathbf{c}_{2}\)</span> is
+<span class="math inline">\(\mathrm{N}_{n_{1}}\left[\mu_{1}+\Sigma_{12} \Sigma_{22}^{-1}\left(\mathbf{c}_{2}-\mu_{2}\right), \Sigma_{11}-\Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}\right]\)</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-5" class="proof"><em>Proof</em>. </span><em>Proof.</em> Define the <span class="math inline">\(n_{1} \times 1\)</span> vector <span class="math inline">\(\mathbf{V}_{1}\)</span> and the
+<span class="math inline">\(n_{2} \times 1\)</span> vector <span class="math inline">\(\mathbf{V}_{2}\)</span> as <span class="math display">\[\left[\begin{array}{l}
+\mathbf{V}_{1} \\
+\mathbf{V}_{2}
+\end{array}\right]=\left[\begin{array}{c}
+\mathbf{Y}_{1}-\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \mathbf{Y}_{2} \\
+\mathbf{Y}_{2}
+\end{array}\right]=\left[\begin{array}{cc}
+\mathbf{I}_{n_{1}} &amp; -\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \\
+\mathbf{0} &amp; \mathbf{I}_{n_{2}}
+\end{array}\right] \mathbf{Y} .\]</span> By Theorem 2.1.2 with the <span class="math inline">\(n \times 1\)</span>
+vector <span class="math inline">\(\mathbf{b}=\mathbf{0}_{n \times 1}\)</span> and the <span class="math inline">\(n \times n\)</span> matrix
+<span class="math display">\[\mathbf{B}=\left[\begin{array}{cc}
+\mathbf{I}_{n_{1}} &amp; -\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \\
+\mathbf{0} &amp; \mathbf{I}_{n_{2}}
+\end{array}\right]\]</span> the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\left(\mathbf{V}_{1}^{\prime}, \mathbf{V}_{2}^{\prime}\right)^{\prime} \sim \mathbf{N}_{n}\left(\boldsymbol{\mu}^{*}, \mathbf{\Sigma}^{*}\right)\)</span>
+where the <span class="math inline">\(n \times 1\)</span> mean vector <span class="math inline">\(\mu^{*}\)</span> is
+<span class="math display">\[\boldsymbol{\mu}^{*}=\mathbf{B}\left[\begin{array}{l}
+\boldsymbol{\mu}_{1} \\
+\boldsymbol{\mu}_{2}
+\end{array}\right]=\left[\begin{array}{c}
+\boldsymbol{\mu}_{1}-\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \boldsymbol{\mu}_{2} \\
+\boldsymbol{\mu}_{2}
+\end{array}\right]\]</span> and the <span class="math inline">\(n \times n\)</span> covariance matrix <span class="math inline">\(\Sigma^{*}\)</span>
+is <span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma}^{*} &amp;=\mathbf{B} \boldsymbol{\Sigma} \mathbf{B}^{\prime} \\
+&amp;=\left[\begin{array}{cc}
+\mathbf{I}_{n_{1}} &amp; -\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \\
+\mathbf{0} &amp; \mathbf{I}_{n_{2}}
+\end{array}\right]\left[\begin{array}{ll}
+\boldsymbol{\Sigma}_{11} &amp; \boldsymbol{\Sigma}_{12} \\
+\boldsymbol{\Sigma}_{21} &amp; \boldsymbol{\Sigma}_{22}
+\end{array}\right]\left[\begin{array}{cc}
+\mathbf{I}_{n_{1}} &amp; \mathbf{0} \\
+\boldsymbol{\Sigma}_{22}^{-1} \boldsymbol{\Sigma}_{21} &amp; \mathbf{I}_{n_{2}}
+\end{array}\right] \\
+&amp;=\left[\begin{array}{ccc}
+\boldsymbol{\Sigma}_{11}-\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \boldsymbol{\Sigma}_{21} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \mathbf{\Sigma}_{22}
+\end{array}\right]
+\end{aligned}\]</span></p>
+<p>Thus, <span class="math inline">\(\mathbf{V}_{1}\)</span> and <span class="math inline">\(\mathbf{V}_{2}\)</span> are independent multivariate
+normal random vectors. That is, the joint distribution of
+<span class="math inline">\(\mathbf{V}_{1}\)</span> and <span class="math inline">\(\mathbf{V}_{2}\)</span> can be written as the product of
+the two marginal distributions
+<span class="math display">\[f_{\mathbf{V}_{1}, \mathbf{v}_{2}}\left(\mathbf{v}_{1}, \mathbf{v}_{2}\right)=f_{\mathbf{v}_{1}}\left(\mathbf{v}_{1}\right) f_{\mathbf{v}_{2}}\left(\mathbf{v}_{2}\right)\]</span>
+where <span class="math inline">\(f_{\mathbf{V}_{1}}\left(\mathbf{v}_{1}\right)\)</span> is a
+<span class="math inline">\(\mathbf{N}_{n_{1}}\left(\boldsymbol{\mu}_{1}-\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \boldsymbol{\mu}_{2}, \boldsymbol{\Sigma}_{11}-\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \boldsymbol{\Sigma}_{21}\right)\)</span>
+distribution and <span class="math inline">\(f_{\mathbf{V}_{2}}\left(\mathbf{v}_{2}\right)\)</span> is a
+<span class="math inline">\(\mathbf{N}_{n_{2}}\left(\boldsymbol{\mu}_{2}, \mathbf{\Sigma}_{22}\right)\)</span>
+distribution. The conditional distribution of
+<span class="math inline">\(\mathbf{Y}_{1} \mid \mathbf{Y}_{2}=\mathbf{c}_{2}\)</span> is derived by
+utilizing the transformation from <span class="math inline">\(\mathbf{Y}_{1}, \mathbf{Y}_{2}\)</span> to
+<span class="math inline">\(\mathbf{V}_{1}, \mathbf{V}_{2}\)</span> and noting that the Jacobian of this
+transformation is <span class="math inline">\(1 .\)</span> <span class="math display">\[\begin{aligned}
+f_{\mathbf{Y}_{1} \mid \mathbf{Y}_{2}=\mathbf{c}_{2}}\left(\mathbf{y}_{1} \mid \mathbf{y}_{2}=\mathbf{c}_{2}\right) &amp;=f_{\mathbf{Y}_{1}, \mathbf{Y}_{2}}\left(\mathbf{y}_{1}, \mathbf{c}_{2}\right) / f_{\mathbf{Y}_{2}}\left(\mathbf{c}_{2}\right) \\
+&amp;=f_{\mathbf{V}_{1}, \mathbf{V}_{2}}\left(\mathbf{v}_{1}+\mathbf{\Sigma}_{12} \mathbf{\Sigma}_{22}^{-1} \mathbf{c}_{2}, \mathbf{c}_{2}\right) / f_{\mathbf{v}_{2}}\left(\mathbf{c}_{2}\right) \\
+&amp;=f_{\mathbf{V}_{1}}\left(\mathbf{v}_{1}+\mathbf{\Sigma}_{12} \mathbf{\Sigma}_{22}^{-1} \mathbf{c}_{2}\right) f_{\mathbf{V}_{2}}\left(\mathbf{c}_{2}\right) / f_{\mathbf{V}_{2}}\left(\mathbf{c}_{2}\right) \\
+&amp;=f_{\mathbf{V}_{1}}\left(\mathbf{v}_{1}+\mathbf{\Sigma}_{12} \mathbf{\Sigma}_{22}^{-1} \mathbf{c}_{2}\right)
+\end{aligned}\]</span> But the distribution of
+<span class="math inline">\(f_{\mathbf{V}_{1}}\left(\mathbf{v}_{1}+{\boldsymbol{\Sigma}}_{12}{\boldsymbol{\Sigma}}_{22}^{-1} \mathbf{c}_{2}\right)\)</span>
+is the distribution of <span class="math inline">\(\mathbf{V}_{1}\)</span> plus the constant vector
+<span class="math inline">\(\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \mathbf{c}_{2}\)</span>
+). By Theorem <span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\(\mathbf{B}=\mathbf{I}_{n_{1}}\)</span> and
+<span class="math inline">\(\mathbf{b}=\mathbf{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \mathbf{c}_{2}\)</span>,
+the proof is complete. ◻</p>
+</div>
+<p>Theorem <span class="math inline">\(2.2 .1\)</span> is applied in the next few examples.</p>
+<div class="eje">
+<p>Let
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}\right)^{\prime} \sim \mathrm{N}_{3}(\boldsymbol{\mu}, \mathbf{\Sigma})\)</span>
+where <span class="math inline">\(\boldsymbol{\mu}=(1,4,-2)^{\prime}\)</span> and
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{ccc}
+1 &amp; 0.5 &amp; 0.4 \\
+0.5 &amp; 1 &amp; 0.2 \\
+0.4 &amp; 0.2 &amp; 1
+\end{array}\right]\]</span> Then by Theorem 2.2.1 the conditional distribution
+of <span class="math inline">\(Y_{1}, Y_{2} \mid Y_{3}=1\)</span> is
+<span class="math inline">\(\mathrm{N}_{2}\left(\mu_{c}, \Sigma_{c}\right)\)</span> where the <span class="math inline">\(2 \times 1\)</span>
+conditional mean vector <span class="math inline">\(\boldsymbol{\mu}_{c}\)</span> is given by
+<span class="math display">\[\mu_{c}=\left[\begin{array}{l}
+1 \\
+4
+\end{array}\right]+\left[\begin{array}{l}
+0.4 \\
+0.2
+\end{array}\right](1)^{-1}[1-(-2)]=\left[\begin{array}{l}
+2.2 \\
+4.6
+\end{array}\right]\]</span> and the <span class="math inline">\(2 \times 2\)</span> conditional covariance matrix
+<span class="math inline">\(\Sigma_{c}\)</span> is given by
+<span class="math display">\[\boldsymbol{\Sigma}_{c}=\left[\begin{array}{cc}
+1 &amp; 0.5 \\
+0.5 &amp; 1
+\end{array}\right]-\left[\begin{array}{l}
+0.4 \\
+0.2
+\end{array}\right](1)^{-1}[0.4,0.2]=\left[\begin{array}{ll}
+0.84 &amp; 0.42 \\
+0.42 &amp; 0.96
+\end{array}\right]\]</span></p>
+</div>
+<div class="eje">
+<p>Use the distribution of
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}\right)^{\prime}\)</span> from Example
+<span class="math inline">\(2.2 .1\)</span> to find the conditional distribution of
+<span class="math inline">\(2 Y_{1}+Y_{2} \mid Y_{1}+2 Y_{2}+3 Y_{3}=2\)</span>. First, let the
+<span class="math inline">\(2 \times 1\)</span> vector <span class="math inline">\(\mathbf{b}=\mathbf{0}_{2 \times 1}\)</span> and let the
+<span class="math inline">\(2 \times 3\)</span> matrix <span class="math display">\[B=\left[\begin{array}{lll}
+2 &amp; 1 &amp; 0 \\
+1 &amp; 2 &amp; 3
+\end{array}\right]\]</span></p>
+<p>By Theorem 2.1.2, the joint distribution of
+<span class="math display">\[\mathbf{B Y}=\left[\begin{array}{c}
+2 Y_{1}+Y_{2} \\
+Y_{1}+2 Y_{2}+3 Y_{3}
+\end{array}\right]\]</span> is <span class="math inline">\(N_{2}\left(\mu^{*}, \Sigma^{*}\right)\)</span> where
+the <span class="math inline">\(2 \times 1\)</span> mean vector <span class="math inline">\(\mu^{*}\)</span> is
+<span class="math display">\[\mu^{*}=\mathbf{B} \mu=\left[\begin{array}{l}
+2(1)+1(4)+0(-2) \\
+1(1)+2(4)+3(-2)
+\end{array}\right]=\left[\begin{array}{l}
+6 \\
+3
+\end{array}\right]\]</span> and the <span class="math inline">\(2 \times 2\)</span> covariance matrix
+<span class="math inline">\(\boldsymbol{\Sigma}^{*}\)</span> is <span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma}^{*} &amp;=\mathbf{B} \boldsymbol{\Sigma} \mathbf{B}^{\prime} \\
+&amp;=\left[\begin{array}{lll}
+2 &amp; 1 &amp; 0 \\
+1 &amp; 2 &amp; 3
+\end{array}\right]\left[\begin{array}{ccc}
+1 &amp; 0.5 &amp; 0.4 \\
+0.5 &amp; 1 &amp; 0.2 \\
+0.4 &amp; 0.2 &amp; 1
+\end{array}\right]\left[\begin{array}{ll}
+2 &amp; 1 \\
+1 &amp; 2 \\
+0 &amp; 3
+\end{array}\right]=\left[\begin{array}{cc}
+7 &amp; 9.5 \\
+9.5 &amp; 20.8
+\end{array}\right]
+\end{aligned}\]</span> where <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> are
+given in Example 2.2.1. Applying Theorem <span class="math inline">\(2.2 .1\)</span> to the distribution of
+BY, the conditional distribution of
+<span class="math inline">\(2 Y_{1}+Y_{2} \mid Y_{1}+2 Y_{2}+3 Y_{3}=2\)</span> is
+<span class="math inline">\(\mathrm{N}_{1}\left(\mu_{c}, \sigma_{c}^{2}\right)\)</span> where the
+conditional mean <span class="math inline">\(\mu_{c}\)</span> is <span class="math display">\[\mu_{c}=6+9.5(20.8)^{-1}(2-3)=5.54\]</span> and
+the conditional variance <span class="math inline">\(\sigma_{c}^{2}\)</span> is given by
+<span class="math display">\[\sigma_{c}^{2}=7-9.5(20.8)^{-1} 9.5=2.66\]</span></p>
+</div>
+<div class="eje">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathrm{N}_{n}\left(\alpha \mathbf{1}_{n},\right.\)</span>,
+<span class="math inline">\(\left.\sigma^{2} \mathbf{I}_{n}\right) .\)</span> Find the conditional
+distribution of <span class="math inline">\(Y_{1}, \ldots, Y_{n-1} \mid \bar{Y}=\bar{y} .\)</span> By
+Theorem <span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=\mathbf{0}_{n \times 1}\)</span> and <span class="math inline">\(n \times n\)</span> matrix
+<span class="math display">\[\mathbf{B}=\left[\begin{array}{cc}
+\mathbf{I}_{n-1} &amp; \mathbf{0} \\
+(1 / n) \mathbf{1}_{n-1}^{\prime} &amp; 1 / n
+\end{array}\right]\]</span> the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{B Y}=\left(Y_{1}, \ldots, Y_{n-1}, \bar{Y}\right)^{\prime} \sim \mathbf{N}_{n}\left(\mu^{*}, \mathbf{\Sigma}^{*}\right)\)</span>
+where the <span class="math inline">\(n \times 1\)</span> mean vector <span class="math inline">\(\boldsymbol{\mu}^{*}\)</span> is
+<span class="math display">\[\mu^{*}=\mathbf{B}\left(\alpha \mathbf{1}_{n}\right)=\left[\begin{array}{cc}
+\mathbf{I}_{n-1} &amp; \mathbf{0} \\
+(1 / n) \mathbf{1}_{n-1}^{\prime} &amp; 1 / n
+\end{array}\right]\left(\alpha \mathbf{1}_{n}\right)=\alpha \mathbf{1}_{n}\]</span>
+and the <span class="math inline">\(n \times n\)</span> covariance matrix <span class="math inline">\({\boldsymbol{\Sigma}}^{*}\)</span> is
+<span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma}^{*} &amp;=\mathbf{B}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{B}^{\prime} \\
+&amp;=\sigma^{2}\left[\begin{array}{cc}
+\mathbf{I}_{n-1} &amp; \mathbf{0} \\
+(1 / n) \mathbf{1}_{n-1}^{\prime} &amp; 1 / n
+\end{array}\right]\left[\begin{array}{cc}
+\mathbf{I}_{n-1} &amp; (1 / n) \mathbf{1}_{n-1} \\
+\mathbf{0} &amp; 1 / n
+\end{array}\right] \\
+&amp;=\sigma^{2}\left[\begin{array}{cc}
+\mathbf{I}_{n-1} &amp; (1 / n) \mathbf{1}_{n-1} \\
+(1 / n) \mathbf{1}_{n-1}^{\prime} &amp; 1 / n
+\end{array}\right] .
+\end{aligned}\]</span></p>
+<p>Applying Theorem <span class="math inline">\(2.2 .1\)</span> to the distribution of BY, the conditional
+distribution of <span class="math inline">\(Y_{1}, \ldots, Y_{n-1} \mid \bar{Y}=\bar{y}\)</span> is
+<span class="math inline">\(\mathrm{N}_{n-1}\left(\mu_{c}, \Sigma_{c}\right)\)</span> where the
+<span class="math inline">\((n-1) \times 1\)</span> conditional mean vector <span class="math inline">\(\mu_{c}\)</span> is
+<span class="math display">\[\mu_{c}=\alpha \mathbf{1}_{n-1}+(1 / n) \mathbf{1}_{n-1}(1 / n)^{-1}(\bar{y}-\alpha)=\bar{y} \mathbf{1}_{n-1}\]</span>
+and the <span class="math inline">\((n-1) \times(n-1)\)</span> conditional covariance matrix <span class="math inline">\(\Sigma_{c}\)</span>
+is <span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma}_{c} &amp;=\sigma^{2}\left[\mathbf{I}_{n-1}-(1 / n) \mathbf{1}_{n-1}(1 / n)^{-1}(1 / n) \mathbf{1}_{n-1}^{\prime}\right] \\
+&amp;=\sigma^{2}\left[\mathbf{I}_{n-1}-\frac{1}{n} \mathbf{J}_{n-1}\right]
+\end{aligned}\]</span> Applying Theorem 2.1.2 <span class="math display">\[with scalar $b=0$ and
+$1 \times(n-1)$ matrix $\mathbf{B}=$ $(1,0, \ldots, 0)$ \]</span> to the
+conditional distribution of
+<span class="math inline">\(Y_{1}, \ldots, Y_{n-1} \mid \bar{Y}=\bar{y}\)</span>, the conditional
+distribution of <span class="math inline">\(Y_{1} \mid \bar{Y}=\bar{y}\)</span> is
+<span class="math inline">\(\mathrm{N}_{1}\left(\alpha_{c}, \sigma_{c}^{2}\right)\)</span> where the
+conditional mean <span class="math inline">\(\alpha_{c}\)</span> is
+<span class="math display">\[\alpha_{c}=\mathbf{B} \boldsymbol{\mu}_{c}=(1,0, \ldots, 0)\left(\bar{y} \mathbf{1}_{n-1}\right)=\bar{y}\]</span>
+and the conditional variance <span class="math inline">\(\sigma_{c}^{2}\)</span> is <span class="math display">\[\begin{aligned}
+\sigma_{c}^{2} &amp;=\mathbf{B} \boldsymbol{\Sigma}_{c} \mathbf{B}^{\prime}=(1,0, \ldots, 0) \sigma^{2}\left[\mathbf{I}_{n-1}-\frac{1}{n} \mathbf{J}_{n-1}\right](1,0, \ldots, 0)^{\prime} \\
+&amp;=\sigma^{2}(n-1) / n
+\end{aligned}\]</span></p>
+</div>
+<p>The distribution theory of quadratic forms is presented in Chapter 3 .
+However, a number of interesting quadratic form problems are solved in
+the next section before the general distribution theory is developed.</p>
+</div>
+<div id="distributions-of-certain-quadratic-forms-1" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS<a href="multivariate-normal-distribution-1.html#distributions-of-certain-quadratic-forms-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The distributions of several quadratic forms are derived in the
+following examples.</p>
+<div class="eje">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathrm{N}_{n}\left(\alpha \mathbf{1}_{n}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>
+Define <span class="math inline">\(U=\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2} / \sigma^{2}\)</span> and
+<span class="math inline">\(V=n(\bar{Y}-\alpha)^{2} / \sigma^{2}\)</span> where
+<span class="math inline">\(\bar{Y}=(1 / n) \mathbf{1}_{n}^{\prime} \mathbf{Y}\)</span>. Find the
+distributions of <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> and show these two random variables are
+independent. First, note
+<span class="math inline">\(\sqrt{n}(\bar{Y}-\alpha) / \sigma=[1 /(\sigma \sqrt{n})] 1_{n}^{\prime} \mathbf{Y}-(\alpha \sqrt{n}) / \sigma .\)</span>
+By Theorem <span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\(1 \times n\)</span> matrix
+<span class="math inline">\(\mathbf{B}=[1 /(\sigma \sqrt{n})] \mathbf{1}_{n}^{\prime}\)</span> and scalar
+<span class="math inline">\(b=-(\alpha \sqrt{n}) / \sigma, \sqrt{n}(\bar{Y}-\alpha) / \sigma \sim\)</span>
+<span class="math inline">\(\mathbf{N}_{1}(0,1)\)</span> since
+<span class="math display">\[\mathbf{B}\left(\alpha \mathbf{1}_{n}\right)+b=[\alpha /(\sigma \sqrt{n})] \mathbf{1}_{n}^{\prime} \mathbf{1}_{n}-\alpha \sqrt{n} / \sigma=0\]</span>
+and
+<span class="math display">\[\mathbf{B}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{B}^{\prime}=\sigma^{2}\left\{[1 /(\sigma \sqrt{n})] \mathbf{1}_{n}^{\prime}\right\}\left\{[1 /(\sigma \sqrt{n})] \mathbf{1}_{n}^{\prime}\right\}^{\prime}=1\]</span></p>
+<p>Therefore, by Example <span class="math inline">\(1.3 .2, n(\bar{Y}-\alpha)^{2} / \sigma^{2}\)</span> is
+distributed as a central chi-square random variable with 1 degree of
+freedom. Next, rewrite <span class="math inline">\(U\)</span> as <span class="math display">\[\begin{aligned}
+U &amp;=\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2} / \sigma^{2}=\left(1 / \sigma^{2}\right) \mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime}(1 / \sigma) \mathbf{P}_{n}\left[(1 / \sigma) \mathbf{P}_{n}^{\prime}\right] \mathbf{Y} \\
+&amp;=\mathbf{X}^{\prime} \mathbf{X} \\
+&amp;=\sum_{i=1}^{n-1} X_{i}^{2}
+\end{aligned}\]</span> where the <span class="math inline">\((n-1) \times 1\)</span> vector
+<span class="math inline">\(\mathbf{X}=\left[(1 / \sigma) \mathbf{P}_{n}^{\prime}\right] \mathbf{Y}=\left(X_{1}, \ldots, X_{n-1}\right)^{\prime}\)</span>
+and the <span class="math inline">\((n-1) \times n\)</span> matrix <span class="math inline">\(\mathbf{P}_{n}^{\prime}\)</span> is the lower
+portion of an <span class="math inline">\(n\)</span>-dimensional Helmert matrix with
+<span class="math inline">\(\mathbf{P}_{n} \mathbf{P}_{n}^{\prime}=\)</span>
+<span class="math inline">\(\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right), \mathbf{P}_{n}^{\prime} \mathbf{P}_{n}=\mathbf{I}_{n-1}\)</span>
+and
+<span class="math inline">\(\mathbf{I}_{n}^{\prime} \mathbf{P}_{n}=\mathbf{0}_{1 \times(n-1)} .\)</span> By
+Theorem <span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\((n-1) \times n\)</span> matrix
+<span class="math inline">\(\mathbf{B}=(1 / \sigma) \mathbf{P}_{n}^{\prime}\)</span> and <span class="math inline">\((n-1) \times 1\)</span>
+vector
+<span class="math inline">\(\mathbf{b}=\mathbf{0}_{(n-1) \times 1}, \mathbf{X} \sim N_{n-1}\left(\mathbf{0}, \mathbf{I}_{n-1}\right)\)</span>
+since
+<span class="math display">\[\mathbf{B}\left(\alpha \mathbf{1}_{n}\right)=(1 / \sigma) \mathbf{P}_{n}^{\prime}\left(\alpha \mathbf{1}_{n}\right)=\mathbf{0}_{(n-1) \times 1}\]</span>
+and
+<span class="math display">\[\mathbf{B}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{B}^{\prime}=(1 / \sigma) \mathbf{P}_{n}^{\prime}\left(\sigma^{2} \mathbf{I}_{n}\right)\left[(1 / \sigma) \mathbf{P}_{n}^{\prime}\right]^{\prime}=\mathbf{I}_{n-1}\]</span>
+Therefore, <span class="math inline">\(U\)</span> equals the sum of squares of <span class="math inline">\(n-1\)</span> independent
+<span class="math inline">\(\mathrm{N}_{1}(0,1)\)</span> random variables. By Example 1.3.2, <span class="math inline">\(U\)</span> has a
+central chi-square distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. Finally,
+by Theorem <span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{B}\)</span> and
+<span class="math inline">\(n \times 1\)</span> vector b given by <span class="math display">\[\mathbf{B}=\left[\begin{array}{c}
+1 /(\sigma \sqrt{n}) \mathbf{1}_{n}^{\prime} \\
+(1 / \sigma) \mathbf{P}_{n}^{\prime}
+\end{array}\right] \quad \text { and } \quad \mathbf{b}=\left[\begin{array}{c}
+-\sqrt{n} \alpha / \sigma \\
+\mathbf{0}_{(n-1) \times 1}
+\end{array}\right]\]</span> the <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\left(\sqrt{n}(\bar{Y}-\alpha) / \sigma, \mathbf{X}^{\prime}\right)^{\prime}=\mathbf{B Y}+\mathbf{b} \sim \mathbf{N}_{n}\left(\mathbf{0}, \mathbf{I}_{n}\right)\)</span>
+since
+<span class="math display">\[\mathbf{B}\left(\alpha \mathbf{1}_{n}\right)+\mathbf{b}=\left[\begin{array}{c}
+{[\alpha /(\sigma \sqrt{n})] \mathbf{1}_{n}^{\prime} \mathbf{1}_{n}} \\
+(\alpha / \sigma) \mathbf{P}_{n}^{\prime} \mathbf{1}_{n}
+\end{array}\right]+\left[\begin{array}{c}
+-\sqrt{n} \alpha / \sigma \\
+\mathbf{0}_{(n-1) \times 1}
+\end{array}\right]=\mathbf{0}_{n \times 1}\]</span> and
+<span class="math display">\[\mathbf{B}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{B}^{\prime}=\left[\begin{array}{c}
+{[1 /(\sigma \sqrt{n})] \mathbf{1}_{n}^{\prime}} \\
+(1 / \sigma) \mathbf{P}_{n}^{\prime}
+\end{array}\right]\left(\sigma^{2} \mathbf{I}_{n}\right)\left\{[1 /(\sigma \sqrt{n})] \mathbf{1}_{n},(1 / \sigma) \mathbf{P}_{n}\right\}=\mathbf{I}_{n}\]</span>
+By Theorem <span class="math inline">\(2.1 .4, \sqrt{n}(\bar{Y}-\alpha) / \sigma\)</span> and <span class="math inline">\(\mathbf{X}\)</span>
+are independent. Therefore, by Theorem <span class="math inline">\(1.3 .5, U\)</span> and <span class="math inline">\(V\)</span> are
+independent.</p>
+</div>
+<div class="center">
+<p>Factor <span class="math inline">\(S(i)\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">…</th>
+<th align="center">s</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center"><span class="math inline">\(Y_{1}\)</span></td>
+<td align="center"><span class="math inline">\(Y_{21}\)</span></td>
+<td align="center">…</td>
+<td align="center"><span class="math inline">\(Y_{s 1}\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="center"><span class="math inline">\(Y_{12}\)</span></td>
+<td align="center"><span class="math inline">\(Y_{22}\)</span></td>
+<td align="center">…</td>
+<td align="center"><span class="math inline">\(Y_{s 2}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\ddots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(t\)</span></td>
+<td align="center"><span class="math inline">\(Y_{1 t}\)</span></td>
+<td align="center"><span class="math inline">\(Y_{2 t}\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(Y_{s t}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 2.3.1</strong> Two-Way Layout.</p>
+</div>
+<div class="eje">
+<p>Consider the two-way cross classification described in Example 2.1.5
+where the <span class="math inline">\(s t \times 1\)</span> random vector
+<span class="math inline">\(\sigma_{S}^{2} \mathbf{I}_{s} \otimes \mathbf{J}_{t}+\sigma_{T}^{2} \mathbf{J}_{s} \otimes \mathbf{I}_{t}+\sigma_{S T}^{2} \mathbf{I}_{s} \otimes \mathbf{I}_{t}\)</span>
+).</p>
+<p>The layout for this experiment is given in Figure <span class="math inline">\(2.3 .1\)</span> and the ANOVA
+table is provided in Table 2.3.1, where the sums of squares are written
+in summation notation and as quadratic forms,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span>, for <span class="math inline">\(m=1, \ldots, 5 .\)</span>
+The matrices <span class="math inline">\(\mathbf{A}_{1}, \mathbf{A}_{2}\)</span> and <span class="math inline">\(\mathbf{A}_{5}\)</span> for
+the sums of squares due to the mean, random factor <span class="math inline">\(S\)</span>, and the total
+and <span class="math inline">\(\mathbf{A}_{5}\)</span> for the sums of squares due to the mean, random
+factor <span class="math inline">\(S\)</span>, and the total respectively, were already derived in Example
+<span class="math inline">\(1.2 .10 .\)</span> Note that
+<span class="math inline">\(\left(\bar{Y}_{.1}, \ldots, \bar{Y}_{. t}\right)^{\prime}=\)</span>
+<span class="math inline">\(\left[(1 / s) \mathbf{1}_{s}^{\prime} \otimes \mathbf{I}_{t}\right] \mathbf{Y}\)</span>.
+Therefore, the sum of squares due to the random factor <span class="math inline">\(T\)</span> is
+<span class="math display">\[\begin{aligned}
+\sum_{i=1}^{s} \sum_{j=1}^{t}\left(\bar{Y}_{. j}-\bar{Y}_{. .}\right)^{2} &amp;=\sum_{i=1}^{s} \sum_{j=1}^{t} \bar{Y}_{. j}^{2}-s t \bar{Y}^{2} . . \\
+&amp;=s\left\{\left[(1 / s) \mathbf{1}_{s}^{\prime} \otimes \mathbf{I}_{t}\right] \mathbf{Y}\right\}^{\prime}\left\{\left[(1 / s) \mathbf{1}_{s}^{\prime} \otimes \mathbf{I}_{t}\right] \mathbf{Y}\right\}-\mathbf{Y}^{\prime}\left[\frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t}\right] \mathbf{Y}\\
+&amp;=\mathbf{Y}^{\prime}\left[\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \mathbf{Y} \\
+&amp;=\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}
+\end{aligned}\]</span></p>
+<div class="center">
+<p>Table 2.3.1 Two-Way ANOVA Table</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">df</th>
+<th align="left">SS</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mean</td>
+<td align="left">1</td>
+<td align="left"><span class="math inline">\(\sum_{i=1}^{s} \sum_{j=1}^{t} \bar{Y}^{2} . .\)</span></td>
+<td><span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{A}_{1} \mathbf{Y}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Factor <span class="math inline">\(S\)</span></td>
+<td align="left"><span class="math inline">\(s-1\)</span></td>
+<td align="left"><span class="math inline">\(\sum_{i=1}^{s} \sum_{j=1}^{t}\left(\bar{Y}_{i .}-\bar{Y} . .\right)^{2}\)</span></td>
+<td><span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Factor <span class="math inline">\(T\)</span></td>
+<td align="left"><span class="math inline">\(t-1\)</span></td>
+<td align="left"><span class="math inline">\(\sum_{i=1}^{s} \sum_{j=1}^{t}\left(\bar{Y}_{. j}-\bar{Y} . .\right)^{2}\)</span></td>
+<td><span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Interaction <span class="math inline">\(S T\)</span></td>
+<td align="left"><span class="math inline">\((s-1)(t-1)\)</span></td>
+<td align="left"><span class="math inline">\(\sum_{i=1}^{s} \sum_{j=1}^{t}\left(Y_{i j}-\bar{Y}_{i .}-\bar{Y}_{. j}+\bar{Y}_{. .}\right)^{2}\)</span></td>
+<td><span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Total <span class="math inline">\(s t\)</span> <span class="math inline">\(\sum_{i=1}^{s} \sum_{j=1}^{t} Y_{i j}^{2}\)</span> <span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{A}_{5} \mathbf{Y}\)</span></p>
+</div>
+<p>where the st <span class="math inline">\(\times\)</span> st matrix
+<span class="math inline">\(\mathbf{A}_{3}=\left[\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\)</span>.
+The matrix <span class="math inline">\(\mathbf{A}_{4}\)</span> for the sum of squares due to the random
+interaction can be solved by subtraction, <span class="math inline">\(\mathbf{A}_{4}=\)</span>
+<span class="math inline">\(\mathbf{A}_{5}-\mathbf{A}_{1}-\mathbf{A}_{2}-\mathbf{A}_{3}\)</span>, that is,
+<span class="math display">\[\begin{aligned}
+\mathbf{A}_{4}=&amp;\left[\mathbf{I}_{s} \otimes \mathbf{I}_{t}\right]-\left[\frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t}\right]-\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right] \\
+&amp;-\left[\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \\
+=&amp;\left[\mathbf{I}_{s} \otimes \mathbf{I}_{t}\right]-\left[\mathbf{I}_{s} \otimes \frac{1}{t} \mathbf{J}_{t}\right]-\left[\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \\
+=&amp;\left[\mathbf{I}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]-\left[\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \\
+=&amp;\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] .
+\end{aligned}\]</span> To find the distribution of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span>, note that
+<span class="math inline">\(\mathbf{A}_{2}\)</span> is an idempotent matrix of rank <span class="math inline">\(s-1\)</span>. Thus,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}=\mathbf{Y}^{\prime} \mathbf{P P}^{\prime} \mathbf{Y}=\mathbf{X}^{\prime} \mathbf{X}\)</span>
+where the <span class="math inline">\((s-1) \times 1\)</span> vector <span class="math inline">\(\mathbf{X}=\)</span>
+<span class="math inline">\(\left(X_{1}, \ldots, X_{s-1}\right)^{\prime}=\mathbf{P}^{\prime} \mathbf{Y}\)</span>,
+the <span class="math inline">\(s t \times(s-1)\)</span> matrix
+<span class="math inline">\(\mathbf{P}=\mathbf{P}_{s} \otimes(1 / \sqrt{t}) \mathbf{1}_{t}\)</span>, and
+the <span class="math inline">\((s-1) \times s\)</span> matrix <span class="math inline">\(\mathbf{P}_{S}^{\prime}\)</span> is the lower
+portion of an <span class="math inline">\(s\)</span>-dimensional Helmert matrix with
+<span class="math inline">\(\mathbf{P}_{s} \mathbf{P}_{s}^{\prime}=\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right), \mathbf{1}_{s}^{\prime} \mathbf{P}_{s}=\mathbf{0}_{1 \times(s-1)}\)</span>,
+and <span class="math inline">\(\mathbf{P}_{s}^{\prime} \mathbf{P}_{s}=\mathbf{I}_{s-1}\)</span>. By
+Theorem 2.1.2 with <span class="math inline">\((s-1) \times s t\)</span> matrix
+<span class="math inline">\(\mathbf{B}=\mathbf{P}^{\prime}\)</span> and <span class="math inline">\((s-1) \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=\mathbf{0}_{(s-1) \times 1}, \mathbf{X} \sim\)</span>
+<span class="math inline">\(\mathrm{N}_{s-1}\left(\mathbf{0},\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right) \mathbf{I}_{s-1}\right)\)</span>
+since
+<span class="math display">\[\mathbf{B}\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right)+\mathbf{b}=\left[\mathbf{P}_{s} \otimes(1 / \sqrt{t}) \mathbf{1}_{t}\right]^{\prime}\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right)=\mathbf{0}_{(s-1) \times 1}\]</span>
+and <span class="math display">\[\begin{aligned}
+\mathbf{B} &amp;\left[\sigma_{S}^{2} \mathbf{I}_{s} \otimes \mathbf{J}_{t}+\sigma_{T}^{2} \mathbf{J}_{s} \otimes \mathbf{I}_{t}+\sigma_{S T}^{2} \mathbf{I}_{s} \otimes \mathbf{I}_{t}\right] \mathbf{B}^{\prime} \\
+=&amp; \sigma_{S}^{2}\left[\mathbf{P}_{s}^{\prime} \mathbf{P}_{s} \otimes(1 / \sqrt{t}) \mathbf{1}_{t}^{\prime} \mathbf{J}_{t}\left((1 / \sqrt{t}) \mathbf{1}_{t}\right)\right] \\
+&amp;+\sigma_{T}^{2}\left[\mathbf{P}_{s}^{\prime} \mathbf{J}_{s} \mathbf{P}_{s} \otimes(1 / \sqrt{t}) \mathbf{1}_{t}^{\prime}\left((1 / \sqrt{t}) \mathbf{1}_{t}\right)\right] \\
+&amp;+\sigma_{S T}^{2}\left[\mathbf{P}_{s}^{\prime} \mathbf{P}_{s} \otimes(1 / \sqrt{t}) \mathbf{1}_{t}^{\prime}\left((1 / \sqrt{t}) \mathbf{1}_{t}\right)\right] \\
+=&amp;\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right) \mathbf{I}_{s-1} .
+\end{aligned}\]</span> Therefore,
+<span class="math inline">\(\left[1 / \sqrt{\left(\sigma_{S T}^{s}+t \sigma_{S}^{2}\right)}\right] \mathbf{X} \sim \mathbf{N}_{s-1}\left(\mathbf{0}, \mathbf{I}_{s-1}\right) .\)</span>
+From Example 1.3.2, <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y} /\)</span>
+<span class="math inline">\(\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right)=\mathbf{X}^{\prime} \mathbf{X} /\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right)\)</span>
+has a central chi-square distribution with <span class="math inline">\(s-1\)</span> degrees of freedom. The
+distributions of <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span> and the independence of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span>,
+and <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span> are left to the
+reader.</p>
+</div>
+<p>The preceding examples suggest the following general technique for
+finding the distribution of the quadratic form
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}\)</span> when
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>
+and <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span> idempotent matrix of rank <span class="math inline">\(r\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Set <span class="math inline">\(\mathbf{A}=\mathbf{P P}^{\prime}\)</span> where <span class="math inline">\(\mathbf{P}\)</span> is an
+<span class="math inline">\(n \times r\)</span> matrix of eigenvectors corresponding to the <span class="math inline">\(r\)</span>
+eigenvalues of <span class="math inline">\(\mathbf{A}\)</span> equal to <span class="math inline">\(1 .\)</span></p></li>
+<li><p>Let
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}=\mathbf{Y}^{\prime} \mathbf{P P}^{\prime} \mathbf{Y}=\mathbf{X}^{\prime} \mathbf{X}=\sum_{i=1}^{r} X_{i}^{2}\)</span>
+where the <span class="math inline">\(r \times 1\)</span> vector
+<span class="math inline">\(\mathbf{X}=\left(X_{1}, \ldots, X_{r}\right)^{\prime}=\mathbf{P}^{\prime} \mathbf{Y}\)</span>.
+Then find the distribution of <span class="math inline">\(\mathbf{X}\)</span>.</p></li>
+<li><p>Find the distribution of <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}\)</span> using
+the distribution of <span class="math inline">\(\mathbf{X}\)</span>.</p></li>
+</ol>
+<p>This technique is used in the next chapter to prove some general
+theorems about the distributions of quadratic forms.</p>
+</div>
+<div id="exercises-2" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> EXERCISES<a href="multivariate-normal-distribution-1.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Let the <span class="math inline">\(2 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{2}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>
+where <span class="math inline">\(\boldsymbol{\mu}=(0,0)^{\prime}\)</span> and
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{cc}
+1 &amp; 0.3 \\
+0.3 &amp; 1
+\end{array}\right]\]</span> Find a <span class="math inline">\(2 \times 2\)</span> triangular matrix
+<span class="math inline">\(\mathbf{T}\)</span> such that
+<span class="math inline">\(\mathbf{T Y} \sim \mathrm{N}_{2}\left(\mathbf{0}, \mathbf{I}_{2}\right) .\)</span></p></li>
+<li><p>Let the <span class="math inline">\(6 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}, Y_{4}, Y_{5}, Y_{6}\right)^{\prime} \sim \mathrm{N}_{6}(\mu, \Sigma)\)</span>
+where
+<span class="math inline">\(\boldsymbol{\mu}=\left(\mu_{1} \mathbf{1}_{3}^{\prime}, \mu_{2} \mathbf{1}_{2}^{\prime}, \mu_{3}\right)^{\prime}\)</span>
+and <span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{ccc}
+0.5 \mathbf{I}_{3}+0.5 \mathbf{J}_{3} &amp; \mathbf{0} &amp; \mathbf{0} \\
+\mathbf{0} &amp; 0.3 \mathbf{I}_{2}+0.7 \mathbf{J}_{2} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \mathbf{0} &amp; 1
+\end{array}\right]\]</span> Find the distribution of the <span class="math inline">\(3 \times 1\)</span>
+random vector
+<span class="math inline">\(\overline{\mathbf{Y}}=\left(\tilde{Y}_{1}, \bar{Y}_{2}, \bar{Y}_{3}\right)^{\prime}\)</span>
+where
+<span class="math inline">\(\bar{Y}_{1}=\frac{1}{3}\left(Y_{1}+Y_{2}+Y_{3}\right), \bar{Y}_{2}=\frac{1}{2}\left(Y_{4}+Y_{5}\right)\)</span>,
+and <span class="math inline">\(\bar{Y}_{3}=Y_{6}\)</span></p></li>
+<li><p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathrm{N}_{n}(\mathbf{0}, \mathbf{\Sigma})\)</span>
+where the <span class="math inline">\(n \times n_{i}\)</span> covariance matrix
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{cccc}
+w_{1}^{-1} &amp; &amp; &amp; \\
+&amp; w_{2}^{-1} &amp; &amp; \mathbf{0} \\
+\mathbf{0} &amp; \ddots &amp; \\
+&amp; &amp; &amp; w_{n}^{-1}
+\end{array}\right]\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of <span class="math inline">\(Y^{*}\)</span>. Rewrite <span class="math inline">\(Y^{*}\)</span> in terms of
+the <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{W}=\left(w_{1}, \ldots, w_{n}\right)^{\prime}\)</span> and the
+<span class="math inline">\(n \times 1\)</span> vector <span class="math inline">\(\mathbf{Y}\)</span>.</p></li>
+<li><p>Find the distribution of <span class="math inline">\(\sum_{i=1}^{n} w_{i} Y_{i}^{2}\)</span>.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(9 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{9}(\mu, \Sigma)\)</span> where the mean vector
+<span class="math inline">\(\boldsymbol{\mu}=\)</span>
+<span class="math inline">\(\left(\mu_{1} \mathbf{1}_{2}^{\prime}, \mu_{2} \mathbf{1}_{4}^{\prime}, \mu_{3} \mathbf{1}_{3}^{\prime}\right)^{\prime}\)</span>
+and covariance matrix
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{llll}
+\boldsymbol{\Sigma}_{1} &amp; &amp; &amp; \\
+&amp; &amp; &amp; 0 \\
+&amp; &amp; \boldsymbol{\Sigma}_{2} &amp; \\
+&amp; 0 &amp; &amp; \boldsymbol{\Sigma}_{3}
+\end{array}\right]\]</span> with
+<span class="math inline">\(\boldsymbol{\Sigma}_{i}=(a-b) \mathbf{I}_{n_{i}}+b \mathbf{J}_{n_{i}}\)</span>
+for <span class="math inline">\(i=1,2,3\)</span> and <span class="math inline">\(n_{1}=2, n_{2}=4\)</span>, and <span class="math inline">\(n_{3}=3\)</span>. Also let
+<span class="math display">\[\mathbf{A}=\left[\begin{array}{llll}
+\mathbf{A}_{1} &amp; &amp; &amp; \\
+&amp; &amp; 0 &amp; \\
+&amp; &amp; \mathbf{A}_{2}  &amp; \\
+&amp; 0 &amp;  &amp; \mathbf{A}_{3}
+\end{array}\right]\]</span> where
+<span class="math inline">\(\mathbf{A}_{i}=\mathbf{I}_{n_{i}}-\frac{1}{n_{i}} \mathbf{J}_{n_{i}}\)</span>
+for <span class="math inline">\(i=1,2,3 .\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Define a <span class="math inline">\(9 \times 6\)</span> matrix <span class="math inline">\(\mathbf{P}\)</span> such that
+<span class="math inline">\(\mathbf{A}=\mathbf{P P}^{\prime}\)</span>.</p></li>
+<li><p>Find the distribution of <span class="math inline">\(\mathbf{P}^{\prime} \mathbf{Y}\)</span>.</p></li>
+<li><p>Find the distribution of <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}\)</span>.</p></li>
+</ol></li>
+<li><p>Let <span class="math inline">\(Y_{i j k}=\mu_{i}+S_{i j}+T_{i j k}\)</span> for
+<span class="math inline">\(i=1, \ldots, a ; j=1, \ldots, s ;\)</span> and <span class="math inline">\(k=1, \ldots, t\)</span> where
+<span class="math inline">\(S_{i j} \sim\)</span> iid <span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{S}^{2}\right)\)</span>
+and independent of <span class="math inline">\(T_{i j k} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{T}^{2}\right)\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of the <span class="math inline">\(a \times 1\)</span> random vector
+<span class="math inline">\(\left(\bar{Y}_{1 . .}, \ldots, \bar{Y}_{a . .}\right)^{\prime}\)</span>
+where
+<span class="math inline">\(\bar{Y}_{i . .}=\sum_{j=1}^{s} \sum_{k=1}^{t} Y_{i j k} /(s t) .\)</span></p></li>
+<li><p>Find the distribution of the <span class="math inline">\(a s \times 1\)</span> random vector
+<span class="math inline">\(\bar{Y}_{11 .}-\bar{Y}_{1 . .}, \ldots, \bar{Y}_{1 s .}-\)</span>
+<span class="math inline">\(\left.\bar{Y}_{1 . .}, \ldots, \bar{Y}_{a 1 .}-\bar{Y}_{a . .}, \ldots, \bar{Y}_{a s .}-\bar{Y}_{a . .}\right)^{\prime}\)</span>
+where <span class="math inline">\(\bar{Y}_{i j .}=\sum_{k=1}^{t} Y_{i j k} / t\)</span></p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathbf{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>
+where <span class="math inline">\(\boldsymbol{\mu}=\alpha \mathbf{1}_{n}\)</span> and
+<span class="math inline">\(\Sigma=(a-b) \mathbf{I}_{n}+b \mathbf{J}_{n} .\)</span> Let
+<span class="math inline">\(\bar{Y} .=\sum_{i=1}^{n} Y_{i} / n\)</span> and
+<span class="math inline">\(U=\sum_{i=1}^{n}\left(Y_{i}-\bar{Y} .\right)^{2}\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of <span class="math inline">\(\bar{Y}\)</span>.</p></li>
+<li><p>Find the distribution of <span class="math inline">\(U\)</span>.</p></li>
+<li><p>Are <span class="math inline">\(\bar{Y}\)</span>. and <span class="math inline">\(U\)</span> independent? Prove your answer.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(3 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}\right)^{\prime} \sim \mathrm{N}_{3}(\mu, \Sigma)\)</span>
+where <span class="math inline">\(\boldsymbol{\mu}=\)</span> <span class="math inline">\((0,1,2)^{\prime}\)</span> and
+<span class="math display">\[\mathbf{\Sigma}=\left[\begin{array}{lll}
+1 &amp; 1 &amp; 2 \\
+1 &amp; 4 &amp; 3 \\
+2 &amp; 3 &amp; 9
+\end{array}\right]\]</span> Let <span class="math inline">\(Z=(2,-1,-1) \mathbf{Y}\)</span>. Find a random
+variable <span class="math inline">\(U=\mathbf{b}^{\prime} \mathbf{Y}\)</span> where <span class="math inline">\(\mathbf{b}=\)</span>
+<span class="math inline">\(\left(b_{1}, b_{2}, b_{3}\right)^{\prime}\)</span> such that <span class="math inline">\(E(U)=0\)</span> and
+<span class="math inline">\(U\)</span> is independent of <span class="math inline">\(Z\)</span>.</p></li>
+<li><p>Let the <span class="math inline">\(9 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, Y_{12}, Y_{21}, Y_{22}, Y_{23}, Y_{31}, Y_{32}, Y_{33}, Y_{34}\right)^{\prime} \sim\)</span>
+<span class="math inline">\(\mathrm{N}_{9}\left(\mu, \sigma^{2} \mathbf{I}_{9}\right)\)</span> where
+<span class="math inline">\(\mu=\left(\mu_{1} \mathbf{I}_{2}^{\prime}, \mu_{2} \mathbf{1}_{3}^{\prime}, \mu_{3} \mathbf{1}_{4}^{\prime}\right)^{\prime}\)</span>.
+Let <span class="math inline">\(\bar{Y}_{i}=\sum_{j=1}^{r_{i}} Y_{i j} / r_{i}\)</span> for
+<span class="math inline">\(r_{1}=2, r_{2}=3\)</span>, and <span class="math inline">\(r_{3}=4\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Find a linear combination of <span class="math inline">\(\bar{Y}_{1 .}, \bar{Y}_{2 .}\)</span>, and
+<span class="math inline">\(\bar{Y}_{3 .}\)</span> that is independent of
+<span class="math inline">\(\bar{Y}_{1 .}-\bar{Y}_{2 .}\)</span>. Prove your result.</p></li>
+<li><p>What is the distribution of the linear combination you found in
+part a?</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(\left(n_{1}+n_{2}\right) \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, \ldots, Y_{1 n_{1}}, \ldots, Y_{21}, \ldots, Y_{2 n_{2}}\right)^{\prime} \sim\)</span>
+<span class="math inline">\(\mathbf{N}_{n_{1}+n_{2}}\left(\alpha \mathbf{1}_{n_{1}+n_{2}}, \sigma^{2} \mathbf{I}_{n_{1}}+n_{2}\right) .\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of <span class="math inline">\(\bar{Y}_{1 .}-\bar{Y}_{2 .}\)</span> where
+<span class="math inline">\(\bar{Y}_{i .}=\sum_{i=1}^{n_{i}} Y_{i j} / n_{i}\)</span> for <span class="math inline">\(i=1,2\)</span>.</p></li>
+<li><p>Find the distribution of
+<span class="math inline">\(\left(\bar{Y}_{1 .}-\bar{Y}_{2 .}\right)^{2}\)</span>.</p></li>
+</ol></li>
+<li><p>Let <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{Y}\)</span> is an <span class="math inline">\(n \times 1\)</span> random vector, <span class="math inline">\(\mathbf{X}\)</span> is an
+<span class="math inline">\(n \times p\)</span> matrix of known constants, <span class="math inline">\(\boldsymbol{\beta}\)</span> is a
+<span class="math inline">\(p \times 1\)</span> vector of unknown constants, and <span class="math inline">\(\mathbf{E}\)</span> is an
+<span class="math inline">\(n \times 1\)</span> random vector. Assume
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of
+<span class="math inline">\(\hat{\boldsymbol{\beta}}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>.</p></li>
+<li><p>Find the rank <span class="math inline">\([\operatorname{cov}(\hat{\mathbf{Y}})]\)</span> where
+<span class="math inline">\(\hat{\mathbf{Y}}=\mathbf{X} \hat{\boldsymbol{\beta}}\)</span>.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(3 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}\right)^{\prime} \sim \mathrm{N}_{3}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{3}\right)\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of <span class="math inline">\(Y_{1}+2 Y_{2}-Y_{3}\)</span>.</p></li>
+<li><p>Show that <span class="math inline">\(Y_{1}+2 Y_{2}-Y_{3}\)</span> is independent of
+<span class="math inline">\(2 Y_{1}^{2}+Y_{2}^{2}+2 Y_{3}^{2}-2 Y_{1} Y_{2}+2 Y_{2} Y_{3}\)</span>.</p></li>
+<li><p>Find a constant <span class="math inline">\(c\)</span> such that
+<span class="math inline">\(c\left[5 Y_{1}^{2}+2 Y_{2}^{2}+5 Y_{3}^{2}-4 Y_{1} Y_{2}+2 Y_{1} Y_{3}+4 Y_{2} Y_{3}\right]\)</span>
+has a central chi-square distribution.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(4 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}, Y_{4}\right)^{\prime} \sim \mathrm{N}_{4}(\mu, \Sigma)\)</span>
+where <span class="math inline">\(\boldsymbol{\mu}=\)</span> <span class="math inline">\((2,3,0,-1)^{\prime}\)</span> and
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{rrrr}
+11 &amp; 5 &amp; 1 &amp; -1 \\
+5 &amp; 11 &amp; -1 &amp; 1 \\
+1 &amp; -1 &amp; 11 &amp; 5 \\
+-1 &amp; 1 &amp; 5 &amp; 11
+\end{array}\right]\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the conditional distribution of
+<span class="math inline">\(Y_{1}+Y_{2} \mid Y_{3}+Y_{4}=1\)</span>.</p></li>
+<li><p>Show that the conditional mean of
+<span class="math inline">\(Y_{3} \mid Y_{1}=y_{1}, Y_{2}=y_{2}\)</span> has the form
+<span class="math inline">\(\beta_{0}+\beta_{1} y_{1}+\beta_{2} y_{2}\)</span> and find the values
+of the <span class="math inline">\(\beta\)</span> ’s.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(3 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}\right)^{\prime} \sim \mathrm{N}_{3}(\mu, \Sigma)\)</span>
+where <span class="math inline">\(\boldsymbol{\mu}=\)</span> <span class="math inline">\((1,2,-2)^{\prime}\)</span> and
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{rrr}
+2 &amp; 0 &amp; -1 \\
+0 &amp; 3 &amp; 1 \\
+-1 &amp; 1 &amp; 4
+\end{array}\right]\]</span> Find the conditional distribution of
+<span class="math inline">\(Y_{1}+Y_{2}+Y_{3} \mid Y_{2}+Y_{3}=1\)</span>.</p></li>
+<li><p>Let the <span class="math inline">\(4 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}, Y_{4}\right)^{\prime} \sim \mathbf{N}_{4}(\mu, \Sigma)\)</span>
+where <span class="math inline">\(\boldsymbol{\mu}=\)</span> <span class="math inline">\((1,0,2,-1)^{\prime}\)</span> and
+<span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{llll}
+4 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 2 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 3 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 4
+\end{array}\right]\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the marginal distribution of
+<span class="math inline">\(\left(Y_{1}, Y_{3}\right)^{\prime}\)</span>.</p></li>
+<li><p>Find the partial (i.e., conditional) correlation of <span class="math inline">\(Y_{1}\)</span> and
+<span class="math inline">\(Y_{2}\)</span> given <span class="math inline">\(Y_{3}=2\)</span>.</p></li>
+<li><p>Find the distribution of <span class="math inline">\(4 Y_{1}-Y_{2}-2\)</span>.</p></li>
+<li><p>Find a normally distributed random variable <span class="math inline">\(Z\)</span> which is a
+(nontrivial) function of <span class="math inline">\(Y_{1}\)</span> and <span class="math inline">\(Y_{2}\)</span> and is independent
+of <span class="math inline">\(4 Y_{1}-Y_{2}-2\)</span>.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathrm{N}_{n}\left(\alpha \mathbf{1}_{n}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>
+for <span class="math inline">\(n \geq 3 .\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the conditional expectation of
+<span class="math inline">\(\frac{1}{2}\left(Y_{2}+Y_{3}\right) \mid \bar{Y}\)</span> where
+<span class="math inline">\(\bar{Y}=\sum_{i=1}^{n} Y_{i} / n\)</span>; that is, find
+<span class="math inline">\(\mathrm{E}\left[\frac{1}{2}\left(Y_{2}+Y_{3}\right) \mid \bar{Y}\right]\)</span>.</p></li>
+<li><p>Show that the variance of
+<span class="math inline">\(\mathrm{E}\left[\frac{1}{2}\left(Y_{2}+Y_{3}\right) \mid \bar{Y}\right]\)</span>
+is smaller than the variance of
+<span class="math inline">\(\frac{1}{2}\left(Y_{2}+Y_{3}\right)\)</span></p></li>
+</ol></li>
+<li><p>Let <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> be independent normal random variables with 0 means
+and variances <span class="math inline">\(\sigma^{2}\)</span> and <span class="math inline">\(1-\sigma^{2}\)</span>, respectively,
+<span class="math inline">\(0&lt;\sigma^{2}&lt;1\)</span>. Find the conditional distribution of <span class="math inline">\(F\)</span> given
+<span class="math inline">\(F+G=c\)</span>.</p></li>
+<li><p>Let the <span class="math inline">\(3 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}\right)^{\prime} \sim \mathrm{N}_{3}(\mu, \boldsymbol{\Sigma})\)</span>.
+Show that the variance of <span class="math inline">\(Y_{1}\)</span> in the conditional distribution of
+<span class="math inline">\(Y_{1}\)</span> given <span class="math inline">\(Y_{2}\)</span> is greater than or equal to the variance of
+<span class="math inline">\(Y_{1}\)</span> in the conditional distribution of <span class="math inline">\(Y_{1}\)</span> given <span class="math inline">\(Y_{2}\)</span> and
+<span class="math inline">\(Y_{3}\)</span>.</p></li>
+</ol>
+<p><span class="math display">\[\text { This Page Intentionally Left Blank }\]</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multivariate-normal-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distributions-of-quadratic-forms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

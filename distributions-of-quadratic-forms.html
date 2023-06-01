@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Distributions of Quadratic Forms | Linear Models</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Distributions of Quadratic Forms | Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Distributions of Quadratic Forms | Linear Models" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Barry Kurt" />
+
+
+<meta name="date" content="2023-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multivariate-normal-distribution-1.html"/>
+<link rel="next" href="complete-balanced-factorial-experiments.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra and Related Introductory Topics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#elementary-matrix-concepts"><i class="fa fa-check"></i><b>1.1</b> ELEMENTARY MATRIX CONCEPTS</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#kronecker-products"><i class="fa fa-check"></i><b>1.2</b> KRONECKER PRODUCTS</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#random-vectors"><i class="fa fa-check"></i><b>1.3</b> RANDOM VECTORS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#multivariate-normal-distribution-function"><i class="fa fa-check"></i><b>2.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="2.2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#conditional-distributions-of-multivariate-normal-random-vectors"><i class="fa fa-check"></i><b>2.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="2.3" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#distributions-of-certain-quadratic-forms"><i class="fa fa-check"></i><b>2.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="2.4" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#exercises-1"><i class="fa fa-check"></i><b>2.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html"><i class="fa fa-check"></i><b>3</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-function-1"><i class="fa fa-check"></i><b>3.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="3.2" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#conditional-distributions-of-multivariate-normal-random-vectors-1"><i class="fa fa-check"></i><b>3.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="3.3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#distributions-of-certain-quadratic-forms-1"><i class="fa fa-check"></i><b>3.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="3.4" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#exercises-2"><i class="fa fa-check"></i><b>3.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html"><i class="fa fa-check"></i><b>4</b> Distributions of Quadratic Forms</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#quadratic-forms-of-normal-random-vectors"><i class="fa fa-check"></i><b>4.1</b> QUADRATIC FORMS OF NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#independence"><i class="fa fa-check"></i><b>4.2</b> INDEPENDENCE</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#the-boldsymbolt-and-boldsymbolf-distributions"><i class="fa fa-check"></i><b>4.3</b> THE <span class="math inline">\(\boldsymbol{t}\)</span> AND <span class="math inline">\(\boldsymbol{F}\)</span> DISTRIBUTIONS</a></li>
+<li class="chapter" data-level="4.4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#bhats-lemma"><i class="fa fa-check"></i><b>4.4</b> BHAT’S LEMMA</a></li>
+<li class="chapter" data-level="4.5" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html"><i class="fa fa-check"></i><b>5</b> Complete, Balanced Factorial Experiments</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-admit-restrictions-finite-models"><i class="fa fa-check"></i><b>5.1</b> MODELS THAT ADMIT RESTRICTIONS (FINITE MODELS)</a></li>
+<li class="chapter" data-level="5.2" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-do-not-admit-restrictions-infinite-models"><i class="fa fa-check"></i><b>5.2</b> MODELS THAT DO NOT ADMIT RESTRICTIONS (INFINITE MODELS)</a></li>
+<li class="chapter" data-level="5.3" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#sum-of-squares-and-covariance-matrix-algorithms"><i class="fa fa-check"></i><b>5.3</b> SUM OF SQUARES AND COVARIANCE MATRIX ALGORITHMS</a></li>
+<li class="chapter" data-level="5.4" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#expected-mean-squares"><i class="fa fa-check"></i><b>5.4</b> EXPECTED MEAN SQUARES</a></li>
+<li class="chapter" data-level="5.5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#algorithm-applications"><i class="fa fa-check"></i><b>5.5</b> ALGORITHM APPLICATIONS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="least-squares-regression.html"><a href="least-squares-regression.html"><i class="fa fa-check"></i><b>6</b> Least-Squares Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="least-squares-regression.html"><a href="least-squares-regression.html#ordinary-least-squares-estimation"><i class="fa fa-check"></i><b>6.1</b> ORDINARY LEAST-SQUARES ESTIMATION</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html"><i class="fa fa-check"></i><b>7</b> Maximum Likelihood Estimation and Related Topics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimators-of-beta-and-sigma2"><i class="fa fa-check"></i><b>7.1</b> MAXIMUM LIKELIHOOD ESTIMATORS OF <span class="math inline">\(\beta\)</span> AND <span class="math inline">\(\sigma^{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="distributions-of-quadratic-forms" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Distributions of Quadratic Forms<a href="distributions-of-quadratic-forms.html#distributions-of-quadratic-forms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The distribution of the quadratic form
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\)</span> is now derived when
+<span class="math inline">\(\mathbf{Y} \sim \mathbf{N}_{n}\left(\mathbf{0}, \mathbf{I}_{n}\right) .\)</span>
+Later, the distribution of <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}\)</span> is
+developed when
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\mathbf{0}, \mathbf{\Sigma})\)</span> for any
+positive definite <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
+<div id="quadratic-forms-of-normal-random-vectors" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> QUADRATIC FORMS OF NORMAL RANDOM VECTORS<a href="distributions-of-quadratic-forms.html#quadratic-forms-of-normal-random-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A chi-square random variable with <span class="math inline">\(n\)</span> degrees of freedom and the
+noncentrality parameter <span class="math inline">\(\lambda\)</span> will be designated by
+<span class="math inline">\(\chi_{n}^{2}(\lambda) .\)</span> Therefore, a central chi-square random
+variable with <span class="math inline">\(n\)</span> degrees of freedom is denoted by
+<span class="math inline">\(\chi_{n}^{2}(\lambda=0)\)</span> or <span class="math inline">\(\chi_{n}^{2}(0)\)</span>.</p>
+<div class="teo">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}\left(\mathbf{0}, \mathbf{I}_{n}\right)\)</span>
+then <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y} \sim\)</span> <span class="math inline">\(\chi_{p}^{2}(\lambda=0)\)</span>
+if and only if <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span> idempotent matrix of rank
+<span class="math inline">\(p .\)</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span><em>Proof.</em> First assume <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span> idempotent matrix
+of rank <span class="math inline">\(p\)</span>. By Theorem 1.1.10, <span class="math inline">\(\mathbf{A}=\mathbf{P P}^{\prime}\)</span> where
+<span class="math inline">\(\mathbf{P}\)</span> is an <span class="math inline">\(n \times p\)</span> matrix of eigenvectors with
+<span class="math inline">\(\mathbf{P}^{\prime} \mathbf{P}=\mathbf{I}_{p} .\)</span> Let the <span class="math inline">\(p \times 1\)</span>
+random vector <span class="math inline">\(\mathbf{X}=\mathbf{P}^{\prime} \mathbf{Y}\)</span>. By Theorem
+<span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\(p \times n\)</span> matrix <span class="math inline">\(\mathbf{B}=\mathbf{P}^{\prime}\)</span> and
+<span class="math inline">\(p \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=\mathbf{0}_{p \times 1}, \mathbf{X}=\left(X_{1}, \ldots, X_{p}\right)^{\prime} \sim \mathrm{N}_{p}\left(\mathbf{0}, \mathbf{I}_{p}\right) .\)</span>
+Therefore, by Example 1.3.2, Y’AY
+<span class="math inline">\(=\mathbf{Y}^{\prime} \mathbf{P} \mathbf{P}^{\prime} \mathbf{Y}=\mathbf{X}^{\prime} \mathbf{X}=\sum_{i=1}^{p} X_{i}^{2} \sim \chi_{p}^{2}(\lambda=0) .\)</span>
+Next assume that
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y} \sim \chi_{p}^{2}(\lambda=0)\)</span>.
+Therefore, the moment generating function of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}\)</span> is <span class="math inline">\((1-2 t)^{-p / 2}\)</span>. But the moment
+generating function of <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}\)</span> is also
+defined as <span class="math display">\[\begin{aligned}
+m_{\mathbf{Y}^{\prime} \mathbf{A Y}}(t) &amp;=\mathrm{E}\left[e^{t \mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}}\right] \\
+&amp;=\int \cdots \int(2 \pi)^{-n / 2} e^{\left[t \mathbf{y}^{\prime} \mathbf{A} \mathbf{y}-\mathbf{y}^{\prime} \mathbf{y} / 2\right]} d y_{1} \ldots d y_{n} \\
+&amp;=\int \cdots \int(2 \pi)^{-n / 2} e^{\left[\mathbf{y}^{\prime}\left(\mathbf{I}_{n}-2 t \mathbf{A}\right) \mathbf{y} / 2\right]} d y_{1} \ldots d y_{n} \\
+&amp;=\left|\mathbf{I}_{n}-2 t \mathbf{A}\right|^{-1 / 2}
+\end{aligned}\]</span> The final equality holds since the last integral
+equation is the integral of a multivariate normal distribution (without
+the Jacobian <span class="math inline">\(\left|\mathbf{I}_{n}-2 t \mathbf{A}\right|^{1 / 2}\)</span> ) with
+mean vector <span class="math inline">\(\mathbf{0}_{n \times 1}\)</span> and covariance matrix
+<span class="math inline">\(\left(\mathbf{I}_{n}-2 t \mathbf{A}\right)^{-1}\)</span>. The two forms of the
+moment generating function must be equal for all <span class="math inline">\(t\)</span> in some
+neighborhood of zero. Therefore,
+<span class="math display">\[(1-2 t)^{-p / 2}=\left|\mathbf{I}_{n}-2 t \mathbf{A}\right|^{-1 / 2}\]</span>
+or <span class="math display">\[(1-2 t)^{p}=\left|\mathbf{I}_{n}-2 t \mathbf{A}\right|\]</span> Let
+<span class="math inline">\(\mathbf{Q}\)</span> be the <span class="math inline">\(n \times n\)</span> matrix of eigenvectors and <span class="math inline">\(\mathbf{D}\)</span>
+be the <span class="math inline">\(n \times n\)</span> diagonal matrix of eigenvalues of <span class="math inline">\(\mathbf{A}\)</span> where
+the eigenvalues are given by <span class="math inline">\(\lambda_{1}, \ldots, \lambda_{n} .\)</span> By
+Theorem
+<span class="math inline">\(1.1 .3, \mathbf{Q}^{\prime} \mathbf{A} \mathbf{Q}=\mathbf{D}, \mathbf{Q}^{\prime} \mathbf{Q}=\mathbf{I}_{n}\)</span>,
+and <span class="math display">\[\begin{aligned}
+\left|\mathbf{I}_{n}-2 t \mathbf{A}\right| &amp;=\left(\left|\mathbf{Q}^{\prime} \mathbf{Q}\right|\right)\left(\left|\mathbf{I}_{n}-2 t \mathbf{A}\right|\right) \\
+&amp;=\left|\mathbf{Q}^{\prime}\left(\mathbf{I}_{n}-2 t \mathbf{A}\right) \mathbf{Q}\right| \\
+&amp;=\left|\mathbf{I}_{n}-2 t \mathbf{Q}^{\prime} \mathbf{A} \mathbf{Q}\right| \\
+&amp;\left.=\mid \mathbf{I}_{n}-2 t \mathbf{D}\right] \\
+&amp;=\prod_{i=1}^{n}\left(1-2 t \lambda_{i}\right)
+\end{aligned}\]</span> Therefore,
+<span class="math inline">\((1-2 t)^{p}=\prod_{i=1}^{n}\left(1-2 t \lambda_{i}\right) .\)</span> The left
+side of the equation is a polynomial in <span class="math inline">\(2 t\)</span> with highest power <span class="math inline">\(p\)</span>.
+The right side of the equation therefore must have highest power <span class="math inline">\(p\)</span> in
+<span class="math inline">\(2 t\)</span> also, implying that <span class="math inline">\((n-p)\)</span> of the <span class="math inline">\(\lambda_{i}\)</span> ’s are zero.
+Thus, the equation becomes
+<span class="math inline">\((1-2 t)^{p}=\prod_{i=1}^{p}\left(1-2 t \lambda_{i}\right)\)</span>. Taking
+logarithms of each side and equating coefficients produces
+<span class="math inline">\(1-2 t=1-2 t \lambda_{i}\)</span> for <span class="math inline">\(i=1, \ldots, p\)</span>. The solution to these
+equations is <span class="math inline">\(\lambda_{1}=\cdots=\lambda_{p}=1\)</span>. Therefore, by Theorem
+1.1.8, <span class="math inline">\(\mathbf{A}\)</span> is an idempotent matrix. ◻</p>
+</div>
+<p>Thus far we have concentrated on central chi-square random variables
+(i.e., <span class="math inline">\(\lambda=0\)</span> ). However, in general, if the <span class="math inline">\(n \times 1\)</span> random
+vector <span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}\left(\mu, \mathbf{I}_{n}\right)\)</span>
+then <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y} \sim \chi_{p}^{2}(\lambda)\)</span> where
+<span class="math inline">\(\mu\)</span> is any <span class="math inline">\(n \times 1\)</span> mean vector and the noncentrality parameter is
+given by
+<span class="math inline">\(\lambda = \boldsymbol{\mu}^{\prime} \mathbf{A} \boldsymbol{\mu} / 2\)</span>.</p>
+<p>The next theorem considers the distribution of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\)</span> when
+<span class="math inline">\(\mathbf{Y} \sim \mathbf{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>
+and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is a positive definite matrix of rank <span class="math inline">\(n\)</span>.</p>
+<div class="teo">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\mu, \Sigma)\)</span> where
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span> is an <span class="math inline">\(n \times n\)</span> positive definite matrix of
+rank <span class="math inline">\(n .\)</span> Then
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y} \sim \chi_{p}^{2}\left(\lambda=\mu^{\prime} \mathbf{A} \boldsymbol{\mu} / 2\right)\)</span>
+if and only if any of the following conditions are satisfied: (1)
+A<span class="math inline">\(\mathbf{\Sigma}\)</span> (or <span class="math inline">\(\mathbf{\Sigma A}\)</span> ) is an idempotent matrix of
+rank p or (2) <span class="math inline">\(\mathbf{A} \mathbf{\Sigma} \mathbf{A}=\mathbf{A}\)</span> and
+<span class="math inline">\(\mathbf{A}\)</span> has rank <span class="math inline">\(p\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math inline">\(\quad\)</span> Let
+<span class="math inline">\(\mathbf{Z}=\mathbf{T}^{-1}(\mathbf{Y}-\boldsymbol{\mu})\)</span> where
+<span class="math inline">\(\boldsymbol{\Sigma}=\mathbf{T T}^{\prime} .\)</span> By Theorem <span class="math inline">\(2.1 .2\)</span> with
+<span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{B}=\mathbf{T}^{-1}\)</span> and <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=-\mathbf{T}^{-1} \boldsymbol{\mu}, \mathbf{Z} \sim \mathbf{N}_{n}\left(\mathbf{0}, \mathbf{I}_{n}\right) .\)</span>
+Furthermore,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}=(\mathbf{T Z}+\mu)^{\prime} \mathbf{A}(\mathbf{T Z}+\mu)=\left(\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\right)^{\prime} \mathbf{T}^{\prime} \mathbf{A T}\left(\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\right)=\mathbf{V}^{\prime} \mathbf{R V}\)</span>
+where <span class="math inline">\(\mathbf{V}=\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\)</span> and
+<span class="math inline">\(\mathbf{R}=\mathbf{T}^{\prime} \mathbf{A T}\)</span>. By Theorem <span class="math inline">\(2.1 .2\)</span> with
+<span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{B}=\mathbf{I}_{n}\)</span> and <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=\mathbf{T}^{-1} \boldsymbol{\mu}, \mathbf{V} \sim \mathbf{N}_{n}\left(\mathbf{T}^{-1} \boldsymbol{\mu}, \mathbf{I}_{n}\right) .\)</span>
+By Theorem
+<span class="math inline">\(3.1 .1, \mathbf{V}^{\prime} \mathbf{R V} \sim \chi_{p}^{2}(\lambda)\)</span> if
+and only if <span class="math inline">\(\mathbf{R}\)</span> is idempotent of rank <span class="math inline">\(p .\)</span> But <span class="math inline">\(\mathbf{R}\)</span> is
+idempotent if and only if
+<span class="math inline">\(\left(\mathbf{T}^{\prime} \mathbf{A T}\right)\left(\mathbf{T}^{\prime} \mathbf{A T}\right)=\mathbf{T}^{\prime} \mathbf{A T}\)</span>
+or equivalently
+<span class="math inline">\(\mathbf{A} \mathbf{\Sigma}=\mathbf{A} \mathbf{\Sigma} \mathbf{A} \mathbf{\Sigma}\)</span>.
+Therefore, <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y} \sim \chi_{p}^{2}(\lambda)\)</span>
+if and only if <span class="math inline">\(\mathbf{A} \boldsymbol{\Sigma}\)</span> is idempotent. Finally,
+<span class="math inline">\(p=\)</span>
+<span class="math inline">\(\operatorname{rank}(\mathbf{R})=\operatorname{rank}\left(\mathbf{T}^{\prime} \mathbf{A T}\right)=\operatorname{rank}\left(\mathbf{A T T}^{\prime}\right)=\operatorname{rank}(\mathbf{A} \mathbf{\Sigma})\)</span>
+since <span class="math inline">\(\mathbf{T}\)</span> is nonsingular. Also,
+<span class="math inline">\(\lambda=\left(\mathbf{T}^{-1} \boldsymbol{\mu}\right)^{\prime} \mathbf{R}\left(\mathbf{T}^{-1} \boldsymbol{\mu}\right) / 2=\boldsymbol{\mu}^{\prime} \mathbf{T}^{-1 /} \mathbf{T}^{\prime} \mathbf{A T T}^{-1} \boldsymbol{\mu}=\boldsymbol{\mu}^{\prime} \mathbf{A} \boldsymbol{\mu} / 2 .\)</span>
+The proofs for <span class="math inline">\(\Sigma \mathbf{A}\)</span> idempotent of rank <span class="math inline">\(p\)</span> or
+<span class="math inline">\(\mathbf{A} \Sigma \mathbf{A}=\mathbf{A}\)</span> of rank <span class="math inline">\(p\)</span> are left to the
+reader. ◻</p>
+</div>
+<p>It is convenient to make an observation at this point. In most
+applications it is more natural to show that
+<span class="math inline">\(\mathbf{A} \mathbf{\Sigma}\)</span> is a multiple of an idempotent matrix. We
+therefore state the following two corollaries which are direct
+consequences of Theorem <span class="math inline">\(3.1 .2\)</span>.</p>
+<div class="cor">
+<p><span class="math inline">\(a\)</span> Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathbf{N}_{n}(\mu, \mathbf{\Sigma})\)</span> where
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span> is an <span class="math inline">\(n \times n\)</span> positive definite matrix of
+rank <span class="math inline">\(n .\)</span> Then
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y} \sim c \chi_{p}^{2}\left(\lambda=\boldsymbol{\mu}^{\prime} \mathbf{A} \boldsymbol{\mu} /(2 c)\right)\)</span>
+if and only if (1) <span class="math inline">\(\mathbf{A} \mathbf{\Sigma}(\)</span> or <span class="math inline">\(\mathbf{\Sigma A})\)</span>
+is a multiple of an idempotent matrix of rank <span class="math inline">\(p\)</span> where the multiple is
+c or (2) <span class="math inline">\(\mathbf{A} \mathbf{\Sigma} \mathbf{A}=c \mathbf{A}\)</span> and
+<span class="math inline">\(\mathbf{A}\)</span> has rank <span class="math inline">\(p\)</span>.</p>
+</div>
+<div class="cor">
+<p><span class="math inline">\(b\)</span> If the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{V}\right)\)</span>
+where <span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times n\)</span> positive definite matrix of known
+constants then
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{V}^{-1} \mathbf{Y} / \sigma^{2} \sim \chi_{n}^{2}(\lambda=0)\)</span>.</p>
+</div>
+<p>There are cases where
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>
+but <span class="math inline">\(\mathbf{A} \boldsymbol{\Sigma}\)</span> is not a multiple of an idempotent
+matrix. Such situations are covered by the next theorem.</p>
+<div class="teo">
+<p>If the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathbf{N}_{n}(\boldsymbol{\mu}, \mathbf{\Sigma})\)</span>
+where <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is a positive definite matrix of rank <span class="math inline">\(n\)</span>,
+then
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y} \sim \sum_{i=1}^{p} \lambda_{i} W_{i}^{2}\)</span>
+where
+<span class="math inline">\(p=\operatorname{rank}(\mathbf{A} \boldsymbol{\Sigma}) ; W_{i}^{2}\)</span> are
+independent <span class="math inline">\(\chi_{1}^{2}\left(\delta_{i}\right)\)</span> random variables for
+<span class="math inline">\(i=1, \ldots, p ;\)</span> and <span class="math inline">\(\lambda_{1}, \ldots, \lambda_{p}\)</span> are the
+nonzero eigenvalues of <span class="math inline">\(\mathbf{A} \mathbf{\Sigma}\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-3" class="proof"><em>Proof</em>. </span><em>Proof.</em> <span class="math inline">\(\quad\)</span> Let
+<span class="math inline">\(\mathbf{Z}=\mathbf{T}^{-1}(\mathbf{Y}-\boldsymbol{\mu})\)</span> where
+<span class="math inline">\(\mathbf{\Sigma}=\mathbf{T T}^{\prime} .\)</span> By Theorem <span class="math inline">\(2.1 .2\)</span> with
+<span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{B}=\mathbf{T}^{-1}\)</span> and <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=-\mathbf{T}^{-1} \boldsymbol{\mu}, \mathbf{Z} \sim \mathrm{N}_{n}\left(\mathbf{0}, \mathbf{I}_{n}\right) .\)</span>
+Furthermore,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}=(\mathbf{T Z}+\boldsymbol{\mu})^{\prime} \mathbf{A}(\mathbf{T Z}+\boldsymbol{\mu})=\left(\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\right)^{\prime} \mathbf{T}^{\prime} \mathbf{A T}\left(\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\right)=\)</span>
+<span class="math inline">\(\left(\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\right)^{\prime} \boldsymbol{\Gamma} \mathbf{D} \boldsymbol{\Gamma}^{\prime}\left(\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\right)\)</span>
+where T <span class="math inline">\(^{\prime} \mathbf{A T}\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric matrix,
+<span class="math inline">\(\boldsymbol{\Gamma}\)</span> is the <span class="math inline">\(n \times n\)</span> orthogonal matrix of
+eigenvectors of T’AT, and D is the <span class="math inline">\(n \times n\)</span> diagonal matrix of
+eigenvalues of <span class="math inline">\(\mathbf{T}^{\prime} \mathbf{A T}\)</span> such that
+<span class="math inline">\(\mathbf{T}^{\prime} \mathbf{A T}=\boldsymbol{\Gamma D} \boldsymbol{\Gamma}^{\prime} .\)</span>
+The eigenvalues of <span class="math inline">\(\mathbf{T}^{\prime} \mathbf{A T}\)</span> are
+<span class="math inline">\(\lambda_{1}, \ldots, \lambda_{p}, 0, \ldots, 0\)</span> and rank
+<span class="math inline">\(\left(\mathbf{T}^{\prime} \mathbf{A T}\right)=p .\)</span> Let
+<span class="math inline">\(\mathbf{W}=\left(W_{1}, \ldots, W_{n}\right)^{\prime}=\)</span>
+<span class="math inline">\(\boldsymbol{\Gamma}^{\prime}\left(\mathbf{Z}+\mathbf{T}^{-1} \boldsymbol{\mu}\right) .\)</span>
+Therefore,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}=\mathbf{W}^{\prime} \mathbf{D W}=\sum_{i=1}^{p} \lambda_{i} W_{i}^{2} .\)</span>
+By Theorem <span class="math inline">\(2.1 .2\)</span> with <span class="math inline">\(n \times n\)</span> matrix
+<span class="math inline">\(\mathbf{B}=\mathbf{\Gamma}^{\prime}\)</span> and <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\mathbf{b}=\mathbf{\Gamma}^{\prime} \mathbf{T}^{-1} \boldsymbol{\mu}, \mathbf{W} \sim \mathbf{N}_{n}\left(\mathbf{\Gamma}^{\prime} \mathbf{T}^{-1} \boldsymbol{\mu}, \mathbf{I}_{n}\right) .\)</span>
+Therefore, <span class="math inline">\(W_{i}^{2}\)</span> are independent
+<span class="math inline">\(\chi_{1}^{2}\left(\delta_{i} \geq 0\right)\)</span> random variables for
+<span class="math inline">\(i=1, \ldots, p\)</span>. Furthermore,
+<span class="math inline">\(p=\operatorname{rank}\left(\mathbf{T}^{\prime} \mathbf{A T}\right)=\operatorname{rank}\left(\mathbf{A T T}^{\prime}\right)=\operatorname{rank}(\mathbf{A} \boldsymbol{\Sigma})\)</span>
+because <span class="math inline">\(\mathbf{T}\)</span> is nonsingular. Finally, the eigenvalues of
+<span class="math inline">\(\mathbf{T}^{\prime} \mathbf{A T}\)</span> are found by solving the polynomial
+equation
+<span class="math display">\[\left|\mathbf{I}_{n}-\lambda \mathbf{T}^{\prime} \mathbf{A T}\right|=0 .\]</span>
+Premultiplying the above expression by
+<span class="math inline">\(\left|\mathbf{T}^{\prime-1}\right|\)</span> and postmultiplying by
+<span class="math inline">\(\left|\mathbf{T}^{\prime}\right|\)</span> we obtain <span class="math display">\[\begin{array}{r}
+\left|\mathbf{T}^{\prime-1}\right|\left(\left|\mathbf{I}_{n}-\lambda \mathbf{T}^{\prime} \mathbf{A} \mathbf{T}\right|\right)\left|\mathbf{T}^{\prime}\right|=0 \\
+\left|\mathbf{T}^{\prime-1} \mathbf{T}^{\prime}-\lambda \mathbf{T}^{\prime-1} \mathbf{T}^{\prime} \mathbf{A T T}^{\prime}\right|=0 \\
+\left|\mathbf{I}_{n}-\lambda \mathbf{A} \boldsymbol{\Sigma}\right|=0
+\end{array}\]</span> Thus, the eigenvalues <span class="math inline">\(\mathbf{T}^{\prime} \mathbf{A T}\)</span>
+are the eigenvalues of <span class="math inline">\(\mathbf{A} \boldsymbol{\Sigma}\)</span>. ◻</p>
+</div>
+<p>We now reexamine the distributions of a number of quadratic forms
+previously derived in Section 2.3.</p>
+<div class="eje">
+<p>From Example 2.3.1 let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}\)</span>
+<span class="math inline">\(\left(\alpha \mathbf{1}_{n}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span> By
+Corollary 3.1.2(a),
+<span class="math inline">\(\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2}=\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \mathbf{Y} \sim \sigma^{2} \chi_{n-1}^{2}\)</span>
+<span class="math inline">\((\lambda=0)\)</span> since
+<span class="math display">\[\lambda=\left(\alpha \mathbf{1}_{n}\right)^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\left(\alpha \mathbf{1}_{n}\right) /\left(2 \sigma^{2}\right)=0\]</span>
+and
+<span class="math display">\[\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\left(\sigma^{2} \mathbf{I}_{n}\right)=\sigma^{2}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\]</span>
+which is a multiple of an idempotent matrix of rank <span class="math inline">\(n-1\)</span>. Furthermore,
+let <span class="math inline">\(n(\bar{Y}-\)</span>
+<span class="math inline">\(\alpha)^{2}=n\left[(1 / n) \mathbf{1}_{n}^{\prime}\left(\mathbf{Y}-\alpha \mathbf{1}_{n}\right)\right]^{\prime}\left[(1 / n) \mathbf{1}_{n}^{\prime}\left(\mathbf{Y}-\alpha \mathbf{1}_{n}\right)\right]=\left(\mathbf{Y}-\alpha \mathbf{1}_{n}\right)^{\prime}\left(\frac{1}{n} \mathbf{J}_{n}\right)\left(\mathbf{Y}-\alpha \mathbf{1}_{n}\right) .\)</span>
+By Theorem 2.1.2 with <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{B}=\mathbf{I}_{n}\)</span>
+and <span class="math inline">\(n \times 1\)</span> vector
+<span class="math inline">\(\left(\mathbf{b}=-\alpha \mathbf{1}_{n}, \mathbf{Y}-\alpha \mathbf{1}_{n} \sim\right.\)</span>
+<span class="math inline">\(\mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+Therefore, by Corollary 3.1.2(a),
+<span class="math inline">\(n(\bar{Y}-\alpha)^{2} \sim \sigma^{2} \chi_{1}^{2}(\lambda=0)\)</span> since
+<span class="math display">\[\lambda=\left(\mathbf{0}_{n \times 1}\right)^{\prime}\left(\frac{1}{n} \mathbf{J}_{n}\right)\left(\mathbf{0}_{n \times 1}\right) /\left(2 \sigma^{2}\right)=0\]</span>
+and
+<span class="math display">\[\left(\frac{1}{n} \mathbf{J}_{n}\right)\left(\sigma^{2} \mathbf{I}_{n}\right)=\sigma^{2}\left(\frac{1}{n} \mathbf{J}_{n}\right)\]</span>
+which is a multiple of an idempotent matrix of rank <span class="math inline">\(1 .\)</span></p>
+</div>
+<div class="eje">
+<p>Consider the two-way cross classification from Example 2.3.2 where the
+st <span class="math inline">\(\times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, \ldots, Y_{1 t}, \ldots, Y_{s 1}, \ldots, Y_{s t}\right)^{\prime} \sim\)</span>
+<span class="math inline">\(\mathbf{N}_{s t}(\boldsymbol{\mu}, \boldsymbol{\Sigma}), \boldsymbol{\mu}=\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\)</span>,
+and
+<span class="math inline">\(\boldsymbol{\Sigma}=\sigma_{S}^{2} \mathbf{I}_{s} \otimes \mathbf{J}_{t}+\sigma_{T}^{2} \mathbf{J}_{s} \otimes \mathbf{I}_{t}+\sigma_{S T}^{2} \mathbf{I}_{s} \otimes \mathbf{I}_{t} .\)</span>
+The sum of squares due to the random factor <span class="math inline">\(S\)</span> is
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span> where
+<span class="math inline">\(\mathbf{A}_{2}=\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t} .\)</span>
+By Corollary 3.1.2(a), Y’A
+<span class="math inline">\(\mathbf{A}_{2} \mathbf{Y} \sim\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right) \chi_{s-1}^{2}\left(\lambda_{2}=0\right)\)</span>
+since
+<span class="math inline">\(\mathbf{A}_{2} \Sigma=t \sigma_{S}^{2}\left[\left(\mathbf{I}_{s}-\right.\right.\)</span>
+<span class="math inline">\(\left.\left.\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right]+\sigma_{S T}^{2}\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right]=\left(\sigma_{S T}^{2}+t \sigma_{s}^{2}\right) \mathbf{A}_{2}\)</span>
+<span class="math display">\[\lambda_{2}=\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right)^{\prime}\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right]\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right)=0\]</span>
+and <span class="math inline">\(\mathbf{A}_{2}\)</span> is an idempotent matrix of rank <span class="math inline">\(s-1\)</span>. The sum of
+squares due to the mean is
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{1} \mathbf{Y}\)</span> where
+<span class="math inline">\(\mathbf{A}_{1}=\frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t} .\)</span>
+By Corollary
+<span class="math inline">\(3.1 .2(\mathrm{a}), \mathbf{Y}^{\prime} \mathbf{A}_{\mathbf{1}} \mathbf{Y} \sim\left(t \sigma_{S}^{2}+s \sigma_{T}^{2}+\right.\)</span>
+<span class="math inline">\(\left.\sigma_{S T}^{2}\right) \chi_{1}^{2}\left(\lambda_{1}\right)\)</span>
+since
+<span class="math inline">\(A_{1} \Sigma^{s}=\left(t \sigma_{S}^{2}+s \sigma_{T}^{2}-\sigma_{S T}^{2}\right) \mathbf{A}_{1}, \mathbf{A}_{1}\)</span>
+is an idempotent matrix of rank 1 , and <span class="math display">\[\begin{aligned}
+\lambda_{1} &amp;=\left\{1 /\left[2\left(t \sigma_{s}^{2}+s \sigma_{T}^{2}+\sigma_{S T}^{2}\right)\right]\right\}\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right)^{\prime}\left[\frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t}\right]\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right) \\
+&amp;=s t \alpha^{2} /\left[2\left(t \sigma_{S}^{2}+s \sigma_{T}^{2}+\sigma_{S T}^{2}\right)\right]
+\end{aligned}\]</span> The distributions of the other quadratic forms in
+Example <span class="math inline">\(2.3 .2\)</span> can be derived in a similar manner and are left to the
+reader.</p>
+</div>
+</div>
+<div id="independence" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> INDEPENDENCE<a href="distributions-of-quadratic-forms.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The independence of two quadratic forms is examined in the next theorem.</p>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be <span class="math inline">\(n \times n\)</span> constant matrices. Let
+the <span class="math inline">\(n \times 1\)</span> random vector <span class="math inline">\(\mathbf{Y} \sim N_{n}(\mu, \Sigma)\)</span>. The
+quadratic forms <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{B} \mathbf{Y}\)</span> are independent if and only
+if <span class="math inline">\(\mathbf{A} \boldsymbol{\Sigma} \mathbf{B}=\mathbf{0}\)</span> (or
+<span class="math inline">\(\mathbf{B} \Sigma \mathbf{A}=\mathbf{0}\)</span> ).</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-4" class="proof"><em>Proof</em>. </span><em>Proof.</em> The matrices <span class="math inline">\(\mathbf{A}, \Sigma\)</span>, and <span class="math inline">\(\mathbf{B}\)</span> are
+symmetric. Therefore,
+<span class="math inline">\(\mathbf{A} \boldsymbol{\Sigma} \mathbf{B}=\mathbf{0}\)</span> is equivalent to
+<span class="math inline">\(\mathbf{B} \Sigma A=\mathbf{0}\)</span>. Assume
+<span class="math inline">\(\mathbf{A} \Sigma \mathbf{B}=\mathbf{0}\)</span>. Since <span class="math inline">\(\boldsymbol{\Sigma}\)</span>
+is positive definite, by Theorem 1.1.5, there exists an <span class="math inline">\(n \times n\)</span>
+nonsingular matrix <span class="math inline">\(\mathbf{S}\)</span> such that
+<span class="math inline">\(\mathbf{S} \Sigma \mathbf{S}^{\prime}=\mathbf{I}_{n}\)</span>. Then
+<span class="math inline">\(\mathbf{Z}=\mathbf{S Y} \sim \mathbf{N}_{n}\left(\mathbf{S} \boldsymbol{\mu}, \mathbf{I}_{n}\right) .\)</span>
+Let <span class="math inline">\(\mathbf{G}=\left(\mathbf{S}^{-1}\right)^{\prime} \mathbf{A S}^{-1}\)</span>
+and
+<span class="math inline">\(\mathbf{H}=\left(\mathbf{S}^{-1}\right)^{\prime} \mathbf{B S}^{-1} .\)</span>
+Therefore,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}=\mathbf{Z}^{\prime} \mathbf{G Z}, \mathbf{Y}^{\prime} \mathbf{B} \mathbf{Y}=\mathbf{Z}^{\prime} \mathbf{H Z}\)</span>,
+and
+<span class="math inline">\(\mathbf{A} \mathbf{\Sigma B}=\mathbf{S}^{\prime} \mathbf{G S} \mathbf{\Sigma S}^{\prime} \mathbf{H S}=\mathbf{S}^{\prime} \mathbf{G H S} .\)</span>
+Thus, the statement <span class="math inline">\(\mathbf{A} \mathbf{\Sigma B}=\mathbf{0}\)</span> implies
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{B Y}\)</span> are independent and the statement
+<span class="math inline">\(\mathbf{G H}=\mathbf{0}\)</span>, implies <span class="math inline">\(\mathbf{Z}^{\prime} \mathbf{G Z}\)</span>
+and <span class="math inline">\(\mathbf{Z}^{\prime} \mathbf{H Z}\)</span> are independent, are equivalent.
+Since <span class="math inline">\(\mathbf{G}\)</span> is symmetric, there exists an orthogonal matrix
+<span class="math inline">\(\mathbf{P}\)</span> such that
+<span class="math inline">\(\mathbf{G}=\mathbf{P}^{\prime} \mathbf{D} \mathbf{P}\)</span>, where
+<span class="math inline">\(a=\operatorname{rank}(\mathbf{A})=\operatorname{rank}(\mathbf{G})\)</span> and
+<span class="math inline">\(\mathbf{D}\)</span> is a diagonal matrix with <span class="math inline">\(a\)</span> nonzero diagonal elements.
+Without loss of generality, assume that
+<span class="math display">\[\mathbf{D}=\left[\begin{array}{cc}
+\mathbf{D}_{a} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \mathbf{0}
+\end{array}\right]\]</span> where <span class="math inline">\(\mathbf{D}_{a}\)</span> is the <span class="math inline">\(a \times a\)</span> diagonal
+matrix containing the nonzero elements of <span class="math inline">\(\mathbf{D}\)</span>. Let
+<span class="math inline">\(\mathbf{X}=\mathbf{P Z} \sim \mathrm{N}_{n}\left(\mathbf{P S} \boldsymbol{\mu}, \mathbf{I}_{n}\right)\)</span>
+and partition <span class="math inline">\(\mathbf{X}\)</span> as
+<span class="math inline">\(\left[\mathbf{X}_{1}^{\prime}, \mathbf{X}_{2}^{\prime}\right]^{\prime}\)</span>,
+where <span class="math inline">\(\mathbf{X}_{1}\)</span> is <span class="math inline">\(a \times 1\)</span>. Note that <span class="math inline">\(\mathbf{X}_{1}\)</span> and
+<span class="math inline">\(\mathbf{X}_{2}\)</span> are independent. Then
+<span class="math inline">\(\mathbf{Z}^{\prime} \mathbf{G Z}=\mathbf{Z}^{\prime} \mathbf{P}^{\prime} \mathbf{D P Z}=\mathbf{X}^{\prime} \mathbf{D} \mathbf{X}=\mathbf{X}_{1}^{\prime} \mathbf{D}_{a} \mathbf{X}_{1}\)</span>
+and
+<span class="math inline">\(\mathbf{Z}^{\prime} \mathbf{H Z}=\mathbf{X}^{\prime} \mathbf{P H} \mathbf{P}^{\prime} \mathbf{X}=\mathbf{X}^{\prime} \mathbf{C X}\)</span>
+where the symmetric matrix
+<span class="math inline">\(\mathbf{C}=\mathbf{P H} \mathbf{P}^{\prime} .\)</span> If
+<span class="math inline">\(\mathbf{G H}=\mathbf{0}\)</span> then
+<span class="math inline">\(\mathbf{P}^{\prime} \mathbf{D P P}^{\prime} \mathbf{C P}=\mathbf{0}\)</span>,
+which implies <span class="math inline">\(\mathbf{D C}=\mathbf{0} .\)</span> Partitioning <span class="math inline">\(\mathbf{C}\)</span> to
+conform with <span class="math inline">\(\mathbf{D}\)</span>,
+<span class="math display">\[\mathbf{0}=\mathbf{D} \mathbf{C}=\left[\begin{array}{cc}
+\mathbf{D}_{a} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \mathbf{0}
+\end{array}\right]\left[\begin{array}{ll}
+\mathbf{C}_{11} &amp; \mathbf{C}_{12} \\
+\mathbf{C}_{12}^{\prime} &amp; \mathbf{C}_{22}
+\end{array}\right]=\left[\begin{array}{cc}
+\mathbf{D}_{a} \mathbf{C}_{11} &amp; \mathbf{D}_{a} \mathbf{C}_{12} \\
+\mathbf{0} &amp; \mathbf{0}
+\end{array}\right]\]</span> which implies <span class="math inline">\(\mathbf{C}_{11}=\mathbf{0}\)</span> and
+<span class="math inline">\(\mathbf{C}_{12}=\mathbf{0}\)</span>. Therefore,
+<span class="math display">\[\mathbf{C}=\left[\begin{array}{cc}
+\mathbf{0} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \mathbf{C}_{22}
+\end{array}\right]\]</span> which implies
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{C X}=\mathbf{X}_{2}^{\prime} \mathbf{C}_{22} \mathbf{X}_{2}\)</span>,
+which is independent of
+<span class="math inline">\(\mathbf{X}_{1}^{\prime} \mathbf{D}_{a} \mathbf{X}_{1} .\)</span> Therefore,
+<span class="math inline">\(\mathbf{Z}^{\prime} \mathbf{G Z}\)</span> and
+<span class="math inline">\(\mathbf{Z}^{\prime} \mathbf{H Z}\)</span> are independent. The proof of the
+converse statement is supplied by Searle (1971). ◻</p>
+</div>
+<p>The following theorem considers the independence of a quadratic form and
+linear combinations of a normally distributed random vector.</p>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> be <span class="math inline">\(n \times n\)</span> and <span class="math inline">\(m \times n\)</span>
+constant matrices, respectively. Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\boldsymbol{\mu}, \Sigma)\)</span>. The
+quadratic form <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\)</span> and the set
+of linear combinations <span class="math inline">\(\mathbf{B Y}\)</span> are independent if and only if
+<span class="math inline">\(\mathbf{B} \mathbf{\Sigma} \mathbf{A}=\mathbf{0}(\)</span> or
+<span class="math inline">\(\left.\mathbf{A} \mathbf{\Sigma B}^{\prime}=\mathbf{0}\right)\)</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-5" class="proof"><em>Proof</em>. </span><em>Proof.</em> The "if" portion can be proven by the same method used in the
+proof of Theorem 3.2.1. The proof of the converse statement is supplied
+by Searle (1971). ◻</p>
+</div>
+<p>In the following examples the independence of certain quadratic forms
+and linear combinations is examined.</p>
+<div class="eje">
+<p>Consider the one-way classification described in Examples <span class="math inline">\(1.2 .10\)</span> and
+2.1.4. The sum of squares due to the fixed factor is
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span> where
+<span class="math inline">\(\mathbf{A}_{2}=\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\)</span>
+is an idempotent matrix of rank <span class="math inline">\(t-1 .\)</span> Furthermore,
+<span class="math inline">\(\mathbf{A}_{2} \Sigma=\left[\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right]\left[\sigma^{2} \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]=\sigma^{2} \mathbf{A}_{2}\)</span>.
+The sum of squares due to the nested replicates is
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span> where
+<span class="math inline">\(\mathbf{A}_{3}=\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\)</span>
+is an idempotent matrix of <span class="math inline">\(\operatorname{rank} t(r-1) .\)</span> Likewise,
+<span class="math inline">\(\mathbf{A}_{3} \Sigma=\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right]\left[\sigma^{2} \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]=\sigma^{2} \mathbf{A}_{3} .\)</span>
+Therefore, by Corollary 3.1.2(a),
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y} \sim \sigma^{2} \chi_{t-1}^{2}\left(\lambda_{2}\right)\)</span>
+and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y} \sim \sigma^{2} \chi_{t(r-1)}^{2}\left(\lambda_{3}\right)\)</span>
+where
+<span class="math inline">\(\lambda_{2}=\left[\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right]\left[\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\right] /\left(2 \sigma^{2}\right)=\)</span>
+<span class="math inline">\(r \sum_{i=1}^{t}\left(\mu_{i}-\bar{\mu} .\right)^{2} /\left(2 \sigma^{2}\right)\)</span>
+with <span class="math inline">\(\bar{\mu} .=\sum_{i=1}^{t} \mu_{i} / t\)</span> and
+<span class="math inline">\(\lambda_{3}=\left[\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes\right.\)</span>
+<span class="math inline">\(\left.\mathbf{1}_{r}\right]^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{\mathbf{J}}_{r}\right)\right]\left[\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\right] /\left(2 \sigma^{2}\right)=0 .\)</span>
+Finally, by
+Theo<span class="math inline">\(\left.\mathbf{1}_{r}\right]^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right]\left[\left(\mu_{1}, \ldots, \mu_{t}\right) \otimes \mathbf{1}_{r}\right] /\left(2 \sigma^{2}\right)=0 .\)</span>
+Finally, by Theo rem 3.2.1,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span> are independent since
+<span class="math inline">\(\mathbf{A}_{2} \Sigma \mathbf{A}_{3}=\sigma^{2} \mathbf{A}_{2} \mathbf{A}_{3}=\)</span>
+rem 3.2.1, Y’A <span class="math inline">\(_{2} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y} \mathbf{A}_{3} \mathbf{Y}\)</span> are independent
+<span class="math inline">\(\sigma^{2}\left[\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right]\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right]=\mathbf{0}_{t r \times t r}\)</span></p>
+</div>
+<div class="eje">
+<p>Reconsider Example 2.3.1 where
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathrm{N}_{n}\left(\alpha \mathbf{1}_{n},\right.\)</span>,
+<span class="math inline">\(\left.\sigma^{2} \mathbf{I}_{n}\right), U=\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2} / \sigma^{2}=\mathbf{y}^{\prime}\left[\left(1 / \sigma^{2}\right)\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\right] \mathbf{Y}\)</span>
+and <span class="math inline">\(\bar{Y}=(1 / n) \mathbf{1}_{n}^{\prime} \mathbf{Y} .\)</span> By Theorem
+3.2.2, <span class="math inline">\(\bar{Y}\)</span> and <span class="math inline">\(U\)</span> are independent since
+<span class="math inline">\((1 / n) \mathbf{1}_{n}^{\prime}\left[\sigma^{2} \mathbf{I}_{n}\right]\left[\left(1 / \sigma^{2}\right)\left(\mathbf{I}_{n}-\right.\right.\)</span>
+<span class="math inline">\(\left.\left.\frac{1}{n} \mathbf{J}_{n}\right)\right]=\mathbf{0}_{1 \times n} .\)</span></p>
+</div>
+</div>
+<div id="the-boldsymbolt-and-boldsymbolf-distributions" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> THE <span class="math inline">\(\boldsymbol{t}\)</span> AND <span class="math inline">\(\boldsymbol{F}\)</span> DISTRIBUTIONS<a href="distributions-of-quadratic-forms.html#the-boldsymbolt-and-boldsymbolf-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The normal and chi-square distributions were discussed at length in the
+previous sections. We now examine the distributions of certain functions
+of chi-square and normal random variables.</p>
+<div class="defn">
+<p>Noncentral <span class="math inline">\(t\)</span> Random Variable: Let the random variable <span class="math inline">\(Y \sim\)</span>
+<span class="math inline">\(\mathrm{N}_{1}\left(\alpha, \sigma^{2}\right)\)</span> and the random variable
+<span class="math inline">\(U \sim \chi_{n}^{2}(0) .\)</span> If <span class="math inline">\(Y\)</span> and <span class="math inline">\(U\)</span> are independent, then the
+random variable <span class="math inline">\(T=(Y / \sigma) / \sqrt{U / n}\)</span> is distributed as a
+noncentral <span class="math inline">\(t\)</span> random variable with <span class="math inline">\(n\)</span> degrees of freedom and
+noncentrality parameter <span class="math inline">\(\lambda=\alpha^{2} / 2\)</span>. Denote this noncentral
+<span class="math inline">\(t\)</span> random variable as <span class="math inline">\(t_{n}(\lambda)\)</span>.</p>
+</div>
+<div class="defn">
+<p>Noncentral F Random Variable: Let the random variable <span class="math inline">\(U_{1} \sim\)</span>
+<span class="math inline">\(\chi_{n_{1}}^{2}(\lambda)\)</span> and the random variable
+<span class="math inline">\(U_{2} \sim \chi_{n_{2}}^{2}(0) .\)</span> If <span class="math inline">\(U_{1}\)</span> and <span class="math inline">\(U_{2}\)</span> are
+independent, then the random variable
+<span class="math inline">\(F=\left(U_{1} / n_{1}\right) /\left(U_{2} / n_{2}\right)\)</span> is
+distributed as a noncentral <span class="math inline">\(F\)</span> random variable with <span class="math inline">\(n_{1}\)</span> and <span class="math inline">\(n_{2}\)</span>
+degrees of freedom and noncentrality parameter <span class="math inline">\(\lambda\)</span>. Denote this
+noncentral <span class="math inline">\(F\)</span> random variable as <span class="math inline">\(F_{n_{1}, n_{2}}(\lambda)\)</span>.</p>
+</div>
+<p>A <span class="math inline">\(t\)</span> random variable with <span class="math inline">\(n\)</span> degrees of freedom and a noncentrality
+parameter equal to zero <span class="math display">\[i.e., $t_{n}(\lambda=0)$ \]</span> has a central <span class="math inline">\(t\)</span>
+distribution. Likewise, an <span class="math inline">\(F\)</span> random variable with <span class="math inline">\(n_{1}\)</span> and <span class="math inline">\(n_{2}\)</span>
+degrees of freedom and a noncentrality parameter equal to zero <span class="math display">\[i.e.,
+$F_{n_{1}, n_{2}}(\lambda=0)$ \]</span> has a central <span class="math inline">\(F\)</span> distribution.</p>
+<p>In recent years Smith and Lewis <span class="math inline">\((1980,1982)\)</span>, Pavur and Lewis (1983),
+Scariano, Neill, and Davenport (1984) and Scariano and Davenport (1984)
+have developed the theory of the corrected <span class="math inline">\(F\)</span> random variable. The
+definition of the corrected <span class="math inline">\(F\)</span> random variable is given next.</p>
+<div class="defn">
+<p>Noncentral Corrected F Random Variable: Let the random variable
+<span class="math inline">\(U_{1} \sim c_{1} \chi_{n_{1}}^{2}(\lambda)\)</span> and the random variable
+<span class="math inline">\(U_{2} \sim c_{2} \chi_{n_{2}}^{2}(0) .\)</span> If <span class="math inline">\(U_{1}\)</span> and <span class="math inline">\(U_{2}\)</span> are
+independent, then the random variable
+<span class="math inline">\(F_{c}=\left(c_{2} / c_{1}\right)\left[\left(U_{1} / n_{1}\right) /\left(U_{2} / n_{2}\right)\right] \sim\)</span>
+<span class="math inline">\(F_{n_{1}, n_{2}}(\lambda)\)</span> is called a corrected <span class="math inline">\(F\)</span> random variable
+where the ratio <span class="math inline">\(c_{2} / c_{1}\)</span> is the correction factor.</p>
+</div>
+<p>In practice, we often encounter independent random variables <span class="math inline">\(U_{1}\)</span> and
+<span class="math inline">\(U_{2}\)</span>, which are distributed as multiples of chi-square random
+variables <span class="math inline">\(\left(U_{2}\right.\)</span> being a multiple of a central chi
+square). The random variable
+<span class="math inline">\(F=\left(U_{1} / n_{1}\right) /\left(U_{2} / n_{2}\right)\)</span> in this case
+will be distributed as a noncentral <span class="math inline">\(F\)</span> random variable if and only if
+<span class="math inline">\(c_{1}=c_{2}\)</span> (i.e., <span class="math inline">\(c_{2} / c_{1}=1\)</span> ). Generally, <span class="math inline">\(c_{1}\)</span> and <span class="math inline">\(c_{2}\)</span>
+will be linear combinations of unknown variance parameters.</p>
+<p>In the following examples a number of central and noncentral <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span>
+random variables are derived.</p>
+<div class="eje">
+<p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathrm{N}_{n}\left(\alpha \mathbf{1}_{n}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>
+By Example 2.1.1,
+<span class="math inline">\(\bar{Y} \sim \mathrm{N}_{1}\left(\alpha, \sigma^{2} / n\right) .\)</span> By
+Example 3.1.1, <span class="math inline">\(\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2}=\)</span>
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right)\right] \mathbf{Y} \sim \sigma^{2} \chi_{n-1}^{2}(0) .\)</span>
+By Example 3.2.2. <span class="math inline">\(\bar{Y}\)</span> and
+<span class="math inline">\(\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2}\)</span> are independent.
+Therefore,
+<span class="math display">\[T=\sqrt{n} \bar{Y} / S=[\bar{Y} /(\sigma / \sqrt{n})] / \sqrt{S^{2} / \sigma^{2}} \sim t_{n-1}(\lambda)\]</span>
+where <span class="math inline">\(S^{2}=\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2} /(n-1)\)</span> and
+<span class="math inline">\(\lambda=\alpha^{2} / 2\)</span>.</p>
+</div>
+<div class="eje">
+<p>Consider the one-way classification described in Example 3.2.1. It was
+shown that the sum of squares due to the fixed factor
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{t}-\right.\right.\)</span>
+<span class="math inline">\(\left.\left.\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} \sim \sigma^{2} \chi_{t-1}^{2}\left(\lambda_{2}\right)\)</span>
+and the sum of squares due to the nested replicates
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} \sim \sigma^{2} \chi_{t(r-1)}^{2}(0) .\)</span>
+Furthermore, <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span> are independent.
+Therefore, the statistic
+<span class="math display">\[F^{*}=\frac{\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y} /(t-1)}{\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y} /[t(r-1)]} \sim F_{t-1, t(r-1)}\left(\lambda_{2}\right)\]</span>
+where
+<span class="math inline">\(\lambda_{2}=r \sum_{i=1}^{t}\left(\mu_{i}-\bar{\mu} \cdot\right)^{2} /\left(2 \sigma^{2}\right) .\)</span>
+The hypothesis <span class="math inline">\(\mathrm{H}_{0}: \lambda_{2}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \lambda&gt;0\)</span> is equivalent to the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \mu_{1}=\mu_{2}=\cdots=\mu_{t}\)</span> versus <span class="math inline">\(\mathrm{H}_{1}\)</span>
+: the <span class="math inline">\(\mu_{i}\)</span> ’s are not all equal. Thus, under <span class="math inline">\(\mathrm{H}_{0}\)</span>, the
+statistic <span class="math inline">\(F^{*}\)</span> has a central <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(t-1\)</span> and <span class="math inline">\(t(r-1)\)</span>
+degrees of freedom. A <span class="math inline">\(\gamma\)</span> level rejection region for the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}\)</span> versus <span class="math inline">\(\mathrm{H}_{1}\)</span> is as follows: Reject
+<span class="math inline">\(\mathrm{H}_{0}\)</span> if <span class="math inline">\(F^{*}&gt;F_{t-1, t(r-1)}^{\gamma}\)</span> where
+<span class="math inline">\(F_{t-1, t(r-1)}^{\gamma}\)</span> is the <span class="math inline">\(100(1-\gamma)^{\text {th }}\)</span>
+percentile point of a central <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(t-1\)</span> and <span class="math inline">\(t(r-1)\)</span>
+degrees of freedom.</p>
+</div>
+<div class="eje">
+<p>Consider the two-way cross classification described in Example 3.1.2.
+The sums of squares due to the random factor <span class="math inline">\(S\)</span> and due to the random
+interaction <span class="math inline">\(S T\)</span> are given by
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span>, respectively. It was
+shown that
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right] \mathbf{Y} \sim\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right) \chi_{s-1}^{2}(0) .\)</span>
+Furthermore, <span class="math inline">\(\mathbf{A}_{4} \boldsymbol{\Sigma}=\)</span>
+<span class="math inline">\(\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\left[\sigma_{S}^{2} \mathbf{I}_{s} \otimes \mathbf{J}_{t}+\sigma_{T}^{2} \mathbf{J}_{s} \otimes \mathbf{I}_{t}+\sigma_{S T}^{2} \mathbf{I}_{s} \otimes \mathbf{I}_{t}\right]=\sigma_{S T}^{2} \mathbf{A}_{4}\)</span>
+where <span class="math inline">\(\mathbf{A}_{4}\)</span> is an idempotent matrix of rank <span class="math inline">\((s-1)(t-1)\)</span>.
+Therefore, by Corollary
+<span class="math inline">\(3.1 .2(\mathrm{a}), \mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \mathbf{Y} \sim \sigma_{S T}^{2} \chi_{(s-1)(t-1)}^{2}\left(\lambda_{4}\right)\)</span>
+where
+<span class="math inline">\(\lambda_{4}=\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right)^{\prime}\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right) /\left(2 \sigma_{S T}^{2}\right)=0 .\)</span>
+Finally,
+<span class="math inline">\(\mathbf{A}_{2} \boldsymbol{\Sigma} \mathbf{A}_{4}=\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right) \mathbf{A}_{2} \mathbf{A}_{4}=\mathbf{0}_{s t \times s t} .\)</span>
+Therefore, by Theorem 3.2.1,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span> are independent. By
+Definition <span class="math inline">\(3.3 .3\)</span>, the statistic
+<span class="math display">\[F^{*}=\frac{\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y} /(s-1)}{\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y} /[(s-1)(t-1)]} \sim \frac{\left(\sigma_{S T}^{2}+t \sigma_{S}^{2}\right)}{\sigma_{S T}^{2}} F_{s-1,(s-1)(t-1)}(0)\]</span>
+Under the hypothesis <span class="math inline">\(\mathrm{H}_{0}: \sigma_{S}^{2}=0\)</span>, the statistic
+<span class="math inline">\(F^{*}\)</span> has a central <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(s-1\)</span> and <span class="math inline">\((s-1)(t-1)\)</span>
+degrees of freedom. A <span class="math inline">\(\gamma\)</span> level rejection region for the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \sigma_{S}^{2}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \sigma_{S}^{2}&gt;0\)</span> follows; Reject <span class="math inline">\(\mathrm{H}_{0}\)</span> if
+<span class="math inline">\(F^{*}&gt;F_{s-1,(s-1)(t-1)}^{\gamma} .\)</span></p>
+</div>
+</div>
+<div id="bhats-lemma" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> BHAT’S LEMMA<a href="distributions-of-quadratic-forms.html#bhats-lemma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following lemma by Bhat (1962) is applicable in many ANOVA and
+regression problems. The lemma provides necessary and sufficient
+conditions for sums of squares to be distributed as multiples of
+independent chi-square random variables.</p>
+<div class="lem">
+<p>Let <span class="math inline">\(k\)</span> and <span class="math inline">\(n\)</span> denote fixed positive integers such that
+<span class="math inline">\(1 \leq k \leq n\)</span>. Suppose
+<span class="math inline">\(\mathbf{I}_{n}=\sum_{i=1}^{k} \mathbf{A}_{i}\)</span>, where each
+<span class="math inline">\(\mathbf{A}_{i}\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric matrix of rank <span class="math inline">\(n_{i}\)</span>
+with <span class="math inline">\(\sum_{i=1}^{k} n_{i}=n .\)</span> If the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\mu, \mathbf{\Sigma})\)</span> and the sum of
+squares <span class="math inline">\(S_{i}^{2}=\mathbf{Y}^{\prime} \mathbf{A}_{i} \mathbf{Y}\)</span> for
+<span class="math inline">\(i=1, \ldots, k\)</span>, then</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(S_{i}^{2} \sim c_{i} \chi_{n_{i}}^{2}\left(\lambda_{i}=\mu^{\prime} \mathbf{A}_{i} \mu /\left(2 c_{i}\right)\right)\)</span>
+and</p></li>
+<li><p>if and only if <span class="math inline">\(\Sigma=\sum_{i=1}^{k} c_{i} \mathbf{A}_{i}\)</span> where
+<span class="math inline">\(c_{i}&gt;0\)</span>.</p></li>
+</ol>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span><em>Proof.</em> This proof is due to Scariano et al. (1984). Assume that the
+quadratic forms <span class="math inline">\(S_{i}^{2}\)</span> satisfy (a) and (b) given in Lemma 3.4.1. By
+Theorems <span class="math inline">\(3.1 .2\)</span> and 3.2.1, (i) the matrices
+<span class="math inline">\(\left(1 / c_{i}\right) \mathbf{A}_{i} \Sigma\)</span> are idempotent for
+<span class="math inline">\(i=1, \ldots, k\)</span> and (ii)
+<span class="math inline">\(\mathbf{A}_{i} \mathbf{\Sigma A}_{j}=\mathbf{0}_{n \times n}\)</span> for
+<span class="math inline">\(i \neq j, i, j=1, \ldots, k\)</span>. Furthermore, by Theorem 1.1.7,
+<span class="math inline">\(\mathbf{A}_{i}=\mathbf{A}_{i}^{2}\)</span> and
+<span class="math inline">\(\mathbf{A}_{i} \mathbf{A}_{j}=\mathbf{0}_{n \times n}\)</span> for
+<span class="math inline">\(i \neq j, i, j=1, \ldots, k .\)</span> But (i) and (ii) imply that
+<span class="math inline">\(\sum_{i=1}^{k}\left(1 / c_{i}\right) \mathbf{A}_{i} \Sigma\)</span> is
+idempotent of rank <span class="math inline">\(n\)</span> and thus equal to <span class="math inline">\(\mathbf{I}_{n} .\)</span> Hence,
+<span class="math inline">\(\Sigma=\left[\sum_{i=1}^{k}\left(1 / c_{i}\right) \mathbf{A}_{i}\right]^{-1}:=\)</span>
+<span class="math inline">\(\sum_{i=1}^{k} c_{i} \mathbf{A}_{i} .\)</span> Conversely, assume
+<span class="math inline">\(\Sigma=\sum_{i=1}^{k} c_{i} \mathbf{A}_{i} .\)</span> But
+<span class="math inline">\(\mathbf{A}_{i}=\mathbf{A}_{i}^{2}\)</span> and
+<span class="math inline">\(\mathbf{A}_{i} \mathbf{A}_{j}=\mathbf{0}_{n \times n}\)</span>, so (i) and (ii)
+hold. Therefore, by Theorems <span class="math inline">\(3.1 .2\)</span> and <span class="math inline">\(3.2 .1\)</span>, (a) and (b) hold. ◻</p>
+</div>
+<p>In the next example, Bhat’s lemma is applied to the two-way cross
+classification described in Example 2.3.2</p>
+<div class="eje">
+<p>From Example 2.3.2,
+<span class="math inline">\(\Sigma=\left[\sigma_{S}^{2} \mathbf{I}_{s} \otimes \mathbf{J}_{t}+\sigma_{T}^{2} \mathbf{J}_{s} \otimes \mathbf{I}_{t}+\sigma_{S T}^{2} \mathbf{I}_{s} \otimes\right.\)</span>
+<span class="math inline">\(\left.\mathbf{I}_{t}\right], \mathbf{A}_{1}=\frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t}, \mathbf{A}_{2}=\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}, \mathbf{A}_{3}=\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right), \mathbf{A}_{4}=\)</span>
+<span class="math inline">\(\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right), s t=\sum_{m=1}^{4} \operatorname{rank}\left(\mathbf{A}_{m}\right)=1+(s-1)+(t-1)+(s-1)(t-1)\)</span>,
+and
+<span class="math inline">\(\mathbf{I}_{s} \otimes \mathbf{I}_{t}=\sum_{m=1}^{4} \mathbf{A}_{m} .\)</span>
+Furthermore, <span class="math inline">\(\mathbf{A}_{m} \boldsymbol{\Sigma}=c_{m} \mathbf{A}_{m}\)</span>
+for <span class="math inline">\(m=1, \ldots, 4\)</span> where
+<span class="math inline">\(c_{1}=\sigma_{S T}^{2}+t \sigma_{S}^{2}+s \sigma_{T}^{2}, c_{2}=\sigma_{S T}^{2}+t \sigma_{S}^{2}, c_{3}=\sigma_{S T}^{2}+s \sigma_{T}^{2}\)</span>,
+and <span class="math inline">\(c_{4}=\sigma_{S T}^{2} .\)</span> Therefore,
+<span class="math inline">\(\boldsymbol{\Sigma}=\left(\sum_{m=1}^{4} \mathbf{A}_{m}\right) \boldsymbol{\Sigma}=\sum_{m=1}^{4}\left(\mathbf{A}_{m} \boldsymbol{\Sigma}\right)=\sum_{m=1}^{4} c_{m} \mathbf{A}_{m}\)</span>.
+Thus, by Bhat’s lemma, the quadratic forms
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> are distributed as
+independent
+<span class="math inline">\(c_{m} \chi_{\operatorname{rank}\left(\mathbf{A}_{m}\right)}^{2}\left\{\lambda_{m}=\left(\alpha \mathbf{1}_{s} \otimes\right.\right.\)</span>
+<span class="math inline">\(\left.\left.\mathbf{1}_{t}\right)^{\prime} \mathbf{A}_{m}\left(\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t}\right) /\left(2 c_{m}\right)\right\}\)</span>
+for <span class="math inline">\(m=1, \ldots, 4 .\)</span></p>
+</div>
+</div>
+<div id="exercises-3" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> EXERCISES<a href="distributions-of-quadratic-forms.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Use Corollary <span class="math inline">\(3.1 .2\)</span> (a) to find the distribution of
+<span class="math inline">\(\sum_{i=1}^{n} w_{i} Y_{i}^{2}\)</span> from Exercise <span class="math inline">\(3 \mathrm{~b}\)</span> in
+Chapter <span class="math inline">\(2 .\)</span></p></li>
+<li><p>Use Corollary 3.1.2(a) to find the distribution of Y’AY from
+Exercise <span class="math inline">\(4 \mathrm{c}\)</span> in Chapter 2 .</p></li>
+<li><p>Consider the model presented in Exercise 5 of Chapter <span class="math inline">\(2 .\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of
+<span class="math inline">\(V_{1}=\sum_{i=1}^{a} \sum_{j=1}^{s} \sum_{k=1}^{t}\left(\vec{Y}_{i j .}-\bar{Y}_{i . .}\right)^{2}\)</span>.</p></li>
+<li><p>Find the distribution of
+<span class="math inline">\(V_{2}=\sum_{i=1}^{a} \sum_{j=1}^{s} \sum_{k=1}^{t}\left(Y_{i j k}-\bar{Y}_{i j} .\right)^{2}\)</span>.</p></li>
+<li><p>Find the distribution of
+<span class="math inline">\(\left\{V_{1} /[a(s-1)]\right\} /\left\{V_{2} /[a s(t-1)]\right\}\)</span>.</p></li>
+</ol></li>
+<li><p>Consider Exercise 6 of Chapter 2 .</p>
+<ol style="list-style-type: decimal">
+<li><p>Use Corollary 3.1.2(a) to find the distribution of <span class="math inline">\(U\)</span>.</p></li>
+<li><p>Use Theorem <span class="math inline">\(3.2 .2\)</span> to show that <span class="math inline">\(U\)</span> and <span class="math inline">\(\bar{Y}\)</span>. are
+independent.</p></li>
+</ol></li>
+<li><p>Prove Theorem <span class="math inline">\(3.1 .2\)</span>, part <span class="math inline">\((2)\)</span>.</p></li>
+<li><p>Use Corollary <span class="math inline">\(3.1 .2(\)</span> a <span class="math inline">\()\)</span> to find the distribution of
+<span class="math inline">\(\left(\bar{Y}_{1},-\bar{Y}_{2}\right)^{2}\)</span> from Exercise
+<span class="math inline">\(9 \mathrm{~b}\)</span> in Chapter <span class="math inline">\(2 .\)</span></p></li>
+<li><p>Consider Exercise 11 of Chapter 2 .</p>
+<ol style="list-style-type: decimal">
+<li><p>Use Theorem <span class="math inline">\(3.2 .2\)</span> to show that <span class="math inline">\(Y_{1}+2 Y_{2}-Y_{3}\)</span> is
+independent of <span class="math inline">\(2 Y_{1}^{2}+\)</span>
+<span class="math inline">\(Y_{2}^{2}+2 Y_{3}^{2}-2 Y_{1} Y_{2}+2 Y_{2} Y_{3}\)</span></p></li>
+<li><p>Use Corollary 3.1.2(a) to find a constant <span class="math inline">\(c\)</span> such that
+<span class="math inline">\(c\left[5 Y_{1}^{2}+2 Y_{2}^{2}+5 Y_{3}^{2}-\right.\)</span>
+<span class="math inline">\(\left.4 Y_{1} Y_{2}+2 Y_{1} Y_{3}+4 Y_{2} Y_{3}\right]\)</span> has a
+central chi-square distribution.</p></li>
+</ol></li>
+<li><p>Derive the distributions of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{4} \mathbf{Y}\)</span> from Example 2.3.2.</p></li>
+<li><p>Calculate the noncentrality parameters
+<span class="math inline">\(\lambda_{1}, \ldots, \lambda_{4}\)</span> in Example <span class="math inline">\(3.4 .1\)</span>.</p></li>
+<li><p>Let the <span class="math inline">\(3 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, Y_{2}, Y_{3}\right)^{\prime} \sim \mathrm{N}_{3}\left(\alpha \mathbf{1}_{3}, \sigma^{2} \mathbf{I}_{3}\right)\)</span>
+and define <span class="math inline">\(Z_{1}=\left(Y_{1}^{2}+Y_{3}^{2}-2 Y_{1} Y_{3}\right.\)</span>
+and
+<span class="math inline">\(Z_{2}=Y_{1}^{2}+Y_{2}^{2}+Y_{3}^{2}-Y_{1} Y_{2}-Y_{1} Y_{3}-Y_{2} Y_{3} .\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distributions of <span class="math inline">\(Z_{1}\)</span> and <span class="math inline">\(Z_{2}\)</span>.</p></li>
+<li><p>Find the <span class="math inline">\(\mathrm{E}\left(Z_{i}^{k}\right)\)</span> for <span class="math inline">\(i=1,2\)</span> and any
+positive integer <span class="math inline">\(k\)</span>.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)^{\prime} \sim \mathrm{N}_{n}\left(\alpha \mathbf{1}_{n}, \Sigma\right)\)</span>
+where <span class="math inline">\(\Sigma=\)</span> <span class="math inline">\((a-b) \mathbf{I}_{n}+b \mathbf{J}_{n}\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of
+<span class="math inline">\(V=\sum_{i=1}^{n-1}\left(Y_{i}-\bar{Y}^{*}\right)^{2}\)</span> where
+<span class="math inline">\(\bar{Y}^{*}=\sum_{i=1}^{n-1} Y_{i} /\)</span> <span class="math inline">\((n-1)\)</span>.</p></li>
+<li><p>Find the distribution of
+<span class="math inline">\(\left(\bar{Y}^{*}-Y_{n}\right) / V^{1 / 2}\)</span>.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}\left(\boldsymbol{\mu}, \mathbf{I}_{n}\right) .\)</span>
+Let <span class="math inline">\(\mathbf{X}=\mathbf{A Y}\)</span> where <span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times n\)</span>
+orthogonal matrix whose first row is
+<span class="math inline">\(\boldsymbol{\mu}^{\prime} / \sqrt{\boldsymbol{\mu}^{\prime} \boldsymbol{\mu}}\)</span>.
+Let <span class="math inline">\(V=X_{1}^{2}\left(X_{1}\right.\)</span> is the first element of vector
+<span class="math inline">\(\mathbf{X}\)</span> ) and
+<span class="math inline">\(U=\left(\mathbf{X}^{\prime} \mathbf{X}-V\right)\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distributions of <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span>.</p></li>
+<li><p>Are <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> independent? Prove your answer.</p></li>
+</ol></li>
+<li><p>Let <span class="math inline">\(U_{i} \sim \chi^{2}\left(\lambda_{i}\right)\)</span> for <span class="math inline">\(i=1,2\)</span> where
+<span class="math inline">\(U_{1}\)</span> and <span class="math inline">\(U_{2}\)</span> are independent. Let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be two positive
+constants. Under what conditions is
+<span class="math inline">\(a U_{1}+b U_{2} \sim c \chi^{2}(\lambda) ?\)</span> Provide the values of
+<span class="math inline">\(c\)</span> and <span class="math inline">\(\lambda\)</span>.</p></li>
+<li><p>Consider the model <span class="math inline">\(Y_{i j}=\mu_{i}+R(T)_{(i) j}\)</span> where
+<span class="math inline">\(R(T)_{(i) j} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{R(T)}^{2}\right)\)</span> for
+<span class="math inline">\(i=1, \ldots, 3, j=1, \ldots, n_{i}\)</span> with <span class="math inline">\(n_{1}=3, n_{2}=4\)</span>, and
+<span class="math inline">\(n_{3}=2\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of
+<span class="math inline">\(U=\sum_{i=1}^{3} \sum_{j=1}^{n_{i}}\left(Y_{i j}-\bar{Y}_{i .}\right)^{2}\)</span>
+where <span class="math inline">\(\bar{Y}_{i .}=\)</span> <span class="math inline">\(\sum_{j=1}^{n_{i}} Y_{i j} / n_{i}\)</span></p></li>
+<li><p>Find the expected value of
+<span class="math inline">\(V=\sum_{i=1}^{3}\left(\bar{Y}_{i}-\bar{Y}^{*}\right)^{2} \omega h e r e \bar{Y}^{*}=\sum_{i=1} \bar{Y}_{i} / 3\)</span></p></li>
+<li><p>Find the expected value of
+<span class="math inline">\(V=\sum_{i=1}^{3}\left(\bar{Y}_{i .}-\bar{Y}^{*}\right)^{2}\)</span>
+where <span class="math inline">\(\bar{Y}^{*}=\sum_{i=1}^{3} \bar{Y}_{i .} / 3\)</span>. [Hint:
+Write
+<span class="math inline">\(V=\overline{\mathbf{Y}}^{\prime}\left(\mathbf{I}_{3}-\frac{1}{3} \mathbf{J}_{3}\right) \overline{\mathbf{Y}}\)</span>
+where
+<span class="math inline">\(\left.\overline{\mathbf{Y}}=\left(\bar{Y}_{1 .}, \bar{Y}_{2 .}, \bar{Y}_{3 .}\right)^{\prime} .\right]\)</span></p></li>
+</ol></li>
+<li><p>(Paired <span class="math inline">\(t\)</span>-Test Problem) Consider an experiment with <span class="math inline">\(n\)</span>
+experimental units. Suppose two observations are made on each unit.
+The first observation corresponds to the first level of a fixed
+factor, the second observation to the second level of the fixed
+factor. Let <span class="math inline">\(Y_{i j}\)</span> be a random variable representing the
+<span class="math inline">\(j^{\text {th }}\)</span> observation on the <span class="math inline">\(i^{\text {th }}\)</span> experimental
+unit for <span class="math inline">\(i=1, \ldots, n\)</span> and <span class="math inline">\(j=1,2\)</span>. Let the <span class="math inline">\(2 n \times 1\)</span> random
+vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, Y_{12}, Y_{21}, Y_{22}, \ldots, Y_{n 1}, Y_{n 2}\right)^{\prime}\)</span>.
+Let <span class="math inline">\(\mathrm{E}\left(\mathbf{Y}_{i j}\right)=\mu_{j}\)</span> and
+<span class="math inline">\(\operatorname{var}\left(Y_{i j}\right)=\sigma^{2}\)</span> for
+<span class="math inline">\(i=1, \ldots, n\)</span> and <span class="math inline">\(j=1,2 ;\)</span> and let
+<span class="math inline">\(\operatorname{cov}\left(Y_{i 1}, Y_{i 2}\right)=\sigma^{2} \rho\)</span>
+for all <span class="math inline">\(i=1, \ldots, n .\)</span> Assume
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{2 n}(\mu, \Sigma)\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Define <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> in terms of
+<span class="math inline">\(\boldsymbol{\mu}_{j}, \sigma^{2}\)</span>, and <span class="math inline">\(\rho\)</span>. (Hint: Use
+Kronecker products.)</p></li>
+<li><p>Let <span class="math inline">\(T=\bar{D} /\left(S_{D} / \sqrt{n}\right)\)</span> where
+<span class="math inline">\(D_{i}=Y_{i 1}-Y_{i 2}\)</span> for <span class="math inline">\(i=1, \ldots, n ; \bar{D}=\)</span>
+<span class="math inline">\(\sum_{i=1}^{n} D_{i} / n ;\)</span> and
+<span class="math inline">\(S_{D}^{2}=\sum_{i=1}^{n}\left(D_{i}-\bar{D}\right)^{2} /(n-1) .\)</span>
+Find the distribution of <span class="math inline">\(T .\left[\right.\)</span> Hint <span class="math inline">\(:\)</span> Start by
+finding the distribution of
+<span class="math inline">\(\left.D=\left(D_{1}, \ldots, D_{n}\right)^{\prime} .\right]\)</span></p></li>
+</ol></li>
+<li><p><span class="math inline">\(T .\left[\right.\)</span> Hint <span class="math inline">\(:\)</span> Start by finding the distribution of
+<span class="math inline">\(\left.D=\left(D_{1}, \ldots, D_{n}\right)^{\prime} .\right]\)</span> the
+<span class="math inline">\(6 n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 n}, Y_{121}, \ldots, Y_{12 n}, \ldots, Y_{131}\right.\)</span>,
+<span class="math inline">\(\left.\ldots, Y_{13 n}, Y_{211}, \ldots, Y_{21 n}, \ldots, Y_{221}, \ldots, Y_{22 n}, Y_{231}, \ldots, Y_{23 n}\right)^{\prime} \sim \mathrm{N}_{6 n}\left(\mathbf{1}_{2} \otimes\right.\)</span>
+<span class="math inline">\(\left.\left(\mu_{1}, \mu_{2}, \mu_{3}\right)^{\prime} \otimes \mathbf{1}_{n}, \mathbf{\Sigma}\right)\)</span>
+where <span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma}=&amp; \sigma_{1}^{2}\left[\mathbf{I}_{2} \otimes \mathbf{J}_{3} \otimes \mathbf{J}_{n}\right] \\
+&amp;+\sigma_{2}^{2}\left[\mathbf{I}_{2} \otimes\left(\mathbf{I}_{3}-\frac{1}{3} \mathbf{J}_{3}\right) \otimes \mathbf{J}_{n}\right] \\
+&amp;+\sigma_{3}^{2}\left[\mathbf{I}_{2} \otimes \mathbf{I}_{3} \otimes \mathbf{I}_{n}\right]
+\end{aligned}\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Show
+<span class="math inline">\(\bar{Y}_{.1 .}-\bar{Y}_{.2 .}=\left[(1 / 2) \mathbf{1}_{2}^{\prime} \otimes(1,-1,0) \otimes(1 / n) \mathbf{1}_{n}^{\prime}\right] \mathbf{Y}\)</span>
+where <span class="math inline">\(\bar{Y}_{. j}=\)</span>
+<span class="math inline">\(\sum_{i=1}^{2} \sum_{k=1}^{n} Y_{i j k} /(2 n)\)</span></p></li>
+<li><p>Find the distribution of <span class="math inline">\(\bar{Y}_{.1}-\bar{Y}_{.2 .}\)</span>.</p></li>
+<li><p>Find the distribution of
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{2}-\frac{1}{2} \mathbf{J}_{2}\right) \otimes\left(\mathbf{I}_{3}-\frac{1}{3} \mathbf{J}_{3}\right) \otimes \frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y}\)</span>.</p></li>
+</ol></li>
+<li><p>Let the <span class="math inline">\(\left(n_{1}+n_{2}\right) \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, \ldots, Y_{1 n_{1}}, Y_{21}, \ldots, Y_{2 n_{2}}\right)^{\prime} \sim\)</span>
+<span class="math inline">\(\mathrm{N}_{n_{1}+n_{2}}(\mu, \Sigma)\)</span> where
+<span class="math inline">\(\boldsymbol{\mu}=\left(\mu_{1} \mathbf{1}_{n_{1}}^{\prime}, \mu_{2} \mathbf{1}_{n_{2}}^{\prime}\right)^{\prime}\)</span>
+and <span class="math display">\[\boldsymbol{\Sigma}=\left[\begin{array}{cc}
+\sigma_{1}^{2} \mathbf{I}_{n_{1}} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \sigma_{2}^{2} \mathbf{I}_{n_{2}}
+\end{array}\right]\]</span> If <span class="math inline">\(\sigma_{1}^{2} \neq \sigma_{2}^{2}\)</span>, this
+problem is called the Behrens-Fisher problem.</p>
+<ol style="list-style-type: decimal">
+<li><p>Find the distribution of
+<span class="math display">\[V=\frac{\left(\bar{Y}_{1 .}-\bar{Y}_{2 .}\right)^{2} /\left(1 / n_{1}+1 / n_{2}\right)}{\sum_{i=1}^{2} \sum_{j=1}^{n_{i}}\left(Y_{i j}-Y_{i .}\right)^{2} /\left(n_{1}+n_{2}-2\right)}\]</span>
+when <span class="math inline">\(\sigma_{1}^{2}=\sigma_{2}^{2}\)</span>.</p></li>
+<li><p>Describe the distribution of <span class="math inline">\(V\)</span> when
+<span class="math inline">\(\sigma_{1}^{2} \neq \sigma_{2}^{2}\)</span>.</p></li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multivariate-normal-distribution-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="complete-balanced-factorial-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

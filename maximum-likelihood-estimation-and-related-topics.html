@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Maximum Likelihood Estimation and Related Topics | Linear Models</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Maximum Likelihood Estimation and Related Topics | Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Maximum Likelihood Estimation and Related Topics | Linear Models" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Barry Kurt" />
+
+
+<meta name="date" content="2023-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="least-squares-regression.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra and Related Introductory Topics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#elementary-matrix-concepts"><i class="fa fa-check"></i><b>1.1</b> ELEMENTARY MATRIX CONCEPTS</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#kronecker-products"><i class="fa fa-check"></i><b>1.2</b> KRONECKER PRODUCTS</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#random-vectors"><i class="fa fa-check"></i><b>1.3</b> RANDOM VECTORS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#multivariate-normal-distribution-function"><i class="fa fa-check"></i><b>2.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="2.2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#conditional-distributions-of-multivariate-normal-random-vectors"><i class="fa fa-check"></i><b>2.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="2.3" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#distributions-of-certain-quadratic-forms"><i class="fa fa-check"></i><b>2.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="2.4" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#exercises-1"><i class="fa fa-check"></i><b>2.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html"><i class="fa fa-check"></i><b>3</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-function-1"><i class="fa fa-check"></i><b>3.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="3.2" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#conditional-distributions-of-multivariate-normal-random-vectors-1"><i class="fa fa-check"></i><b>3.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="3.3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#distributions-of-certain-quadratic-forms-1"><i class="fa fa-check"></i><b>3.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="3.4" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#exercises-2"><i class="fa fa-check"></i><b>3.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html"><i class="fa fa-check"></i><b>4</b> Distributions of Quadratic Forms</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#quadratic-forms-of-normal-random-vectors"><i class="fa fa-check"></i><b>4.1</b> QUADRATIC FORMS OF NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#independence"><i class="fa fa-check"></i><b>4.2</b> INDEPENDENCE</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#the-boldsymbolt-and-boldsymbolf-distributions"><i class="fa fa-check"></i><b>4.3</b> THE <span class="math inline">\(\boldsymbol{t}\)</span> AND <span class="math inline">\(\boldsymbol{F}\)</span> DISTRIBUTIONS</a></li>
+<li class="chapter" data-level="4.4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#bhats-lemma"><i class="fa fa-check"></i><b>4.4</b> BHAT’S LEMMA</a></li>
+<li class="chapter" data-level="4.5" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html"><i class="fa fa-check"></i><b>5</b> Complete, Balanced Factorial Experiments</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-admit-restrictions-finite-models"><i class="fa fa-check"></i><b>5.1</b> MODELS THAT ADMIT RESTRICTIONS (FINITE MODELS)</a></li>
+<li class="chapter" data-level="5.2" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-do-not-admit-restrictions-infinite-models"><i class="fa fa-check"></i><b>5.2</b> MODELS THAT DO NOT ADMIT RESTRICTIONS (INFINITE MODELS)</a></li>
+<li class="chapter" data-level="5.3" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#sum-of-squares-and-covariance-matrix-algorithms"><i class="fa fa-check"></i><b>5.3</b> SUM OF SQUARES AND COVARIANCE MATRIX ALGORITHMS</a></li>
+<li class="chapter" data-level="5.4" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#expected-mean-squares"><i class="fa fa-check"></i><b>5.4</b> EXPECTED MEAN SQUARES</a></li>
+<li class="chapter" data-level="5.5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#algorithm-applications"><i class="fa fa-check"></i><b>5.5</b> ALGORITHM APPLICATIONS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="least-squares-regression.html"><a href="least-squares-regression.html"><i class="fa fa-check"></i><b>6</b> Least-Squares Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="least-squares-regression.html"><a href="least-squares-regression.html#ordinary-least-squares-estimation"><i class="fa fa-check"></i><b>6.1</b> ORDINARY LEAST-SQUARES ESTIMATION</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html"><i class="fa fa-check"></i><b>7</b> Maximum Likelihood Estimation and Related Topics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimators-of-beta-and-sigma2"><i class="fa fa-check"></i><b>7.1</b> MAXIMUM LIKELIHOOD ESTIMATORS OF <span class="math inline">\(\beta\)</span> AND <span class="math inline">\(\sigma^{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="maximum-likelihood-estimation-and-related-topics" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Maximum Likelihood Estimation and Related Topics<a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimation-and-related-topics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter deals with maximum likelihood estimation of the parameters
+of the general linear model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> when
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}(\mathbf{0}, \Sigma) .\)</span> The maximum
+likelihood estimators of <span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span>
+are the parameter values that maximize the likelihood function of the
+random vector <span class="math inline">\(\mathbf{Y}\)</span>. In the first section of the chapter, the
+discussion is confined to the cases where
+<span class="math inline">\(\Sigma=\sigma^{2} \mathbf{I}_{n}\)</span> and <span class="math inline">\(\Sigma=\sigma^{2} \mathbf{V}\)</span>
+when <span class="math inline">\(\mathbf{V}\)</span> is known. In the second section, the concepts of
+invariance, completeness, sufficiency, and minimum variance unbiased
+estimation are discussed. In the third section, maximum likelihood
+estimation is developed for more general forms of <span class="math inline">\(\Sigma\)</span>. Finally, the
+likelihood ratio test and related confidence bands on linear
+combinations of the <span class="math inline">\(p \times 1\)</span> vector <span class="math inline">\(\beta\)</span> are examined.</p>
+<div id="maximum-likelihood-estimators-of-beta-and-sigma2" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> MAXIMUM LIKELIHOOD ESTIMATORS OF <span class="math inline">\(\beta\)</span> AND <span class="math inline">\(\sigma^{2}\)</span><a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimators-of-beta-and-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the present, assume the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right) .\)</span>
+Therefore, the likelihood function is given by</p>
+<p><span class="math display">\[\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left\{(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})^{\prime}(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta}) /\left(2 \sigma^{2}\right)\right\}}\]</span>
+The logarithm of the likelihood function is
+<span class="math display">\[\log \left[\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)\right]=-\frac{n}{2} \log (2 \pi)-\frac{n}{2} \log \left(\sigma^{2}\right)-(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})^{\prime}(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta}) /\left(2 \sigma^{2}\right)\]</span>
+The objective is to find the values of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma^{2}\)</span> that
+maximize the function <span class="math inline">\(\log [\ell(\beta,\)</span>,
+<span class="math inline">\(\left.\left.\sigma^{2}, \mathbf{Y}\right)\right] .\)</span> Take derivatives of
+<span class="math inline">\(\log \left[\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)\right]\)</span>
+with respect to the <span class="math inline">\(p \times 1\)</span> vector <span class="math inline">\(\boldsymbol{\beta}\)</span> and
+<span class="math inline">\(\sigma^{2}\)</span>, set the resulting expressions equal to zero, and solve for
+<span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma^{2} .\)</span> That is,
+<span class="math display">\[\partial \log \left[\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)\right] / \partial \beta=\left[-2 \mathbf{X}^{\prime} \mathbf{Y}+2 \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}\right] /\left(2 \sigma^{2}\right)=0\]</span>
+and
+<span class="math display">\[\partial \log \left[\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)\right] / \partial \sigma^{2}=-n /\left(2 \sigma^{2}\right)+\left\{(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})^{\prime}(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta}) /\left(2 \sigma^{4}\right)\right\}=0\]</span>
+Solving the first equation for <span class="math inline">\(\boldsymbol{\beta}\)</span> produces
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}=\mathbf{X}^{\prime} \mathbf{Y}\)</span>.
+If the <span class="math inline">\(n \times p\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span> has full rank (i.e., if
+<span class="math inline">\(\mathbf{X}^{\prime} \mathbf{X}\)</span> is nonsingular), then the maximum
+likelihood estimator (MLE) of <span class="math inline">\(\boldsymbol{\beta}\)</span> is given by
+<span class="math display">\[\tilde{\boldsymbol{\beta}}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} .\]</span>
+Solve the second equation for <span class="math inline">\(\sigma^{2}\)</span> with <span class="math inline">\(\beta\)</span> replaced by
+<span class="math inline">\(\tilde{\boldsymbol{\beta}}\)</span>. The resulting maximum likelihood estimator
+of <span class="math inline">\(\sigma^{2}\)</span> is
+<span class="math display">\[\tilde{\sigma}^{2}=(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}})^{\prime}(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}}) / n=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} / n .\]</span>
+The maximum likelihood estimator of <span class="math inline">\(\beta\)</span> is a set of <span class="math inline">\(p\)</span> linear
+transformations of the random vector <span class="math inline">\(\mathbf{Y}\)</span>. Since
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}\left(\mathbf{X} \boldsymbol{\beta}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>,
+by Theorem 2.1.2, the MLE is <span class="math display">\[\begin{aligned}
+\tilde{\boldsymbol{\beta}} &amp; \sim \mathrm{N}_{p}\left[\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta},\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\left(\sigma^{2} \mathbf{I}_{n}\right) \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1}\right] \\
+&amp;=\mathrm{N}_{p}\left[\boldsymbol{\beta}, \sigma^{2}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1}\right] .
+\end{aligned}\]</span> Therefore, <span class="math inline">\(\tilde{\boldsymbol{\beta}}\)</span> is an unbiased
+estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span>. Furthermore,
+<span class="math inline">\(\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right)\)</span>
+<span class="math inline">\(\left(\sigma^{2} \mathbf{I}_{n}\right)=\sigma^{2}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right)\)</span>
+is a multiple of an idempotent matrix of rank <span class="math inline">\(n-p .\)</span> Therefore, by
+Corollary 3.1.2(a),
+<span class="math inline">\(n \tilde{\sigma}^{2}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} \sim \sigma^{2} \chi_{n-p}^{2}(\lambda)\)</span>
+where <span class="math display">\[\begin{aligned}
+\lambda &amp;=(\mathbf{X} \boldsymbol{\beta})^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{X} \boldsymbol{\beta} /\left(2 \sigma^{2}\right) \\
+&amp;=\left[\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}-\boldsymbol{\beta}^{\prime} \mathbf{X}^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}\right] /\left(2 \sigma^{2}\right)=0
+\end{aligned}\]</span> The MLE <span class="math inline">\(\tilde{\sigma}^{2}\)</span> is not an unbiased
+estimator of <span class="math inline">\(\sigma^{2}\)</span> since
+<span class="math inline">\(\mathrm{E}\left(\tilde{\sigma}^{2}\right)=\mathrm{E}\left[\sigma^{2} \chi_{n-p}^{2}(0) / n\right]=\)</span>
+<span class="math inline">\((n-p) \sigma^{2} / n\)</span>. Finally, by Theorem
+<span class="math inline">\(3.2 .2, \tilde{\boldsymbol{\beta}}\)</span> and <span class="math inline">\(\tilde{\sigma}^{2}\)</span> are
+independent since <span class="math display">\[\begin{aligned}
+\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\left(\sigma^{2} \mathbf{I}_{n}\right)\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right]=&amp; \sigma^{2}\left[\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right.\\
+&amp;\left.-\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \\
+=&amp; \mathbf{0}_{p \times n}
+\end{aligned}\]</span></p>
+<p>6 Maximum Likelihood Estimation 107 In Chapter
+<span class="math inline">\(5, \hat{\boldsymbol{\beta}}\)</span> and <span class="math inline">\(\hat{\sigma}^{2}\)</span> denoted the
+ordinary least-squares estimators (OLSEs) of <span class="math inline">\(\boldsymbol{\beta}\)</span> and
+<span class="math inline">\(\sigma^{2}\)</span>, respectively. Note that the OLSE
+<span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> equals the MLE <span class="math inline">\(\tilde{\boldsymbol{\beta}}\)</span>,
+and the OLSE <span class="math inline">\(\hat{\sigma}^{2}\)</span> is a multiple of the
+<span class="math inline">\(\mathrm{MLE} \tilde{\sigma}^{2}\)</span> for the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> when
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>
+<span class="math display">\[i.e., $\hat{\boldsymbol{\beta}}=\tilde{\boldsymbol{\beta}}$ and
+$\hat{\sigma}^{2}=n \tilde{\sigma}^{2} /(n-p)$ \]</span>. Furthermore, the OLSE
+<span class="math inline">\(\hat{\sigma}^{2}\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^{2}\)</span> for this
+model. Therefore, the OLSE <span class="math inline">\(\hat{\sigma}^{2}\)</span> is often used to estimate
+<span class="math inline">\(\sigma^{2}\)</span> instead of the MLE <span class="math inline">\(\tilde{\sigma}^{2}\)</span>.</p>
+<p>In the following example the MLEs of <span class="math inline">\(\boldsymbol{\beta}\)</span> and
+<span class="math inline">\(\sigma^{2}\)</span> are derived for a one-way balanced factorial experiment.</p>
+<p>Example 6.1.1 Consider the one-way classification described in Examples
+1.2.10 and 2.1.4. Rewrite the model <span class="math inline">\(Y_{i j}=\mu_{i}+R(T)_{(i) j}\)</span> as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, \ldots, Y_{1 r}, \ldots, Y_{t 1}, \ldots, Y_{t r}\right)^{\prime}, \mathbf{X}=\mathbf{I}_{t} \otimes \mathbf{1}_{r}, \boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{t}\right)^{\prime}=\)</span>
+<span class="math inline">\(\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime}\)</span>, and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{I}_{t} \otimes \mathbf{I}_{r} .\)</span>
+Therefore, the MLE of <span class="math inline">\(\beta\)</span> is given by <span class="math display">\[\begin{aligned}
+\tilde{\boldsymbol{\beta}} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} \\
+&amp;=\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y} \\
+&amp;=\left[\mathbf{I}_{t} \otimes(\mathbf{1} / r) \mathbf{1}_{r}^{\prime}\right] \mathbf{Y} \\
+&amp;=\left(\bar{Y}_{1 .}, \ldots, \bar{Y}_{t .}\right)^{\prime}
+\end{aligned}\]</span> where <span class="math inline">\(\bar{Y}_{i .}=\sum_{j=1}^{r} Y_{i j} / r\)</span>. That
+is, the MLEs of <span class="math inline">\(\beta_{1}, \ldots, \beta_{t}\left(\right.\)</span> or
+<span class="math inline">\(\left.\mu_{1}, \ldots, \mu_{t}\right)\)</span> are the observed treatment
+means. Furthermore, the MLE of <span class="math inline">\(\sigma^{2}\)</span> is <span class="math display">\[\begin{aligned}
+\tilde{\sigma}^{2} &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} /(r t) \\
+&amp;=\mathbf{Y}^{\prime}\left\{\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\right\} \mathbf{Y} /(r t) \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left(\mathbf{I}_{t} \otimes \frac{1}{r}\right)\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}^{\prime}\right)\right] \mathbf{Y} /(r t) \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /(r t) .
+\end{aligned}\]</span> Thus, the MLE of <span class="math inline">\(\sigma^{2}\)</span> equals the sum of squares
+due to the nested replicates divided by <span class="math inline">\(t r\)</span>.</p>
+<p>We conclude this section by briefly examining likelihood estimation for
+the model <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> when
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{V}\right)\)</span>
+and <span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times n\)</span> positive definite matrix of known
+constants. Since <span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times n\)</span> positive definite
+matrix there exists an <span class="math inline">\(n \times n\)</span> nonsingular matrix <span class="math inline">\(\mathbf{T}\)</span> such
+that <span class="math inline">\(\mathbf{V}=\mathbf{T T}^{\prime}\)</span>. Premultiplying the original
+model by <span class="math inline">\(\mathbf{T}^{-1}\)</span> we obtain <span class="math display">\[\begin{aligned}
+\mathbf{T}^{-1} \mathbf{Y} &amp;=\mathbf{T}^{-1} \mathbf{X} \boldsymbol{\beta}+\mathbf{T}^{-1} \mathbf{E} \\
+\mathbf{Y}^{*} &amp;=\mathbf{X}^{*} \boldsymbol{\beta}+\mathbf{E}^{*}
+\end{aligned}\]</span></p>
+<p>108 Linear Models where
+<span class="math inline">\(\mathbf{Y}^{*}=\mathbf{T}^{-1} \mathbf{Y}, \mathbf{X}^{*}=\mathbf{T}^{-1} \mathbf{X}\)</span>,
+and <span class="math inline">\(\mathbf{E}^{*}=\mathbf{T}^{-1} \mathbf{E}\)</span> with
+<span class="math inline">\(\mathbf{E}^{*} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+Therefore, the maximum likelihood estimator of <span class="math inline">\(\beta\)</span> is
+<span class="math display">\[\begin{aligned}
+\tilde{\boldsymbol{\beta}} &amp;=\left(\mathbf{X}^{* \prime} \mathbf{X}^{*}\right)^{-1} \mathbf{X}^{* \prime} \mathbf{Y} \\
+&amp;=\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{Y} .
+\end{aligned}\]</span> Likewise, the MLE of <span class="math inline">\(\sigma^{2}\)</span> is given by
+<span class="math display">\[\begin{aligned}
+\tilde{\sigma}^{2} &amp;=\left(\mathbf{Y}^{*}-\mathbf{X}^{*} \tilde{\boldsymbol{\beta}}\right)^{\prime}\left(\mathbf{Y}^{*}-\mathbf{X}^{*} \tilde{\boldsymbol{\beta}}\right) / n \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{V}^{-1}-\mathbf{V}^{-1} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{V}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{V}^{-1}\right] \mathbf{Y} / n .
+\end{aligned}\]</span> It is left to the reader to find the distributions of
+<span class="math inline">\(\tilde{\boldsymbol{\beta}}\)</span> and <span class="math inline">\(\tilde{\sigma}^{2}\)</span> when
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{V}\right)\)</span>.
+6.2 INVARIANCE PROPERTY, SUFFICIENCY, AND COMPLETENESS In this section
+the invariance property, sufficiency, completeness, and minimum variance
+unbiased estimators are discussed.</p>
+<p>Definition 6.2.1 Invariance Property: Let the <span class="math inline">\(k \times 1\)</span> vector
+<span class="math inline">\(\bar{\theta}=\left(\tilde{\theta}_{1}, \ldots, \tilde{\theta}_{k}\right)^{\prime}\)</span>
+be the MLE of the <span class="math inline">\(k \times 1\)</span> vector <span class="math inline">\(\theta\)</span>. If <span class="math inline">\(g(\theta)\)</span> is a
+function of <span class="math inline">\(\theta\)</span> then <span class="math inline">\(g(\tilde{\theta})\)</span> is the MLE of
+<span class="math inline">\(g(\theta) .\)</span></p>
+<p>Example 6.2.1 Consider the one-way classification in Example 6.1.1. By
+the invariance property, the MLE of
+<span class="math inline">\(g\left(\beta, \sigma^{2}\right)=\sum_{i=1}^{t} \beta_{i} / \sigma\)</span> is
+<span class="math display">\[\begin{aligned}
+g\left(\tilde{\boldsymbol{\beta}}_{,}, \tilde{\sigma}^{2}\right) &amp;=\left(1 / \sqrt{\tilde{\sigma}^{2}}\right) \mathbf{1}_{t}^{\prime} \tilde{\boldsymbol{\beta}}^{2} \\
+&amp;=\frac{\mathbf{1}_{t}^{\prime}\left(\bar{Y}_{1, \ldots}, \ldots, \bar{Y}_{t}\right)^{\prime}}{\left\{\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /(r t)\right\}^{1 / 2}} .
+\end{aligned}\]</span> Sufficiency involves the reduction of data to a concise
+set of statistics without loss of information about the unknown
+parameters of the distribution. Thus, if the parameters of the
+distribution are of interest, attention can be focused on the joint
+distribution of the "reduced" set of statistics. In this sense, the
+reduced set of statistics provides sufficient information about the
+unknown parameters. The topic of sufficiency is addressed in the next
+theorem.</p>
+<p>Theorem 6.2.1 Factorization Theorem: Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\)</span> <span class="math inline">\(\left(Y_{1}, \ldots, Y_{n}\right)^{\prime}\)</span> have joint
+probability distribution function
+<span class="math inline">\(f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \theta\right)\)</span> where <span class="math inline">\(\theta\)</span>
+is a <span class="math inline">\(k \times 1\)</span> vector of unknown parameters. Let
+<span class="math inline">\(\mathbf{S}=\left(S_{1}, \ldots, S_{r}\right)^{\prime}\)</span> be a set of <span class="math inline">\(r\)</span>
+statistics for <span class="math inline">\(r \geq k\)</span>. The statistics <span class="math inline">\(S_{1}, \ldots, S_{r}\)</span> are
+jointly sufficient for <span class="math inline">\(\theta\)</span> if and 6 Maximum Likelihood Estimation
+109 only if
+<span class="math display">\[f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \boldsymbol{\theta}\right)=g(\mathbf{S}, \boldsymbol{\theta}) h\left(Y_{1}, \ldots, Y_{n}\right)\]</span>
+where <span class="math inline">\(g(\mathbf{S}, \theta)\)</span> does not depend on <span class="math inline">\(Y_{1}, \ldots, Y_{n}\)</span>
+except through <span class="math inline">\(\mathbf{S}\)</span> and <span class="math inline">\(h\left(Y_{1}, \ldots, Y_{n}\right)\)</span>
+does not involve <span class="math inline">\(\boldsymbol{\theta}\)</span>.</p>
+<p>Example 6.2.2 Let the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1}, \ldots,\)</span><span class="math inline">\(\begin{aligned} f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \alpha, \sigma^{2}\right) &amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left(\mathbf{X}-\alpha \mathbf{1}_{n}\right)^{\prime}\left(\mathbf{Y}-\alpha \mathbf{1}_{n}\right) /\left(2 \sigma^{2}\right)} \\ &amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left[\mathbf{Y} \mathbf{Y}-2 \alpha\left(\mathbf{1}_{n}^{\prime} \mathbf{Y}\right)+n \alpha^{2}\right] /\left(2 \sigma^{2}\right)} \\ &amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left[S_{2}-2 \alpha S_{1}+n \alpha^{2}\right] /\left(2 \sigma^{2}\right)} \end{aligned}\)</span>$The next theorem and example link the ideas of sufficiency and maximum likelihood estimation.</p>
+<p>Theorem 6.2.2 If<span class="math inline">\(S=(S\_1, ..., S\_r)\^\)</span>are jointly sufficient for the vector<span class="math display">\[and if\]</span>is a unique MLE of<span class="math display">\[, then\]</span>is a function of<span class="math inline">\(S\)</span>.
+Proof: By the factorization theorem<span class="math display">\[f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \theta\right)=g(\mathbf{S}, \theta) h\left(Y_{1}, \ldots, Y_{n}\right)\]</span>which means that the value of<span class="math display">\[that maximizes$f\_()$depends on\]</span>. If the MLE is unique, the MLE of$$must be a function of S.</p>
+<p>Example 6.2.3 Consider the problem from Example 6.2.2. Rewrite the model as<span class="math inline">\(= +\)</span>where the$n <span class="math inline">\(matrix\)</span>=1_n<span class="math inline">\(and the\)</span>n <span class="math inline">\(random vector\)</span> ~_n(, ^2
+_n)<span class="math inline">\(. Therefore, the MLE of\)</span><span class="math inline">\(is given by\)</span><span class="math inline">\(\begin{aligned} \tilde{\boldsymbol{\alpha}} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} \\ &amp;=\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime} \mathbf{Y} \\ &amp;=\bar{Y} . \end{aligned}\)</span><span class="math inline">\(and the MLE of\)</span>^2<span class="math inline">\(is\)</span><span class="math inline">\(\begin{aligned} \tilde{\sigma}^{2} &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} / n \\ &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{1}_{n}\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime}\right] \mathbf{Y} / n \\ &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y} / n . \end{aligned}\)</span><span class="math inline">\(The MLEs\)</span>=S_1 /
+n<span class="math inline">\(and\)</span>^2=<span class="math inline">\(and jointly sufficient for\)</span><span class="math inline">\(and\)</span>^2<span class="math inline">\(where\)</span>S_1=_n^
+<span class="math inline">\(and\)</span>S_2=^ $.
+110
+Linear Models
+This section concludes with a discussion of completeness and its relation to minimum variance unbiased estimators.</p>
+<p>Definition 6.2.2 Completeness: A family of probability distribution functions<span class="math inline">\({f\_(t, ), }\)</span>is called complete if E[u(T)]<span class="math inline">\(=0\)</span>for all<span class="math display">\[implies$u(T)=0$with probability 1 for all\]</span>.</p>
+<p>Completeness is a characterization of the joint probability distribution of the statistics T. However, the term complete is often linked to the statistics themselves. Therefore, a sufficient statistic whose probability distribution is complete is referred to as a complete sufficient statistic.</p>
+<p>Completeness implies that two different functions of the statistics<span class="math display">\[cannot have the same expectation. To understand this interpretation, let$u\_1()$and$u\_2()$be two different functions of$T$such that$E=()$and$E=()$. Therefore,$E$. If the distribution of\]</span>is complete then<span class="math inline">\(u\_1()-u\_2()=0\)</span>or<span class="math inline">\(u\_1()=u\_2()\)</span>with probability 1 . That is, an unbiased estimator of any function of<span class="math display">\[is unique if the distribution of\]</span>is complete.<span class="math display">\[\begin{aligned}
+f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \alpha, \sigma^{2}\right) &amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left(\mathbf{X}-\alpha \mathbf{1}_{n}\right)^{\prime}\left(\mathbf{Y}-\alpha \mathbf{1}_{n}\right) /\left(2 \sigma^{2}\right)} \\
+&amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left[\mathbf{Y} \mathbf{Y}-2 \alpha\left(\mathbf{1}_{n}^{\prime} \mathbf{Y}\right)+n \alpha^{2}\right] /\left(2 \sigma^{2}\right)} \\
+&amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left[S_{2}-2 \alpha S_{1}+n \alpha^{2}\right] /\left(2 \sigma^{2}\right)}
+\end{aligned}\]</span>The next theorem and example link the ideas of sufficiency and maximum likelihood estimation.</p>
+<p>Theorem 6.2.2 If<span class="math inline">\(S=(S\_1, ..., S\_r)\^\)</span>are jointly sufficient for the vector<span class="math display">\[and if\]</span>is a unique MLE of<span class="math display">\[, then\]</span>is a function of<span class="math inline">\(S\)</span>.
+Proof: By the factorization theorem<span class="math display">\[f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \theta\right)=g(\mathbf{S}, \theta) h\left(Y_{1}, \ldots, Y_{n}\right)\]</span>which means that the value of<span class="math display">\[that maximizes$f\_()$depends on\]</span>. If the MLE is unique, the MLE of$$must be a function of S.</p>
+<p>Example 6.2.3 Consider the problem from Example 6.2.2. Rewrite the model as<span class="math inline">\(= +\)</span>where the$n <span class="math inline">\(matrix\)</span>=1_n<span class="math inline">\(and the\)</span>n <span class="math inline">\(random vector\)</span> ~_n(, ^2
+_n)<span class="math inline">\(. Therefore, the MLE of\)</span><span class="math inline">\(is given by\)</span><span class="math inline">\(\begin{aligned} \tilde{\boldsymbol{\alpha}} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} \\ &amp;=\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime} \mathbf{Y} \\ &amp;=\bar{Y} . \end{aligned}\)</span><span class="math inline">\(and the MLE of\)</span>^2<span class="math inline">\(is\)</span><span class="math inline">\(\begin{aligned} \tilde{\sigma}^{2} &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} / n \\ &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{1}_{n}\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime}\right] \mathbf{Y} / n \\ &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y} / n . \end{aligned}\)</span><span class="math inline">\(The MLEs\)</span>=S_1 /
+n<span class="math inline">\(and\)</span>^2=<span class="math inline">\(and jointly sufficient for\)</span><span class="math inline">\(and\)</span>^2<span class="math inline">\(where\)</span>S_1=_n^
+<span class="math inline">\(and\)</span>S_2=^ $.
+110
+Linear Models
+This section concludes with a discussion of completeness and its relation to minimum variance unbiased estimators.</p>
+<p>Definition 6.2.2 Completeness: A family of probability distribution functions<span class="math inline">\({f\_(t, ), }\)</span>is called complete if E[u(T)]<span class="math inline">\(=0\)</span>for all<span class="math display">\[implies$u(T)=0$with probability 1 for all\]</span>.</p>
+<p>Completeness is a characterization of the joint probability distribution of the statistics T. However, the term complete is often linked to the statistics themselves. Therefore, a sufficient statistic whose probability distribution is complete is referred to as a complete sufficient statistic.</p>
+<p>Completeness implies that two different functions of the statistics<span class="math display">\[cannot have the same expectation. To understand this interpretation, let$u\_1()$and$u\_2()$be two different functions of$T$such that$E=()$and$E=()$. Therefore,$E$. If the distribution of\]</span>is complete then<span class="math inline">\(u\_1()-u\_2()=0\)</span>or<span class="math inline">\(u\_1()=u\_2()\)</span>with probability 1 . That is, an unbiased estimator of any function of<span class="math display">\[is unique if the distribution of\]</span>is complete.
+Suppose it is of interest to develop an unbiased estimator of<span class="math inline">\(()\)</span>. Let<span class="math display">\[be sufficient for\]</span>. Therefore, when searching for an unbiased estimator of<span class="math inline">\(()\)</span>, we confine ourselves to functions of<span class="math display">\[. If\]</span>is a set of complete sufficient statistics,Y_Y_{n})^{} <em>{n}(</em>{n}, ^{2} _{n})$.
+The statistics <span class="math inline">\(S_{1}=\mathbf{1}_{n}^{\prime} \mathbf{Y}\)</span> and
+<span class="math inline">\(S_{2}=\mathbf{Y}^{\prime} \mathbf{Y}\)</span> are jointly sufficient for
+<span class="math inline">\(\theta=\left(\alpha, \sigma^{2}\right)^{\prime}\)</span> since</p>
+<p><span class="math display">\[\begin{aligned}
+f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \alpha, \sigma^{2}\right) &amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left(\mathbf{X}-\alpha \mathbf{1}_{n}\right)^{\prime}\left(\mathbf{Y}-\alpha \mathbf{1}_{n}\right) /\left(2 \sigma^{2}\right)} \\
+&amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left[\mathbf{Y} \mathbf{Y}-2 \alpha\left(\mathbf{1}_{n}^{\prime} \mathbf{Y}\right)+n \alpha^{2}\right] /\left(2 \sigma^{2}\right)} \\
+&amp;=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-\left[S_{2}-2 \alpha S_{1}+n \alpha^{2}\right] /\left(2 \sigma^{2}\right)}
+\end{aligned}\]</span> The next theorem and example link the ideas of
+sufficiency and maximum likelihood estimation.</p>
+<p>Theorem 6.2.2 If <span class="math inline">\(S=\left(S_{1}, \ldots, S_{r}\right)^{\prime}\)</span> are
+jointly sufficient for the vector <span class="math inline">\(\theta\)</span> and if <span class="math inline">\(\tilde{\theta}\)</span> is a
+unique MLE of <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(\tilde{\theta}\)</span> is a function of <span class="math inline">\(S\)</span>.
+Proof: By the factorization theorem
+<span class="math display">\[f_{\mathbf{Y}}\left(Y_{1}, \ldots, Y_{n}, \theta\right)=g(\mathbf{S}, \theta) h\left(Y_{1}, \ldots, Y_{n}\right)\]</span>
+which means that the value of <span class="math inline">\(\theta\)</span> that maximizes
+<span class="math inline">\(f_{\mathbf{Y}}(\cdot)\)</span> depends on <span class="math inline">\(\mathrm{S}\)</span>. If the MLE is unique,
+the MLE of <span class="math inline">\(\theta\)</span> must be a function of S.</p>
+<p>Example 6.2.3 Consider the problem from Example 6.2.2. Rewrite the model
+as <span class="math inline">\(\mathbf{Y}=\mathbf{X} \alpha+\mathbf{E}\)</span> where the <span class="math inline">\(n \times 1\)</span>
+matrix <span class="math inline">\(\mathbf{X}=1_{n}\)</span> and the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+Therefore, the MLE of <span class="math inline">\(\alpha\)</span> is given by <span class="math display">\[\begin{aligned}
+\tilde{\boldsymbol{\alpha}} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} \\
+&amp;=\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime} \mathbf{Y} \\
+&amp;=\bar{Y} .
+\end{aligned}\]</span> and the MLE of <span class="math inline">\(\sigma^{2}\)</span> is <span class="math display">\[\begin{aligned}
+\tilde{\sigma}^{2} &amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} / n \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{1}_{n}\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime}\right] \mathbf{Y} / n \\
+&amp;=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y} / n .
+\end{aligned}\]</span> The MLEs <span class="math inline">\(\tilde{\alpha}=S_{1} / n\)</span> and
+<span class="math inline">\(\sigma^{2}=\left[\left(S_{2}-S_{1}^{2} / n\right) / n\right]\)</span> and
+jointly sufficient for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\sigma^{2}\)</span> where
+<span class="math inline">\(S_{1}=\mathbf{1}_{n}^{\prime} \mathbf{Y}\)</span> and
+<span class="math inline">\(S_{2}=\mathbf{Y}^{\prime} \mathbf{Y}\)</span>. 110 Linear Models This section
+concludes with a discussion of completeness and its relation to minimum
+variance unbiased estimators.</p>
+<p>Definition 6.2.2 Completeness: A family of probability distribution
+functions <span class="math inline">\(\left\{f_{\mathbf{T}}(t, \theta), \theta \in \Theta\right\}\)</span>
+is called complete if E<span class="math display">\[u(T)\]</span> <span class="math inline">\(=0\)</span> for all <span class="math inline">\(\theta \in \Theta\)</span> implies
+<span class="math inline">\(u(T)=0\)</span> with probability 1 for all <span class="math inline">\(\theta \in \Theta\)</span>.</p>
+<p>Completeness is a characterization of the joint probability distribution
+of the statistics T. However, the term complete is often linked to the
+statistics themselves. Therefore, a sufficient statistic whose
+probability distribution is complete is referred to as a complete
+sufficient statistic.</p>
+<p>Completeness implies that two different functions of the statistics
+<span class="math inline">\(\mathbf{T}\)</span> cannot have the same expectation. To understand this
+interpretation, let <span class="math inline">\(u_{1}(\mathbf{T})\)</span> and <span class="math inline">\(u_{2}(\mathbf{T})\)</span> be two
+different functions of <span class="math inline">\(T\)</span> such that
+<span class="math inline">\(E\left[u_{1}(T)\right]=\tau(\theta)\)</span> and
+<span class="math inline">\(E\left[u_{2}(T)\right]=\tau(\theta)\)</span>. Therefore,
+<span class="math inline">\(E\left[u_{1}(\mathbf{T})-u_{2}(\mathbf{T})\right]=0\)</span>. If the
+distribution of <span class="math inline">\(\mathbf{T}\)</span> is complete then
+<span class="math inline">\(u_{1}(\mathbf{T})-u_{2}(\mathbf{T})=0\)</span> or
+<span class="math inline">\(u_{1}(\mathbf{T})=u_{2}(\mathbf{T})\)</span> with probability 1 . That is, an
+unbiased estimator of any function of <span class="math inline">\(\theta\)</span> is unique if the
+distribution of <span class="math inline">\(\mathbf{T}\)</span> is complete. Suppose it is of interest to
+develop an unbiased estimator of <span class="math inline">\(\tau(\theta)\)</span>. Let <span class="math inline">\(\mathbf{T}\)</span> be
+sufficient for <span class="math inline">\(\theta\)</span>. Therefore, when searching for an unbiased
+estimator of <span class="math inline">\(\tau(\theta)\)</span>, we confine ourselves to functions of
+<span class="math inline">\(\mathbf{T}\)</span>. If <span class="math inline">\(\mathbf{T}\)</span> is a set of complete sufficient
+statistics,</p>
+<p>then there is at most one unbiased estimator of <span class="math inline">\(\tau(\theta)\)</span> based on
+<span class="math inline">\(\mathbf{T}\)</span>. Since this estimator is the only unbiased estimator of
+<span class="math inline">\(\tau(\theta)\)</span>, trivially, it must be the unbiased estimator with the
+smallest variance.</p>
+<p>From the preceding discussion the class of unbiased estimators of
+<span class="math inline">\(\tau(\theta)\)</span> based on complete sufficient statistics has at most one
+member. Therefore, to call this estimator "best" in its class is in
+some sense misleading, since there are no competing estimators in the
+class. With no competition these best estimators could perform very
+poorly. Surprisingly, minimum variance unbiased estimators based on
+complete sufficient statistics do in many cases have relatively small
+variances and, in that sense, do turn out to be good estimators.</p>
+<p>The next theorem identifies the complete sufficient statistics of
+<span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\sigma^{2}\)</span> when
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> and
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right)\)</span></p>
+<p>Theorem 6.2.3 Let <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span>
+where <span class="math inline">\(\mathbf{Y}\)</span> is an <span class="math inline">\(n \times 1\)</span> random vector, <span class="math inline">\(\mathbf{X}\)</span> is an
+<span class="math inline">\(n \times p\)</span> matrix of constants, <span class="math inline">\(\boldsymbol{\beta}\)</span> is a <span class="math inline">\(p \times 1\)</span>
+vector of unknown parameters, and the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+The MLEs
+<span class="math inline">\(\tilde{\beta}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>
+and
+<span class="math inline">\(\tilde{\sigma}^{2}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} / n\)</span>
+are complete sufficient statistics for <span class="math inline">\(\boldsymbol{\beta}\)</span> and
+<span class="math inline">\(\sigma^{2}\)</span>. Furthermore, any two linearly independent combinations of
+<span class="math inline">\(\bar{\beta}\)</span> and <span class="math inline">\(\sigma^{2}\)</span> are also complete sufficient statistics
+for <span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\sigma^{2}\)</span>.</p>
+<p>Example 6.2.4 Consider the problem from Example 6.2.3. By Theorem 6.2.3,
+<span class="math inline">\(\bar{Y}\)</span>. and
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y}\)</span>
+are complete sufficient statistics for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\sigma^{2}\)</span>.
+Furthermore, 6 Maximum Likelihood Estimation 111 <span class="math inline">\(\bar{Y}\)</span>. and
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y}\)</span>
+are independent random variables where
+<span class="math inline">\(\bar{Y} . \sim \mathrm{N}_{1}\left(\alpha, \sigma^{2} / n\right)\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y} \sim \sigma^{2} \chi_{n-1}^{2}(\lambda=0)\)</span>.
+Therefore, <span class="math inline">\(\mathrm{E}(\bar{Y} .)=\alpha\)</span> and <span class="math inline">\(\mathrm{E}\{(n-3)\)</span>
+<span class="math inline">\(\left.\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \mathbf{Y}\right]^{-1}\right]=\sigma^{-2}\)</span>.
+Thus, the minimum variance unbiased estimator of <span class="math inline">\(\alpha / \sigma^{2}\)</span>
+is given by
+<span class="math inline">\((n-3)(\bar{Y} .)\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \mathbf{Y}\right]^{-1}\)</span>.
+6.3 ANOVA METHODS FOR FINDING MAXIMUM LIKELIHOOD ESTIMATORS In some
+models the ordinary least-squares estimators and certain ANOVA sums of
+squares provide direct MLE solutions, even when the covariance matrix
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\)</span> <span class="math inline">\(\Sigma\)</span> is a function of multiple
+unknown variance parameters. The topic is introduced with an example and
+then followed by a general theorem.</p>
+<p>Example 6.3.1 Consider a two-way balanced factorial experiment with <span class="math inline">\(b\)</span>
+random blocks and <span class="math inline">\(t\)</span> fixed treatment levels. Let the <span class="math inline">\(b t\)</span> observations
+be represented by random variables <span class="math inline">\(Y_{i j}\)</span> for <span class="math inline">\(i=1, \ldots, b\)</span> and
+<span class="math inline">\(j=1, \ldots, t\)</span>. The model for this experiment is
+<span class="math display">\[Y_{i j}=\mu_{j}+B_{i}+B T_{i j}\]</span> where <span class="math inline">\(\mu_{j}\)</span> is a constant
+representing the mean effect of the <span class="math inline">\(j^{\text {th }}\)</span> treatment level,
+<span class="math inline">\(B_{i}\)</span> is a random variable representing the effect of the
+<span class="math inline">\(i^{\text {th }}\)</span> random block, and <span class="math inline">\(B T_{i j}\)</span> is a random variable
+representing the interaction of the <span class="math inline">\(i^{\text {th }}\)</span> block and the
+<span class="math inline">\(j^{\text {th }}\)</span> treatment. Assume <span class="math inline">\(B_{i} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{B}^{2}\right)\)</span> and
+<span class="math inline">\(\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right)\left(B T_{11}, \ldots, B T_{b t}\right) \sim\)</span>
+<span class="math inline">\(\mathrm{N}_{b(t-1)}\left(\mathbf{0}, \sigma_{B T}^{2} \mathbf{I}_{b} \otimes \mathbf{I}_{t-1}\right)\)</span>.
+Furthermore, assume <span class="math inline">\(\left(B_{1}, \ldots, B_{b}\right)\)</span> and
+<span class="math inline">\(\left[B T_{11}, \ldots, B T_{b t}\right]\)</span> are mutually independent.
+Rewrite the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where the
+<span class="math inline">\(b t \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, \ldots, Y_{1 t}, \ldots, Y_{b 1}, \ldots, Y_{b t}\right)^{\prime}\)</span>,
+the <span class="math inline">\(b t \times t\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\mathbf{1}_{b} \otimes \mathbf{I}_{t}\)</span>, the <span class="math inline">\(t \times 1\)</span>
+vector
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{t}\right)^{\prime}=\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime}\)</span>,
+and the <span class="math inline">\(b t \times 1\)</span> error vector
+<span class="math inline">\(\mathbf{E}=\left(E_{11}, \ldots, E_{1 t}, \ldots, E_{b 1}, \ldots, E_{b t}\right)^{\prime} \sim \mathrm{N}_{b t}(\mathbf{0}, \Sigma)\)</span>
+with
+<span class="math display">\[\Sigma=\sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t}\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] .\]</span>
+The covariance matrix <span class="math inline">\(\Sigma\)</span> is derived using the covariance matrix
+algorithm in Chapter 4. The problem is to derive the maximum likelihood
+estimators of <span class="math inline">\(\beta_{1}, \ldots, \beta_{t}, \sigma_{B}^{2}\)</span> and
+<span class="math inline">\(\sigma_{B T}^{2}\)</span>. First, let the <span class="math inline">\(b t \times b t\)</span> matrix
+<span class="math display">\[\mathbf{P}^{\prime}=\left[\begin{array}{l}
+\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime} \\
+\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}
+\end{array}\right]\]</span> where <span class="math inline">\(\mathbf{P}_{t}^{\prime}\)</span> is the
+<span class="math inline">\((t-1) \times t\)</span> lower portion of the <span class="math inline">\(t\)</span>-dimensional Helmert matrix.
+112 Linear Models Recall
+<span class="math inline">\(\mathbf{P}_{t} \mathbf{P}_{t}^{\prime}=\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}, \mathbf{P}_{t}^{\prime} \mathbf{P}_{t}=\mathbf{I}_{t-1}\)</span>,
+and <span class="math inline">\(\mathbf{1}_{t}^{\prime} \mathbf{P}_{t}=\mathbf{0}_{1 \times(t-1)}\)</span>.
+By Theorem 2.1.2,
+<span class="math display">\[\mathbf{P}^{\prime} \mathbf{Y}=\left[\begin{array}{l}
+\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime} \\
+\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}
+\end{array}\right] \mathbf{Y} \sim \mathbf{N}_{b t}\left(\mathbf{P}^{\prime} \mathbf{X} \beta, \mathbf{P}^{\prime} \Sigma \mathbf{P}\right)\]</span>
+where
+<span class="math display">\[\mathbf{P}^{\prime} \mathbf{X} \boldsymbol{\beta}=\left[\begin{array}{l}
+\mathbf{1}_{b} \otimes \mathbf{1}_{t}^{\prime} \boldsymbol{\beta} \\
+\mathbf{1}_{b} \otimes \mathbf{P}_{t}^{\prime} \boldsymbol{\beta}
+\end{array}\right] \quad \text { and } \quad \mathbf{P}^{\prime} \boldsymbol{\Sigma} \mathbf{P}=\left[\begin{array}{cc}
+t^{2} \sigma_{B}^{2} \mathbf{I}_{b} &amp; \mathbf{0} \\
+\mathbf{0} &amp; \sigma_{B T}^{2} \mathbf{I}_{b} \otimes \mathbf{I}_{t-1}
+\end{array}\right] .\]</span> The distribution of the <span class="math inline">\(b \times 1\)</span> vector
+<span class="math inline">\(\left(\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime}\right) \mathbf{Y}\)</span>
+is a function of the two unknown parameters
+<span class="math inline">\(\mathbf{1}_{t}^{\prime} \boldsymbol{\beta}\)</span> and <span class="math inline">\(\sigma_{B}^{2}\)</span>. The
+distribution of the <span class="math inline">\(b(t-1) \times 1\)</span> vector
+<span class="math inline">\(\left(\mathbf{I}_{b} \otimes P_{t}^{\prime}\right) \mathbf{Y}\)</span> is a
+function of the <span class="math inline">\(t\)</span> unknown parameters <span class="math inline">\(\mathbf{P}_{t}^{\prime} \beta\)</span>
+and <span class="math inline">\(\sigma_{B T}^{2}\)</span>. Furthermore, by Theorem 2.1.4, the two vectors
+are independent. Therefore, the MLEs of
+<span class="math inline">\(\mathbf{1}_{t}^{\prime} \boldsymbol{\beta}\)</span> and <span class="math inline">\(\sigma_{B}^{2}\)</span> can be
+calculated separately from the MLEs of <span class="math inline">\(P_{t}^{\prime} \beta\)</span> and
+<span class="math inline">\(\sigma_{B T}^{2}\)</span>. First, model the <span class="math inline">\(b \times 1\)</span> vector
+<span class="math inline">\(\left(\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime}\right) \mathbf{Y}\)</span>
+as <span class="math display">\[\begin{aligned}
+\left(\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime}\right) \mathbf{Y} &amp;=\mathbf{1}_{b} \otimes \mathbf{1}_{l}^{\prime} \boldsymbol{\beta}+\mathbf{E}_{1} \\
+\mathbf{Y}_{1} &amp;=\mathbf{K}_{1} \theta_{1}+\mathbf{E}_{1}
+\end{aligned}\]</span> where the <span class="math inline">\(b \times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}_{1}=\left(\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime}\right) \mathbf{Y}\)</span>,
+the <span class="math inline">\(b \times 1\)</span> matrix <span class="math inline">\(\mathbf{K}_{1}=\mathbf{1}_{b}\)</span>, the unknown
+scalar
+<span class="math inline">\(\theta_{1}=\mathbf{1}_{t}^{\prime} \boldsymbol{\beta}=\sum_{j=1}^{\prime} \beta_{j}\)</span>
+and the <span class="math inline">\(b \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{E}_{1} \sim \mathbf{N}_{b}\left(\mathbf{0}, t^{2} \sigma_{B}^{2} \mathbf{I}_{b}\right)\)</span>.
+Therefore, the MLE of <span class="math inline">\(\theta_{1}\)</span> is <span class="math display">\[\begin{aligned}
+\tilde{\theta}_{1} &amp;=\left(\mathbf{K}_{1}^{\prime} \mathbf{K}_{1}\right)^{-1} \mathbf{K}_{1}^{\prime} \mathbf{Y}_{1} \\
+&amp;=\left(\mathbf{1}_{b}^{\prime} \mathbf{1}_{b}\right)^{-1}\left(\mathbf{1}_{b} \otimes 1\right)^{\prime}\left(\mathbf{I}_{b} \otimes \mathbf{1}_{f}^{\prime}\right) \mathbf{Y} \\
+&amp;=\sum_{i=1}^{b} \sum_{j=1}^{t} Y_{i j} / b .
+\end{aligned}\]</span> The MLE of <span class="math inline">\(t^{2} \sigma_{B}^{2}\)</span> is given by
+<span class="math display">\[t^{2} \tilde{\sigma}_{B}^{2}=\mathbf{Y}_{1}^{\prime}\left[\mathbf{I}_{b}-\mathbf{K}_{1}\left(\mathbf{K}_{1}^{\prime} \mathbf{K}_{1}\right)^{-1} \mathbf{K}_{1}^{\prime}\right] \mathbf{Y}_{1} / b .\]</span>
+Therefore, the MLE of <span class="math inline">\(\sigma_{B}^{2}\)</span> is <span class="math display">\[\begin{aligned}
+\tilde{\sigma}_{B}^{2} &amp;=\mathbf{Y}^{\prime}\left(\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime}\right)^{\prime}\left[\mathbf{I}_{b}-\mathbf{1}_{b}\left(\mathbf{1}_{b}^{\prime} \mathbf{1}_{b}\right)^{-1} \mathbf{1}_{b}^{\prime}\right]\left(\mathbf{I}_{b} \otimes \mathbf{1}_{t}^{\prime}\right) \mathbf{Y} /\left(t^{2} b\right) \\
+&amp;=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right] \mathbf{Y} /(b t)
+\end{aligned}\]</span> Note that the MLE of <span class="math inline">\(\sigma_{B}^{2}\)</span> equals the sum of
+squares for blocks divided by <span class="math inline">\(b t\)</span>. Now model the <span class="math inline">\(b(t-1) \times 1\)</span>
+vector
+<span class="math inline">\(\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right) \mathbf{Y}\)</span>
+as <span class="math display">\[\begin{aligned}
+\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right) \mathbf{Y} &amp;=\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime} \boldsymbol{\beta}+\mathbf{E}_{2} \\
+\mathbf{Y}_{2} &amp;=\mathbf{K}_{2} \theta_{2}+\mathbf{E}_{2}
+\end{aligned}\]</span></p>
+<p>6 Maximum Likelihood Estimation 113 where the <span class="math inline">\(b(t-1) \times 1\)</span> vector
+<span class="math inline">\(\mathbf{Y}_{2}=\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}\right) \mathbf{Y}\)</span>,
+the <span class="math inline">\(b(t-1) \times(t-1)\)</span> matrix
+<span class="math inline">\(\mathbf{K}_{2}=\mathbf{I}_{b} \otimes \mathbf{I}_{t-1}\)</span>, the
+<span class="math inline">\((t-1) \times 1\)</span> vector of unknown parameters
+<span class="math inline">\(\theta_{2}=\mathbf{P}_{t} \beta\)</span>, and the <span class="math inline">\(b(t-1) \times 1\)</span> random
+vector
+<span class="math inline">\(\mathbf{E}_{2} \sim \mathbf{N}_{\Delta(t-1)}\left(\mathbf{0}, \sigma_{B T}^{2} \mathbf{I}_{b} \otimes \mathbf{I}_{t-1}\right)\)</span>.
+Therefore, the MLE of the <span class="math inline">\((t-1) \times 1\)</span> vector <span class="math inline">\(\theta_{2}\)</span> is
+<span class="math display">\[\begin{aligned}
+\tilde{\theta}_{2} &amp;=\left(\mathbf{K}_{2}^{\prime} \mathbf{K}_{2}\right)^{-1} \mathbf{K}_{2}^{\prime} \mathbf{Y}_{2} \\
+&amp;=\left[\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t-1}\right)^{\prime}\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t-1}\right)\right]^{-1}\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t-1}\right)^{\prime}\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right) \mathbf{Y} \\
+&amp;=\left[(1 / b) \mathbf{1}_{b}^{\prime} \otimes \mathbf{P}_{t}^{\prime}\right] \mathbf{Y} .
+\end{aligned}\]</span> The MLE of <span class="math inline">\(\sigma_{B T}^{2}\)</span> is given by
+<span class="math display">\[\begin{aligned}
+\tilde{\sigma}_{B T}^{2}=&amp; \mathbf{Y}_{2}^{\prime}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t-1}-\mathbf{K}_{2}\left(\mathbf{K}_{2}^{\prime} \mathbf{K}_{2}\right)^{-1} \mathbf{K}_{2}^{\prime}\right] \mathbf{Y}_{2} /[b(t-1)] \\
+=&amp; \mathbf{Y}^{\prime}\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right)^{\prime}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t-1}-\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t-1}\right)\left[\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t-1}\right)^{\prime}\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t-1}\right)\right]^{-1}\right.\\
+&amp;\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t-1}\right)^{\prime} \mid\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime} \mathbf{Y} /[b(t-1)]\right.\\
+=&amp; \mathbf{Y}^{\prime}\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}\right)\left[\left(\mathbf{I}_{b} \otimes \mathbf{I}_{t-1}\right)-\left(\frac{1}{b} \mathbf{J}_{b} \otimes \mathbf{I}_{t-1}\right)\right]\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right) \mathbf{Y} /[b(t-1)] \\
+=&amp; \mathbf{Y}^{\prime}\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}\right)\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \mathbf{I}_{t-1}\right]\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right) \mathbf{Y} /[b(t-1)] \\
+=&amp; \mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \mathbf{P}_{t} \mathbf{P}_{t}^{\prime}\right] \mathbf{Y} /[b(t-1)] \\
+=&amp; \mathbf{Y}^{t}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \mathbf{Y} /[b(t-1)]
+\end{aligned}\]</span> Note that the MLE of <span class="math inline">\(\sigma_{B T}^{2}\)</span> is the sum of
+squares for the block by treatment interaction divided by <span class="math inline">\(b(t-1)\)</span>. Now
+the maximum likelihood estimators of
+<span class="math inline">\(\left(\theta_{1}, \theta_{2}^{\prime}\right)\)</span> and the invariance
+property are used to derive the MLEs of the original parameters
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{t}\right)^{\prime}\)</span>.
+Note that <span class="math display">\[\left[\begin{array}{l}
+\mathbf{1}_{t}^{\prime} \\
+\mathbf{P}_{t}^{\prime}
+\end{array}\right] \boldsymbol{\beta}=\left[\begin{array}{l}
+\theta_{1} \\
+\theta_{2}
+\end{array}\right] .\]</span> Premultiplying by the <span class="math inline">\(t \times t\)</span> matrix
+<span class="math inline">\(\left(\frac{1}{t} \mathbf{1}_{t} \mid \mathbf{P}_{t}\right)\)</span> we obtain
+<span class="math display">\[\begin{array}{r}
+\left(\frac{1}{t} \mathbf{1}_{t} \mid \mathbf{P}_{t}\right)\left[\begin{array}{l}
+\mathbf{1}_{t}^{\prime} \\
+\mathbf{P}_{t}^{\prime}
+\end{array}\right] \boldsymbol{\beta}=\left(\frac{1}{t} \mathbf{1}_{t} \mid \mathbf{P}_{t}\right)\left[\begin{array}{l}
+\theta_{1} \\
+\theta_{2}
+\end{array}\right] \\
+\left(\frac{1}{t} \mathbf{J}_{t}+\mathbf{P}_{t} \mathbf{P}_{t}^{\prime}\right) \boldsymbol{\beta}=\frac{1}{t} \mathbf{1}_{t} \theta_{1}+\mathbf{P}_{t} \theta_{2} \\
+{\left[\frac{1}{t} \mathbf{J}_{t}+\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \boldsymbol{\beta}=\frac{1}{t} \mathbf{1}_{1} \theta_{1}+\mathbf{P}_{t} \theta_{2}}
+\end{array}\]</span> 114 Linear Models or
+<span class="math display">\[\boldsymbol{\beta}=\frac{1}{t} \mathbf{1}_{l} \theta_{1}+\mathbf{P}_{l} \boldsymbol{\theta}_{2} .\]</span>
+Therefore, by the invariance property, the MLE of <span class="math inline">\(\beta\)</span> is given by
+<span class="math display">\[\begin{aligned}
+\widehat{\boldsymbol{\beta}} &amp;=\frac{1}{t} \mathbf{1}_{t} \bar{\theta}_{1}+\mathbf{P}_{t} \dot{\theta}_{2} \\
+&amp;=\frac{1}{t} \mathbf{1}_{t}\left[(1 / b) \mathbf{1}_{b}^{\prime} \otimes \mathbf{1}_{t}^{\prime}\right] \mathbf{Y}+\mathbf{P}_{t}\left[(1 / b) \mathbf{1}_{b}^{\prime} \otimes \mathbf{P}_{t}^{\prime}\right] \mathbf{Y} \\
+&amp;=\left[(1 / b) \mathbf{1}_{b}^{\prime} \otimes \frac{1}{t} \mathbf{J}_{t}+(1 / b) \mathbf{1}_{b}^{\prime} \otimes \mathbf{P}_{t} \mathbf{P}_{t}^{\prime}\right] \mathbf{Y} \\
+&amp;=\left[(1 / b) \mathbf{1}_{b}^{\prime} \otimes\left(\frac{1}{t} \mathbf{J}_{t}+\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \mathbf{Y} \\
+&amp;=\left[(1 / b) \mathbf{1}_{b}^{\prime} \otimes \mathbf{I}_{t}\right] \mathbf{Y} \\
+&amp;=\left[\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t}\right)^{\prime}\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t}\right)\right]^{-1}\left(\mathbf{1}_{b} \otimes \mathbf{I}_{t}\right)^{\prime} \mathbf{Y} \\
+&amp;=(\mathbf{X} \mathbf{X})^{-1} \mathbf{X}^{\prime} \mathbf{Y} .
+\end{aligned}\]</span> The model from Example 6.3.1 belongs to a class of
+linear models where the MLE of <span class="math inline">\(\beta\)</span> equals the ordinary least-squares
+estimator of <span class="math inline">\(\beta\)</span> and the MLEs of the variance parameters in <span class="math inline">\(\Sigma\)</span>
+are linear combinations of the ANOVA mean squares for the random
+effects. The next theorem provides formulas for the MLEs of a broad
+class of models, including the model from Example 6.2.1.</p>
+<p>Theorem 6.3.1 Let <span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{Y}\)</span> is an <span class="math inline">\(n \times 1\)</span> random vector, <span class="math inline">\(\mathbf{X}\)</span> is an
+<span class="math inline">\(n \times p\)</span> matrix of rank <span class="math inline">\(p, \beta\)</span> is <span class="math inline">\(a p \times 1\)</span> vector of
+unknown paramters, and the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}(\mathbf{0}, \Sigma)\)</span>. For
+<span class="math inline">\(i=1, \ldots, m\)</span>, let <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{B}_{i} \mathbf{Y}\)</span>
+and <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{C}_{i} \mathbf{Y}\)</span> be sums of squares
+corresponding to the various fixed and random effects, respectively,
+such that <span class="math inline">\(\mathbf{I}_{n}=\sum_{i=1}^{m}\left(B_{i}+C_{i}\right)\)</span> where
+<span class="math inline">\(\operatorname{rank}\left(\mathbf{B}_{i}\right)=p_{i} \geq 0, \operatorname{rank}\left(\mathbf{C}_{i}\right)=r_{i}&gt;0, p=\)</span>
+<span class="math inline">\(\sum_{i=1}^{m} p_{i}\)</span> and <span class="math inline">\(n=\sum_{i=1}^{m}\left(p_{i}+r_{i}\right)\)</span>.
+If there exist unique constants <span class="math inline">\(a_{i}&gt;0\)</span> such that
+<span class="math inline">\(\Sigma=\sum_{i=1}^{m} a_{i}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\)</span>
+then i) the maximum likelihood estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span> is
+given by
+<span class="math inline">\(\hat{\boldsymbol{\beta}}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>
+if and only if <span class="math inline">\(\sum_{i=1}^{m} \mathbf{B}_{i} \mathbf{X}=\mathbf{X}\)</span>,
+and ii) under the conditions that induce i), the maximum likelihood
+estimator of <span class="math inline">\(a_{i}\)</span> is given by
+<span class="math inline">\(\tilde{a}_{i}=\mathbf{Y}^{\prime} \mathbf{C}_{i} \mathbf{Y} /\left(p_{i}+r_{i}\right)\)</span>.</p>
+<p>Proof: By Theorem 1.1.7, <span class="math inline">\(\mathbf{B}_{i}\)</span> and <span class="math inline">\(\mathbf{C}_{i}\)</span> are
+idempotent matrices for <span class="math inline">\(i=1, \ldots, m\)</span>;
+<span class="math inline">\(\mathbf{B}_{i} \mathbf{C}_{j}=\mathbf{0}_{n \times n}\)</span> for any
+<span class="math inline">\(i, j=1, \ldots, m ; \mathbf{B}_{i} \mathbf{B}_{j}=\mathbf{0}_{n \times n}\)</span>
+for any <span class="math inline">\(i \neq j\)</span>; and therefore, <span class="math inline">\(\mathbf{B}_{i}+\mathbf{C}_{i}\)</span> is an
+idempotent matrix of rank <span class="math inline">\(p_{i}+r_{i}\)</span>. These conditions imply
+<span class="math inline">\(\boldsymbol{\Sigma}^{-1}=\)</span>
+<span class="math inline">\(\sum_{i=1}^{m} a_{i}^{-1}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\)</span>. 6
+Maximum Likelihood Estimation 115 i) Assume
+<span class="math inline">\(\sum_{i=1}^{m} \mathbf{B}_{i} \mathbf{X}=\mathbf{X}\)</span>. Then
+<span class="math inline">\(\mathbf{B}_{i} \mathbf{C}_{j}=\mathbf{0}_{n \times n}\)</span> for all <span class="math inline">\(i, j\)</span>
+implies <span class="math inline">\(\mathbf{C}_{j} \mathbf{X}=\)</span>
+<span class="math inline">\(\sum_{i=1}^{m} \mathbf{C}_{j} \mathbf{B}_{i} \mathbf{X}=\mathbf{0}_{n \times p}\)</span>
+for all <span class="math inline">\(j\)</span>. Now let the <span class="math inline">\(n \times p\)</span> matrix
+<span class="math inline">\(\mathbf{Q}=\left[\mathbf{Q}_{1}\left|\mathbf{Q}_{2}\right| \cdots \mid \mathbf{Q}_{m}\right]\)</span>
+where <span class="math inline">\(\mathbf{Q}_{i}\)</span> is an <span class="math inline">\(n \times p_{i}\)</span> matrix of rank <span class="math inline">\(p_{i}\)</span>
+such that <span class="math inline">\(\mathbf{B}_{i}=\mathbf{Q}_{i} \mathbf{Q}_{i}\)</span> for each
+<span class="math inline">\(i=1, \ldots, m\)</span>. Thus,
+<span class="math inline">\(\mathbf{Q} \mathbf{Q}^{\prime}=\sum_{i=1}^{m} \mathbf{B}_{i}\)</span> and
+<span class="math inline">\(\sum_{i=1}^{m} a_{i}^{-1} \mathbf{B}_{i}=\mathbf{Q A}^{-1} \mathbf{Q}^{\prime}\)</span>
+where <span class="math inline">\(\mathbf{A}\)</span> is a <span class="math inline">\(\boldsymbol{p} \times \boldsymbol{p}\)</span>
+nonsingular block diagonal matrix with <span class="math inline">\(a_{i} \mathbf{I}_{j}\)</span> on the
+diagonal for <span class="math inline">\(i=1, \ldots, m\)</span>. Therefore, <span class="math inline">\(\mathbf{X}=\)</span>
+<span class="math inline">\(\sum_{i=1}^{m} \mathbf{B}_{i} \mathbf{X}=\mathbf{Q} \mathbf{Q}^{\prime} \mathbf{X}\)</span>,
+which implies
+<span class="math inline">\(\mathbf{Q}=\mathbf{X}\left(\mathbf{Q}^{\prime} \mathbf{X}\right)^{-1}\)</span>.
+The maximum likelihood estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span> is given by
+<span class="math display">\[\begin{aligned}
+\tilde{\boldsymbol{\beta}} &amp;=\left(\mathbf{X}^{\prime} \tilde{\Sigma}^{-1} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \overline{\mathbf{\Sigma}}^{-1} \mathbf{Y} \\
+&amp;=\left\{\mathbf{X}^{\prime}\left[\sum_{i=1}^{m} a_{i}^{-1}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\right] \mathbf{X}\right\}^{-1} \mathbf{X}^{\prime}\left[\sum_{i=1}^{m} a_{i}^{-1}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\right] \mathbf{Y} \\
+&amp;=\left\{\mathbf{X}^{\prime}\left[\sum_{i=1}^{m} a_{i}^{-1} \mathbf{B}_{i}\right] \mathbf{X}\right\}^{-1} \mathbf{X}^{\prime}\left[\sum_{i=1}^{m} a_{i}^{-1} \mathbf{B}_{i}\right] \mathbf{Y} \\
+&amp;=\left(\mathbf{X}^{\prime} \mathbf{Q} \mathbf{A}^{-1} \mathbf{Q}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Q A} \mathbf{A}^{-1} \mathbf{Q}^{\prime} \mathbf{Y} \\
+&amp;=\left(\mathbf{Q}^{\prime} \mathbf{X}\right)^{-1} \mathbf{A}\left(\mathbf{X}^{\prime} \mathbf{Q}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Q A} \mathbf{A}^{-1} \mathbf{Q}^{\prime} \mathbf{Y}=\left(\mathbf{Q}^{\prime} \mathbf{X}\right)^{-1} \mathbf{Q}^{\prime} \mathbf{Y} \\
+&amp;=\left\{\left[\left(\mathbf{Q}^{\prime} \mathbf{X}\right)^{-1}\right]^{\prime} \mathbf{X}^{\prime} \mathbf{X}\right\}^{-1}\left[\left(\mathbf{Q}^{\prime} \mathbf{X}\right)^{-1}\right]^{\mathbf{X}} \mathbf{X}^{\prime} \mathbf{Y}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} .
+\end{aligned}\]</span> The "only if" portion of the proof of i) is omitted,
+but can be found in Moser and MeCann (1995). ii) Before deriving the MLE
+of <span class="math inline">\(a_{i}\)</span>, we need to derive a particular relationship between the
+matrices <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{B}_{i}\)</span>. From the proof of
+<span class="math inline">\(\left.i\right), \mathbf{Q}=\mathbf{X}(\mathbf{Q} \mathbf{X})^{-1}\)</span>.
+Therefore,
+<span class="math inline">\(\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X} \mathbf{Q}_{i}=\mathbf{Q}_{i}\)</span>
+for <span class="math inline">\(i=1, \ldots, m\)</span>. Premultiplying by <span class="math inline">\(\mathbf{Q}_{i}\)</span> produces
+<span class="math inline">\(\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X B}_{i}=\mathbf{B}_{i}\)</span>.
+Now, to find the MLE of <span class="math inline">\(a_{i}\)</span>, write the likelihood function with
+<span class="math inline">\(\boldsymbol{\beta}\)</span> replaced by <span class="math inline">\(\tilde{\beta}\)</span> and
+<span class="math inline">\(\Sigma^{-1}=\sum_{i=1}^{m} a_{i}^{-1}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\)</span>.
+Note that <span class="math inline">\(a_{i}\)</span> are the eigenvalues of <span class="math inline">\(\Sigma\)</span> with multiplicity
+<span class="math inline">\(p_{i}+r_{i}\)</span> for <span class="math inline">\(i=1, \ldots, m\)</span>. Therefore,
+<span class="math display">\[|\Sigma|=\prod_{i=1}^{m} a_{i}^{\left(p_{i}+n\right)}\]</span> and
+<span class="math inline">\(=(2 \pi)^{-n / 2}\left[\prod_{i=1}^{m} a_{i}^{-(p,+n) / 2}\right]\)</span>
+<span class="math inline">\(x e^{-(\mathbf{Y}-\mathbf{x} \beta \hat{\beta})\left[\sum_{i=1}^{n}\left(\mathbf{B}_{1}+\mathbf{C}_{i}\right) / \alpha_{1}\right](\mathbf{X}-\mathbf{x} \boldsymbol{\beta}) / 2}\)</span></p>
+<p>116 Linear Models Take derivatives of
+<span class="math inline">\(\log f\left(a_{1}, \ldots, a_{m}, \tilde{\beta}, \mathbf{Y}\right)\)</span>
+with respect to <span class="math inline">\(a_{j}\)</span> for <span class="math inline">\(j=1, \ldots, m\)</span>, set the derivatives equal
+to zero, and solve for <span class="math inline">\(a_{j}\)</span> : <span class="math display">\[\begin{aligned}
+\log f\left(a_{1}, \ldots, a_{m}, \overline{\boldsymbol{\beta}}, \mathbf{Y}\right)=&amp;-(n / 2) \log (2 \pi) \\
+&amp;+\sum_{i=1}^{m}\left[-\left(p_{i}+r_{i}\right) / 2\right] \log \left(a_{i}\right)-(\mathbf{Y}-\mathbf{X} \overline{\boldsymbol{\beta}})^{\prime} \\
+&amp; {\left[\sum_{i=1}^{m}\left(1 / a_{i}\right)\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\right](\mathbf{Y}-\mathbf{X} \overline{\boldsymbol{\beta}}) / 2 }
+\end{aligned}\]</span> and <span class="math display">\[\begin{aligned}
+\partial \log f\left(a_{1}, \ldots, a_{m}, \overline{\boldsymbol{\beta}}, \mathbf{Y}\right) / \partial a_{j}=&amp;-\left(p_{j}+r_{j}\right) /\left(2 a_{j}\right) \\
+&amp;+(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}})^{\prime}\left(\mathbf{B}_{j}+\mathbf{C}_{j}\right) \\
+&amp;(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}}) /\left(2 a_{j}^{2}\right)=0 .
+\end{aligned}\]</span> Therefore, <span class="math display">\[\begin{aligned}
+\tilde{a}_{j}=&amp;(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}})^{\prime}\left(\mathbf{B}_{j}+\mathbf{C}_{j}\right)(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}}) /\left(p_{j}+r_{j}\right) \\
+=&amp; \mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right]\left(\mathbf{B}_{j}+\mathbf{C}_{j}\right) \\
+&amp; {\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} /\left(p_{j}+r_{j}\right) } \\
+=&amp; \mathbf{Y}^{\prime}\left[\left(\mathbf{B}_{j}+\mathbf{C}_{j}\right)-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{B}_{j}-\mathbf{B}_{j} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right.\\
+&amp;\left.+\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{B}_{j} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} /\left(p_{j}+r_{j}\right) \\
+=&amp; \mathbf{Y}^{\prime} \mathbf{C}_{j} \mathbf{Y} /\left(p_{j}+r_{j}\right)
+\end{aligned}\]</span> In Theorem 6.3.1 the lower limit on <span class="math inline">\(p_{i}\)</span> is zero.
+Therefore, the theorem allows <span class="math inline">\(\mathbf{B}_{i}\)</span> to equal
+<span class="math inline">\(\mathbf{0}_{n \times n}\)</span> and thus admits situations where the number of
+sums of squares for fixed effects differs from the number of random
+effects sums of squares. Furthermore, note that the lower limit on
+<span class="math inline">\(r_{\text {i }}\)</span> is strictly positive, implying that the number of
+matrices <span class="math inline">\(\mathbf{C}_{i}\)</span> and the number of unknown variance parameters
+both equal <span class="math inline">\(m\)</span>. This restriction is imposed so that the MLE estimators
+are defined, rather than being nonestimable. Example 6.3.1 is now
+reworked using Theorem 6.3.1. Example 6.3.2 Consider the two-way
+balanced factorial experiment given in Example 6.3.1. The model can be
+written as <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{X}=\mathbf{1}_{b} \otimes \mathbf{I}_{\mathbf{t}}, \boldsymbol{\beta}=\)</span>
+<span class="math inline">\(\left(\beta_{1}, \ldots, \beta_{t}\right)^{\prime}\)</span> and
+<span class="math display">\[\boldsymbol{\Sigma}=\sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t}\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\]</span>
+6 Maximum Likelihood Estimation 117 Let the sums of squares due to the
+overall mean, the random blocks, the fixed treatments, and the random
+interaction of blocks and treatments be represented by
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{B}_{1} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{C}_{1} \mathbf{Y}, \mathbf{Y}^{\prime} \mathbf{B}_{2} \mathbf{Y}\)</span>,
+and <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{C}_{2} \mathbf{Y}\)</span>, respectively, where
+<span class="math inline">\(p_{1}=1, r_{1}=b-1, p_{2}=\)</span> <span class="math inline">\(t-1, r_{2}=(b-1)(t-1)\)</span> and
+<span class="math display">\[\begin{array}{l}
+\mathbf{B}_{1}=\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{t} \mathbf{J}_{t} \\
+\mathbf{C}_{1}=\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \\
+\mathbf{B}_{2}=\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \\
+\mathbf{C}_{2}=\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) .
+\end{array}\]</span></p>
+<p>Note that
+<span class="math inline">\(\mathbf{I}_{b} \otimes \mathbf{I}_{t}=\mathbf{B}_{1}+\mathbf{C}_{1}+\mathbf{B}_{2}+\mathbf{C}_{2}\)</span>.
+Furthermore,
+<span class="math inline">\(\mathbf{B}_{1} \Sigma=t \sigma_{B}^{2} \mathbf{B}_{1}, \mathbf{C}_{1} \Sigma=\)</span>
+<span class="math inline">\(t \sigma_{B}^{2} \mathbf{C}_{1}, \mathbf{B}_{2} \Sigma=\sigma_{B T}^{2} \mathbf{B}_{2}\)</span>,
+and <span class="math inline">\(\mathbf{C}_{2} \Sigma=\sigma_{B T}^{2} \mathbf{C}_{2}\)</span>. Therefore,
+<span class="math inline">\(\sum_{i=1}^{2} a_{i}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)=\)</span>
+<span class="math inline">\(t \sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \frac{1}{t} \mathbf{J}_{t}\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]=\Sigma\)</span>
+where <span class="math inline">\(a_{1}=t \sigma_{B}^{2}\)</span> and <span class="math inline">\(a_{2}=\sigma_{B T}^{2}\)</span>.
+Furthermore, <span class="math display">\[\begin{aligned}
+\sum_{i=1}^{2} \mathbf{B}_{i} \mathbf{X} &amp;=\left[\left(\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{t} \mathbf{J}_{t}\right)+\left(\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right)\right]\left[\mathbf{1}_{b} \otimes \mathbf{I}_{t}\right] \\
+&amp;=\mathbf{1}_{b} \otimes \mathbf{I}_{t} \\
+&amp;=\mathbf{X} .
+\end{aligned}\]</span> Therefore, by Theorem 6.3.1, the MLE of <span class="math inline">\(\beta\)</span> is given
+by <span class="math display">\[\begin{aligned}
+\overline{\boldsymbol{\beta}} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} \\
+&amp;=\left[\left(\mathbf{1}_{b} \otimes \mathbf{I}_{f}\right)^{\prime}\left(\mathbf{1}_{b} \otimes \mathbf{I}_{f}\right)\right]^{-1}\left(\mathbf{1}_{b} \otimes \mathbf{I}_{f}\right)^{\prime} \mathbf{Y} \\
+&amp;=\left(\bar{Y}_{1}, \ldots, \bar{Y}_{f}\right)^{\prime}
+\end{aligned}\]</span> and the MLEs of <span class="math inline">\(a_{1}\)</span> and <span class="math inline">\(a_{2}\)</span> are
+<span class="math display">\[\bar{a}_{1}=t \bar{\sigma}_{B}^{2}=\mathbf{Y}^{\prime} \mathbf{C}_{1} \mathbf{Y} / b\]</span>
+and
+<span class="math display">\[\tilde{a}_{2}=\bar{\sigma}_{B T}^{2}=\mathbf{Y}^{\prime} \mathbf{C}_{2} \mathbf{Y} /[b(t-1)] .\]</span>
+Therefore, the MLEs of <span class="math inline">\(\sigma_{B}^{2}\)</span> and <span class="math inline">\(\sigma_{B T}^{2}\)</span> are
+<span class="math display">\[\tilde{\sigma}_{B}^{2}=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right] \mathbf{Y} /(b t)\]</span>
+118 Linear Models and
+<span class="math display">\[\check{\sigma}_{B T}^{2}=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \mathbf{Y} /[b(t-1)] .\]</span>
+These are the same MLEs derived in Example 6.3.1. Although this chapter
+deals mainly with maximum likelihood estimators of multivariate normal
+models, Theorem <span class="math inline">\(6.3 .1\)</span> also motivates a further generalization of the
+Gauss-Markov theorem. The Gauss-Markov theorem was introduced in Section
+<span class="math inline">\(5.2\)</span> for the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> when the
+<span class="math inline">\(n \times 1\)</span> error vector <span class="math inline">\(\mathbf{E}\)</span> had a distribution with
+<span class="math inline">\(\mathrm{E}(\mathbf{E})=\boldsymbol{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{I}_{n}\)</span>. In Section
+<span class="math inline">\(5.4\)</span> the Gauss-Markov theorem was extended to include the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> with
+<span class="math inline">\(\mathbf{E}(\mathbf{E})=\boldsymbol{\theta}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\sigma^{2} \mathbf{V}\)</span> where
+<span class="math inline">\(\mathbf{V}\)</span> is an <span class="math inline">\(n \times n\)</span> positive definite matrix of known
+constants. In the next theorem, the Gauss-Markov theorem is again
+extended to include an even broader class of covariance matrices.</p>
+<p>Theorem 6.3.2 Let <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span>
+where <span class="math inline">\(\mathbf{Y}\)</span> is an <span class="math inline">\(n \times 1\)</span> random vector, <span class="math inline">\(\mathbf{X}\)</span> is an
+<span class="math inline">\(n \times p\)</span> matrix of rank <span class="math inline">\(p, \beta\)</span> is a <span class="math inline">\(p \times 1\)</span> vector of
+unknown parameters, and <span class="math inline">\(\mathbf{E}\)</span> is an <span class="math inline">\(n \times 1\)</span> random vector
+with <span class="math inline">\(\mathbf{E}(\mathbf{E})=\mathbf{0}\)</span> and
+<span class="math inline">\(\operatorname{cov}(\mathbf{E})=\boldsymbol{\Sigma}\)</span>. For
+<span class="math inline">\(i=1, \ldots, m\)</span>, let <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{B}_{i} \mathbf{Y}\)</span>
+and <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{C}_{i} \mathbf{Y}\)</span> be the sums of
+squares corresponding to the various fixed and random effects,
+respectively, such that
+<span class="math inline">\(\mathbf{I}_{n}=\sum_{i=1}^{m}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\)</span>
+where rank <span class="math inline">\(\left(\mathbf{B}_{i}\right)=p_{i} \geq 0\)</span>.
+<span class="math inline">\(\operatorname{rank}\left(\mathbf{C}_{i}\right)=r_{i}&gt;0, p=\sum_{i=1}^{m} p_{i}\)</span>
+and <span class="math inline">\(n=\sum_{i=1}^{m}\left(p_{i}+r_{i}\right)\)</span>. If there exist unique
+constants <span class="math inline">\(a_{i}&gt;0\)</span> such that
+<span class="math inline">\(\Sigma=\sum_{i=1}^{m} a_{i}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\)</span>
+then the BLUE of <span class="math inline">\(\mathbf{t}^{\prime} \beta\)</span> is given by
+<span class="math inline">\(\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>
+if and only if <span class="math inline">\(\sum_{i=1}^{m} \mathbf{B}_{i} \mathbf{X}=\mathbf{X}\)</span>.</p>
+<p>Proof: (Sufficiency) Assume
+<span class="math inline">\(\sum_{i=1}^{m} \mathbf{B}_{i} \mathbf{X}=\mathbf{X}\)</span>. The BLUE of
+<span class="math inline">\(t^{\prime} \boldsymbol{\beta}\)</span> is given by <span class="math display">\[\begin{aligned}
+\mathbf{t}^{\prime} \tilde{\beta} &amp;=\mathbf{t}^{\prime}\left[\mathbf{X}^{\prime} \boldsymbol{\Sigma}^{-1} \mathbf{X}\right]^{-1} \mathbf{X}^{\prime} \boldsymbol{\Sigma}^{-1} \mathbf{Y} \\
+&amp;=\mathbf{t}^{\prime}\left\{\mathbf{X}^{\prime}\left[\sum_{i=1}^{m} a_{i}^{-1}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\right] \mathbf{X}\right\}^{-1} \mathbf{X}^{\prime}\left[\sum_{i=1}^{m} a_{i}^{-1}\left(\mathbf{B}_{i}+\mathbf{C}_{i}\right)\right] \mathbf{Y} \\
+&amp;=\mathbf{t}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} .
+\end{aligned}\]</span></p>
+<p>(Necessity) The necessity proof is given in Moser (1995). Theorem 6.3.2
+is applied in the next example. Example 6.3.3 Consider the model in
+Example 6.3.2. Since
+<span class="math inline">\(\Sigma=\sum_{i=1}^{m} a_{i}\left(\mathbf{B}_{i}+\right.\)</span>
+<span class="math inline">\(\left.\mathbf{C}_{i}\right)\)</span> and
+<span class="math inline">\(\sum_{i=1}^{m} \mathbf{B}_{i} \mathbf{X}=\mathbf{X}\)</span>, by Theorem 6.3.2,
+the BLUE of <span class="math inline">\(\mathbf{s}^{\prime} \boldsymbol{\beta}\)</span> is
+<span class="math display">\[\mathbf{s}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}=\mathbf{s}^{\prime}\left(\bar{Y}_{.1}, \ldots, \bar{Y}_{t}\right)^{\prime}=\sum_{i=1}^{t} s_{i} \bar{Y}_{i}\]</span>
+where the <span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\mathrm{s}=\left(s_{1}, \ldots, s_{t}\right)^{\prime}\)</span>. 6 Maximum
+Likelihood Estimation 119 In the next section the likelihood ratio test
+in derived for hypotheses of the form
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> where <span class="math inline">\(\mathbf{H}\)</span> is a
+<span class="math inline">\(q \times p\)</span> matrix of constants and <span class="math inline">\(\mathbf{h}\)</span> is a <span class="math inline">\(q \times 1\)</span>
+vector of constants. 6.4 THE LIKELIHOOD RATIO TEST
+<span class="math inline">\(\mathbf{F O R ~ H} \boldsymbol{\beta}=\mathbf{h}\)</span> Tests of the
+hypothesis <span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> are developed
+using the likelihood ratio statistic. For the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right)\)</span>
+the likelihood function is given by
+<span class="math display">\[\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)=\left(2 \pi \sigma^{2}\right)^{-n / 2} e^{-(\mathbf{Y}-\mathbf{X} \beta)^{\prime}(\mathbf{X}-\mathbf{X} \beta) /\left(2 \sigma^{2}\right)} .\]</span>
+The likelihood ratio statistic is a function of two values: 1. the
+maximum value of <span class="math inline">\(\ell\left(\beta, \sigma^{2}, \mathbf{Y}\right)\)</span>
+maximized over all possible values of <span class="math inline">\(\boldsymbol{\beta}\)</span> and
+<span class="math inline">\(\sigma^{2}\)</span>, that is, over all <span class="math inline">\(0&lt;\sigma^{2}&lt;\infty\)</span> and
+<span class="math inline">\(-\infty&lt;\beta_{i}&lt;\infty\)</span> for
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{p}\right)^{\prime}\)</span>
+where <span class="math inline">\(\beta_{i}\)</span> is a scalar and 2. the maximum value of
+<span class="math inline">\(\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)\)</span> maximized
+over the parameter space defined by
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span>. The likelihood ratio
+statistic, <span class="math inline">\(L\)</span> is the ratio of these two values.
+<span class="math display">\[L=\frac{\max _{\boldsymbol{\beta}, \sigma^{2}, \mathbf{H} \boldsymbol{\beta}=\mathrm{h}} \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)}{\max _{\boldsymbol{\beta}, \sigma^{2}} \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)} .\]</span>
+The denominator of <span class="math inline">\(L\)</span> is maximized when the maximum likelihood
+estimators of <span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\sigma^{2}\)</span> are used in
+<span class="math inline">\(\ell\left(\beta, \sigma^{2}, \mathbf{Y}\right)\)</span>. That is,
+<span class="math display">\[\begin{aligned}
+\max _{\beta, \sigma^{2}} \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right) &amp;=\left(2 \pi \tilde{\sigma}_{\mathrm{D}}^{2}\right)^{-n / 2} e^{-\left(\mathbf{Y}-\mathbf{X} \hat{\beta}_{\mathrm{D}}\right)^{\prime}\left(\mathbf{Y}-\mathbf{x} \overline{\boldsymbol{\beta}}_{\mathrm{D}}\right) /\left(2 \hat{\sigma}_{\mathrm{D}}^{2}\right)} \\
+&amp;=(2 \pi)^{-n / 2}\left(\tilde{\sigma}_{\mathrm{D}}^{2}\right)^{-n / 2} e^{-n / 2}
+\end{aligned}\]</span> where
+<span class="math inline">\(\tilde{\boldsymbol{\beta}}_{D}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>
+and
+<span class="math inline">\(\tilde{\sigma}_{\mathrm{D}}^{2}=\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} / n\)</span>.
+For the numerator of <span class="math inline">\(L\)</span>, the likelihood function is maximized with
+respect to <span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\sigma^{2}\)</span> under the restriction
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span>. To this end, let
+<span class="math inline">\(\mathbf{G}\)</span> be a <span class="math inline">\((p-q) \times p\)</span> matrix of rank <span class="math inline">\(p-q\)</span> chosen such that
+the <span class="math inline">\(p \times p\)</span> matrix
+<span class="math inline">\(\left[\begin{array}{l}\mathbf{H} \\ \mathbf{G}\end{array}\right]\)</span> has
+full rank with <span class="math inline">\(\mathbf{H G}^{\prime}=\mathbf{0}_{q \times(p-q)}\)</span>. Let
+<span class="math inline">\(\left[\begin{array}{l}\mathbf{H} \\ \mathbf{G}\end{array}\right]^{-1}=[\mathbf{R} \mid \mathbf{S}]\)</span>
+where <span class="math inline">\(\mathbf{R}\)</span> is a <span class="math inline">\(p \times q\)</span> matrix and <span class="math inline">\(\mathbf{S}\)</span> is a
+<span class="math inline">\(p \times(p-q)\)</span> matrix. Therefore, HR
+<span class="math inline">\(=\mathbf{I}_{q}, \mathbf{G S}=\mathbf{I}_{p-q}, \mathbf{H S}=\mathbf{0}_{q \times(p-q)}\)</span>,
+and <span class="math inline">\(\mathbf{G R}=\mathbf{0}_{(p-q) \times q}\)</span>. Note that
+<span class="math display">\[\left[\begin{array}{l}
+\mathbf{H} \\
+\mathbf{G}
+\end{array}\right]\left[\mathbf{H}^{\prime}\left(\mathbf{H H}^{\prime}\right)^{-1} \mid \mathbf{G}^{\prime}\left(\mathbf{G G}^{\prime}\right)^{-1}\right]=\mathbf{I}_{p}\]</span></p>
+<p>120 Linear Models so
+<span class="math inline">\(\mathbf{R}=\mathbf{H}^{\prime}\left(\mathbf{H H}^{\prime}\right)^{-1}\)</span>
+and
+<span class="math inline">\(\mathbf{S}=\mathbf{G}^{\prime}\left(\mathbf{G G}^{\prime}\right)^{-1}\)</span>.
+Also,
+<span class="math display">\[\left.\left[\mathbf{H}^{\prime}\left(\mathbf{H H}^{\prime}\right)^{-1} \mid \mathbf{G}^{\prime}(\mathbf{G G})^{\prime}\right)^{-1}\right]\left[\begin{array}{l}
+\mathbf{H} \\
+\mathbf{G}
+\end{array}\right]=\mathbf{I}_{p}\]</span> or
+<span class="math display">\[\mathbf{H}^{\prime}\left(\mathbf{H H}^{\prime}\right)^{-1} \mathbf{H}+\mathbf{G}^{\prime}\left(\mathbf{G G}^{\prime}\right)^{-1} \mathbf{G}=\mathbf{I}_{p} .\]</span>
+Rewrite <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> under
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> as <span class="math display">\[\begin{array}{l}
+\mathbf{Y}=\mathbf{X}(\mathbf{R} \text { S })\left[\begin{array}{l}
+\mathbf{H} \\
+\mathbf{G}
+\end{array}\right] \boldsymbol{\beta}+\mathbf{E} \\
+\mathbf{Y}=\mathbf{X R H} \boldsymbol{\beta}+\mathbf{X S G} \boldsymbol{\beta}+\mathbf{E} \\
+\mathbf{Y}=\mathbf{X R h}+\mathbf{X S G} \boldsymbol{\beta}+\mathbf{E} .
+\end{array}\]</span> Since XRh is known, rewrite the above model as
+<span class="math display">\[\mathbf{Z}=\mathbf{K} \boldsymbol{\theta}+\mathbf{E}\]</span> where the
+<span class="math inline">\(n \times I\)</span> random vector <span class="math inline">\(\mathbf{Z}=\mathbf{Y}-\mathbf{X R h}\)</span>, the
+<span class="math inline">\(n \times(p-q)\)</span> matrix <span class="math inline">\(\mathbf{K}=\mathbf{X S}\)</span>, the <span class="math inline">\((p-q) \times 1\)</span>
+vector <span class="math inline">\(\theta=\mathbf{G} \boldsymbol{\beta}\)</span>, and the <span class="math inline">\(n \times 1\)</span>
+random vector
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(\mathbf{0}, \sigma^{2} \mathbf{I}_{n}\right.\)</span>
+). Therefore, the likelihood in the numerator is maximized under
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> when the maximum likelihood
+estimators of <span class="math inline">\(\boldsymbol{\theta}\)</span> and <span class="math inline">\(\sigma^{2}\)</span> for the model
+<span class="math inline">\(\mathbf{Z}=\mathbf{K} \boldsymbol{\theta}+\mathbf{E}\)</span> are used in the
+likelihood function. That is, <span class="math display">\[\begin{aligned}
+\max _{\boldsymbol{\beta}, \sigma^{2}, \mathbf{H} \boldsymbol{\beta}=\boldsymbol{h}} \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right) &amp;=\max _{\theta, \sigma^{2}} \ell\left(\boldsymbol{\theta}, \sigma^{2}, \mathbf{Z}\right) \\
+&amp;=\left(2 \pi \tilde{\sigma}_{\mathrm{N}}^{2}\right)^{-n / 2} e^{-\left(\mathbf{Z}-\mathbf{K} \dot{\theta}_{\mathrm{N}}\right)}\left(\mathbf{Z}-\mathbf{K} \theta_{N}\right) /\left(2 \sigma_{N}^{2}\right) \\
+&amp;=(2 \pi)^{-n / 2}\left(\tilde{\sigma}_{\mathrm{N}}^{2}\right)^{-n / 2} e^{-n / 2}
+\end{aligned}\]</span> where
+<span class="math inline">\(\hat{\theta}_{\mathrm{N}}=\left(\mathbf{K}^{\prime} \mathbf{K}\right)^{-1} \mathbf{K}^{\prime} \mathbf{Z}\)</span>
+and
+<span class="math inline">\(\tilde{\sigma}_{\mathrm{N}}^{2}=\mathbf{Z}^{\prime}\left(\mathbf{I}_{n}-\mathbf{K}\left(\mathbf{K}^{\prime} \mathbf{K}\right)^{-1} \mathbf{K}^{\prime}\right) \mathbf{Z} / n\)</span>.
+Therefore, the likelihood ratio statistic is given by
+<span class="math display">\[L=\frac{(2 \pi)^{-n / 2}\left(\tilde{\sigma}_{\mathrm{N}}^{2}\right)^{-n / 2} e^{-n / 2}}{(2 \pi)^{-n / 2}\left(\tilde{\sigma}_{\mathrm{D}}^{2}\right)^{-n / 2} e^{-n / 2}}=\left(\bar{\sigma}_{\mathrm{D}}^{2} / \bar{\sigma}_{\mathrm{N}}^{2}\right)^{n / 2} .\]</span>
+Instead of using <span class="math inline">\(L\)</span> as the test statistic, use the following monotonic
+function of <span class="math inline">\(L\)</span> : <span class="math display">\[\begin{aligned}
+V &amp;=\left(L^{-2 / n}-1\right)(n-p) / q=\left(\bar{\sigma}_{\mathrm{N}}^{2} / \bar{\sigma}_{\mathrm{D}}^{2}-1\right)(n-p) / q \\
+&amp;=\frac{\left(\tilde{\sigma}_{\mathrm{N}}^{2}-\bar{\sigma}_{\mathrm{D}}^{2}\right) / q}{\tilde{\sigma}_{\mathrm{D}}^{2} /(n-p)} \\
+&amp;=\frac{\left(\mathbf{Z}^{\prime}\left(\mathbf{I}_{n}-\mathbf{K}\left(\mathbf{K}^{\prime} \mathbf{K}\right)^{-1} \mathbf{K}^{\prime}\right) \mathbf{Z}-\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X ^ { \prime }}\right) \mathbf{Y}\right\} / q}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} .
+\end{aligned}\]</span> 6 Maximum Likelihood Estimation 121 A second form of <span class="math inline">\(V\)</span>
+can be generated by noting that <span class="math display">\[\begin{aligned}
+{\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Z}=} &amp; {\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right]\left[\mathbf{Y}-\mathbf{X H}^{\prime}\left(\mathbf{H} \mathbf{H}^{\prime}\right)^{-1} \mathbf{h}\right] } \\
+=&amp; \mathbf{Y}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\mathbf{X H}^{\prime}\left(\mathbf{H H}^{\prime}\right)^{-1} \mathbf{h} \\
+&amp;+\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{X} \mathbf{H}^{\prime}\left(\mathbf{H H}^{\prime}\right)^{-1} \mathbf{h} \\
+=&amp; {\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} }
+\end{aligned}\]</span> or
+<span class="math display">\[\mathbf{Z}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Z}=\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y} .\]</span>
+Therefore, <span class="math inline">\(V\)</span> can be rewritten in a second form as
+<span class="math display">\[V=\frac{\mathbf{Z}^{\prime}\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\mathbf{K}\left(\mathbf{K}^{\prime} \mathbf{K}\right)^{-1} \mathbf{K}^{\prime}\right] \mathbf{Z} / q}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} .\]</span>
+Another form of the likelihood ratio statistic, <span class="math inline">\(V\)</span>, can be generated
+using Lagrange multipliers. This third form of <span class="math inline">\(V\)</span> equals
+<span class="math display">\[V=\frac{(\mathbf{H} \hat{\beta}-\mathbf{h})^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}(\mathbf{H} \hat{\beta}-\mathbf{h}) / \boldsymbol{q}}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)}\]</span>
+where
+<span class="math inline">\(\hat{\beta}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>.
+The denominator of the third form of <span class="math inline">\(L\)</span> is the same as the other two
+forms. That is, the denominator equals
+<span class="math display">\[\max _{\boldsymbol{\beta}, \sigma^{2}} \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)=(2 \pi)^{-n / 2}\left(\bar{\sigma}_{\mathrm{D}}^{2}\right)^{-n / 2} e^{-n / 2}\]</span>
+where <span class="math inline">\(\tilde{\sigma}_{\mathrm{D}}^{2}\)</span> was defined earlier. Lagrange
+multipliers are used to derive the numerator of the third form of <span class="math inline">\(L\)</span>.
+By the Lagrange multiplier technique, the numerator of <span class="math inline">\(L\)</span> is given by
+<span class="math display">\[\max _{\beta, \sigma^{2}, \mathbf{H} \beta=\mathbf{h}} \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)=\max _{\beta, \sigma^{2}, \lambda}\left[\ell\left(\beta, \sigma^{2}, \mathbf{Y}\right)-\lambda^{\prime}(\mathbf{H} \boldsymbol{\beta}-\mathbf{h})\right]\]</span>
+where <span class="math inline">\(\lambda\)</span> is a <span class="math inline">\(q \times 1\)</span> vector. To maximize the right side of
+this expression, take derivatives with respect to
+<span class="math inline">\(\boldsymbol{\beta}, \sigma^{2}\)</span>, and <span class="math inline">\(\lambda\)</span>, set the resulting
+expression equal to zero, solve for <span class="math inline">\(\beta, \sigma^{2}\)</span>, and <span class="math inline">\(\lambda\)</span>,
+and substitute these solutions back into the original expression. Let
+<span class="math inline">\(\ell^{*}\left(\boldsymbol{\beta}, \sigma^{2}, \lambda, \mathbf{Y}\right)=\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)-\lambda^{\prime}(\mathbf{H} \boldsymbol{\beta}-\mathbf{h})\)</span>.
+Then the derivatives are <span class="math display">\[\begin{array}{c}
+\partial \ell^{*}\left(\boldsymbol{\beta}, \sigma^{2}, \lambda, \mathbf{Y}\right) / \partial \boldsymbol{\beta}=\left(-2 \sigma^{2}\right)^{-1}\left(2 \mathbf{X}^{\prime} \mathbf{X} \boldsymbol{\beta}-2 \mathbf{X}^{\prime} \mathbf{Y}\right) \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)-\mathbf{H}^{\prime} \lambda \\
+\partial \ell^{*}\left(\boldsymbol{\beta}, \sigma^{2}, \lambda, \mathbf{Y}\right) / \partial \sigma^{2}=\left[-\frac{n}{2 \sigma^{2}}+\frac{1}{2 \sigma^{4}}(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})^{\prime}(\mathbf{Y}-\mathbf{X} \boldsymbol{\beta})\right] \ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right) \\
+\partial \ell^{*}\left(\boldsymbol{\beta}, \sigma^{2}, \lambda, \mathbf{Y}\right) / \partial \lambda=-(\mathbf{H} \boldsymbol{\beta}-\mathbf{h}) .
+\end{array}\]</span> 122 Linear Models Set equations (1), (2), and (3) equal to
+zero and solve for <span class="math inline">\(\beta, \sigma^{2}\)</span>, and <span class="math inline">\(\lambda\)</span>. Let the solutions
+of <span class="math inline">\(\beta, \sigma^{2}\)</span>, and <span class="math inline">\(\lambda\)</span>, be designated as
+<span class="math inline">\(\tilde{\beta}_{N}, \tilde{\sigma}_{N}^{2}\)</span>, and <span class="math inline">\(\bar{\lambda}_{N}\)</span>.
+From equations (1), (2), and (3):
+<span class="math display">\[-\mathbf{X}^{\prime} \mathbf{X} \overline{\boldsymbol{\beta}}_{\mathrm{N}}+\mathbf{X}^{\prime} \mathbf{Y}=\mathbf{H}^{\prime} \tilde{\lambda}_{\mathrm{N}} \text { where } \tilde{\lambda}_{\mathrm{N}}^{*}=\bar{\sigma}_{\mathrm{N}}^{2} \lambda / \varepsilon\left(\overline{\boldsymbol{\beta}}_{\mathrm{N}} \cdot \bar{\sigma}_{\mathrm{N}}^{2}, \mathbf{Y}\right)\]</span>
+From (4):
+<span class="math display">\[\tilde{\beta}_{\mathrm{N}}=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime} \bar{\lambda}_{\mathrm{N}} .\]</span>
+Premultiplying each side of <span class="math inline">\((7)\)</span> by <span class="math inline">\(\mathbf{H}\)</span> and noting from (6)
+that <span class="math inline">\(\mathbf{H} \overline{\boldsymbol{\beta}}_{\mathbf{N}}=\mathbf{h}\)</span>,
+we obtain
+<span class="math display">\[\mathbf{H} \hat{\boldsymbol{\beta}}_{\mathbf{N}}=\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime} \tilde{\lambda}_{\mathbf{N}}=\mathbf{h} .\]</span>
+Solving the right-hand equality in (8) for <span class="math inline">\(\bar{\lambda}_{N}\)</span>, we have
+<span class="math display">\[\tilde{\lambda}_{\mathbf{N}}=\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\mathbf{h}\right] .\]</span>
+Substituting <span class="math inline">\(\tilde{\lambda}_{\mathrm{N}}^{*}\)</span> into (4) and solving for
+<span class="math inline">\(\tilde{\boldsymbol{\beta}}_{\mathrm{N}}\)</span>, we obtain <span class="math display">\[\begin{aligned}
+-\left(\mathbf{X}^{\prime} \mathbf{X}\right) \tilde{\boldsymbol{\beta}}_{\mathrm{N}}+\mathbf{X}^{\prime} \mathbf{Y}=&amp; \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\mathbf{h}\right] \\
+\tilde{\boldsymbol{\beta}}_{\mathrm{N}}=&amp;\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1} \\
+&amp; \times\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\mathbf{h}\right]
+\end{aligned}\]</span></p>
+<p>or
+<span class="math display">\[\tilde{\boldsymbol{\beta}}_{\mathrm{N}}=\tilde{\boldsymbol{\beta}}_{\mathrm{D}}-\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-\mathbf{1}} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}-\mathbf{h}\right] .\]</span>
+Substituting (10) into (5) and rearranging terms, we have
+<span class="math display">\[\begin{aligned}
+\tilde{\sigma}_{\mathrm{N}}^{2}=&amp;\left\{\left(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}}_{\mathrm{D}}\right)-\mathbf{X}(\mathbf{X} \mathbf{X})^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H} \tilde{\boldsymbol{\beta}}_{\mathrm{D}}-\mathbf{h}\right]\right\}^{\prime} \\
+&amp;\left\{\left(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}}_{\mathrm{D}}\right)-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H} \overline{\boldsymbol{\beta}}_{\mathrm{D}}-\mathbf{h}\right]\right\} / n .
+\end{aligned}\]</span> Since
+<span class="math display">\[\left(\mathbf{Y}-\mathbf{X} \bar{\beta}_{\mathrm{D}}\right)^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H} \overline{\boldsymbol{\beta}}_{\mathrm{D}}-\mathbf{h}\right]=0\]</span>
+and <span class="math display">\[\begin{array}{l}
+\left\{\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H} \tilde{\beta}_{\mathrm{D}}-\mathbf{h}\right]\right]^{\prime}\left\{\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\right. \\
+\left.\times\left[\mathbf{H} \bar{\beta}_{\mathrm{D}}-\mathbf{h}\right]\right)=\left[\mathbf{H} \bar{\beta}_{\mathrm{D}}-\mathbf{h}\right]^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left[\mathbf{H} \tilde{\beta}_{\mathrm{D}}-\mathbf{h}\right] .
+\end{array}\]</span> 6 Maximum Likelihood Estimation 123 equation (11) reduces
+to <span class="math display">\[\begin{aligned}
+\tilde{\sigma}_{\mathrm{N}}^{2}=&amp;\left(\left(\mathbf{Y}-\mathbf{X} \tilde{\beta}_{\mathrm{D}}\right)^{\prime}\left(\mathbf{Y}-\mathbf{X} \tilde{\boldsymbol{\beta}}_{\mathrm{D}}\right)\right.\\
+&amp;\left.+\left(\mathbf{H} \tilde{\beta}_{\mathrm{D}}-\mathbf{h}\right)^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left(\mathbf{H} \bar{\beta}_{\mathrm{D}}-\mathbf{h}\right)\right] / n \\
+=&amp; \tilde{\sigma}_{\mathrm{D}}^{2}+\frac{1}{n}\left(\mathbf{H} \tilde{\beta}_{\mathrm{D}}-\mathbf{h}\right)^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left(\mathbf{H} \bar{\beta}_{\mathrm{D}}-\mathbf{h}\right)
+\end{aligned}\]</span> Therefore, <span class="math display">\[\begin{aligned}
+\max _{\beta, \sigma^{2}, \lambda} \left[\ell\left(\boldsymbol{\beta}, \sigma^{2}, \mathbf{Y}\right)-\lambda^{\prime}(\mathbf{H} \boldsymbol{\beta}-\mathbf{h})\right] &amp;=\ell\left(\overline{\boldsymbol{\beta}}_{\mathrm{N}}, \tilde{\sigma}_{\mathrm{N}}^{2} \mathbf{Y}\right) \\
+&amp;=(2 \pi)^{-n / 2}\left(\bar{\sigma}_{\mathrm{N}}^{2}\right)^{-n / 2} e^{-n / 2} .
+\end{aligned}\]</span> The likelihood ratio statistic <span class="math inline">\(L\)</span> therefore equals
+<span class="math display">\[L=\left(\tilde{o}_{\mathrm{D}}^{2} / \bar{\sigma}_{\mathrm{N}}^{2}\right)^{n / 2} .\]</span>
+Instead of using <span class="math inline">\(L\)</span> as the test statistic, use a monotonic function of
+<span class="math inline">\(L\)</span> : <span class="math display">\[\begin{aligned}
+V &amp;=\left(L^{-2 / n}-1\right)(n-p) / q \\
+&amp;=\frac{\left(\tilde{\sigma}_{\mathrm{N}}^{2}-\tilde{\sigma}_{\mathrm{D}}^{2}\right) / q}{\bar{\sigma}_{\mathrm{D}}^{2} /(n-p)} \\
+&amp;=\frac{\left(\mathbf{H} \overline{\boldsymbol{\beta}}_{\mathrm{D}}-\mathbf{h}\right)^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}\left(\mathbf{H} \hat{\beta}_{\mathrm{D}}-\mathbf{h}\right) / q}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} .
+\end{aligned}\]</span> The MLE <span class="math inline">\(\overline{\boldsymbol{\beta}}_{\mathrm{D}}\)</span>,
+will subsequently be referred to as the least-squares estimator
+<span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> since <span class="math inline">\(\bar{\beta}_{\mathrm{D}}=\hat{\beta}\)</span>.
+The derivations of all three forms of <span class="math inline">\(V\)</span> essentially follow the
+derivations presented by Graybill (1976).</p>
+<p>The distribution of <span class="math inline">\(V\)</span> is needed before the statistic <span class="math inline">\(V\)</span> can be used
+to test the hypothesis <span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span>. Note
+that
+<span class="math inline">\(\mathbf{H} \hat{\boldsymbol{\beta}}=\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\)</span>;
+therefore, by Theorem 2.1.2,
+<span class="math inline">\(\mathbf{H} \hat{\boldsymbol{\beta}} \sim \mathbf{N}_{\boldsymbol{q}}\left(\mathbf{H} \boldsymbol{\beta}, \boldsymbol{\sigma}^{2} \mathbf{H}(\mathbf{X} \mathbf{X} \mathbf{X})^{-1} \mathbf{H}^{\prime}\right)\)</span>.
+Under
+<span class="math inline">\(\mathbf{H}_{0}: \mathbf{H} \boldsymbol{\beta}=\mathbf{h}, \mathbf{H} \hat{\boldsymbol{\beta}}-\mathbf{h} \sim\)</span>
+<span class="math inline">\(\mathbf{N}_{q}\left(\mathbf{0}, \sigma^{2} \mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right)\)</span>.
+By Corollary 3.1.2(b),
+<span class="math inline">\((\mathbf{H} \hat{\boldsymbol{\beta}}-\mathbf{h})^{\prime}\left[\mathbf{H}(\mathbf{X} \cdot \mathbf{X})^{-1} \mathbf{H}^{\prime}\right]^{-1}(\mathbf{H} \hat{\beta}-\)</span>
+h) <span class="math inline">\(\sim \sigma^{2} \chi_{q}^{2}(\lambda)\)</span> where <span class="math inline">\(\lambda=0\)</span> if
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> and <span class="math inline">\(\lambda&gt;0\)</span> if
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta} \neq \mathbf{h}\)</span>. Furthermore, by Theorem
+3.2.1,
+<span class="math inline">\((\mathbf{H} \hat{\boldsymbol{\beta}})^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1} \mathbf{H} \hat{\boldsymbol{\beta}}\)</span>
+is independent of <span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\right.\)</span>
+<span class="math inline">\(\left.\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y}\)</span>
+since
+<span class="math display">\[(\mathbf{H} \hat{\boldsymbol{\beta}})^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1} \mathbf{H} \hat{\boldsymbol{\beta}}=\mathbf{Y}^{\prime} \mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1} \mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}\]</span>
+and
+<span class="math display">\[\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right]\left(\sigma^{2} \mathbf{I}_{n}\right)\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1} \mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right]=\mathbf{0}_{n \times n} .\]</span>
+Since <span class="math inline">\(\mathbf{H} \hat{\boldsymbol{\beta}}-\mathbf{h}\)</span> has the same
+covariance matrix as <span class="math inline">\(\mathbf{H} \hat{\boldsymbol{\beta}}\)</span> and both
+vectors are normally distributed,
+<span class="math inline">\((\mathbf{H} \hat{\beta}-\mathbf{h})^{\prime}\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1}(\mathbf{H} \hat{\beta}-\mathbf{h})\)</span>
+is also independent of
+<span class="math inline">\(\mathbf{Y}^{\prime}\left[\mathbf{I}_{\boldsymbol{a}}-\right.\)</span>
+<span class="math inline">\(\left.\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X} &#39;\right] \mathbf{Y}\)</span>.
+Therefore, by Definition 3.3.3, <span class="math inline">\(V \sim F_{q, n-p}(\lambda)\)</span>. Note that
+all</p>
+<p>124 Linear Models three forms of the statistic <span class="math inline">\(V\)</span> are equal and
+therefore they all have the same <span class="math inline">\(F\)</span> distribution. The various forms of
+the likelihood ratio statistic are now applied to a number of example
+problems.</p>
+<p>Example 6.4.1 Consider the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> where <span class="math inline">\(\mathbf{Y}\)</span> is an
+<span class="math inline">\(n \times 1\)</span> random vector,
+<span class="math inline">\(\mathbf{X}=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\)</span> is an
+<span class="math inline">\(n \times p\)</span> matrix where <span class="math inline">\(\mathbf{X}_{1}\)</span> is an <span class="math inline">\(n \times(p-q)\)</span> matrix
+and <span class="math inline">\(\mathbf{X}_{2}\)</span> is an <span class="math inline">\(n \times q\)</span> matrix,
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{0}, \ldots, \beta_{p-q-1} \mid \beta_{p-q}, \ldots, \beta_{p-1}\right)^{\prime}\)</span>
+is a <span class="math inline">\(p \times 1\)</span> vector and the <span class="math inline">\(n \times 1\)</span> error vector
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(0, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+The objective is to construct a likelihood ratio test for the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \beta_{p-q}=\cdots=\beta_{p-1}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}:\)</span> not all <span class="math inline">\(\beta_{i}=0\)</span> for <span class="math inline">\(i=p-q, \ldots, p-1\)</span>. The
+hypothesis <span class="math inline">\(\mathrm{H}_{0}\)</span> is equivalent to the hypothesis
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> where the <span class="math inline">\(q \times p\)</span> matrix
+<span class="math inline">\(\mathbf{H}=\left[\mathbf{0}_{q \times(p-q)} \mathbf{I}_{q}\right]\)</span> and
+the <span class="math inline">\(q \times 1\)</span> vector <span class="math inline">\(\mathbf{h}=\mathbf{0}\)</span>. Since
+<span class="math inline">\(\mathbf{h}=\mathbf{0}, \mathbf{Z}=\mathbf{Y}-\mathbf{X H}\left(\mathbf{H H}^{\prime}\right)^{-1} \mathbf{h}=\mathbf{Y}\)</span>.
+Furthermore, let the <span class="math inline">\((p-q) \times p\)</span> matrix
+<span class="math inline">\(\mathbf{G}=\left[\mathbf{I}_{p-q} \mid \mathbf{0}_{(p-q) \times q}\right]\)</span>
+so that
+<span class="math inline">\(\left[\begin{array}{l}\mathbf{H} \\ \mathbf{G}\end{array}\right]\)</span> has
+rank <span class="math inline">\(p\)</span> and <span class="math inline">\(\mathbf{H G}^{\prime}=\mathbf{0}_{q \times p .}\)</span>.
+Therefore, <span class="math display">\[\begin{aligned}
+\mathbf{K} &amp;=\mathbf{X G}^{\prime}\left(\mathbf{G G}^{\prime}\right)^{-1} \\
+&amp;=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\left[\begin{array}{c}
+\mathbf{I}_{p-q} \\
+\mathbf{0}
+\end{array}\right]\left\{\left[\mathbf{I}_{p-q} \mid \mathbf{0}\right]\left[\begin{array}{c}
+\mathbf{I}_{p-q} \\
+\mathbf{0}
+\end{array}\right]\right\}^{-1} \\
+&amp;=\mathbf{X}_{1}
+\end{aligned}\]</span> and the first form of the likelihood ratio statistic <span class="math inline">\(V\)</span>
+equals
+<span class="math display">\[V=\frac{\left\{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}_{1}\left(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}\right)^{-1} \mathbf{X}_{1}^{\prime}\right) \mathbf{Y}-\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} \mid / q\right.}{\mathbf{Y}^{\prime}\left(\mathbf{L}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)}\]</span>
+Label <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> as the full
+model with <span class="math inline">\(p\)</span> unknown parameters in <span class="math inline">\(\boldsymbol{\beta}\)</span>. Label
+<span class="math inline">\(\mathbf{Y}=\mathbf{X}_{1} \beta^{(1)}+\mathbf{E}_{1}\)</span> as the reduced
+model with <span class="math inline">\(p-q\)</span> unknown parameters in
+<span class="math inline">\(\beta^{(1)}=\left(\beta_{0}, \ldots, \beta_{p-q-1}\right)^{\prime}\)</span>.
+The first form of the likelihood ratio statistic equals
+<span class="math display">\[V=\frac{\left(\mathrm{SSE}_{\mathrm{R}}-\mathrm{SSE}_{\mathrm{F}}\right) / q}{\mathrm{SSE}_{\mathrm{F}} /(n-p)} \sim F_{q, n-p}(\lambda)\]</span>
+where <span class="math inline">\(\mathrm{SSE}_{\mathrm{R}}\)</span> is the sum of squares residual for the
+reduced model and <span class="math inline">\(\mathrm{SSE}_{\mathrm{F}}\)</span> is the sum of squares
+residual for the full model. A <span class="math inline">\(\gamma\)</span> level test of <span class="math inline">\(\mathrm{H}_{0}\)</span>
+versus <span class="math inline">\(\mathrm{H}_{1}\)</span> is to reject <span class="math inline">\(\mathrm{H}_{0}\)</span> if
+<span class="math inline">\(V&gt;F_{q, n-p}^{\gamma}\)</span>. Note that
+<span class="math inline">\(\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \mathbf{Y}=\mathrm{SSReg}_{\mathrm{R}}+\mathrm{SSE}_{\mathrm{R}}=\mathrm{SSReg}_{\mathrm{F}}+\mathrm{SSE}_{\mathrm{F}}\)</span>,
+which implies
+<span class="math inline">\(\mathrm{SSE}_{\mathrm{R}}-\mathrm{SSE}_{\mathrm{F}}=\mathrm{SSReg}_{\mathrm{F}}-\mathrm{SSReg}_{R}\)</span>
+where SSReg <span class="math inline">\(\mathrm{S}_{\mathrm{F}}\)</span> and SSReg are the sum of squares
+regression for the full and reduced models, respectively. Therefore, the
+likelihood ratio statistic for this problem also takes the form
+<span class="math display">\[V=\frac{\left(\operatorname{SSReg}_{\mathrm{F}}-\operatorname{SSReg}_{\mathrm{R}}\right) / q}{\mathrm{SSE}_{\mathrm{F}} /(n-p)} \sim F_{q, n-p}(\lambda) .\]</span>
+Example 6.4.2 Consider a special case of the problem posed in Example
+6.4.1. From Example 6.4.1 let the <span class="math inline">\(n \times p\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\)</span> where
+<span class="math inline">\(\mathbf{X}_{1}\)</span> equals the <span class="math inline">\(n \times 1\)</span> vector <span class="math inline">\(\mathbf{1}_{n}\)</span> and
+<span class="math inline">\(\mathbf{X}_{2}\)</span> equals the <span class="math inline">\(n \times(p-1)\)</span> matrix <span class="math inline">\(\mathbf{X}_{c}\)</span> such
+that
+<span class="math inline">\(\mathbf{1}_{n}^{\prime} \mathbf{X}_{c}=\boldsymbol{0}_{1 \times(p-1)}\)</span>,
+and partition the <span class="math inline">\(p \times 1\)</span> vector <span class="math inline">\(\beta\)</span> as
+<span class="math inline">\(\left(\beta_{0} \mid \beta_{1}, \ldots, \beta_{p-1}\right)^{\prime}\)</span>.
+The objective is to test</p>
+<p>6 Maximum Likelihood Estimation 125 the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \beta_{1}=\cdots=\beta_{p-1}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}:\)</span> not all <span class="math inline">\(\beta_{i}=0\)</span> for <span class="math inline">\(i=1, \ldots, p-1\)</span>. From
+Example 6.4.1, the likelihood ratio statistic equals <span class="math display">\[\begin{aligned}
+V &amp;=\frac{\left\{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{1}_{n}\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime}\right) \mathbf{Y}-\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y}\right] /(p-1)}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} \\
+&amp;=\frac{\mathbf{Y}^{\prime}\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y} /(p-1)}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} \\
+&amp;=\frac{\mathbf{Y}^{\prime}\left[\mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{t}\right] \mathbf{Y} /(p-1)}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} \sim F_{p-1, n-p}(\lambda) .
+\end{aligned}\]</span> Therefore, <span class="math inline">\(V\)</span> equals the mean square regression due to
+<span class="math inline">\(\beta_{1}, \ldots, \beta_{p-1}\)</span> divided by the mean square residual, as
+depicted in Table 5.3.1.</p>
+<p>Example 6.4.3 Consider the one-way classification from Example 2.1.4.
+The experiment can be modeled as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where the
+<span class="math inline">\(t r \times 1\)</span> vector <span class="math inline">\(\mathbf{Y}=\)</span>
+<span class="math inline">\(\left(Y_{11}, \ldots, Y_{1 r}, \ldots, Y_{t 1}, \ldots, Y_{t r}\right)^{\prime}\)</span>,
+the <span class="math inline">\(t r \times t\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\left[\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right]\)</span>, the
+<span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{t}\right)^{\prime}=\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime}\)</span>
+where <span class="math inline">\(\mu_{1}, \ldots, \mu_{t}\)</span> are defined in Example 2.1.4, and the
+<span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{t r}\left(\mathbf{0}, \sigma_{R(T)}^{2} \mathbf{I}_{t} \otimes \mathbf{I}_{\mathbf{r}}\right)\)</span>.
+The objective is to construct the likelihood ratio test for the
+hypothesis <span class="math inline">\(\mathrm{H}_{0}: \beta_{1}=\cdots=\beta_{t}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}\)</span> : not all <span class="math inline">\(\beta_{i}\)</span> equal. The hypothesis
+<span class="math inline">\(\mathrm{H}_{0}\)</span> is equivalent to the hypothesis
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> with the <span class="math inline">\((t-1) \times t\)</span>
+matrix <span class="math inline">\(\mathbf{H}=\mathbf{P}_{t}^{\prime}\)</span> and the <span class="math inline">\((p-1) \times 1\)</span>
+vector <span class="math inline">\(\mathbf{h}=\mathbf{0}\)</span> where <span class="math inline">\(\mathrm{P}_{t}^{\prime}\)</span> is the
+<span class="math inline">\((t-1) \times t\)</span> lower portion of a <span class="math inline">\(t\)</span>-dimensional Helmert matrix with
+<span class="math inline">\(\mathbf{P}_{t}^{\prime} \mathbf{P}_{t}=\mathbf{I}_{t-1}, \mathbf{P}_{t} \mathbf{P}_{t}^{\prime}=\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\)</span>,
+and <span class="math inline">\(\mathbf{1}_{t}^{\prime} \mathbf{P}_{t}=\mathbf{0}_{1 \times(t-1)}\)</span>.
+Note <span class="math display">\[\begin{aligned}
+\hat{\beta} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}=\left[\left(\mathbf{L}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{L}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y} \\
+&amp;=\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y} \\
+\mathbf{H} \hat{\beta}-\mathbf{h} &amp;=\mathbf{P}_{t}^{\prime}\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y}=\left(\mathbf{P}_{t}^{\prime} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y} \\
+{\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1} } &amp;=\left\{\mathbf{P}_{t}^{\prime}\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1} \mathbf{P}_{t}\right\}^{-1} \\
+&amp;=\left(\mathbf{P}_{t}^{\prime} \mathbf{P}_{t}\right)^{-1} \otimes r=\mathbf{I}_{t-1} \otimes r
+\end{aligned}\]</span>
+<span class="math inline">\(\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}=\mathbf{I}_{t} \otimes \mathbf{I}_{r}\)</span>
+<span class="math inline">\(-\left\{\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\right]\)</span>
+<span class="math display">\[\begin{array}{l}
+=\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right) \\
+=\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) .
+\end{array}\]</span></p>
+<p>126 Linear Modelk Therefore, the third form of the likelihood ratio
+statistic is given by <span class="math display">\[\begin{aligned}
+V=&amp; \frac{\mathbf{Y}^{\prime}\left[\left(\mathbf{P}_{t}^{\prime} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right)^{\prime}\left(\mathbf{I}_{t-1} \otimes r\right)\left(\mathbf{P}_{t}^{\prime} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right)\right] \mathbf{Y} /(t-1)}{\mathbf{Y}^{\prime} \mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \mathbf{Y} /(t r-t)} \\
+=&amp; \frac{\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} /(t-1)}{\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /[t(r-1)]} \sim F_{t-1, t(r-1)}(\lambda)
+\end{aligned}\]</span> Therefore, <span class="math inline">\(V\)</span> equals the mean square for the treatments
+divided by the mean square for the nested replicates, which is the usual
+ANOVA test for equality of the treatment means. 6.5 CONFIDENCE BANDS ON
+LINEAR COMBINATIONS OF <span class="math inline">\(\beta\)</span> The likelihood ratio statistic is now
+used to construct confidence bands on individual linear combinations of
+<span class="math inline">\(\boldsymbol{\beta}\)</span>. Assume the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(0, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+Let the <span class="math inline">\(q \times p\)</span> matrix <span class="math inline">\(\mathbf{H}\)</span> and the <span class="math inline">\(q \times 1\)</span> vector <span class="math inline">\(h\)</span>
+from Section <span class="math inline">\(6.4\)</span> equal a <span class="math inline">\(1 \times p\)</span> row vector <span class="math inline">\(g^{\prime}\)</span> and a
+scalar <span class="math inline">\(g_{0}\)</span>, respectively. The hypothesis
+<span class="math inline">\(\mathbf{H}_{0}: \mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mathbf{H} \boldsymbol{\beta} \neq \mathbf{h}\)</span> becomes
+<span class="math inline">\(\mathrm{H}_{0}: \mathbf{g}^{\prime} \boldsymbol{\beta}=g_{0}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mathbf{g}^{\prime} \boldsymbol{\beta} \neq g_{0}\)</span>. The
+third form of the likelihood ratio statistic equals <span class="math display">\[\begin{array}{c}
+V=\frac{\left(g^{\prime} \hat{\beta}-g_{0}\right)^{2}}{\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}(\mathbf{X} \mathbf{X})^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)\right]\left[\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g}\right]} \sim F_{1, n-p}(\lambda) \\
+\sqrt{V}=\frac{\left(\mathbf{g}^{\prime} \hat{\boldsymbol{\beta}}-g_{0}\right)}{\left[\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)\right]\left[\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g} \mid\right\}^{1 / 2}\right.} \sim t_{n-p}(\lambda) .
+\end{array}\]</span> or Therefore,
+<span class="math display">\[1-\gamma=P\left(-t_{n-p}^{\gamma / 2} \leq \sqrt{V} \leq t_{n-p}^{\gamma / 2}\right)\]</span>
+where <span class="math inline">\(t_{n-p}^{\gamma / 2}\)</span> is the <span class="math inline">\(100(1-\gamma / 2)^{\text {th }}\)</span>
+percentile point of a central <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n-p\)</span> degrees of
+freedom. Substitute for <span class="math inline">\(\sqrt{V}\)</span> and solve for
+<span class="math inline">\(g_{0}=\mathbf{g}^{\prime} \boldsymbol{\beta}\)</span> in the preceding
+probability statement. The resulting <span class="math inline">\(100(1-\gamma) \%\)</span> confidence band
+on <span class="math inline">\(\mathbf{g}^{\prime} \beta\)</span> is
+<span class="math display">\[\mathbf{g}^{\prime} \hat{\beta} \pm t_{n-p}^{\gamma / 2}\left\{\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)\right]\left[\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g}\right]\right\}^{1 / 2} .\]</span>
+In the next example, confidence bands are placed on certain linear
+combinations of the treatment means in a one-way ANOVA problem.</p>
+<p>6 Maximum Likelihood Estimation 127 Example 6.5.1 Consider the one-way
+ANOVA problem from Example 6.4.3. The objective is to construct
+individual confidence bands on <span class="math inline">\(\beta_{1}-\beta_{2}\)</span>, and on
+<span class="math inline">\(\vec{\beta} .=\sum_{i=1}^{t} \beta_{i} / t=\mathbf{1}_{t}^{\prime} \beta / t\)</span>.
+For the one-way ANOVA problem, <span class="math inline">\(n=t r, p=t\)</span>, <span class="math display">\[\begin{aligned}
+\hat{\boldsymbol{\beta}} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} \\
+&amp;=\left[\left(\mathbf{1}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y} \\
+&amp;=\left(\tilde{Y}_{1, \ldots}, \tilde{Y}_{t}\right)^{\prime}
+\end{aligned}\]</span> and <span class="math display">\[\begin{aligned}
+\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y}=&amp; \mathbf{Y}^{\prime}\left\{\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\right.\right.\\
+&amp;\left.\left.\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\right) \mathbf{Y} \\
+=&amp; \mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} .
+\end{aligned}\]</span> For <span class="math inline">\(\beta_{1}-\beta_{2}\)</span>, the <span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\mathbf{g}=(1,-1,0, \ldots, 0)^{\prime}, \mathbf{g}^{\prime} \hat{\boldsymbol{\beta}}=\bar{Y}_{1}-\bar{Y}_{2}\)</span>,
+and <span class="math display">\[\begin{aligned}
+\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g}=&amp;(1,-1,0, \ldots, 0)\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1} \\
+&amp;(1,-1,0, \ldots, 0)^{\prime} \\
+=&amp; 2 / r .
+\end{aligned}\]</span> For
+<span class="math inline">\(\bar{\beta} .=(1 / t) \mathbf{1}_{t}^{\prime} \boldsymbol{\beta}\)</span>, the
+<span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\mathbf{g}=(1 / t) \mathbf{1}_{t}, \mathbf{g}^{\prime} \hat{\beta}=\bar{Y}_{. . .}\)</span>and
+<span class="math display">\[\begin{aligned}
+\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g} &amp;=\left[(1 / t) \mathbf{1}_{l}\right]^{\prime}\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left[(1 / t) \mathbf{1}_{t}\right] \\
+&amp;=(r t)^{-1}
+\end{aligned}\]</span> Therefore, <span class="math inline">\(100(1-\gamma) \%\)</span> confidence bands on
+<span class="math inline">\(\beta_{1}-\beta_{2}\)</span> are
+<span class="math display">\[\bar{Y}_{1 .}-\bar{Y}_{2} \pm t_{t(r-1)}^{\gamma / 2}\left\{2 \mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /[\operatorname{tr}(r-1)]\right\}^{1 / 2}\]</span>
+and <span class="math inline">\(100(1-\gamma) \%\)</span> confidence bands on <span class="math inline">\(\bar{\beta}\)</span>. are
+<span class="math display">\[\bar{Y}_{\ldots} . t_{t(r-1)}^{\gamma / 2}\left\{\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /\left[t^{2} r(r-1)\right]\right\}^{1 / 2}\]</span>
+EXERCISES 1. Let <span class="math inline">\(Y_{i}=\beta_{0}+\beta_{1} x_{i}+E_{i}\)</span> for
+<span class="math inline">\(i=1, \ldots, n\)</span> where
+<span class="math inline">\(E_{i} \sim i d \mathrm{~N}_{1}\left(0, \sigma^{2}\right)\)</span>. Construct
+individual confidence bands on <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> and write the
+answer in terms of
+<span class="math inline">\(\sum x_{i}, \sum Y_{i}, \sum x_{i}^{2}, \sum Y_{i}^{2}, \Sigma x_{i} Y_{i}\)</span>,
+and <span class="math inline">\(n\)</span>.</p>
+<p>128 Linear Models 2. Consider the one-way classification from Example
+6.4.3. Find the minimum variance unbiased estimator of
+<span class="math inline">\(\sum_{i=1}^{t} \mu_{i} / \sigma_{R(T)}^{2}\)</span>. 3. Let
+<span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{n}\)</span> be a random sample of size <span class="math inline">\(n\)</span> from a
+<span class="math inline">\(\mathrm{N}_{1}\left(\mu, \sigma^{2}\right)\)</span> distribution where
+<span class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> and <span class="math inline">\(\sigma^{2}&gt;0\)</span>. Consider the <span class="math inline">\(\gamma\)</span> level
+test <span class="math inline">\(\mathrm{H}_{0}: \mu=\mu_{0}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mu \neq \mu_{0}\)</span> where <span class="math inline">\(\mu_{0}\)</span> is given. Show that
+the likelihood ratio test is equivalent to the two-sided test, reject
+<span class="math inline">\(\mathrm{H}_{0}\)</span> if <span class="math inline">\(|T|&gt;t_{n-1}^{\gamma / 2}\)</span> where <span class="math inline">\(T=\)</span>
+<span class="math inline">\(\left(\bar{Y}-\mu_{0}\right) /[s / \sqrt{n}], \bar{Y}=\sum_{i=1}^{n} Y_{i}\)</span>
+and <span class="math inline">\(s^{2}=\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2} /(n-1)\)</span>. 4. Let
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(0, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+A <span class="math inline">\(100(1-\gamma) \%\)</span> confidence interval on <span class="math inline">\(\mathbf{h}^{\prime} \beta\)</span>
+is
+<span class="math inline">\(\mathbf{h}^{\prime} \hat{\beta} \pm t_{n-p}^{\gamma / 2}\left[\widehat{\text { std }}\left(\mathbf{h}^{\prime} \hat{\beta}\right)\right]\)</span>
+where std <span class="math inline">\(\left(\mathbf{h}^{\prime} \hat{\beta}\right)\)</span> is the
+estimated standard deviation of <span class="math inline">\(\mathbf{h}^{\prime} \hat{\beta}\)</span>. (a)
+Find the distribution of <span class="math inline">\(L^{2}\)</span> where <span class="math inline">\(L\)</span> is the length of the
+interval. (b) If
+<span class="math inline">\(p=3, n=20, \beta=\left(\beta_{1}, \beta_{2}, \beta_{3}\right)^{\prime}, \mathbf{Y}^{\prime} \mathbf{Y}=418, \mathbf{X}^{\prime} \mathbf{X}=\mathbf{I}_{3}\)</span>,
+and <span class="math inline">\(\mathbf{X}^{\prime} \mathbf{Y}=\)</span> <span class="math inline">\((5,10,15)^{\prime}\)</span>, construct
+individual <span class="math inline">\(95 \%\)</span> confidence bands on <span class="math inline">\(\beta_{1}, \beta_{1}+\beta_{2}\)</span>,
+and <span class="math inline">\(\beta_{1}-\beta_{3}\)</span>. 5. Let
+<span class="math inline">\(\mathbf{Y}_{1}=\mu_{1}+\delta_{1}, \mathbf{Y}_{2}=\mu_{1}+\mu_{2}+\delta_{1}+\delta_{2}, \mathbf{Y}_{3}=\mu_{1}+\delta_{3}\)</span>,
+and <span class="math inline">\(\mathbf{Y}_{4}=\mu_{1}+\mu_{2}+\)</span> <span class="math inline">\(\delta_{3}+\delta_{4}\)</span> where
+<span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span> are unknown parameters and
+<span class="math inline">\(\delta=\left(\delta_{1}, \delta_{2}, \delta_{3}, \delta_{4}\right)^{\prime} \sim\)</span>
+<span class="math inline">\(\mathrm{N}_{4}\left(\mathbf{0}, \sigma_{\delta}^{2} \mathbf{I}_{4}\right)\)</span>.
+(a) Write the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E}=\left(E_{1}, E_{2}, E_{3}, E_{4}\right)^{\prime}\)</span>. Define
+each term and distribution explicitly. (b) Find the MLE of
+<span class="math inline">\(\mu=\left(\mu_{1}, \mu_{2}\right)^{\prime}\)</span>. (c) Find the distribution
+of the MLE of <span class="math inline">\(\mu\)</span>. 6. Let <span class="math inline">\(Y_{i j}=\mu_{i}+E_{i j}\)</span> where the
+<span class="math inline">\(E_{i j}\)</span> ’s are distributed as independent
+<span class="math inline">\(\mathrm{N}_{1}\left(0, j \sigma^{2}\right)\)</span> random variables. Let
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, Y_{12}, Y_{21}, Y_{22}\right)^{\prime}\)</span>. Find
+the likelihood ratio statistic for testing the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \mu_{1}=\mu_{2}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mu_{1} \neq \mu_{2}\)</span>. 7. Consider the paired <span class="math inline">\(t\)</span>-test
+problem of Exercise 5 in Chapter <span class="math inline">\(4 .\)</span> (a) Calculate the MLEs of
+<span class="math inline">\(\mu_{1}, \mu_{2}, \sigma_{B}^{2}\)</span>, and <span class="math inline">\(\sigma_{B T}^{2}\)</span>. (b)
+Construct the likelihood ratio statistic for testing the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}=\)</span> <span class="math inline">\(\mu_{1}=\mu_{2}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mu_{1} \neq \mu_{2}\)</span>. 8. Consider the experiment from
+Exercise 6 in Chapter 4 . Calculate the MLEs of
+<span class="math inline">\(\mu_{11}, \ldots, \mu_{53}, \sigma_{P(F)}^{2}, \sigma_{C(F P)}^{2} . \sigma_{P T(F)}^{2}\)</span>,
+and <span class="math inline">\(\sigma_{C T(F P)}^{2}\)</span>. 9. Consider the experiment from Exercise 7
+in Chapter <span class="math inline">\(4 .\)</span> (a) Calculate the MLEs of
+<span class="math inline">\(\mu_{111}, \ldots, \mu_{222}, \sigma_{P(S)}^{2}, \sigma_{P M(S)}^{2}\)</span>,
+and <span class="math inline">\(\sigma_{P O(M S)}^{2}\)</span>. (b) Write the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span>. Define the vector
+<span class="math inline">\(\mathbf{p}\)</span> in Kronecker product form such that
+<span class="math inline">\(\mathbf{p}^{\prime} \beta=\bar{\mu}_{1}-\bar{\mu}_{2 . .}=\left(\mu_{111}+\mu_{112}+\mu_{121}+\mu_{122}-\right.\)</span>
+<span class="math inline">\(\left.\mu_{211}-\mu_{212}-\mu_{221}-\mu_{222}\right) / 4\)</span>.</p>
+<p>6 Maximum Likelihood Estimation 129 (c) Find the MLE of
+<span class="math inline">\(\mathbf{p}^{\prime} \beta\)</span> from part b. (d) Find the standard error of
+the MLE of <span class="math inline">\(\mathbf{p}^{\prime} \boldsymbol{\beta}\)</span>. 10. Consider the
+experiment from Example 4.5.4. (a) Find <span class="math inline">\(\Sigma^{-1}\)</span> in terms of
+<span class="math inline">\(\sigma_{B}^{2}\)</span> and <span class="math inline">\(\sigma_{B V}^{2}\)</span>. (b) Write the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> and find the MLEs of
+<span class="math inline">\(\beta, \sigma_{B}^{2}\)</span>, and <span class="math inline">\(\sigma_{B V}^{2}\)</span>. 124 Linear Models three
+forms of the statistic <span class="math inline">\(V\)</span> are equal and therefore they all have the
+same <span class="math inline">\(F\)</span> distribution. The various forms of the likelihood ratio
+statistic are now applied to a number of example problems.</p>
+<p>Example 6.4.1 Consider the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> where <span class="math inline">\(\mathbf{Y}\)</span> is an
+<span class="math inline">\(n \times 1\)</span> random vector,
+<span class="math inline">\(\mathbf{X}=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\)</span> is an
+<span class="math inline">\(n \times p\)</span> matrix where <span class="math inline">\(\mathbf{X}_{1}\)</span> is an <span class="math inline">\(n \times(p-q)\)</span> matrix
+and <span class="math inline">\(\mathbf{X}_{2}\)</span> is an <span class="math inline">\(n \times q\)</span> matrix,
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{0}, \ldots, \beta_{p-q-1} \mid \beta_{p-q}, \ldots, \beta_{p-1}\right)^{\prime}\)</span>
+is a <span class="math inline">\(p \times 1\)</span> vector and the <span class="math inline">\(n \times 1\)</span> error vector
+<span class="math inline">\(\mathbf{E} \sim \mathrm{N}_{n}\left(0, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+The objective is to construct a likelihood ratio test for the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \beta_{p-q}=\cdots=\beta_{p-1}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}:\)</span> not all <span class="math inline">\(\beta_{i}=0\)</span> for <span class="math inline">\(i=p-q, \ldots, p-1\)</span>. The
+hypothesis <span class="math inline">\(\mathrm{H}_{0}\)</span> is equivalent to the hypothesis
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> where the <span class="math inline">\(q \times p\)</span> matrix
+<span class="math inline">\(\mathbf{H}=\left[\mathbf{0}_{q \times(p-q)} \mathbf{I}_{q}\right]\)</span> and
+the <span class="math inline">\(q \times 1\)</span> vector <span class="math inline">\(\mathbf{h}=\mathbf{0}\)</span>. Since
+<span class="math inline">\(\mathbf{h}=\mathbf{0}, \mathbf{Z}=\mathbf{Y}-\mathbf{X H}\left(\mathbf{H H}^{\prime}\right)^{-1} \mathbf{h}=\mathbf{Y}\)</span>.
+Furthermore, let the <span class="math inline">\((p-q) \times p\)</span> matrix
+<span class="math inline">\(\mathbf{G}=\left[\mathbf{I}_{p-q} \mid \mathbf{0}_{(p-q) \times q}\right]\)</span>
+so that
+<span class="math inline">\(\left[\begin{array}{l}\mathbf{H} \\ \mathbf{G}\end{array}\right]\)</span> has
+rank <span class="math inline">\(p\)</span> and <span class="math inline">\(\mathbf{H G}^{\prime}=\mathbf{0}_{q \times p .}\)</span>.
+Therefore, <span class="math display">\[\begin{aligned}
+\mathbf{K} &amp;=\mathbf{X G}^{\prime}\left(\mathbf{G G}^{\prime}\right)^{-1} \\
+&amp;=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\left[\begin{array}{c}
+\mathbf{I}_{p-q} \\
+\mathbf{0}
+\end{array}\right]\left\{\left[\mathbf{I}_{p-q} \mid \mathbf{0}\right]\left[\begin{array}{c}
+\mathbf{I}_{p-q} \\
+\mathbf{0}
+\end{array}\right]\right\}^{-1} \\
+&amp;=\mathbf{X}_{1}
+\end{aligned}\]</span> and the first form of the likelihood ratio statistic <span class="math inline">\(V\)</span>
+equals
+<span class="math display">\[V=\frac{\left\{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}_{1}\left(\mathbf{X}_{1}^{\prime} \mathbf{X}_{1}\right)^{-1} \mathbf{X}_{1}^{\prime}\right) \mathbf{Y}-\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} \mid / q\right.}{\mathbf{Y}^{\prime}\left(\mathbf{L}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)}\]</span>
+Label <span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> as the full
+model with <span class="math inline">\(p\)</span> unknown parameters in <span class="math inline">\(\boldsymbol{\beta}\)</span>. Label
+<span class="math inline">\(\mathbf{Y}=\mathbf{X}_{1} \beta^{(1)}+\mathbf{E}_{1}\)</span> as the reduced
+model with <span class="math inline">\(p-q\)</span> unknown parameters in
+<span class="math inline">\(\beta^{(1)}=\left(\beta_{0}, \ldots, \beta_{p-q-1}\right)^{\prime}\)</span>.
+The first form of the likelihood ratio statistic equals
+<span class="math display">\[V=\frac{\left(\mathrm{SSE}_{\mathrm{R}}-\mathrm{SSE}_{\mathrm{F}}\right) / q}{\mathrm{SSE}_{\mathrm{F}} /(n-p)} \sim F_{q, n-p}(\lambda)\]</span>
+where <span class="math inline">\(\mathrm{SSE}_{\mathrm{R}}\)</span> is the sum of squares residual for the
+reduced model and <span class="math inline">\(\mathrm{SSE}_{\mathrm{F}}\)</span> is the sum of squares
+residual for the full model. A <span class="math inline">\(\gamma\)</span> level test of <span class="math inline">\(\mathrm{H}_{0}\)</span>
+versus <span class="math inline">\(\mathrm{H}_{1}\)</span> is to reject <span class="math inline">\(\mathrm{H}_{0}\)</span> if
+<span class="math inline">\(V&gt;F_{q, n-p}^{\gamma}\)</span>. Note that
+<span class="math inline">\(\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\frac{1}{n} \mathbf{J}_{n}\right) \mathbf{Y}=\mathrm{SSReg}_{\mathrm{R}}+\mathrm{SSE}_{\mathrm{R}}=\mathrm{SSReg}_{\mathrm{F}}+\mathrm{SSE}_{\mathrm{F}}\)</span>,
+which implies
+<span class="math inline">\(\mathrm{SSE}_{\mathrm{R}}-\mathrm{SSE}_{\mathrm{F}}=\mathrm{SSReg}_{\mathrm{F}}-\mathrm{SSReg}_{R}\)</span>
+where SSReg <span class="math inline">\(\mathrm{S}_{\mathrm{F}}\)</span> and SSReg are the sum of squares
+regression for the full and reduced models, respectively. Therefore, the
+likelihood ratio statistic for this problem also takes the form
+<span class="math display">\[V=\frac{\left(\operatorname{SSReg}_{\mathrm{F}}-\operatorname{SSReg}_{\mathrm{R}}\right) / q}{\mathrm{SSE}_{\mathrm{F}} /(n-p)} \sim F_{q, n-p}(\lambda) .\]</span>
+Example 6.4.2 Consider a special case of the problem posed in Example
+6.4.1. From Example 6.4.1 let the <span class="math inline">\(n \times p\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\left(\mathbf{X}_{1} \mid \mathbf{X}_{2}\right)\)</span> where
+<span class="math inline">\(\mathbf{X}_{1}\)</span> equals the <span class="math inline">\(n \times 1\)</span> vector <span class="math inline">\(\mathbf{1}_{n}\)</span> and
+<span class="math inline">\(\mathbf{X}_{2}\)</span> equals the <span class="math inline">\(n \times(p-1)\)</span> matrix <span class="math inline">\(\mathbf{X}_{c}\)</span> such
+that
+<span class="math inline">\(\mathbf{1}_{n}^{\prime} \mathbf{X}_{c}=\boldsymbol{0}_{1 \times(p-1)}\)</span>,
+and partition the <span class="math inline">\(p \times 1\)</span> vector <span class="math inline">\(\beta\)</span> as
+<span class="math inline">\(\left(\beta_{0} \mid \beta_{1}, \ldots, \beta_{p-1}\right)^{\prime}\)</span>.
+The objective is to test</p>
+<p>6 Maximum Likelihood Estimation 125 the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \beta_{1}=\cdots=\beta_{p-1}=0\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}:\)</span> not all <span class="math inline">\(\beta_{i}=0\)</span> for <span class="math inline">\(i=1, \ldots, p-1\)</span>. From
+Example 6.4.1, the likelihood ratio statistic equals <span class="math display">\[\begin{aligned}
+V &amp;=\frac{\left\{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{1}_{n}\left(\mathbf{1}_{n}^{\prime} \mathbf{1}_{n}\right)^{-1} \mathbf{1}_{n}^{\prime}\right) \mathbf{Y}-\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y}\right] /(p-1)}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} \\
+&amp;=\frac{\mathbf{Y}^{\prime}\left[\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}-\frac{1}{n} \mathbf{J}_{n}\right] \mathbf{Y} /(p-1)}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} \\
+&amp;=\frac{\mathbf{Y}^{\prime}\left[\mathbf{X}_{c}\left(\mathbf{X}_{c}^{\prime} \mathbf{X}_{c}\right)^{-1} \mathbf{X}_{c}^{t}\right] \mathbf{Y} /(p-1)}{\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)} \sim F_{p-1, n-p}(\lambda) .
+\end{aligned}\]</span> Therefore, <span class="math inline">\(V\)</span> equals the mean square regression due to
+<span class="math inline">\(\beta_{1}, \ldots, \beta_{p-1}\)</span> divided by the mean square residual, as
+depicted in Table 5.3.1.</p>
+<p>Example 6.4.3 Consider the one-way classification from Example 2.1.4.
+The experiment can be modeled as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where the
+<span class="math inline">\(t r \times 1\)</span> vector <span class="math inline">\(\mathbf{Y}=\)</span>
+<span class="math inline">\(\left(Y_{11}, \ldots, Y_{1 r}, \ldots, Y_{t 1}, \ldots, Y_{t r}\right)^{\prime}\)</span>,
+the <span class="math inline">\(t r \times t\)</span> matrix
+<span class="math inline">\(\mathbf{X}=\left[\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right]\)</span>, the
+<span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\boldsymbol{\beta}=\left(\beta_{1}, \ldots, \beta_{t}\right)^{\prime}=\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime}\)</span>
+where <span class="math inline">\(\mu_{1}, \ldots, \mu_{t}\)</span> are defined in Example 2.1.4, and the
+<span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{t r}\left(\mathbf{0}, \sigma_{R(T)}^{2} \mathbf{I}_{t} \otimes \mathbf{I}_{\mathbf{r}}\right)\)</span>.
+The objective is to construct the likelihood ratio test for the
+hypothesis <span class="math inline">\(\mathrm{H}_{0}: \beta_{1}=\cdots=\beta_{t}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}\)</span> : not all <span class="math inline">\(\beta_{i}\)</span> equal. The hypothesis
+<span class="math inline">\(\mathrm{H}_{0}\)</span> is equivalent to the hypothesis
+<span class="math inline">\(\mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> with the <span class="math inline">\((t-1) \times t\)</span>
+matrix <span class="math inline">\(\mathbf{H}=\mathbf{P}_{t}^{\prime}\)</span> and the <span class="math inline">\((p-1) \times 1\)</span>
+vector <span class="math inline">\(\mathbf{h}=\mathbf{0}\)</span> where <span class="math inline">\(\mathrm{P}_{t}^{\prime}\)</span> is the
+<span class="math inline">\((t-1) \times t\)</span> lower portion of a <span class="math inline">\(t\)</span>-dimensional Helmert matrix with
+<span class="math inline">\(\mathbf{P}_{t}^{\prime} \mathbf{P}_{t}=\mathbf{I}_{t-1}, \mathbf{P}_{t} \mathbf{P}_{t}^{\prime}=\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\)</span>,
+and <span class="math inline">\(\mathbf{1}_{t}^{\prime} \mathbf{P}_{t}=\mathbf{0}_{1 \times(t-1)}\)</span>.
+Note <span class="math display">\[\begin{aligned}
+\hat{\beta} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y}=\left[\left(\mathbf{L}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{L}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y} \\
+&amp;=\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y} \\
+\mathbf{H} \hat{\beta}-\mathbf{h} &amp;=\mathbf{P}_{t}^{\prime}\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y}=\left(\mathbf{P}_{t}^{\prime} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right) \mathbf{Y} \\
+{\left[\mathbf{H}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{H}^{\prime}\right]^{-1} } &amp;=\left\{\mathbf{P}_{t}^{\prime}\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1} \mathbf{P}_{t}\right\}^{-1} \\
+&amp;=\left(\mathbf{P}_{t}^{\prime} \mathbf{P}_{t}\right)^{-1} \otimes r=\mathbf{I}_{t-1} \otimes r
+\end{aligned}\]</span>
+<span class="math inline">\(\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}=\mathbf{I}_{t} \otimes \mathbf{I}_{r}\)</span>
+<span class="math inline">\(-\left\{\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\right]\)</span>
+<span class="math display">\[\begin{array}{l}
+=\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\left(\mathbf{I}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right) \\
+=\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) .
+\end{array}\]</span></p>
+<p>126 Linear Modelk Therefore, the third form of the likelihood ratio
+statistic is given by <span class="math display">\[\begin{aligned}
+V=&amp; \frac{\mathbf{Y}^{\prime}\left[\left(\mathbf{P}_{t}^{\prime} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right)^{\prime}\left(\mathbf{I}_{t-1} \otimes r\right)\left(\mathbf{P}_{t}^{\prime} \otimes \frac{1}{r} \mathbf{1}_{r}^{\prime}\right)\right] \mathbf{Y} /(t-1)}{\mathbf{Y}^{\prime} \mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \mathbf{Y} /(t r-t)} \\
+=&amp; \frac{\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y} /(t-1)}{\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /[t(r-1)]} \sim F_{t-1, t(r-1)}(\lambda)
+\end{aligned}\]</span> Therefore, <span class="math inline">\(V\)</span> equals the mean square for the treatments
+divided by the mean square for the nested replicates, which is the usual
+ANOVA test for equality of the treatment means. 6.5 CONFIDENCE BANDS ON
+LINEAR COMBINATIONS OF <span class="math inline">\(\beta\)</span> The likelihood ratio statistic is now
+used to construct confidence bands on individual linear combinations of
+<span class="math inline">\(\boldsymbol{\beta}\)</span>. Assume the model
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(0, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+Let the <span class="math inline">\(q \times p\)</span> matrix <span class="math inline">\(\mathbf{H}\)</span> and the <span class="math inline">\(q \times 1\)</span> vector <span class="math inline">\(h\)</span>
+from Section <span class="math inline">\(6.4\)</span> equal a <span class="math inline">\(1 \times p\)</span> row vector <span class="math inline">\(g^{\prime}\)</span> and a
+scalar <span class="math inline">\(g_{0}\)</span>, respectively. The hypothesis
+<span class="math inline">\(\mathbf{H}_{0}: \mathbf{H} \boldsymbol{\beta}=\mathbf{h}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mathbf{H} \boldsymbol{\beta} \neq \mathbf{h}\)</span> becomes
+<span class="math inline">\(\mathrm{H}_{0}: \mathbf{g}^{\prime} \boldsymbol{\beta}=g_{0}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mathbf{g}^{\prime} \boldsymbol{\beta} \neq g_{0}\)</span>. The
+third form of the likelihood ratio statistic equals <span class="math display">\[\begin{array}{c}
+V=\frac{\left(g^{\prime} \hat{\beta}-g_{0}\right)^{2}}{\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}(\mathbf{X} \mathbf{X})^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)\right]\left[\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g}\right]} \sim F_{1, n-p}(\lambda) \\
+\sqrt{V}=\frac{\left(\mathbf{g}^{\prime} \hat{\boldsymbol{\beta}}-g_{0}\right)}{\left[\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)\right]\left[\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g} \mid\right\}^{1 / 2}\right.} \sim t_{n-p}(\lambda) .
+\end{array}\]</span> or Therefore,
+<span class="math display">\[1-\gamma=P\left(-t_{n-p}^{\gamma / 2} \leq \sqrt{V} \leq t_{n-p}^{\gamma / 2}\right)\]</span>
+where <span class="math inline">\(t_{n-p}^{\gamma / 2}\)</span> is the <span class="math inline">\(100(1-\gamma / 2)^{\text {th }}\)</span>
+percentile point of a central <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n-p\)</span> degrees of
+freedom. Substitute for <span class="math inline">\(\sqrt{V}\)</span> and solve for
+<span class="math inline">\(g_{0}=\mathbf{g}^{\prime} \boldsymbol{\beta}\)</span> in the preceding
+probability statement. The resulting <span class="math inline">\(100(1-\gamma) \%\)</span> confidence band
+on <span class="math inline">\(\mathbf{g}^{\prime} \beta\)</span> is
+<span class="math display">\[\mathbf{g}^{\prime} \hat{\beta} \pm t_{n-p}^{\gamma / 2}\left\{\left[\mathbf{Y}^{\prime}\left(\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right) \mathbf{Y} /(n-p)\right]\left[\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g}\right]\right\}^{1 / 2} .\]</span>
+In the next example, confidence bands are placed on certain linear
+combinations of the treatment means in a one-way ANOVA problem.</p>
+<p>6 Maximum Likelihood Estimation 127 Example 6.5.1 Consider the one-way
+ANOVA problem from Example 6.4.3. The objective is to construct
+individual confidence bands on <span class="math inline">\(\beta_{1}-\beta_{2}\)</span>, and on
+<span class="math inline">\(\vec{\beta} .=\sum_{i=1}^{t} \beta_{i} / t=\mathbf{1}_{t}^{\prime} \beta / t\)</span>.
+For the one-way ANOVA problem, <span class="math inline">\(n=t r, p=t\)</span>, <span class="math display">\[\begin{aligned}
+\hat{\boldsymbol{\beta}} &amp;=\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime} \mathbf{Y} \\
+&amp;=\left[\left(\mathbf{1}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime} \mathbf{Y} \\
+&amp;=\left(\tilde{Y}_{1, \ldots}, \tilde{Y}_{t}\right)^{\prime}
+\end{aligned}\]</span> and <span class="math display">\[\begin{aligned}
+\mathbf{Y}^{\prime}\left[\mathbf{I}_{n}-\mathbf{X}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{X}^{\prime}\right] \mathbf{Y}=&amp; \mathbf{Y}^{\prime}\left\{\mathbf{I}_{t} \otimes \mathbf{I}_{r}-\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\right.\right.\\
+&amp;\left.\left.\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\right) \mathbf{Y} \\
+=&amp; \mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} .
+\end{aligned}\]</span> For <span class="math inline">\(\beta_{1}-\beta_{2}\)</span>, the <span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\mathbf{g}=(1,-1,0, \ldots, 0)^{\prime}, \mathbf{g}^{\prime} \hat{\boldsymbol{\beta}}=\bar{Y}_{1}-\bar{Y}_{2}\)</span>,
+and <span class="math display">\[\begin{aligned}
+\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g}=&amp;(1,-1,0, \ldots, 0)\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1} \\
+&amp;(1,-1,0, \ldots, 0)^{\prime} \\
+=&amp; 2 / r .
+\end{aligned}\]</span> For
+<span class="math inline">\(\bar{\beta} .=(1 / t) \mathbf{1}_{t}^{\prime} \boldsymbol{\beta}\)</span>, the
+<span class="math inline">\(t \times 1\)</span> vector
+<span class="math inline">\(\mathbf{g}=(1 / t) \mathbf{1}_{t}, \mathbf{g}^{\prime} \hat{\beta}=\bar{Y}_{. . .}\)</span>and
+<span class="math display">\[\begin{aligned}
+\mathbf{g}^{\prime}\left(\mathbf{X}^{\prime} \mathbf{X}\right)^{-1} \mathbf{g} &amp;=\left[(1 / t) \mathbf{1}_{l}\right]^{\prime}\left[\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)^{\prime}\left(\mathbf{I}_{t} \otimes \mathbf{1}_{r}\right)\right]^{-1}\left[(1 / t) \mathbf{1}_{t}\right] \\
+&amp;=(r t)^{-1}
+\end{aligned}\]</span> Therefore, <span class="math inline">\(100(1-\gamma) \%\)</span> confidence bands on
+<span class="math inline">\(\beta_{1}-\beta_{2}\)</span> are
+<span class="math display">\[\bar{Y}_{1 .}-\bar{Y}_{2} \pm t_{t(r-1)}^{\gamma / 2}\left\{2 \mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /[\operatorname{tr}(r-1)]\right\}^{1 / 2}\]</span>
+and <span class="math inline">\(100(1-\gamma) \%\)</span> confidence bands on <span class="math inline">\(\bar{\beta}\)</span>. are
+<span class="math display">\[\bar{Y}_{\ldots} . t_{t(r-1)}^{\gamma / 2}\left\{\mathbf{Y}^{\prime}\left[\mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right] \mathbf{Y} /\left[t^{2} r(r-1)\right]\right\}^{1 / 2}\]</span>
+EXERCISES 1. Let <span class="math inline">\(Y_{i}=\beta_{0}+\beta_{1} x_{i}+E_{i}\)</span> for
+<span class="math inline">\(i=1, \ldots, n\)</span> where
+<span class="math inline">\(E_{i} \sim i d \mathrm{~N}_{1}\left(0, \sigma^{2}\right)\)</span>. Construct
+individual confidence bands on <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> and write the
+answer in terms of
+<span class="math inline">\(\sum x_{i}, \sum Y_{i}, \sum x_{i}^{2}, \sum Y_{i}^{2}, \Sigma x_{i} Y_{i}\)</span>,
+and <span class="math inline">\(n\)</span>.</p>
+<p>128 Linear Models 2. Consider the one-way classification from Example
+6.4.3. Find the minimum variance unbiased estimator of
+<span class="math inline">\(\sum_{i=1}^{t} \mu_{i} / \sigma_{R(T)}^{2}\)</span>. 3. Let
+<span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{n}\)</span> be a random sample of size <span class="math inline">\(n\)</span> from a
+<span class="math inline">\(\mathrm{N}_{1}\left(\mu, \sigma^{2}\right)\)</span> distribution where
+<span class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> and <span class="math inline">\(\sigma^{2}&gt;0\)</span>. Consider the <span class="math inline">\(\gamma\)</span> level
+test <span class="math inline">\(\mathrm{H}_{0}: \mu=\mu_{0}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mu \neq \mu_{0}\)</span> where <span class="math inline">\(\mu_{0}\)</span> is given. Show that
+the likelihood ratio test is equivalent to the two-sided test, reject
+<span class="math inline">\(\mathrm{H}_{0}\)</span> if <span class="math inline">\(|T|&gt;t_{n-1}^{\gamma / 2}\)</span> where <span class="math inline">\(T=\)</span>
+<span class="math inline">\(\left(\bar{Y}-\mu_{0}\right) /[s / \sqrt{n}], \bar{Y}=\sum_{i=1}^{n} Y_{i}\)</span>
+and <span class="math inline">\(s^{2}=\sum_{i=1}^{n}\left(Y_{i}-\bar{Y}\right)^{2} /(n-1)\)</span>. 4. Let
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E} \sim \mathbf{N}_{n}\left(0, \sigma^{2} \mathbf{I}_{n}\right)\)</span>.
+A <span class="math inline">\(100(1-\gamma) \%\)</span> confidence interval on <span class="math inline">\(\mathbf{h}^{\prime} \beta\)</span>
+is
+<span class="math inline">\(\mathbf{h}^{\prime} \hat{\beta} \pm t_{n-p}^{\gamma / 2}\left[\widehat{\text { std }}\left(\mathbf{h}^{\prime} \hat{\beta}\right)\right]\)</span>
+where std <span class="math inline">\(\left(\mathbf{h}^{\prime} \hat{\beta}\right)\)</span> is the
+estimated standard deviation of <span class="math inline">\(\mathbf{h}^{\prime} \hat{\beta}\)</span>. (a)
+Find the distribution of <span class="math inline">\(L^{2}\)</span> where <span class="math inline">\(L\)</span> is the length of the
+interval. (b) If
+<span class="math inline">\(p=3, n=20, \beta=\left(\beta_{1}, \beta_{2}, \beta_{3}\right)^{\prime}, \mathbf{Y}^{\prime} \mathbf{Y}=418, \mathbf{X}^{\prime} \mathbf{X}=\mathbf{I}_{3}\)</span>,
+and <span class="math inline">\(\mathbf{X}^{\prime} \mathbf{Y}=\)</span> <span class="math inline">\((5,10,15)^{\prime}\)</span>, construct
+individual <span class="math inline">\(95 \%\)</span> confidence bands on <span class="math inline">\(\beta_{1}, \beta_{1}+\beta_{2}\)</span>,
+and <span class="math inline">\(\beta_{1}-\beta_{3}\)</span>. 5. Let
+<span class="math inline">\(\mathbf{Y}_{1}=\mu_{1}+\delta_{1}, \mathbf{Y}_{2}=\mu_{1}+\mu_{2}+\delta_{1}+\delta_{2}, \mathbf{Y}_{3}=\mu_{1}+\delta_{3}\)</span>,
+and <span class="math inline">\(\mathbf{Y}_{4}=\mu_{1}+\mu_{2}+\)</span> <span class="math inline">\(\delta_{3}+\delta_{4}\)</span> where
+<span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span> are unknown parameters and
+<span class="math inline">\(\delta=\left(\delta_{1}, \delta_{2}, \delta_{3}, \delta_{4}\right)^{\prime} \sim\)</span>
+<span class="math inline">\(\mathrm{N}_{4}\left(\mathbf{0}, \sigma_{\delta}^{2} \mathbf{I}_{4}\right)\)</span>.
+(a) Write the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span> where
+<span class="math inline">\(\mathbf{E}=\left(E_{1}, E_{2}, E_{3}, E_{4}\right)^{\prime}\)</span>. Define
+each term and distribution explicitly. (b) Find the MLE of
+<span class="math inline">\(\mu=\left(\mu_{1}, \mu_{2}\right)^{\prime}\)</span>. (c) Find the distribution
+of the MLE of <span class="math inline">\(\mu\)</span>. 6. Let <span class="math inline">\(Y_{i j}=\mu_{i}+E_{i j}\)</span> where the
+<span class="math inline">\(E_{i j}\)</span> ’s are distributed as independent
+<span class="math inline">\(\mathrm{N}_{1}\left(0, j \sigma^{2}\right)\)</span> random variables. Let
+<span class="math inline">\(\mathbf{Y}=\left(Y_{11}, Y_{12}, Y_{21}, Y_{22}\right)^{\prime}\)</span>. Find
+the likelihood ratio statistic for testing the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}: \mu_{1}=\mu_{2}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mu_{1} \neq \mu_{2}\)</span>. 7. Consider the paired <span class="math inline">\(t\)</span>-test
+problem of Exercise 5 in Chapter <span class="math inline">\(4 .\)</span> (a) Calculate the MLEs of
+<span class="math inline">\(\mu_{1}, \mu_{2}, \sigma_{B}^{2}\)</span>, and <span class="math inline">\(\sigma_{B T}^{2}\)</span>. (b)
+Construct the likelihood ratio statistic for testing the hypothesis
+<span class="math inline">\(\mathrm{H}_{0}=\)</span> <span class="math inline">\(\mu_{1}=\mu_{2}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mu_{1} \neq \mu_{2}\)</span>. 8. Consider the experiment from
+Exercise 6 in Chapter 4 . Calculate the MLEs of
+<span class="math inline">\(\mu_{11}, \ldots, \mu_{53}, \sigma_{P(F)}^{2}, \sigma_{C(F P)}^{2} . \sigma_{P T(F)}^{2}\)</span>,
+and <span class="math inline">\(\sigma_{C T(F P)}^{2}\)</span>. 9. Consider the experiment from Exercise 7
+in Chapter <span class="math inline">\(4 .\)</span> (a) Calculate the MLEs of
+<span class="math inline">\(\mu_{111}, \ldots, \mu_{222}, \sigma_{P(S)}^{2}, \sigma_{P M(S)}^{2}\)</span>,
+and <span class="math inline">\(\sigma_{P O(M S)}^{2}\)</span>. (b) Write the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \boldsymbol{\beta}+\mathbf{E}\)</span>. Define the vector
+<span class="math inline">\(\mathbf{p}\)</span> in Kronecker product form such that
+<span class="math inline">\(\mathbf{p}^{\prime} \beta=\bar{\mu}_{1}-\bar{\mu}_{2 . .}=\left(\mu_{111}+\mu_{112}+\mu_{121}+\mu_{122}-\right.\)</span>
+<span class="math inline">\(\left.\mu_{211}-\mu_{212}-\mu_{221}-\mu_{222}\right) / 4\)</span>.</p>
+<p>6 Maximum Likelihood Estimation 129 (c) Find the MLE of
+<span class="math inline">\(\mathbf{p}^{\prime} \beta\)</span> from part b. (d) Find the standard error of
+the MLE of <span class="math inline">\(\mathbf{p}^{\prime} \boldsymbol{\beta}\)</span>. 10. Consider the
+experiment from Example 4.5.4. (a) Find <span class="math inline">\(\Sigma^{-1}\)</span> in terms of
+<span class="math inline">\(\sigma_{B}^{2}\)</span> and <span class="math inline">\(\sigma_{B V}^{2}\)</span>. (b) Write the model as
+<span class="math inline">\(\mathbf{Y}=\mathbf{X} \beta+\mathbf{E}\)</span> and find the MLEs of
+<span class="math inline">\(\beta, \sigma_{B}^{2}\)</span>, and <span class="math inline">\(\sigma_{B V}^{2}\)</span>. 11. Under the
+conditions of Theorem <span class="math inline">\(6.3 .1\)</span>, prove that the eigenvalues of <span class="math inline">\(\Sigma\)</span>
+are <span class="math inline">\(a_{1}, \ldots, a_{m}\)</span> with multiplicities
+<span class="math inline">\(p_{1}+r_{1}, \ldots, p_{m}+r_{m}\)</span>, respectively.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="least-squares-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Complete, Balanced Factorial Experiments | Linear Models</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Complete, Balanced Factorial Experiments | Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Complete, Balanced Factorial Experiments | Linear Models" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Barry Kurt" />
+
+
+<meta name="date" content="2023-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distributions-of-quadratic-forms.html"/>
+<link rel="next" href="least-squares-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Models</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Linear Algebra and Related Introductory Topics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#elementary-matrix-concepts"><i class="fa fa-check"></i><b>1.1</b> ELEMENTARY MATRIX CONCEPTS</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#kronecker-products"><i class="fa fa-check"></i><b>1.2</b> KRONECKER PRODUCTS</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#random-vectors"><i class="fa fa-check"></i><b>1.3</b> RANDOM VECTORS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#exercises"><i class="fa fa-check"></i>EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#multivariate-normal-distribution-function"><i class="fa fa-check"></i><b>2.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="2.2" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#conditional-distributions-of-multivariate-normal-random-vectors"><i class="fa fa-check"></i><b>2.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="2.3" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#distributions-of-certain-quadratic-forms"><i class="fa fa-check"></i><b>2.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="2.4" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html#exercises-1"><i class="fa fa-check"></i><b>2.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html"><i class="fa fa-check"></i><b>3</b> Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#multivariate-normal-distribution-function-1"><i class="fa fa-check"></i><b>3.1</b> MULTIVARIATE NORMAL DISTRIBUTION FUNCTION</a></li>
+<li class="chapter" data-level="3.2" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#conditional-distributions-of-multivariate-normal-random-vectors-1"><i class="fa fa-check"></i><b>3.2</b> CONDITIONAL DISTRIBUTIONS OF MULTIVARIATE NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="3.3" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#distributions-of-certain-quadratic-forms-1"><i class="fa fa-check"></i><b>3.3</b> DISTRIBUTIONS OF CERTAIN QUADRATIC FORMS</a></li>
+<li class="chapter" data-level="3.4" data-path="multivariate-normal-distribution-1.html"><a href="multivariate-normal-distribution-1.html#exercises-2"><i class="fa fa-check"></i><b>3.4</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html"><i class="fa fa-check"></i><b>4</b> Distributions of Quadratic Forms</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#quadratic-forms-of-normal-random-vectors"><i class="fa fa-check"></i><b>4.1</b> QUADRATIC FORMS OF NORMAL RANDOM VECTORS</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#independence"><i class="fa fa-check"></i><b>4.2</b> INDEPENDENCE</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#the-boldsymbolt-and-boldsymbolf-distributions"><i class="fa fa-check"></i><b>4.3</b> THE <span class="math inline">\(\boldsymbol{t}\)</span> AND <span class="math inline">\(\boldsymbol{F}\)</span> DISTRIBUTIONS</a></li>
+<li class="chapter" data-level="4.4" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#bhats-lemma"><i class="fa fa-check"></i><b>4.4</b> BHAT’S LEMMA</a></li>
+<li class="chapter" data-level="4.5" data-path="distributions-of-quadratic-forms.html"><a href="distributions-of-quadratic-forms.html#exercises-3"><i class="fa fa-check"></i><b>4.5</b> EXERCISES</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html"><i class="fa fa-check"></i><b>5</b> Complete, Balanced Factorial Experiments</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-admit-restrictions-finite-models"><i class="fa fa-check"></i><b>5.1</b> MODELS THAT ADMIT RESTRICTIONS (FINITE MODELS)</a></li>
+<li class="chapter" data-level="5.2" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#models-that-do-not-admit-restrictions-infinite-models"><i class="fa fa-check"></i><b>5.2</b> MODELS THAT DO NOT ADMIT RESTRICTIONS (INFINITE MODELS)</a></li>
+<li class="chapter" data-level="5.3" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#sum-of-squares-and-covariance-matrix-algorithms"><i class="fa fa-check"></i><b>5.3</b> SUM OF SQUARES AND COVARIANCE MATRIX ALGORITHMS</a></li>
+<li class="chapter" data-level="5.4" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#expected-mean-squares"><i class="fa fa-check"></i><b>5.4</b> EXPECTED MEAN SQUARES</a></li>
+<li class="chapter" data-level="5.5" data-path="complete-balanced-factorial-experiments.html"><a href="complete-balanced-factorial-experiments.html#algorithm-applications"><i class="fa fa-check"></i><b>5.5</b> ALGORITHM APPLICATIONS</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="least-squares-regression.html"><a href="least-squares-regression.html"><i class="fa fa-check"></i><b>6</b> Least-Squares Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="least-squares-regression.html"><a href="least-squares-regression.html#ordinary-least-squares-estimation"><i class="fa fa-check"></i><b>6.1</b> ORDINARY LEAST-SQUARES ESTIMATION</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html"><i class="fa fa-check"></i><b>7</b> Maximum Likelihood Estimation and Related Topics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="maximum-likelihood-estimation-and-related-topics.html"><a href="maximum-likelihood-estimation-and-related-topics.html#maximum-likelihood-estimators-of-beta-and-sigma2"><i class="fa fa-check"></i><b>7.1</b> MAXIMUM LIKELIHOOD ESTIMATORS OF <span class="math inline">\(\beta\)</span> AND <span class="math inline">\(\sigma^{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="complete-balanced-factorial-experiments" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Complete, Balanced Factorial Experiments<a href="complete-balanced-factorial-experiments.html#complete-balanced-factorial-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The main objective of this chapter is to provide sum of squares and
+covariance matrix algorithms for complete, balanced factorial
+experiments. The algoorithm rules are dependent on the model used in the
+analysis and on the model assumptions. Therefore, before the algorithms
+are presented we will discuss two different model formulations, models
+that admit restrictions on the random variables and models that do not
+admit restrictions.</p>
+<div id="models-that-admit-restrictions-finite-models" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> MODELS THAT ADMIT RESTRICTIONS (FINITE MODELS)<a href="complete-balanced-factorial-experiments.html#models-that-admit-restrictions-finite-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We begin our model discussion with an example. Consider a group of
+<span class="math inline">\(b t r\)</span> experimental units. Separate the units into <span class="math inline">\(b\)</span> homogeneous
+groups with <span class="math inline">\(t r\)</span> units per group. In each group (or random block)
+randomly assign <span class="math inline">\(r\)</span> replicate units to each of the <span class="math inline">\(t\)</span> fixed treatment
+levels. The observed data for this two-way mixed experiment with
+replication are given in Figure 4.1.1.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Random blocks <span class="math inline">\(B_{i}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td></td>
+<td>b</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td></td>
+<td>Reps</td>
+<td>1</td>
+<td><span class="math inline">\(y_{111}\)</span></td>
+<td><span class="math inline">\(y_{211}\)</span></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+<td><span class="math inline">\(y_{b 11}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td>1</td>
+<td></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\ddots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Fixed</td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(r\)</span></td>
+<td><span class="math inline">\(y_{11 r}\)</span></td>
+<td><span class="math inline">\(y_{21 r}\)</span></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+<td><span class="math inline">\(y_{b 1 r}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td></td>
+<td>Reps</td>
+<td>1</td>
+<td><span class="math inline">\(y_{1 t 1}\)</span></td>
+<td><span class="math inline">\(y_{2 t 1}\)</span></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+<td><span class="math inline">\(y_{b t 1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td><span class="math inline">\(t\)</span></td>
+<td><span class="math inline">\(R(B T)_{(i j) k}\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td><span class="math inline">\(\ddots\)</span></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(r\)</span></td>
+<td><span class="math inline">\(y_{1 t r}\)</span></td>
+<td><span class="math inline">\(y_{2 t r}\)</span></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+<td><span class="math inline">\(y_{b t r}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 4.1.1</strong> Two-Way Mixed Experimental Layout with Replication.</p>
+<p>A model for this experiment is
+<span class="math display">\[Y_{i j k}=\mu_{j}+B_{i}+B T_{i j}+R(B T)_{(i j) k}\]</span> for
+<span class="math inline">\(i=1, \ldots, b, j=1, \ldots, t\)</span>, and <span class="math inline">\(k=1, \ldots, r\)</span> where <span class="math inline">\(Y_{i j k}\)</span>
+is a random variable representing the <span class="math inline">\(k^{\text {th }}\)</span> replicate value
+in the <span class="math inline">\(i j^{\text {th }}\)</span> block treatment combination; <span class="math inline">\(\mu_{j}\)</span> is a
+constant representing the mean effect of the <span class="math inline">\(j^{\text {th }}\)</span> fixed
+treatment; <span class="math inline">\(B_{i}\)</span> is a random variable representing the effect of the
+<span class="math inline">\(i^{\text {th }}\)</span> random block; <span class="math inline">\(B T_{i j}\)</span> is a random variable
+representing the interaction of the <span class="math inline">\(i^{\text {th }}\)</span> random block and
+the <span class="math inline">\(j^{\text {th }}\)</span> fixed treatment; and <span class="math inline">\(R(B T)_{(i j) k}\)</span> is a
+random variable representing the effect of the <span class="math inline">\(k^{\text {th }}\)</span>
+replicate unit nested in the <span class="math inline">\(i j^{\text {th }}\)</span> block treatment
+combination.</p>
+<p>We now attempt to develop a reasonable set of distributional assumptions
+for the random variables <span class="math inline">\(B_{i}, B T_{i j}\)</span>, and <span class="math inline">\(R(B T)_{(i j) k}\)</span>.
+Start by considering the <span class="math inline">\(b t r\)</span> observed data points in the experiment
+as a collection of values sampled from an entire population of possible
+values. The population for this experiment can be viewed as a
+rectangular grid with an infinite number of columns, exactly <span class="math inline">\(t\)</span> rows,
+and an infinite number of possible observed values in each row-column
+combination (see Figure 4.1.2). The infinite number of columns
+represents the infinite number of blocks in the population. Each block
+(or column) contains exactly <span class="math inline">\(t\)</span> rows, one for each level of the fixed
+treatments. Then the population contains an infinite number of replicate
+observed values nested in each block treatment combination. The <span class="math inline">\(b t r\)</span>
+observed data points for the experiment are then sampled from this
+infinite population of values in the following way. Exactly <span class="math inline">\(b\)</span> blocks
+are selected at random from the infinite number of blocks in the
+population. For each block selected, all <span class="math inline">\(t\)</span> of the treatment rows are
+then included in the sample. Finally, within the selected block
+treatment combinations, <span class="math inline">\(r\)</span> replicate observations are randomly sampled
+from the infinite number of nested population replicates.</p>
+<p>Since the <span class="math inline">\(r\)</span> blocks are selected at random from an infinite population
+of possible blocks, assume that the block variables <span class="math inline">\(B_{i}\)</span> for
+<span class="math inline">\(i=1, \ldots, b\)</span> are independent. If the Figure 4.1.2 Finite Model
+Population Grid. <span class="math inline">\(r\)</span> blocks have been sampled from the same single
+population of blocks, tn the variables <span class="math inline">\(B_{i}\)</span> are identically
+distributed. Furthermore, assume that across the entire population of
+blocks the average influence of <span class="math inline">\(B_{i}\)</span> is zero, that is,
+<span class="math inline">\(\mathrm{E}\left(B_{i}\right)=0\)</span> for all <span class="math inline">\(i=1, \ldots, b\)</span>. If the random
+variables <span class="math inline">\(B_{i}\)</span> are assumed to be normally distributed, then the
+assumptions above are satisfied when the <span class="math inline">\(b\)</span> variables <span class="math inline">\(B_{i} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{B}^{2}\right) .\)</span></p>
+<div class="centering">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Random blocks</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>2</td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Fixed</td>
+<td>1</td>
+<td></td>
+<td>Reps</td>
+<td></td>
+<td></td>
+<td>Reps</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td>2</td>
+<td></td>
+<td>Reps</td>
+<td></td>
+<td></td>
+<td>Reps</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td><span class="math inline">\(t\)</span></td>
+<td></td>
+<td>Reps</td>
+<td></td>
+<td></td>
+<td>Reps</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 4.1.1</strong> Two-Way Mixed Experimental Layout with Replication.</p>
+</div>
+<p>Now consider the random variables <span class="math inline">\(B T_{i j}\)</span> that represent the block
+by treatment interaction. Recall that the population contains exactly
+<span class="math inline">\(t\)</span> treatment levels for each block. Therefore, in the <span class="math inline">\(i^{\text {th }}\)</span>
+block the population contains exactly <span class="math inline">\(t\)</span> possible values for the random
+variable <span class="math inline">\(B T_{i j}\)</span>. If the average influence of the block by treatment
+interaction is assumed to be zero for each block, then
+<span class="math inline">\(\mathrm{E}\left[B T_{i j}\right]=0\)</span> for each <span class="math inline">\(i\)</span>. But for each
+<span class="math inline">\(i, \mathrm{E}\left[B T_{i j}\right]=\sum_{j=1}^{t} B T_{i j} / t\)</span> since
+the population contains exactly <span class="math inline">\(t\)</span> values of <span class="math inline">\(B T_{i j}\)</span> for each
+block. Therefore, <span class="math inline">\(\sum_{j=1}^{t} B T_{i j}=0\)</span> for each <span class="math inline">\(i\)</span>, implying
+that the variables <span class="math inline">\(B T_{i 1}, \ldots, B T_{i t}\)</span> are dependent, because
+the value of any one of these variables is determined by the values of
+the other <span class="math inline">\(t-1\)</span> variables. Although the dependence between the
+<span class="math inline">\(B T_{i j}\)</span> variables occurs within each block, the dependence does not
+occur across blocks. Therefore, assume that the <span class="math inline">\(b\)</span> vectors
+<span class="math inline">\(\left(B T_{11}, \ldots, B T_{1 t}\right)^{\prime}, \ldots,\left(B T_{b 1}, \ldots, B T_{b t}\right)^{\prime}\)</span>
+are mutually independent. If the random variables <span class="math inline">\(B T_{i j}\)</span> are
+assumed to be normally distributed, then the assumptions above are
+satisfied when the <span class="math inline">\(b(t-1) \times 1\)</span> random vector
+<span class="math inline">\(\left(\mathbf{I}_{b} \otimes \mathbf{P}_{t}^{\prime}\right)\left(B T_{11}, \ldots, B T_{1 t}, \ldots, B T_{b \mid}, \ldots, B T_{b t}\right)^{\prime} \sim \mathrm{N}_{b(t-1)}\left[\mathbf{0}, \sigma_{B T}^{2} \mathbf{I}_{b} \otimes \mathbf{I}_{t-1}\right]\)</span>
+where <span class="math inline">\(P_{t}^{\prime}\)</span> is the <span class="math inline">\((t-1) \times t\)</span> lower portion of a
+<span class="math inline">\(t\)</span>-dimensional Helmert matrix.</p>
+<p>Finally, consider the nested replicate variables <span class="math inline">\(R(B T)_{(i j) k}\)</span>.
+Within each block treatment combination, the <span class="math inline">\(r\)</span> replicate observations
+are selected at random from the infinite population of nested
+replicates. If each block treatment combination of the population has
+the same distribution, then the random variables <span class="math inline">\(R(B T)_{(i j) k}\)</span> are
+independent, identically distributed random variables. Furthermore,
+within each block treatment combination, assume that the average
+influence of <span class="math inline">\(R(B T)_{(i j) k}\)</span> is zero, that is,
+<span class="math inline">\(\mathrm{E}\left[R(B T)_{(i j) k}\right]=0\)</span> for each <span class="math inline">\(i j\)</span> pair. If the
+random variables <span class="math inline">\(R(B T)_{(i j) k}\)</span> are also assumed to be normally
+distributed, then the assumptions above are satisfied when the <span class="math inline">\(b t r\)</span>
+random variables
+<span class="math inline">\(R(B T)_{(i j) k} \sim i i d \mathrm{~N}_{1}\left(0, \sigma_{R(B T}^{2}\right) .\)</span>
+Furthermore, assume that random variables <span class="math inline">\(B_{i}\)</span>, the <span class="math inline">\(t \times 1\)</span>
+random vectors <span class="math inline">\(\left(B T_{i 1}, \ldots,\right.\)</span>,
+<span class="math inline">\(\left.B T_{i t}\right)^{\prime}\)</span>, and the random variables
+<span class="math inline">\(R(B T)_{(i j) k}\)</span> are mutually independent.</p>
+<p>In the previous model formulation, the random variables <span class="math inline">\(B T_{i j}\)</span>
+contain a finite population of possible values for each <span class="math inline">\(i\)</span>. If the
+variables are assumed to have zero expectation, then the finite
+population induces restrictions and distributional dependencies. Note
+that variables representing interactions of random and fixed factors are
+the only types of variables that assume these restrictions. Furthermore,
+the dependencies occurred because of the assumed population structure of
+possible observed values. Kempthorne (1952) called such models finite
+models, because the fixed by random interaction components were
+restricted to a finite population of possible values.</p>
+<p>In the next section we discuss models where the population is assumed to
+have a structure where no variable dependencies occur.</p>
+</div>
+<div id="models-that-do-not-admit-restrictions-infinite-models" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> MODELS THAT DO NOT ADMIT RESTRICTIONS (INFINITE MODELS)<a href="complete-balanced-factorial-experiments.html#models-that-do-not-admit-restrictions-infinite-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider the same experiment discussed in Section 4.1. Use a model with
+the same variables
+<span class="math display">\[Y_{i j k}=\mu_{j}+B_{i}+B T_{i j}+R(B T)_{(i j) k}\]</span> where all
+variables and constants represent the same effects as previously stated.
+In this model formulation, the population has an infinite number of
+random blocks. For each block, an infinite number of replicates of each
+of the <span class="math inline">\(t\)</span> treatment levels exists. Each of these treatment level
+replicates contains an infinite number of experimental units (see Figure
+4.2.1).</p>
+<p>The <span class="math inline">\(btr\)</span> observed values for the experiment are sampled from the
+population by first choosing <span class="math inline">\(b\)</span> blocks at random from the infinite
+number of blocks in the population. For each selected block, one
+replicate of each of the <span class="math inline">\(t\)</span> treatment levels is selected. Finally,
+within the selected block treatment combinations, <span class="math inline">\(r\)</span> replicate
+observations are randomly sampled. Since the blocks are randomly
+selected from one infinite population of blocks, assume the random
+variables <span class="math inline">\(B_{i}\)</span> are independent, identically distributed. With a
+normality and zero expectation assumption, let the <span class="math inline">\(b\)</span> block random
+variables
+<span class="math inline">\(B_{i} \sim i i d \mathrm{~N}_{1}\left(0, \sigma_{B}^{2}\right) .\)</span> Since
+the <span class="math inline">\(t\)</span> observed treatment levels are randomly chosen from an infinite
+population of treatment replicates, an infinite number of possible
+values are available for the random variables <span class="math inline">\(B T_{i j}\)</span>. Assume that
+the average influence of <span class="math inline">\(B T_{i j}\)</span> is zero for each block. But now
+<span class="math inline">\(\mathrm{E}\left[B T_{i j}\right]=0\)</span> does not imply
+<span class="math inline">\(\sum_{j=1}^{t} B T_{i j}=0\)</span> for each <span class="math inline">\(i\)</span> since the variables
+<span class="math inline">\(B T_{i j}\)</span> have an infinite population. Therefore, a zero expectation
+does not imply dependence. With a normality assumption, let the <span class="math inline">\(b t\)</span>
+random variables
+<span class="math inline">\(B T_{i j} \sim i i d \mathrm{~N}_{1}\left(0, \sigma_{B T}^{2}\right) .\)</span>
+Finally, within each block treatment combination, the nested replicates
+are assumed to be sampled from an infinite population. With a normality
+and zero expectation assumption, let the btr random variables
+<span class="math inline">\(R(B T)_{(i j) k} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{R(B T)}^{2}\right) .\)</span> Furthermore,
+assume that random variables <span class="math inline">\(B_{i}\)</span>, the random variables <span class="math inline">\(B T_{i j}\)</span>,
+and the random variables <span class="math inline">\(R(B T)_{(i j) k}\)</span> are mutually independent.
+Hence, in models that do not admit restrictions, all variables on the
+right side of the model are assumed to be independent. Kempthorne (1952)
+called such models infinite models, because it is assumed that all of
+the random components are sampled from infinite populations.</p>
+<div class="center">
+<table style="width:98%;">
+<colgroup>
+<col width="17%" />
+<col width="11%" />
+<col width="4%" />
+<col width="11%" />
+<col width="11%" />
+<col width="4%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Random blocks</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>2</td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\ldots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(r)2-9
+(r)2-9</td>
+<td><span class="math inline">\(\vdots\)</span>
+1</td>
+<td></td>
+<td><span class="math inline">\(\vdots\)</span>
+Reps
+2
+Reps
+2
+<span class="math inline">\(\vdots\)</span></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\vdots\)</span>
+Reps
+2
+Reps
+2
+<span class="math inline">\(\vdots\)</span></td>
+<td></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">(r)2-9</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 4.2.1</strong> Infinite Model Population Grid.</p>
+</div>
+<p>In passing, we raise one additional topic. Consider the previous
+experiment, with one replicate unit within each block treatment
+combination <span class="math inline">\((r=1) .\)</span> Observing only one replicate unit within each
+block treatment combination does not change the fact that different
+experimental units are intrinsically different. The random variables
+<span class="math inline">\(R(B T)_{(i j) k}\)</span> represents this experimental unit difference. Hence,
+there is some motivation for leaving the random variable
+<span class="math inline">\(R(B T)_{(i j) k}\)</span> in the model. However, the variance
+<span class="math inline">\(\sigma_{R(B T)}^{2}\)</span> is not estimable when <span class="math inline">\(r=1\)</span>. Therefore, it also
+seems reasonable to drop <span class="math inline">\(R(B T)_{(i j) k}\)</span> from the model in this case.
+If the <span class="math inline">\(R(B T)_{(i j) k}\)</span> variable is dropped from the model, then the
+expected mean squares will not contain the <span class="math inline">\(\sigma_{R(B T)}^{2}\)</span> term.
+However, all <span class="math inline">\(F\)</span> tests in the ANOVA are the same whether
+<span class="math inline">\(R(B T)_{(i j) k}\)</span> is dropped or not. In addition, the covariance matrix
+construction is slightly less complicated if variables with nonestimable
+variance parameters are dropped from the model. In summary, the overall
+analysis is unchanged in its essential characteristics when variables
+with nonestimable variance parameters are dropped from the model. Thus,
+variables with nonestimable variance parameters are generally not used
+in this text.</p>
+<p>In the next section we establish the sum of squares and covariance
+matrix algorithm rules for models that admit restrictions. We then show
+how the covariance matrix algorithm can be easily modified to
+accommodate models that do not admit restrictions. Finally, for
+completeness, we discuss how the algorithms can be modified to
+accommodate models that contain variables with nonestimable variance
+parameters. Therefore, the algorithms can be applied to any complete,
+balanced experiment, using finite or infinite models, and using models
+with or without nonestimable variance parameters.</p>
+</div>
+<div id="sum-of-squares-and-covariance-matrix-algorithms" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> SUM OF SQUARES AND COVARIANCE MATRIX ALGORITHMS<a href="complete-balanced-factorial-experiments.html#sum-of-squares-and-covariance-matrix-algorithms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Section 4.1 a finite model was presented for an experiment with <span class="math inline">\(r\)</span>
+replicate observations nested in <span class="math inline">\(b t\)</span> block treatment combinations.
+This experiment is now used to establish the sum of squares and
+covariance matrix algorithm rules for finite models.</p>
+<p>Let the <span class="math inline">\(btr \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 r}, \ldots, Y_{b t 1}, \ldots, Y_{b t r}\right)^{\prime}\)</span>.
+The covariance matrix <span class="math inline">\(\Sigma=\operatorname{cov}(\mathbf{Y})\)</span> for the
+finite model is given by <span class="math display">\[\begin{aligned}
+\Sigma=&amp; \sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t} \otimes \mathbf{J}_{r}\right] \\
+&amp;+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \mathbf{J}_{r}\right] \\
+&amp;+\sigma_{R(B T)}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]
+\end{aligned}\]</span> The rules for constructing the matrix <span class="math inline">\(\Sigma\)</span> are given
+in the following paragraphs. The matrix <span class="math inline">\(\Sigma\)</span> is constructed in
+tabular form. The first rule describes the construction of the table,
+and the second rule describes the matrix terms that fill the table.</p>
+<p><strong>Rule <span class="math inline">\(\boldsymbol{\Sigma 1}\)</span></strong> List the variances of all random
+factors and interactions, one variance in each row. Construct column
+headings where the first column heading designates the main factor
+letters and the second heading designates the number of levels of the
+factor. Place brackets (<span class="math display">\[ \]</span>), Kronecker product symbols <span class="math inline">\((\otimes)\)</span>,
+and plus signs <span class="math inline">\((+)\)</span> in each row, as described in Example 4.3.1.</p>
+<p><strong>Example 4.3.1</strong> Rule <span class="math inline">\(\Sigma 1\)</span>.</p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left">Levels =l</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\sigma_{B}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma{B T}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma_{R(B T)}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rule <span class="math inline">\(\boldsymbol{\Sigma 2}\)</span></strong> Compare the factor letters in the first
+column heading with each subscript letter on the variance (i.e., <span class="math inline">\(B\)</span>
+from <span class="math inline">\(\sigma_{B}^{2}, T\)</span> from <span class="math inline">\(\sigma_{B T}^{2}\)</span> ).</p>
+<p><strong>Rule <span class="math inline">\(\boldsymbol{\Sigma 2\text{.}1}\)</span></strong> If the factor letter does not
+match a subscript letter on the variance, place a <span class="math inline">\(\mathbf{J}_{l}\)</span> in
+the Kronecker product with the same row as the variance and the same
+column as the factor letter, where <span class="math inline">\(l\)</span> is the number of levels of the
+factor. In the examples below, new matrix additions to the covariance
+matrix are underlined.</p>
+<p><strong>Example 4.3.1</strong> (continued) Rule <span class="math inline">\(\Sigma 2\text{.}1\)</span></p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left">Levels =l</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\sigma_{B}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{J}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma_{B T}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma_{R(B T)}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If a factor letter corresponding to a fixed non-nested factor matches a
+subscript letter on the variance, place
+<span class="math inline">\(\mathbf{I}_{l}-\frac{1}{l} \mathbf{J}_{l}\)</span> in the Kronecker product.</p>
+<p><strong>Example 4.3.1</strong> (continued) Rule <span class="math inline">\(\Sigma 2\text{.}2\)</span></p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left">Levels =l</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\sigma_{B}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\mathbf{J}_{t}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\mathbf{J}_{r}\)</span></td>
+<td>]</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma_{B T}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{ \left( \mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t} \right)}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\mathbf{J}_{r}\)</span></td>
+<td>]</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma_{R(B T)}^{2}\)</span></td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rule <span class="math inline">\(\boldsymbol{\Sigma 2\text{.}3}\)</span></strong> Place <span class="math inline">\(\mathbf{I}_{l}\)</span>
+elsewhere.</p>
+<p><strong>Example 4.3.1</strong> (continued) Rule <span class="math inline">\(\Sigma 2\text{.}3\)</span></p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left">Levels =l</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\sigma_{B}^{2}\)</span></td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\mathbf{J}_{t}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\mathbf{J}_{r}\)</span></td>
+<td>]</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma_{B T}^{2}\)</span></td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\left( \mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t} \right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\mathbf{J}_{r}\)</span></td>
+<td>]</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td></td>
+<td>+</td>
+<td><span class="math inline">\(\sigma_{R(B T)}^{2}\)</span></td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{r}}\)</span></td>
+<td>]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The covariance algorithm can be applied to complete, balanced finite
+models with any number of fixed and random main effects, interactions,
+or nested factors.</p>
+<p>For infinite models, the same covariance matrix algorithm can be used,
+except that Rule <span class="math inline">\(\Sigma 2\text{.}2\)</span> is omitted. That is, for infinite
+models that do not contain restrictions on variables representing
+interactions of random and fixed factors, the covariance matrix is
+constructed following Rules <span class="math inline">\(\Sigma 1, \Sigma 2, \Sigma 2.1\)</span>, and
+<span class="math inline">\(\Sigma 2.3\)</span>. The next example illustrates the construction of
+covariance matrices in such models.</p>
+<p><strong>Example 4.3.2</strong> Consider the experiment in Example 4.3.1, but now use
+an infinite model that does not admit restrictions. Using Rules
+<span class="math inline">\(\Sigma 1, \Sigma 2, \Sigma 2\text{.}1\)</span>, and <span class="math inline">\(\Sigma 2\text{.}3\)</span>, the
+covariance matrix is given by</p>
+<p><span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma} = &amp; \sigma_{B}^{2} &amp; \left[\mathbf{I}_{b} \otimes \mathbf{J}_{t} \otimes \mathbf{J}_{r}\right] \\
+&amp;+\sigma_{B T}^{2} &amp; \left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{J}_{r}\right] \\
+&amp;+\sigma_{R(B T)}^{2} &amp; \left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]
+\end{aligned}\]</span></p>
+<p>Although finite and infinite models are motivated in different ways and
+produce different covariance structures, algebraically the two
+covariance structures are simply reparameterizations of each other. To
+illustrate this point, consider the previous experiment with <span class="math inline">\(b\)</span> random
+blocks, <span class="math inline">\(t\)</span> fixed treatments, and <span class="math inline">\(r\)</span> random replicates per treatment.
+First, rewrite the covariance matrix for the finite model in the
+following equivalent form.</p>
+<p><span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma}=&amp;\left(\sigma_{B}^{2}-\frac{1}{t} \sigma_{B T}^{2}\right) &amp; \left[\mathbf{I}_{b} \otimes \mathbf{J}_{t} \otimes \mathbf{J}_{r}\right] \\
+&amp; +\sigma_{B T}^{2} &amp; \quad\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{J}_{r}\right] \\
+&amp;+\sigma_{R(B T)}^{2} &amp; \quad\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]
+\end{aligned}\]</span></p>
+<p>Now to distinguish the parameters in the finite and infinite models,
+rename the variance parameters <span class="math inline">\(\sigma_{B}^{2}, \sigma_{B T}^{2}\)</span>, and
+<span class="math inline">\(\sigma_{R(B T)}^{2}\)</span> in the infinite model as
+<span class="math inline">\(\sigma_{B^{*}}^{2}, \sigma_{B T^{*}}^{2}\)</span>, and
+<span class="math inline">\(\sigma_{R(B T)^{*}}^{2}\)</span>, respectively. Then the covariance matrix for
+the infinite model becomes <span class="math display">\[\begin{array}{rlr}
+\Sigma= &amp; \sigma_{B^{*}}^{2} &amp; {\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t} \otimes \mathbf{J}_{r}\right]} \\
+&amp; +\sigma_{B T^{*}}^{2} &amp; {\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{J}_{r}\right]} \\
+&amp; +\sigma_{R(B T)^{*}}^{2} &amp; {\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]}
+\end{array}\]</span> Note that the finite and infinite model covariance
+matrices are equal with <span class="math inline">\(\sigma_{B^{*}}^{2}=\)</span>
+<span class="math inline">\(\sigma_{B}^{2}-\frac{1}{t} \sigma_{B T}^{2}, \sigma_{B T^{*}}^{2}=\sigma_{B T}^{2}\)</span>
+and <span class="math inline">\(\sigma_{R(B T)^{*}}^{2}=\sigma_{R(B T)}^{2} .\)</span> Therefore, the two
+covariance structures are simply reparameterizations of each other.</p>
+<p>An algorithm is now given for constructing the matrices <span class="math inline">\(\mathbf{A}_{s}\)</span>
+in the sums of squares <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{s} \mathbf{Y}\)</span>.
+This sum of squares algorithm applies to finite and infinite models.</p>
+<p>The subscripts <span class="math inline">\(s\)</span> on the matrices <span class="math inline">\(\mathbf{A}_{s}\)</span> are numbered
+sequentially with <span class="math inline">\(\mathbf{A}_{1}\)</span> being associated with the sum of
+squares for the overall mean <span class="math inline">\(\mu_{0}, \mathbf{A}_{2}\)</span> being associated
+with the sum of squares for the next factor, etc. In the example
+considered in this section, <span class="math inline">\(\mathbf{A}_{2}\)</span> is associated with the
+blocks <span class="math inline">\(B, \mathbf{A}_{3}\)</span> with the treatments <span class="math inline">\(T, \mathbf{A}_{4}\)</span> with
+interaction of <span class="math inline">\(B\)</span> and <span class="math inline">\(T\)</span>, and <span class="math inline">\(\mathbf{A}_{5}\)</span> with the nested
+replicates <span class="math inline">\(R(B T)\)</span>. The sum of squares matrices <span class="math inline">\(\mathbf{A}_{s}\)</span> are
+constructed in tabular form. The first rule describes the table; the
+second rule describes the matrix terms in the table.</p>
+<p><strong>Rule A1</strong> Construct two row headings where the first designates the
+letters of the factors and interactions, while the second designates the
+matrices <span class="math inline">\(\mathbf{A}_{s}\)</span> associated with those factors and
+interactions. Construct two column headings where the first is the
+factor letter and the second is the number of levels, <span class="math inline">\(l\)</span>, of the
+factor. Place brackets <span class="math inline">\(([])\)</span>, Kronecker product symbols <span class="math inline">\((\otimes)\)</span>,
+and equal signs <span class="math inline">\((=)\)</span> in each row, as described in Example 4.3.3.</p>
+<p><strong>Example 4.3.3</strong> <strong>Rule A1.</strong></p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">Levels</td>
+<td>=<span class="math inline">\(l\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_0\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{1}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(B\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{2}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(T\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{3}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(BT\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{4}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(R(BT)\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{5}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rule A2</strong> Compare the factor letters in the first row heading with the
+factor letters in the first column heading.</p>
+<p><strong>Rule A2.1</strong> If a row factor letter does not match the column factor
+heading, place a <span class="math inline">\(\frac{1}{l} \mathbf{J}_{l}\)</span> in the Kronecker product.
+Note that <span class="math inline">\(\mu_{0}\)</span> does not match any column factor heading; hence, the
+Kronecker product for <span class="math inline">\(\mathbf{A}_{1}\)</span> will be comprised of terms of the
+form <span class="math inline">\(\frac{1}{l} \mathbf{J}_{l}\)</span>.</p>
+<p><strong>Example 4.3.3</strong> (continued) Rule A2.1</p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">Levels</td>
+<td>=<span class="math inline">\(l\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_0\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{1}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{b} \mathbf{J}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{t} \mathbf{J}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{r} \mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(r)2-9 <span class="math inline">\(B\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{2}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{t} \mathbf{J}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{r} \mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(r)2-9 <span class="math inline">\(T\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{3}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{b} \mathbf{J}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{r} \mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(r)2-9 <span class="math inline">\(BT\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{4}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{r} \mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(r)2-9 <span class="math inline">\(R(BT)\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{5}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"></td>
+<td>]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rule A2.2</strong> If a non-nested factor in the row heading matches the
+column factor heading, place an
+<span class="math inline">\(\mathbf{I}_{l}-\frac{1}{l} \mathbf{J}_{l}\)</span> in the Kronecker product.</p>
+<p><strong>Example 4.3.3</strong> (continued) Rule A2.2</p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">Levels</td>
+<td>=<span class="math inline">\(l\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_0\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{1}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{b} \mathbf{J}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{t} \mathbf{J}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{r} \mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(r)2-9 <span class="math inline">\(B\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{2}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{t} \mathbf{J}_{t}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{r} \mathbf{J}_{r}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(r)2-9 <span class="math inline">\(T\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{3}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\frac{1}{b} \mathbf{J}_{b}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{r} \mathbf{J}_{r}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(r)2-9 <span class="math inline">\(BT\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{4}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{r} \mathbf{J}_{r}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(r)2-9 <span class="math inline">\(R(BT)\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{5}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rule A2.3</strong> Place <span class="math inline">\(\mathbf{I}_{l}\)</span> elsewhere.</p>
+<p><strong>Example 4.3.3</strong> (continued) Rule A2.3</p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="left">Factor</td>
+<td></td>
+<td></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(T\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(R\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">Levels</td>
+<td>=<span class="math inline">\(l\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(t\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(r\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_0\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{1}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{b} \mathbf{J}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{t} \mathbf{J}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\frac{1}{r} \mathbf{J}_{r}}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(r)2-9 <span class="math inline">\(B\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{2}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{t} \mathbf{J}_{t}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{r} \mathbf{J}_{r}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(r)2-9 <span class="math inline">\(T\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{3}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\frac{1}{b} \mathbf{J}_{b}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{r} \mathbf{J}_{r}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(r)2-9 <span class="math inline">\(BT\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{4}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{r} \mathbf{J}_{r}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(r)2-9 <span class="math inline">\(R(BT)\)</span></td>
+<td align="left"><span class="math inline">\(\textbf{A}_{5}\)</span></td>
+<td>=</td>
+<td>[</td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{b}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\mathbf{I}_{t}}\)</span></td>
+<td><span class="math inline">\(\otimes\)</span></td>
+<td align="center"><span class="math inline">\(\underline{\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)}\)</span></td>
+<td>]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>HAY CORRECCION EN LA APARICION DE LAS COSAS EN LAS TABLAS, VERIFICA</strong></p>
+<p>The sums of squares for each factor and interaction can be written as
+quadratic forms, <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{s} \mathbf{Y}\)</span>, using
+these Kronecker product matrices <span class="math inline">\(\mathbf{A}_{s}\)</span>. For example, the sum
+of squares for the factor <span class="math inline">\(B\)</span> is
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}=\mathbf{Y}^{\prime}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right] \mathbf{Y}\)</span>.</p>
+<p>In Examples 4.3.1, 4.3.2, and 4.3.3 all the variance parameters in the
+model were estimable. In the next example we apply the algorithms to a
+model that contains a nonestimable variance parameter.</p>
+<p><strong>Example 4.3.4</strong> Consider an experiment with <span class="math inline">\(b\)</span> random blocks, <span class="math inline">\(t\)</span>
+fixed treatments, and <span class="math inline">\(r=1\)</span> replicate observations per block treatment
+combination. Assume the model</p>
+<p><span class="math display">\[Y_{i j k}=\mu_{j}+B_{i}+B T_{i j}+R(B T)_{(i j) k}\]</span></p>
+<p>for <span class="math inline">\(i=1, \ldots, b, j=1, \ldots, t\)</span>, and <span class="math inline">\(k=1\)</span>. Thus,
+<span class="math inline">\(\sigma_{R(B T)}^{2}\)</span> is nonestimable and <span class="math inline">\(R(B T)_{(i j) k}\)</span> could be
+dropped from the model. However, if <span class="math inline">\(R(B T)_{(i j) k}\)</span> is left in the
+model, then the sum of squares and covariance matrix algorithms are
+applied just as they were in Examples 4.3.1, 4.3.2, and 4.3.3 with <span class="math inline">\(r\)</span>
+replaced by 1. Therefore, for the finite model, the covariance algorithm
+follows Rules
+<span class="math inline">\(\Sigma 1, \Sigma 2, \Sigma 2\text{.}1, \Sigma 2\text{.}2\)</span>, and
+<span class="math inline">\(\Sigma 2\text{.}3 .\)</span> With <span class="math inline">\(r=1\)</span> the covariance matrix <span class="math inline">\(\Sigma\)</span> is given
+by</p>
+<p><span class="math display">\[\begin{aligned}
+\boldsymbol{\Sigma} &amp;=\sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t} \otimes 1\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes 1\right]+\sigma_{R(B T)}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes 1\right] \\
+&amp;=\sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t}\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]+\sigma_{R(B T)}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t}\right]
+\end{aligned}\]</span></p>
+<p>For the infinite model, the covariance algorithm follows Rules
+<span class="math inline">\(\Sigma 1, \Sigma 2, \Sigma 2.1\)</span>, and <span class="math inline">\(\Sigma 2.3 .\)</span> With <span class="math inline">\(r=1\)</span> the
+covariance matrix <span class="math inline">\(\Sigma\)</span> is</p>
+<p><span class="math display">\[\Sigma=\sigma_{B}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{J}_{t}\right]+\sigma_{B T}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t}\right]+\sigma_{R(B T)}^{2}\left[\mathbf{I}_{b} \otimes \mathbf{I}_{t}\right]\]</span></p>
+<p>For both finite and infinite models, the sum of squares algorithm
+follows Rules <span class="math inline">\(A 1, A 2, A 2.1, A 2.2\)</span>, and <span class="math inline">\(A 2.3 .\)</span> With <span class="math inline">\(r=1\)</span> the sum
+of squares matrices <span class="math inline">\(\mathbf{A}_{1}, \ldots, \mathbf{A}_{5}\)</span> are given
+by</p>
+<p><span class="math display">\[\begin{array}{l}
+\mathbf{A}_{1}=\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{t} \mathbf{J}_{t} \\
+\mathbf{A}_{2}=\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \\
+\mathbf{A}_{3}=\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \\
+\mathbf{A}_{4}=\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \\
+\mathbf{A}_{5}=\mathbf{I}_{b} \otimes \mathbf{I}_{t} \otimes\left(1-\frac{1}{1} 1\right)=\mathbf{0}_{b t \times b t} .
+\end{array}\]</span> Since <span class="math inline">\(\mathbf{A}_{5}\)</span> is a <span class="math inline">\(b t \times b t\)</span> matrix of
+zeros, the sum of squares due to effect <span class="math inline">\(R(B T)\)</span> equals zero and no
+estimate of <span class="math inline">\(\sigma_{R(B T)}^{2}\)</span> exists.</p>
+<p>The covariance structures described in this section apply to a broad
+class of finite and infinite models. However, these covariance
+structures are based on certain distributional assumptions on the random
+components in the model. If other distributional assumptions are made,
+then the covariance algorithms are not applicable. Exercise 12 in
+Chapter 5 provides an example of a covariance structure that does not
+conform to the distributional assumptions made for the finite or
+infinite models.</p>
+<p>We do not wish to confine our discussion solely to the finite and
+infinite covariance structures covered in this chapter. Therefore, a
+more general class of covariance structures is developed in Chapter 10 .
+The finite and infinite covariance structures are a subset of this more
+general class.</p>
+<p>Finally, the sums of squares and covariance algorithms presented in this
+chapter can be applied directly to complete, balanced factorial models.
+However, in Chapters 7 and 8 we show that these algorithms can also be
+used to construct sums of squares and covariance matrices for unbalanced
+data sets and data sets with missing values.</p>
+<p>In the next section we introduce expected mean squares in complete,
+balanced experiments.</p>
+</div>
+<div id="expected-mean-squares" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> EXPECTED MEAN SQUARES<a href="complete-balanced-factorial-experiments.html#expected-mean-squares" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The mean square of an effect is the sum of squares of that effect
+divided by the corresponding degrees of freedom. For complete, balanced
+designs the mean square is
+<span class="math inline">\(\left[1 / \operatorname{tr}\left(\mathbf{A}_{s}\right)\right] \mathbf{Y}^{\prime} \mathbf{A}_{s} \mathbf{Y}\)</span>,
+since the degrees of freedom equal the
+<span class="math inline">\(\operatorname{tr}\left(\mathbf{A}_{s}\right) .\)</span> The expected value of
+the mean square, usually called the expected mean square (EMS), is a
+function of the mean vector <span class="math inline">\(\boldsymbol{\mu}=\mathrm{E}(\mathbf{Y})\)</span>
+and of the variance parameters in
+<span class="math inline">\(\boldsymbol{\Sigma}=\operatorname{cov}(\mathbf{Y})\)</span>. The expected mean
+square indicates how the mean squares can be used to obtain unbiased
+estimates of functions of the variance parameters.</p>
+<p>The expected mean square in complete, balanced designs is defined in the
+following theorem. The proof of the theorem is a direct result of
+Theorem 1.3.2.</p>
+<div class="teo">
+<p>Let <span class="math inline">\(\mathbf{Y}\)</span> be an <span class="math inline">\(n \times 1\)</span> random vectorassociated with the
+observations of a complete, balanced factorial experiment with an
+<span class="math inline">\(n \times 1\)</span> mean vector <span class="math inline">\(\boldsymbol{\mu}=E(\mathbf{Y})\)</span> and
+<span class="math inline">\(n \times n\)</span> covariance matrix
+<span class="math inline">\(\boldsymbol{\Sigma}=\operatorname{cov}(\mathbf{Y}) .\)</span> The expected mean
+square associated with the sum of squares
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\)</span> is
+<span class="math inline">\(\mathrm{E}\left\{\left[1 / \operatorname{tr}\left(\mathbf{A}_{s}\right)\right] \mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\right\}=\left[\operatorname{tr}(\mathbf{A} \boldsymbol{\Sigma})+\boldsymbol{\mu}^{\prime} \mathbf{A} \boldsymbol{\mu}\right] / \operatorname{tr}(\mathbf{A})\)</span>
+where tr <span class="math inline">\((\mathbf{A})\)</span> equals the degrees of freedom associated with
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A} \mathbf{Y}\)</span>.</p>
+</div>
+<p><strong>Example 4.4.1</strong> Consider the experiment described in Examples 4.3.1
+and 4.3.3 in which a finite model was assumed. The sums of squares due
+to the random effect <span class="math inline">\(B\)</span> and the fixed effect <span class="math inline">\(T\)</span> are
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y}\)</span> and
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y}\)</span>, respectively, where
+<span class="math inline">\(\mathbf{A}_{2}=\left(\mathbf{1}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}, \mathbf{A}_{3}=\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\)</span>,
+and the btr <span class="math inline">\(\times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 r}, \ldots, Y_{b t 1}, \ldots, Y_{b t r}\right)^{\prime} .\)</span>
+The mean vector <span class="math inline">\(\boldsymbol{\mu}=\)</span>
+<span class="math inline">\(\mathrm{E}(\mathbf{Y})=\mathrm{E}\left(Y_{111}, \ldots, Y_{11 r}, \ldots, Y_{b t 1}, \ldots, Y_{b t r}\right)^{\prime}=\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r} .\)</span>
+Note that
+<span class="math inline">\(\mathbf{A}_{2} \boldsymbol{\Sigma}=\left[\operatorname{tr} \sigma_{B}^{2}+\sigma_{R(B T)}^{2}\right] \mathbf{A}_{2}\)</span>
+and
+<span class="math inline">\(\mathbf{A}_{3} \boldsymbol{\Sigma}=\left[r \sigma_{B T}^{2}+\sigma_{R(B T)}^{2}\right] \mathbf{A}_{3} .\)</span>
+Therefore, by Theorem 4.4.1, the expected mean square of the random
+effect <span class="math inline">\(B\)</span> equals <span class="math display">\[\begin{aligned}
+\mathrm{E}\left[\mathbf{Y}^{\prime} \mathbf{A}_{2} \mathbf{Y} / \operatorname{tr}\left(\mathbf{A}_{2}\right)\right]=&amp;\left[r\left(\mathbf{A}_{2} \Sigma\right)+\boldsymbol{\mu}^{\prime} \mathbf{A}_{2} \boldsymbol{\mu}\right] / \operatorname{tr}\left(\mathbf{A}_{2}\right)=\left[\operatorname{tr} \sigma_{B}^{2}+\sigma_{R(B T)}^{2}\right] \\
+&amp;+\left\{\left[\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right]\right.\\
+&amp;\left.\times\left[\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\right] /(b-1)\right\} \\
+=&amp; \operatorname{tr} \sigma_{B}^{2}+\sigma_{R(B T)}^{2}
+\end{aligned}\]</span> and the expected mean square of the fixed factor <span class="math inline">\(T\)</span>
+equals <span class="math display">\[\begin{aligned}
+\mathrm{E}\left[\mathbf{Y}^{\prime} \mathbf{A}_{3} \mathbf{Y} / \operatorname{tr}\left(\mathbf{A}_{3}\right)\right]=&amp;\left[\operatorname{tr}\left(\mathbf{A}_{3} \boldsymbol{\Sigma}\right)+\boldsymbol{\mu}^{\prime} \mathbf{A}_{3} \boldsymbol{\mu}\right] / \operatorname{tr}\left(\mathbf{A}_{3}\right)=\left[\operatorname{tr} \sigma_{B}^{2}+\sigma_{R(B T)}^{2}\right] \\
+&amp;+\left\{\left[\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right]\right.\\
+&amp;\left.\times\left[\mathbf{1}_{b} \otimes\left(\mu_{1}, \ldots, \mu_{t}\right)^{\prime} \otimes \mathbf{1}_{r}\right] /(t-1)\right\} \\
+=&amp;\left[r \sigma_{B T}^{2}+\sigma_{R(B T)}^{2}\right]+b r \sum_{j=1}^{t}\left(\mu_{j}-\bar{\mu} .\right)^{2} /(t-1) .
+\end{aligned}\]</span></p>
+<p>Thus, the expected mean square of the random effect <span class="math inline">\(B\)</span> provides an
+unbiased estimate of
+<span class="math inline">\(\operatorname{tr} \sigma_{B}^{2}+\sigma_{R(B T)}^{2} .\)</span> Likewise, the
+expected mean square of the fixed factor <span class="math inline">\(T\)</span> provides an unbiased
+estimate of
+<span class="math inline">\(r \sigma_{B}^{2}+\sigma_{R(B T)}^{2}+b r \sum_{j=1}^{t}\left(\mu_{j}-\bar{\mu} \cdot\right)^{2} /(t-1) .\)</span>
+The EMSs of the other effects can be calculated in a similar manner and
+are left to the reader.</p>
+</div>
+<div id="algorithm-applications" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> ALGORITHM APPLICATIONS<a href="complete-balanced-factorial-experiments.html#algorithm-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The sum of squares and covariance matrix algorithms are now applied to a
+series of complete, balanced factorial experiments. As mentioned in
+Section 4.3, finite and infinite model covariance structures are
+reparameterizations of each other. Therefore, the choice between the
+finite and infinite model is somewhat arbitrary. For the remainder of
+this text, the finite model is assumed. Therefore, unless specifically
+stated, subsequent covariance matrices for complete, balanced factorial
+experiments will always be constructed with Rules
+<span class="math inline">\(\Sigma 1, \Sigma 2, \Sigma 2\text{.}1, \Sigma 2\text{.}2\)</span>, and
+<span class="math inline">\(\Sigma 2\text{.}3\)</span>.</p>
+<p><strong>Example 4.5.1</strong> Consider a two-way cross classification where the
+first two factors <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> are fixed with <span class="math inline">\(i=1, \ldots, s\)</span> and
+<span class="math inline">\(j=1, \ldots, t\)</span> levels and the third factor is a set of
+<span class="math inline">\(k=1, \ldots, r\)</span> random replicates nested in the <span class="math inline">\(s t\)</span> combinations of
+the first two factors. Let <span class="math inline">\(Y_{i j k}\)</span> be a random variable representing
+the <span class="math inline">\(k^{\text {th }}\)</span> replicate observation in the <span class="math inline">\(i j^{\text {th }}\)</span>
+combination of the two fixed factors. Let the <span class="math inline">\(s t r \times 1\)</span> random
+vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 r}, \ldots, Y_{s t 1}, \ldots, Y_{s t r}\right)^{\prime} .\)</span>
+The model is</p>
+<p><span class="math display">\[Y_{i j k}=\mu_{i j}+R(S T)_{(i j) k}\]</span></p>
+<p>where <span class="math inline">\(\mu_{i j}\)</span> are constants representing the mean effect of the
+<span class="math inline">\(i j^{\text {th }}\)</span> combination of the two fixed factors and
+<span class="math inline">\(R(S T)_{(i j) k}\)</span> are <span class="math inline">\(s t r\)</span> random variables representing the effect
+of the nested replicates. Assume that the str random variables
+<span class="math inline">\(R(S T)_{(i j) k} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{R(S T)}^{2}\right) .\)</span> Therefore, the str
+<span class="math inline">\(\times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{s t r}(\mu, \Sigma)\)</span> where the
+<span class="math inline">\(s t r \times 1\)</span> mean vector</p>
+<p><span class="math display">\[\begin{aligned}
+\boldsymbol{\mu} &amp;=\mathrm{E}\left(Y_{111}, \ldots, Y_{11 r}, \ldots, Y_{s t 1}, \ldots, Y_{s t r}\right)^{\prime} \\
+&amp;=\left(\mu_{11} \mathbf{1}_{r}, \ldots, \mu_{s t} \mathbf{1}_{r}\right)^{\prime} \\
+&amp;=\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}
+\end{aligned}\]</span></p>
+<p>and the <span class="math inline">\(s t r \times s t r\)</span> covariance matrix</p>
+<p><span class="math display">\[\boldsymbol{\Sigma}=\sigma_{R(S T)}^{2}\left[\mathbf{I}_{s} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right] .\]</span></p>
+<p>In addition, by the sum of squares algorithm is Section 4.3,
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{1} \mathbf{Y}, \ldots, \mathbf{Y}^{\prime} \mathbf{A}_{5} \mathbf{Y}\)</span>
+are the sums of squares due to the overall mean, the fixed factor <span class="math inline">\(S\)</span>,
+the fixed factor <span class="math inline">\(T\)</span>, the fixed interaction of <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span>, and the
+nested replicates, respectively, where</p>
+<p><span class="math display">\[\begin{array}{l}
+\mathbf{A}_{1}=\frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{2}=\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{3}=\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{4}=\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r} \\
+\mathbf{A}_{5}=\mathbf{I}_{s} \otimes \mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) .
+\end{array}\]</span> Furthermore,
+<span class="math inline">\(\mathbf{A}_{m} \Sigma=\sigma_{R(S T)}^{2} \mathbf{A}_{m}\)</span> for
+<span class="math inline">\(m=1, \ldots, 5\)</span> where each <span class="math inline">\(\mathbf{A}_{m}\)</span> is idempotent with
+<span class="math inline">\(\operatorname{rank}\left(\mathbf{A}_{1}\right)=1, \operatorname{rank}\left(\mathbf{A}_{2}\right)=s-1, \operatorname{rank}\left(\mathbf{A}_{3}\right)=t-1, \operatorname{rank}\left(\mathbf{A}_{4}\right)=\)</span>
+<span class="math inline">\((s-1)(t-1)\)</span>, and
+<span class="math inline">\(\operatorname{rank}\left(\mathbf{A}_{5}\right)=s t(r-1) .\)</span> Thus, by
+Corollary
+<span class="math inline">\(3.1 .2(\mathrm{a}), \mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y} \sim\)</span>
+<span class="math inline">\(\sigma_{R(S T)}^{2} \chi_{\operatorname{rank}\left(\mathbf{A}_{m}\right)}^{2}\left(\lambda_{m}\right)\)</span>
+for <span class="math inline">\(m=1, \ldots, 5\)</span> where</p>
+<p><span class="math display">\[\begin{aligned}
+\lambda_{1} &amp;=\frac{\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right]\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]}{2 \sigma_{R(S T)}^{2}} \\
+&amp;=\operatorname{str} \bar{\mu}^{2} . . /\left(2 \sigma_{R(S T)}^{2}\right) \\
+\lambda_{2} &amp;=\frac{\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{r} \mathbf{J}_{r}\right]\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]}{2 \sigma_{R(S T)}^{2}} \\
+&amp;=r t \sum_{i=1}^{s}\left(\bar{\mu}_{i .}-\bar{\mu}_{. .}\right)^{2} /\left(2 \sigma_{R(S T)}^{2}\right) \\
+\lambda_{3} &amp;=\frac{\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right]\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]}{2 \sigma_{R(S T)}^{2}} \\
+&amp;=r s \sum_{j=1}^{t}\left(\bar{\mu}_{. j}-\bar{\mu} . .\right)^{2} /\left(2 \sigma_{R(S T)}^{2}\right)\\
+\lambda_{4} &amp;=\frac{\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{r} \mathbf{J}_{r}\right]\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]}{2 \sigma_{R(S T)}^{2}} \\
+&amp;=r \sum_{i=1}^{s} \sum_{j=1}^{t}\left(\bar{\mu}_{i j}-\bar{\mu}_{i .}-\bar{\mu}_{. j}+\bar{\mu} . .\right)^{2} /\left(2 \sigma_{R(S T)}^{2}\right) \\
+\lambda_{5} &amp;=\frac{\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]^{\prime}\left[\mathbf{I}_{s} \otimes \mathbf{I}_{t} \otimes\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right)\right]\left[\left(\mu_{11}, \ldots, \mu_{s t}\right)^{\prime} \otimes \mathbf{1}_{r}\right]}{2 \sigma_{R(S T)}^{2}} \\
+&amp;=0 .
+\end{aligned}\]</span></p>
+<p>By Theorem 3.2.1, the random variables
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> are mutually independent
+since
+<span class="math inline">\(\mathbf{A}_{m} \boldsymbol{\Sigma} \mathbf{A}_{n}=\sigma_{R(S T)}^{2} \mathbf{A}_{m} \mathbf{A}_{n}=\mathbf{0}_{s t r \times s t r}\)</span>
+for <span class="math inline">\(m, n=1, \ldots, 5\)</span> and <span class="math inline">\(m \neq n\)</span>. The EMSs associated with each
+sum of squares are calculated using Theorem 4.4.1:</p>
+<p><span class="math display">\[\begin{aligned}
+\text {EMS (mean)} &amp;=\left[\operatorname{tr}\left(\mathbf{A}_{1} \boldsymbol{\Sigma}\right)+\boldsymbol{\mu}^{\prime} \mathbf{A}_{1} \boldsymbol{\mu}\right] / \operatorname{tr}\left(\mathbf{A}_{1}\right)=\sigma_{R(S T)}^{2}+r s t \bar{\mu}^{2} . .
+\\
+\text { EMS (fixed factor } S \text {) } &amp;=\left[\operatorname{tr}\left(\mathbf{A}_{2} \boldsymbol{\Sigma}\right)+\boldsymbol{\mu}^{\prime} \mathbf{A}_{2} \boldsymbol{\mu}\right] / \operatorname{tr}\left(\mathbf{A}_{2}\right)
+\\
+&amp;=\sigma_{R(S T)}^{2}+r t \sum_{i=1}^{s}\left(\bar{\mu}_{i .}-\bar{\mu} . .\right)^{2} /(s-1)
+\\
+\text {EMS (fixed factor } T \text {)} &amp;= \left[\operatorname{tr}\left(\mathbf{A}_{3} \boldsymbol{\Sigma}\right)+\boldsymbol{\mu}^{\prime} \mathbf{A}_{3} \boldsymbol{\mu}\right] / \operatorname{tr}\left(\mathbf{A}_{3}\right)
+\\
+&amp;=\sigma_{R(S T)}^{2}+r s \sum_{j=1}^{t}\left(\bar{\mu}_{. j}-\bar{\mu} . .\right)^{2} /(t-1)
+\\
+\text {EMS (fixed inter }S T \text {)} &amp;=\left[\operatorname{tr}\left(\mathbf{A}_{4} \boldsymbol{\Sigma}\right)+\boldsymbol{\mu}^{\prime} \mathbf{A}_{4} \boldsymbol{\mu}\right] / \operatorname{tr}\left(\mathbf{A}_{4}\right)=\sigma_{R(S T)}^{2} \\
+&amp;+ r \sum_{i=1}^{s} \sum_{j=1}^{t}\left(\mu_{i j}-\bar{\mu}_{i .}-\bar{\mu}_{. j}+\bar{\mu} . .\right)^{2} /(s-1)(t-1)\\
+\text {EMS (random }R(S T)) &amp;= \left[\operatorname{tr}\left(\mathbf{A}_{5} \boldsymbol{\Sigma}\right)+\boldsymbol{\mu}^{\prime} \mathbf{A}_{5} \boldsymbol{\mu}\right] / \operatorname{tr}\left(\mathbf{A}_{5}\right)\\
+&amp;= \sigma_{R(S T)}^{2} .
+\end{aligned}\]</span></p>
+<p>Bhat’s lemma 3.4.1 also applies since
+<span class="math inline">\(\Sigma_{m=1}^{5} \operatorname{rank}\left(\mathbf{A}_{m}\right)=1+(s-1)+(t-\)</span>
+<span class="math inline">\(1)+(s-1)(t-1)+r(s-1)(t-1)=\operatorname{str}, \mathbf{I}_{s} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}=\Sigma_{m=1}^{5} \mathbf{A}_{m}\)</span>,
+and
+<span class="math inline">\(\boldsymbol{\Sigma}=\left(\Sigma_{m=1}^{5} \mathbf{A}_{m}\right) \boldsymbol{\Sigma}=\Sigma_{m=1}^{5}\left(\mathbf{A}_{m} \boldsymbol{\Sigma}\right)=\Sigma_{m=1}^{5} \sigma_{R(S T)}^{2} \mathbf{A}_{m} .\)</span>
+Therefore, (i) <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y} \sim\)</span>
+<span class="math inline">\(\sigma_{R(S T)}^{2} \chi_{\mathrm{rank}\left(\mathbf{A}_{m}\right)}^{2}\left(\lambda_{m}\right)\)</span>
+and (ii) <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> are mutually
+independent for <span class="math inline">\(m=1, \ldots, 5\)</span></p>
+<p><strong>Example 4.5.2</strong> Consider the same two-way layout as in Example 4.5.1
+except now let <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> both be random factors. The model is</p>
+<p><span class="math display">\[Y_{i j k}=\alpha+S_{i}+T_{j}+S T_{i j}+R(S T)_{(i j)_{k}}\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is a constant representing the overall mean effect;
+<span class="math inline">\(s_{i}\)</span> are random variables representing the effect of the first random
+factor; <span class="math inline">\(T_{j}\)</span> are the random variables representing the second random
+factor; <span class="math inline">\(S T_{i j}\)</span> are random variables representing the interaction
+between <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span>; and <span class="math inline">\(R(S T)_{(i j) k}\)</span> are random variable defined
+as in Example 4.5.1. Assume the <span class="math inline">\(s\)</span> random variables <span class="math inline">\(S_{i} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{S}^{2}\right)\)</span>; the <span class="math inline">\(t\)</span> random variables
+<span class="math inline">\(T_{j} \sim iid \mathrm{N}_{1}\left(0, \sigma_{T}^{2}\right)\)</span>; the <span class="math inline">\(st\)</span>
+random variables
+<span class="math inline">\(S T_{i j} \sim i d \mathrm{~N}_{1}\left(0, \sigma_{S T}^{2}\right)\)</span>;
+and the str random variables <span class="math inline">\(R(S T)_{(i j) k} \sim\)</span> iid
+<span class="math inline">\(\mathrm{N}_{1}\left(0, \sigma_{R(S T)}\right)\)</span>. Furthermore, assume
+that
+<span class="math inline">\(\left\{S_{i}, i=1, \ldots, s\right\},\left\{T_{j}, j=1, \ldots, t\right\},\left\{S T_{i j}, i=1, \ldots, s, j=1 \ldots, t\right\}\)</span>,
+and
+<span class="math inline">\(\left\{R(S T)_{(i j) k}, i=1, \ldots, s, j=1, \ldots, t, k=1, \ldots, r\right\}\)</span>
+are mutually independent sets of random variables. Therefore, the
+<span class="math inline">\(\operatorname{str} \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{s t r}(\mu, \Sigma)\)</span> where the
+<span class="math inline">\(s t r \times 1\)</span> mean vector</p>
+<p><span class="math display">\[\boldsymbol{\mu}=\mathrm{E}\left(Y_{111}, \ldots, Y_{11 r}, \ldots, Y_{s t 1}, \ldots, Y_{s t r}\right)^{\prime}=\alpha \mathbf{1}_{s} \otimes \mathbf{1}_{t} \otimes \mathbf{1}_{r}\]</span></p>
+<p>and, by the covariance algorithm, the
+<span class="math inline">\(\operatorname{str} \times \operatorname{str}\)</span> covariance matrix</p>
+<p><span class="math display">\[\begin{aligned}
+\Sigma=&amp; \sigma_{S}^{2}\left[\mathbf{I}_{s} \otimes \mathbf{J}_{t} \otimes \mathbf{J}_{r}\right]+\sigma_{T}^{2}\left[\mathbf{J}_{s} \otimes \mathbf{I}_{t} \otimes \mathbf{J}_{r}\right] \\
+&amp;+\sigma_{S T}^{2}\left[\mathbf{I}_{s} \otimes \mathbf{I}_{t} \otimes \mathbf{J}_{r}\right]+\sigma_{R(S T)}^{2}\left[\mathbf{I}_{s} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{r}\right]
+\end{aligned}\]</span></p>
+<p>The sum of squares matrices are not dependent on whether the factors are
+fixed or random. Therefore, the sum of squares
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 5\)</span> are
+the same as those given in Example 4.5.1. Furthermore,
+<span class="math inline">\(\mathbf{A}_{m} \boldsymbol{\Sigma}=c_{m} \mathbf{A}_{m}\)</span> for
+<span class="math inline">\(m=1, \ldots, 5\)</span> where <span class="math display">\[\begin{array}{l}
+c_{1}=\operatorname{tr} \sigma_{S}^{2}+s r \sigma_{T}^{2}+r \sigma_{S T}^{2}+\sigma_{R(S T)}^{2} \\
+c_{2}=\operatorname{tr} \sigma_{S}^{2}+r \sigma_{S T}^{2}+\sigma_{R(S T)}^{2} \\
+c_{3}=s r \sigma_{T}^{2}+r \sigma_{S T}^{2}+\sigma_{R(S T)}^{2} \\
+c_{4}=r \sigma_{S T}^{2}+\sigma_{R(S T)}^{2} \\
+c_{5}=\sigma_{R(S T)}^{2} .
+\end{array}\]</span> It is left to the reader to show
+<span class="math inline">\(\lambda_{1}=\operatorname{str} \alpha^{2} /\left(2 c_{1}\right)\)</span> and
+<span class="math inline">\(\lambda_{2}=\lambda_{3}=\lambda_{4}=\lambda_{5}=\)</span> <span class="math inline">\(0 .\)</span> By Bhat’s
+lemma, or by Theorem <span class="math inline">\(3.2 .1\)</span> and Corollary <span class="math inline">\(3.1 .2\left(\right.\)</span> a),
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y} \sim\)</span>
+<span class="math inline">\(c_{m} \chi_{\operatorname{rank}\left(\mathbf{A}_{m}\right)}^{2}\left(\lambda_{m}\right)\)</span>
+where the <span class="math inline">\(\operatorname{rank}\left(\mathbf{A}_{m}\right)\)</span> are given in
+Example 4.5.1. The EMS associated with each sum of squares can be
+calculated using Theorem 4.4.1 and are given by EMS(mean)
+<span class="math inline">\(=c_{1}+s t r \alpha^{2}\)</span>, EMS(random factor <span class="math inline">\(S\)</span> ) <span class="math inline">\(=c_{2}\)</span>, EMS(random
+factor <span class="math inline">\(T)=c_{3}\)</span>, EMS (random inter <span class="math inline">\(\left.S T\right)=c_{4}\)</span> and
+EMS(random reps <span class="math inline">\(\left.R(S T)\right)=c_{5} .\)</span></p>
+<p>Examples 4.4.1, 4.5.1, and 4.5.2 provide the EMSs for three factorial
+experiments. Snedecor and Cochran <span class="math inline">\((1978\)</span>, p. 367<span class="math inline">\()\)</span> provide EMSs for
+the same three experiments in their Table <span class="math inline">\(12.11 .1 .\)</span> Snedecor and
+Cochran’s EMSs are the same as the EMSs presented in this text, although
+they use different notation. Snedecor and Cochran’s <span class="math inline">\(A, B, A B\)</span>, error,
+<span class="math inline">\(\sigma^{2}, \sigma_{A}^{2}, \sigma_{B}^{2}, \sigma_{A B}^{2}, \kappa_{A}^{2}, \kappa_{B}^{2}, \kappa_{A B}^{2}, a, b\)</span>,
+and <span class="math inline">\(n\)</span> are equivalent to our
+<span class="math inline">\(T, S, S T, R(S T), \sigma_{R(S T)}^{2}, \sigma_{T}^{2}, \sigma_{S}^{2}, \sigma_{S T}^{2}, \sum_{j=1}^{t}\left(\bar{\mu}_{. j}-\bar{\mu} \ldots\right)^{2} /(t-1)\)</span>,
+<span class="math inline">\(\sum_{i=1}^{s}\left(\bar{\mu}_{i .}-\bar{\mu} . .\right)^{2} /(s-1), \sum_{i=1}^{s} \sum_{j=1}^{t}\left(\mu_{i j}-\bar{\mu}_{i .}-\bar{\mu}_{. j}+\bar{\mu} . .\right)^{2} /[(s-1)(t-1)]\)</span>,
+<span class="math inline">\(t, s\)</span>, and <span class="math inline">\(r\)</span>, respectively.</p>
+<p><strong>Example 4.5.3</strong> Consider the split plot experiment discussed by
+Kempthorne (1952, sixth printing 1967, pp. 374-375). The experiment has
+a random replicate factor, <span class="math inline">\(R\)</span>, with <span class="math inline">\(i=1, \ldots, r\)</span> levels; a set of
+fixed whole plot treatments, <span class="math inline">\(T\)</span>, with <span class="math inline">\(j=1, \ldots, t\)</span> levels; and a
+set of fixed split plot treatments, <span class="math inline">\(S\)</span>, with <span class="math inline">\(k=1, \ldots, s\)</span> levels.
+In Kempthorne’s Table <span class="math inline">\(19.1\)</span> he lists the following sources of
+variation: replicates <span class="math inline">\(R\)</span>, whole plot treatments <span class="math inline">\(T\)</span>, replicate by whole
+plot interaction <span class="math inline">\(R T\)</span>, split plot treatments <span class="math inline">\(S\)</span>, split by whole plot
+interaction <span class="math inline">\(S T\)</span>, and remainder. The remainder is equal to the
+interaction <span class="math inline">\(R S\)</span> plus the interaction <span class="math inline">\(R S T\)</span>, or equivalently, the
+replicate by split plot treatment interaction nested in whole plot
+treatments <span class="math inline">\(R S(T)\)</span>. The fixed portions of the experiment are designated
+by <span class="math inline">\(T, S\)</span>, and <span class="math inline">\(S T\)</span> with subscripts <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span>. The random portions of
+the experiment are designated by <span class="math inline">\(R, R T\)</span>, and <span class="math inline">\(R S(T)\)</span>. A model that
+identifies these sources of variation is</p>
+<p><span class="math display">\[Y_{i j k}=\mu_{j k}+R_{i}+R T_{i j}+R S(T)_{i(j) k}\]</span></p>
+<p>where the <span class="math inline">\(r\)</span> random variables
+<span class="math inline">\(R_{i} \sim \mathrm{N}_{1}\left(0, \sigma_{R}^{2}\right) ;\)</span> the
+<span class="math inline">\(r(t-1) \times 1\)</span> random vector
+<span class="math inline">\(\left(\mathbf{I}_{r} \otimes \mathbf{P}_{t}^{\prime}\right)\left(R T_{11}, \ldots, R T_{r t}\right)^{\prime} \sim \mathrm{N}_{r(t-1)}\left(\mathbf{0}, \sigma_{R T}^{2} \mathbf{I}_{r} \otimes \mathbf{I}_{t-1}\right) ;\)</span>
+and the <span class="math inline">\(r t(s-1) \times 1\)</span> random vector
+<span class="math inline">\(\left(\mathbf{I}_{r} \otimes \mathbf{I}_{t} \mathbf{P}_{s}^{\prime}\right)\left(R S(T)_{1(1) 1}, \ldots, R S(T)_{r(t) s}\right)^{\prime} \sim \mathrm{N}_{r t(s-1)}\left(\mathbf{0}, \sigma_{R S(T)}^{2} \mathbf{I}_{r} \otimes\right.\)</span>
+<span class="math inline">\(\mathbf{I}_{t} \otimes \mathbf{I}_{s-1}\)</span> ) where
+<span class="math inline">\(\mathbf{P}_{t}^{\prime}\)</span> and <span class="math inline">\(\mathbf{P}_{s}^{\prime}\)</span> are
+<span class="math inline">\((t-1) \times t\)</span> and <span class="math inline">\((s-1) \times s\)</span> lower portions of <span class="math inline">\(t\)</span>-and
+<span class="math inline">\(s\)</span>-dimensional Helmert matrices, respectively. Furthermore, these three
+sets of variables are mutually independent. Thus, the <span class="math inline">\(r t s \times 1\)</span>
+random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 s}, \ldots, Y_{r t 1}, \ldots, Y_{r t s}\right)^{\prime} \sim \mathrm{N}_{r t s}(\mu, \Sigma)\)</span>
+where the <span class="math inline">\(r t s \times 1\)</span> mean vector</p>
+<p><span class="math display">\[\begin{aligned}
+\boldsymbol{\mu} &amp;=\mathrm{E}\left(Y_{111}, \ldots, Y_{11 s}, \ldots, Y_{r t 1}, \ldots, Y_{r t s}\right)^{\prime} \\
+&amp;=\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{1 s}, \ldots, \mu_{t 1}, \ldots, \mu_{t s}\right)^{\prime}
+\end{aligned}\]</span></p>
+<p>and, by the covariance matrix algorithm, the <span class="math inline">\(r t s \times r t s\)</span>
+covariance matrix is</p>
+<p><span class="math display">\[\begin{aligned}
+\mathbf{\Sigma}=&amp; \sigma_{R}^{2}\left[\mathbf{I}_{r} \otimes \mathbf{J}_{t} \otimes \mathbf{J}_{s}\right]+\sigma_{R T}^{2}\left[\mathbf{I}_{r} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \mathbf{J}_{s}\right] \\
+&amp;+\sigma_{R S(T)}^{2}\left[\mathbf{I}_{r} \otimes \mathbf{I}_{t} \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right)\right].
+\end{aligned}\]</span></p>
+<p>By the sum of squares algorithm, the matrices
+<span class="math inline">\(\mathbf{A}_{1}, \ldots, \mathbf{A}_{7}\)</span> are <span class="math display">\[\begin{aligned}
+\text { Overall mean } \quad &amp; \mathbf{A}_{1}=\frac{1}{r} \mathbf{J}_{r} \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{s} \mathbf{J}_{s}
+\\
+\text { Replicates } R \quad &amp; \mathbf{A}_{2}=\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{s} \mathbf{J}_{s}
+\\
+\text { Whole plot treatments } T \quad &amp; \mathbf{A}_{3}=\frac{1}{r} \mathbf{J}_{r} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{s} \mathbf{J}_{s}
+\\
+R T \quad &amp; \mathbf{A}_{4}=\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{s} \mathbf{J}_{s}
+\\
+\text { Split plot treatments } S &amp; \mathbf{A}_{5}= \frac{1}{r} \mathbf{J}_{r} \otimes  \frac{1}{t} \mathbf{J}_{t} \otimes \left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right)
+\\
+S T \quad &amp; \mathbf{A}_{6}= \frac{1}{r} \mathbf{J}_{r} \otimes \left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \\
+R (ST) \quad &amp; \mathbf{A}_{7} = \left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \otimes \mathbf{I}_{t} \otimes \left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right)
+\end{aligned}\]</span></p>
+<p>Furthermore, <span class="math inline">\(\mathbf{A}_{m} \Sigma=c_{m} \mathbf{A}_{m}\)</span> for
+<span class="math inline">\(m=1, \ldots, 7\)</span> where <span class="math inline">\(c_{1}=c_{2}=s t \sigma_{R}^{2}, c_{3}=c_{4}=\)</span>
+<span class="math inline">\(s \sigma_{R T}^{2}\)</span> and
+<span class="math inline">\(c_{5}=c_{6}=c_{7}=\sigma_{R S(T)}^{2} ; \mathbf{I}_{r} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{s}=\Sigma_{m=1}^{7} \mathbf{A}_{m} ; \Sigma_{m=1}^{7} \operatorname{rank}\left(\mathbf{A}_{m}\right)=\)</span>
+<span class="math inline">\(s o_{R T}^{2}\)</span>, and
+<span class="math inline">\(c_{5}=c_{6}=c_{7}=\sigma_{R S(T)}^{2}, \mathbf{I}_{r} \otimes \mathbf{I}_{t} \otimes \mathbf{I}_{s}=\sum_{m=1}^{7} \mathbf{A}_{m}, \Sigma_{m=1}^{1} \operatorname{rank}\left(\mathbf{A}_{m}\right)=\)</span>
+<span class="math inline">\(1+(r-1)+(t-1)+(r-1)(t-1)+(s-1)+(t-1)(s-1)+(r-1) t(s-1)=\)</span> <span class="math inline">\(r t s ;\)</span> and
+<span class="math inline">\(\Sigma=\left(\sum_{m=1}^{7} \mathbf{A}_{m}\right) \Sigma=\left(\sum_{m=1}^{7} \mathbf{A}_{m} \Sigma\right)=\sum_{m=1}^{7} \mathbf{c}_{m} \mathbf{A}_{m} .\)</span>
+Therefore, by Bhat’s Lemma 3.4.1, (i)
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y} \sim c_{m} \chi_{\text {rank }\left(\mathbf{A}_{m}\right)}^{2}\left(\lambda_{m}\right)\)</span>
+and (ii) <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> are mutually
+independent for <span class="math inline">\(m=1, \ldots, 7\)</span> where</p>
+<p><span class="math display">\[\begin{aligned}
+\lambda_{1} &amp;=\frac{\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]^{\prime}\left[\frac{1}{r} \mathbf{J}_{r} \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{s} \mathbf{J}_{s}\right]\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]}{\left(2 s t \sigma_{R}^{2}\right)} \\
+&amp;=r \bar{\mu}^{2} . . /\left(2 \sigma_{R}^{2}\right), \\
+\lambda_{2} &amp;=\frac{\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]^{\prime}\left[\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \otimes \frac{1}{t} \mathbf{J}_{t} \otimes \frac{1}{s} \mathbf{J}_{s}\right]\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]}{2 s t \sigma_{R}^{2}}\\
+&amp;=0
+\end{aligned}\]</span></p>
+<p>72 Linear Models
+<span class="math display">\[=\frac{\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]^{\prime}\left[\frac{1}{r} \mathbf{J}_{r} \otimes\left(\mathbf{I}_{t}-\frac{1}{r} \mathbf{J}_{t}\right) \otimes \frac{1}{s} \mathbf{J}_{s}\right]\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]}{2 s \sigma_{R T}^{2}}\]</span>
+<span class="math inline">\(\begin{aligned}=&amp; r \sum_{j=1}^{t}\left(\bar{\mu}_{j .}-\bar{\mu} . .\right)^{2} /\left(2 \sigma_{R T}^{2}\right) \\ \lambda_{4}=&amp; \frac{\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]^{\prime}\left[\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes \frac{1}{s} \mathbf{J}_{s}\right]\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)\right]}{2 s \sigma_{R T}^{2}} \\=&amp; 0 \\ \lambda_{5}=&amp; \frac{\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]^{\prime}\left[\frac{1}{r} \mathbf{J}_{r} \otimes \frac{1}{t} \mathbf{J}_{t} \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right)\right]\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]}{2 \sigma_{R S(T)}^{2}} \\=&amp; r t \sum_{k=1}^{s}\left(\bar{\mu}_{. k}-\bar{\mu} . . .\right)^{2} /\left(2 \sigma_{R S(T)}^{2}\right) \end{aligned}\)</span>
+<span class="math display">\[\begin{aligned}
+\lambda_{6} &amp;=-\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]^{\prime}\left[\frac{1}{r} \mathbf{J}_{r} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right)\right]\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right] \\
+&amp;=r \sum_{j=1}^{t} \sum_{k=1}^{s}\left(\mu_{j k}-\bar{\mu}_{j .}-\bar{\mu}_{. k}+\bar{\mu} . . .\right)^{2} /\left(2 \sigma_{R S(T)}^{2}\right) \\
+\lambda_{7} &amp;\left.=\frac{\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right]^{\prime}}{2 \sigma(T)}\left(\mathbf{I}_{r}-\frac{1}{r} \mathbf{J}_{r}\right) \otimes \mathbf{I}_{t} \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right)\right]\left[\mathbf{1}_{r} \otimes\left(\mu_{11}, \ldots, \mu_{t s}\right)^{\prime}\right] \\
+&amp;=0 .
+\end{aligned}\]</span> By Theorem 4.4.1 the expected mean squares are EMS
+(overall mean) <span class="math inline">\(=s t \sigma_{R}^{2}+r s t \bar{\mu} . .^{2}\)</span>
+<span class="math inline">\(\mathrm{EMS}(\)</span> replicate <span class="math inline">\(R)=s t \sigma_{R}^{2}\)</span> EMS (whole plot <span class="math inline">\(T\)</span> )
+<span class="math inline">\(=s \sigma_{R T}^{2}+r s \sum_{j=1}^{t}\left(\bar{\mu}_{j .}-\bar{\mu} . .\right)^{2} /(t-1)\)</span>
+<span class="math inline">\(\operatorname{EMS}(R T)=s \sigma_{R T}^{2}\)</span></p>
+<p>4 Factorial Experiments 73 <span class="math inline">\(\mathrm{EMS}(\)</span> split plot
+<span class="math inline">\(S)=\sigma_{R S(T)}^{2}+r t \sum_{k=1}^{s}\left(\bar{\mu}_{. k}-\bar{\mu} . .\right)^{2} /(s-1)\)</span>
+<span class="math inline">\(\operatorname{EMS}(S T) \quad=\sigma_{R S(T)}^{2}+r \sum_{j=1}^{t} \sum_{k=1}^{s}\left(\mu_{j k}-\bar{\mu}_{j .}-\bar{\mu}_{. k}+\bar{\mu}_{. .}\right)^{2} /\)</span>
+<span class="math inline">\(\operatorname{EMS}(R S(T))=\sigma_{R S(T)}^{2}\)</span> Kempthorne (1952)
+provides the EMSs for <span class="math inline">\(T, R T, S, S T\)</span>, and <span class="math inline">\(R S(T)\)</span> in his Table 19.2.
+Kempthorne’s EMSs are the same as the EMSs given here, although
+Kempthorne uses different notation. Kempthorne’s
+<span class="math inline">\(\sigma^{2}, t_{j}, \sigma_{s}^{2}, s_{k}\)</span>, and <span class="math inline">\((t s)_{j k}\)</span> are
+equivalent to our
+<span class="math inline">\(s \sigma_{R T}^{2},\left(\bar{\mu}_{j .}-\bar{\mu}_{. .}\right), \sigma_{R S(T)}^{2},\left(\bar{\mu}_{. k}-\bar{\mu} . .\right)\)</span>,
+and
+<span class="math inline">\(\left(\bar{\mu}_{i j}-\bar{\mu}_{j .}-\bar{\mu}_{. k}+\bar{\mu} . .\right)\)</span>,
+respectively.</p>
+<p>Example 4.5.4 Consider an experiment where <span class="math inline">\(b s t\)</span> experimental units
+are divided into <span class="math inline">\(b\)</span> homogeneous sets of <span class="math inline">\(s t\)</span> units. Within each of the
+<span class="math inline">\(b\)</span> sets (or, equivalently, within each of the <span class="math inline">\(b\)</span> random blocks <span class="math inline">\(B\)</span> )
+the <span class="math inline">\(s t\)</span> units are randomly assigned to the <span class="math inline">\(s t\)</span> combinations of the
+two fixed factors <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> where factor <span class="math inline">\(S\)</span> has <span class="math inline">\(s\)</span> levels and <span class="math inline">\(T\)</span>
+has <span class="math inline">\(t\)</span> levels. This is a classic random block design where the fixed
+treatments are identified by two fixed factors. Let <span class="math inline">\(Y_{i j k}\)</span> be the
+random variable representing the observation in the <span class="math inline">\(k^{\text {th }}\)</span>
+level of factor <span class="math inline">\(T\)</span>, the <span class="math inline">\(j^{\text {th }}\)</span> level of factor <span class="math inline">\(S\)</span>, and the
+<span class="math inline">\(i^{\text {th }}\)</span> block for <span class="math inline">\(i=1, \ldots, b, j=1, \ldots, s\)</span>, and
+<span class="math inline">\(k=1, \ldots, t\)</span>. This experiment is characterized by the model
+<span class="math display">\[Y_{i j k}=\mu_{j k}+B_{i}+R_{i j k}\]</span> where <span class="math inline">\(\mu_{j k}\)</span> are <span class="math inline">\(s t\)</span>
+constants representing the mean effect of the <span class="math inline">\(j k^{\text {th }}\)</span>
+combination of factors <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span>; the <span class="math inline">\(B_{i}\)</span> are random variables
+representing the random effect of blocks; and the <span class="math inline">\(R_{i j k}\)</span> are random
+variables representing the random residual or remainder. It is our
+intention to write a covariance matrix that contains two variance
+components, one associated with the variance of the random variables
+<span class="math inline">\(B_{i}\)</span> and one associated with the variance of the random variables
+<span class="math inline">\(R_{i j k}\)</span>. However, to use the covariance algorithm, we must first
+rewrite the variables <span class="math inline">\(R_{i j k}\)</span> in terms of the factor letters <span class="math inline">\(B, S\)</span>,
+and <span class="math inline">\(T .\)</span> Note that <span class="math inline">\(R_{i j k}\)</span> can be equivalently written as
+<span class="math display">\[R_{i j k}=B S_{i j}+B T_{i k}+B S T_{i j k}\]</span> where
+<span class="math inline">\(B S_{i j}, B T_{i k}\)</span>, and <span class="math inline">\(B S T_{i j k}\)</span> are random variables
+representing the interaction of <span class="math inline">\(B\)</span> with <span class="math inline">\(S, B\)</span> with <span class="math inline">\(T\)</span>, and <span class="math inline">\(B\)</span> with
+<span class="math inline">\(S T\)</span>, respectively. We could proceed from here by putting the last two
+equations together to produce a model
+<span class="math display">\[Y_{i j k}=\mu_{j k}+B_{i}+B S_{i j}+B T_{i k}+B S T_{i j k} .\]</span>
+However, the last model has four sets of random variables and would thus
+require a definition with four, not two, random components. The solution
+to the problem is to view the <span class="math inline">\(s t\)</span> combinations of fixed factors <span class="math inline">\(S\)</span>
+and <span class="math inline">\(T\)</span> as one fixed factor, say, <span class="math inline">\(V\)</span>, with <span class="math inline">\(s t\)</span> levels. If we let
+<span class="math inline">\(v=1, \ldots, s t\)</span> designate the levels of factor <span class="math inline">\(V\)</span> then the residual
+<span class="math inline">\(R_{i j k}\)</span> can be rewritten as
+<span class="math display">\[R_{i j k}=B S_{i j}+B T_{i k}+B S T_{i j k}=B V_{i v}\]</span> Now assume the
+random variables
+<span class="math inline">\(B_{i} \sim \mathrm{N}_{1}\left(0, \sigma_{B}^{2}\right)\)</span> and the
+<span class="math inline">\(b(s t-1) \times 1\)</span> random vector
+<span class="math inline">\(\left(\mathbf{I}_{b} \otimes \mathbf{P}_{s t}^{\prime}\right)\left(B V_{11}, \ldots, B V_{b, s t}\right)^{\prime} \sim \mathbf{N}_{b(s t-1)}\left(\mathbf{0}, \sigma_{B V}^{2} \mathbf{I}_{b} \otimes \mathbf{I}_{s t-1}\right)\)</span>
+where <span class="math inline">\(\mathbf{P}_{s t}^{\prime}\)</span> is the <span class="math inline">\((s t-1) \times s t\)</span> lower
+portion of an <span class="math inline">\(s t\)</span>-dimensional Helmert matrix. Thus, the bst <span class="math inline">\(\times 1\)</span>
+random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 t}, \ldots, Y_{b s 1}, \ldots, Y_{b s t}\right)^{\prime} \sim \mathrm{N}_{b s t}(\mu, \Sigma)\)</span>
+where the <span class="math inline">\(b s t \times 1\)</span> mean vector <span class="math display">\[\begin{aligned}
+\boldsymbol{\mu} &amp;=\mathrm{E}\left(Y_{111}, \ldots, Y_{11 t}, \ldots, Y_{b s 1}, \ldots, Y_{b s t}\right)^{\prime} \\
+&amp;=\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}
+\end{aligned}\]</span> The covariance matrix algorithm can be applied using the
+two factor letters <span class="math inline">\(B\)</span> and <span class="math inline">\(V\)</span> where the number of levels is <span class="math inline">\(b\)</span> and
+<span class="math inline">\(s t\)</span>, respectively. The <span class="math inline">\(b s t \times b s t\)</span> covariance matrix,
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span>, is constructed here:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Factor Letter</td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(V\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left">Levels</td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td align="center"><span class="math inline">\(s t\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\boldsymbol{\Sigma}=\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\sigma_{B}^{2}\)</span></td>
+<td><span class="math inline">\(\left[\mathbf{I}_{b} \otimes\right.\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>4 Factorial Experiments 75 Factor
+<span class="math inline">\(S \quad \mathbf{A}_{3}=\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\)</span>
+Factor
+<span class="math inline">\(T \quad \mathbf{A}_{4}=\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\)</span>
+<span class="math display">\[\begin{aligned}
+S T \quad \mathbf{A}_{5}=&amp; \frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right) \\
+\text { Remainder } \quad \mathbf{A}_{6}=&amp;\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right] \\
+&amp;+\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] \\
+&amp;+\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right] .
+\end{aligned}\]</span> Again
+<span class="math inline">\(\mathbf{A}_{m} \boldsymbol{\Sigma}=c_{m} \mathbf{A}_{m}\)</span> for
+<span class="math inline">\(m=1, \ldots, 6\)</span> where
+<span class="math inline">\(c_{1}=c_{2}=s t \sigma_{B}^{2}, c_{3}=c_{4}=c_{5}=\)</span>
+<span class="math inline">\(c_{6}=\sigma_{B V}^{2}, \mathbf{I}_{b} \otimes \mathbf{I}_{s} \otimes \mathbf{I}_{t}=\Sigma_{m=1}^{6} \mathbf{A}_{m}, \Sigma_{m=1}^{6} \operatorname{rank}\left(\mathbf{A}_{m}\right)=1+(b-1)+(s-1)+\)</span>
+<span class="math inline">\((t-1)+(s-1)(t-1)+(b-1)[(s-1)+(t-1)+(s-1)(t-1)]=b s t, \boldsymbol{\Sigma}=\)</span>
+<span class="math inline">\(\left(\sum_{m=1}^{6} \mathbf{A}_{m}\right) \Sigma=\left(\sum_{m=1}^{6} \mathbf{A}_{m} \Sigma\right)=\sum_{m=1}^{6} c_{m} \mathbf{A}_{m}\)</span>.
+Therefore, by Bhat’s lemma <span class="math inline">\(3.4 .1\)</span>, (i)
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y} \sim c_{m} \chi_{\operatorname{rank}\left(\mathbf{A}_{m}\right)}^{2}\left(\lambda_{m}\right)\)</span>
+and (ii) <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> are mutually
+independent for <span class="math inline">\(m=1, \ldots, 6\)</span> where
+<span class="math inline">\(\lambda_{1}=\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right]^{\prime}\left[\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t}\right]\)</span>
+<span class="math inline">\(\times\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right] /\left(2 s t \sigma_{B}^{2}\right)\)</span>
+<span class="math inline">\(=b \bar{\mu}^{2} . . /\left(2 \sigma_{B}^{2}\right)\)</span>
+<span class="math inline">\(\lambda_{2}=\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right]^{\prime}\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{s} \mathbf{J}_{s} \otimes \frac{1}{t} \mathbf{J}_{t}\right]\)</span>
+<span class="math inline">\(\times\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right] /\left(2 s t \sigma_{B}^{2}\right)\)</span>
+<span class="math inline">\(=0\)</span>
+<span class="math inline">\(\lambda_{3}=\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right]^{\prime}\left[\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right]\)</span>
+<span class="math inline">\(\times\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right] /\left(2 \sigma_{B V}^{2}\right)\)</span>
+<span class="math display">\[=b t \sum_{j=1}^{s}\left(\bar{\mu}_{j .}-\bar{\mu} . .\right)^{2} /\left(2 \sigma_{B V}^{2}\right)\]</span></p>
+<p>76 Linear Models
+<span class="math inline">\(\lambda_{4}=\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right]^{\prime}\left[\frac{1}{b} \mathbf{J}_{b} \otimes \frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\)</span>
+<span class="math inline">\(\times\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right] /\left(2 \sigma_{B V}^{2}\right)\)</span>
+<span class="math inline">\(=b s \sum_{j=1}^{t}\left(\bar{\mu}_{. k}-\bar{\mu} . .\right)^{2} /\left(2 \sigma_{B V}^{2}\right)\)</span>
+<span class="math inline">\(\lambda_{5}=\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right]^{\prime}\)</span>
+<span class="math inline">\(\times\left[\frac{1}{b} \mathbf{J}_{b} \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\)</span>
+<span class="math inline">\(\times\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right] /\left(2 \sigma_{B V}^{2}\right)\)</span>
+<span class="math inline">\(=b \sum_{j=1}^{s} \sum_{k=1}^{t}\left(\mu_{j k}-\bar{\mu}_{j .}-\bar{\mu}_{. k}-\bar{\mu}_{. .}\right)^{2} /\left(2 \sigma_{B V}^{2}\right)\)</span>
+<span class="math inline">\(\lambda_{6}=\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right]^{\prime}\)</span>
+<span class="math inline">\(\times\left\{\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes \frac{1}{t} \mathbf{J}_{t}\right]\right.\)</span>
+<span class="math inline">\(+\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes \frac{1}{s} \mathbf{J}_{s} \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\)</span>
+<span class="math inline">\(\left.+\left[\left(\mathbf{I}_{b}-\frac{1}{b} \mathbf{J}_{b}\right) \otimes\left(\mathbf{I}_{s}-\frac{1}{s} \mathbf{J}_{s}\right) \otimes\left(\mathbf{I}_{t}-\frac{1}{t} \mathbf{J}_{t}\right)\right]\right\}\)</span>
+<span class="math inline">\(\times\left[\mathbf{1}_{b} \otimes\left(\mu_{11}, \ldots, \mu_{1 t}, \ldots, \mu_{s 1}, \ldots, \mu_{s t}\right)^{\prime}\right]^{\prime} /\left(2 \sigma_{B V}^{2}\right)\)</span>
+<span class="math inline">\(=0\)</span>. By Theorem 4.4.1, the expected mean squares are <span class="math inline">\(\mathrm{EMS}(\)</span>
+overall mean <span class="math inline">\()=s t \sigma_{B}^{2}+b s t \bar{\mu}^{2} . .\)</span>
+<span class="math inline">\(\mathrm{EMS}\)</span> (random block <span class="math inline">\(B\)</span> ) <span class="math inline">\(=s t \sigma_{B}^{2}\)</span> <span class="math inline">\(\mathrm{EMS}(\)</span>
+fixed factor
+<span class="math inline">\(S)=\sigma_{B V}^{2}+b t \sum_{j=1}^{s}\left(\vec{\mu}_{j .}-\bar{\mu} . .\right)^{2} /(s-1)\)</span>
+<span class="math inline">\(\mathrm{EMS}(\)</span> fixed factor
+<span class="math inline">\(T)=\sigma_{B V}^{2}+b s \sum_{k=1}^{t}\left(\bar{\mu}_{. k}-\bar{\mu} . .\right)^{2} /(t-1)\)</span></p>
+<p>4 Factorial Experiments 77
+<span class="math display">\[\operatorname{EMS}(S T)=\sigma_{B V}^{2}+\frac{b \sum_{j=1}^{s} \sum_{k=1}^{t}\left(\bar{\mu}_{j k}-\bar{\mu}_{j .}-\bar{\mu}_{. k}+\bar{\mu} . .\right)^{2}}{[(s-1)(t-1)]}\]</span>
+EMS (remainder <span class="math inline">\(R\)</span> ) <span class="math inline">\(=\sigma_{B V}^{2}\)</span>. EXERCISES 1. Consider an
+experiment where <span class="math inline">\(r\)</span> replicate units are nested in each of the <span class="math inline">\(s\)</span>
+levels of a fixed factor <span class="math inline">\(s\)</span>. The <span class="math inline">\(t\)</span> levels of a second fixed factor
+<span class="math inline">\(T\)</span> are then applied to each of the <span class="math inline">\(s r\)</span> experimental units. A model
+for this experiment is
+<span class="math display">\[Y_{i j k}=\mu_{i k}+R(S)_{(i) j}+R T(S)_{(i) j k}\]</span> for
+<span class="math inline">\(i=1, \ldots, s, j=1, \ldots, r\)</span>, and <span class="math inline">\(k=1, \ldots, t\)</span> where <span class="math inline">\(R\)</span>
+represents the replicate units nested in the <span class="math inline">\(s\)</span> levels of factor <span class="math inline">\(S\)</span>.
+Assume the <span class="math inline">\(\operatorname{str} \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{111}, \ldots, Y_{11 t}, \ldots, Y_{1 r 1}, \ldots, Y_{1 r t}, \ldots, Y_{s 11}, \ldots, Y_{s 1 t}, \ldots, Y_{s r 1}, \ldots,\right.\)</span>,
+<span class="math inline">\(\left.Y_{s r t}\right)^{\prime} \sim \mathbf{N}_{s r t}(\mu, \mathbf{\Sigma})\)</span>
+(a) Derive <span class="math inline">\(\boldsymbol{\mu}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. (b) Write out
+the ANOVA table and define the matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> used in the
+sums of squares <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for
+<span class="math inline">\(m=1, \ldots, 7\)</span> where <span class="math inline">\(\mathbf{A}_{7}\)</span> is the matrix corresponding to
+the sum of squares total. (c) Derive the distributions of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 6\)</span>.
+(d) Calculate all the expected mean squares. (e) Construct all
+"appropriate" <span class="math inline">\(F\)</span> statistics and explicitly define the hypothesis
+being tested in each case. Prove that all the statistics constructed
+above have <span class="math inline">\(F\)</span> distributions. 2. Consider a factorial experiment with
+three fixed factors <span class="math inline">\(S, T\)</span>, and <span class="math inline">\(U\)</span> where the factors have <span class="math inline">\(s, t\)</span>, and
+<span class="math inline">\(u\)</span> levels, respectively. Within the stu combinations of the three main
+factors, <span class="math inline">\(r\)</span> random replicate observations are observed. Let <span class="math inline">\(R\)</span>
+represent the random nested replicate factor. Assume the stur <span class="math inline">\(\times 1\)</span>
+random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1111}, \ldots, Y_{111 r}, \ldots, Y_{\text {stu1 }}, \ldots, Y_{\text {stur }}\right)^{\prime} \sim \mathrm{N}_{\text {stur }}(\mu, \boldsymbol{\Sigma})\)</span>
+(a) Write a model for this experiment and derive the mean vector
+<span class="math inline">\(\boldsymbol{\mu}\)</span> and the covariance matrix <span class="math inline">\(\Sigma\)</span>. (b) Write out the
+ANOVA table and define the matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> used in the sums of
+squares <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for
+<span class="math inline">\(m=1, \ldots, 10\)</span> where <span class="math inline">\(\mathbf{A}_{10}\)</span> is the matrix corresponding to
+the sum of squares total. (c) Derive the distributions of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 9\)</span>.</p>
+<p>78 Linear Models (d) Calculate all the expected mean squares. (e)
+Construct all "appropriate" <span class="math inline">\(F\)</span> statistics and explicitly define the
+hypothesis being tested in each case. Prove that all the statistics
+constructed above have <span class="math inline">\(F\)</span> distributions. 3. Redo Exercise 2 above when
+<span class="math inline">\(S\)</span> is a fixed factor and <span class="math inline">\(T\)</span> and <span class="math inline">\(U\)</span> are random factors. 4. Redo
+Exercise 2 when <span class="math inline">\(S, T\)</span>, and <span class="math inline">\(U\)</span> are all random factors. 5. Consider the
+paired <span class="math inline">\(t\)</span>-test problem introduced in Exercise 15 of Chapter <span class="math inline">\(3 .\)</span>
+However, now view the problem as an experiment where two levels of a
+fixed factor <span class="math inline">\(T\)</span> are applied to each of the <span class="math inline">\(n\)</span> levels of a random
+factor <span class="math inline">\(B\)</span>. Thus, the <span class="math inline">\(n\)</span> levels of <span class="math inline">\(B\)</span> are the <span class="math inline">\(n\)</span> experimental units.
+The model for this problem is <span class="math display">\[Y_{i j}=\mu_{j}+B_{i}+B T_{i j}\]</span> where
+<span class="math inline">\(\mu_{j}\)</span> are constants representing the average effect of the
+<span class="math inline">\(j^{\text {th }}\)</span> level of fixed factors <span class="math inline">\(T, B_{i}\)</span> are random variables
+representing the effect of the <span class="math inline">\(i^{\text {th }}\)</span> experimental unit, and
+<span class="math inline">\(B T_{i j}\)</span> are random variables representing the interaction effect of
+factors <span class="math inline">\(B\)</span> and <span class="math inline">\(T\)</span>. Assume the <span class="math inline">\(2 n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\)</span>
+<span class="math inline">\(\left(Y_{11}, Y_{12}, Y_{21}, Y_{22}, \ldots, Y_{n 1}, Y_{n 2}\right)^{\prime} \sim \mathrm{N}_{2 n}(\boldsymbol{\mu}, \boldsymbol{\Sigma}) .\)</span>
+(a) Derive <span class="math inline">\(\boldsymbol{\mu}\)</span> and use the covariance algorithm to define
+the covariance matrix <span class="math inline">\(\Sigma\)</span> in terms of <span class="math inline">\(\sigma_{B}^{2}\)</span> and
+<span class="math inline">\(\sigma_{B T}^{2}\)</span>. (b) Write out the ANOVA table and define the
+matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> used in the sums of squares
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 5\)</span>
+where <span class="math inline">\(\mathbf{A}_{5}\)</span> is the matrix corresponding to the sum of squares
+total. (c) Derive the distributions of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 4\)</span>.
+(d) Calculate all the expected mean squares. (e) Construct a statistic
+to test <span class="math inline">\(\mathrm{H}_{0}: \mu_{1}=\mu_{2}\)</span> versus
+<span class="math inline">\(\mathrm{H}_{1}: \mu_{1} \neq \mu_{2}\)</span>. Does the statistic you
+constructed have an <span class="math inline">\(F\)</span> distribution? Prove your answer. (f) Prove that
+the mean square due to factor <span class="math inline">\(T\)</span> divided by the mean square due to the
+<span class="math inline">\(B T\)</span> interaction is equal to <span class="math inline">\(T^{2}\)</span> where <span class="math inline">\(T\)</span> is defined in Exercise
+<span class="math inline">\(15 \mathrm{~b}\)</span> from Chapter 3 . 6. An animal scientist was interested
+in evaluating the effect of five different types of feed on the weight
+gain of cattle. An experiment was run where 60 cattle were randomly
+assigned to 15 pens with 4 cattle in each pen. Each pen then received a
+certain type of feed. The assignment of feeds to pens was done randomly
+with 3 pens in each of the five feed types. Weight observations on each
+head of cattle were then taken at three different times. Let
+<span class="math inline">\(Y_{i j k l}\)</span> be a random variable representing the weight gain observed
+at the <span class="math inline">\(l^{\text {th }}\)</span> time period, on the <span class="math inline">\(k^{\text {th }}\)</span> head of
+cattle, in the <span class="math inline">\(j^{\text {th }}\)</span> pen, and being fed the
+<span class="math inline">\(i^{\text {th }}\)</span> feed type for</p>
+<p><span class="math display">\[\begin{array}{l}
+i=1,2,3,4,5, j=1,2,3, k=1,2,3,4, \text { and } l=1,2,3 . \text { Assume the } 180 \times 1 \\
+\text { random vector } \mathbf{Y}=\left(Y_{1111}, \ldots, Y_{1113}, \ldots, Y_{5341}, \ldots, Y_{5343}\right)^{\prime} \sim \mathrm{N}_{180}(\mu, \Sigma) . \mathrm{A}
+\end{array}\]</span> model for this problem is
+<span class="math display">\[Y_{i j k l}=\mu_{i l}+P(F)_{(i) j}+C(F P)_{(i j) k}+P T(F)_{(i) j l}+C T(F P)_{(i j) k l}\]</span>
+where <span class="math inline">\(\mu_{i l}\)</span> are constants representing the average effect of the
+<span class="math inline">\(i^{\text {th }}\)</span> feed type at the <span class="math inline">\(l^{\text {th }}\)</span> time and
+<span class="math inline">\(P(F)_{(i) j}, C(F P)_{(i j) k}, P T(F)_{(i) j l}\)</span>, and
+<span class="math inline">\(C T(F P)_{(i j) k l}\)</span> are random variables representing the effects of
+pens nested in feed types, cattle nested in feed pens, the interaction
+of time by pens nested in feeds, and the interaction of time and cattle
+nested in feed pens, respectively. (a) Derive <span class="math inline">\(\mu\)</span> and
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span>. (b) Write out the ANOVA table and define the
+matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> used in the sums of squares
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 9\)</span>
+where <span class="math inline">\(\mathbf{A}_{9}\)</span> is the matrix corresponding to the sum of squares
+total. (c) Derive the distributions of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 8\)</span>.
+(d) Calculate all the expected mean squares. (e) Construct all
+"appropriate" <span class="math inline">\(F\)</span> statistics and explicitly define the hypothesis
+being tested in each case. Prove that all the statistics constructed
+above have <span class="math inline">\(F\)</span> distributions. 7. A pump manufacturer wanted to evaluate
+how well his assembled pumps performed. He ran the following experiment.
+He randomly selected 10 people to assemble his pumps, randomly dividing
+them into two groups of 5 . He then trained both groups to assemble
+pumps, but one group received more rigorous instruction. The two groups
+were therefore identified to be of two skill levels. Each person then
+assembled two pumps, one pump by one method of assembly and a second
+pump by a second method of assembly. Each assembled pump then pumped
+water for a fixed amount of time and then repeated the operation later
+for the same length of time. The amount of water pumped in each time
+period was recorded. The order of the operation (first time period or
+second) was also recorded. Let <span class="math inline">\(Y_{i j k l}\)</span> be a random variable
+representing the amount of water pumped during the <span class="math inline">\(l^{\text {th }}\)</span>
+time period or order, on a pump assembled by the <span class="math inline">\(k^{\text {th }}\)</span>
+method and the <span class="math inline">\(j^{\text {th }}\)</span> person in the <span class="math inline">\(i^{\text {th }}\)</span> skill
+level for <span class="math inline">\(i=\)</span> <span class="math inline">\(1,2, j=1,2,3,4,5, k=1,2\)</span>, and <span class="math inline">\(l=1,2\)</span>. Assume the
+<span class="math inline">\(40 \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y}=\left(Y_{1111}, Y_{1112}, Y_{1121}, Y_{1122}, \ldots, Y_{2511}, Y_{2512}, Y_{2521}, Y_{2522}\right)^{\prime} \sim \mathrm{N}_{40}(\boldsymbol{\mu}, \Sigma) .\)</span>
+A model for this problem is
+<span class="math display">\[Y_{i j k l}=\mu_{i k l}+P(S)_{(i) j}+P M(S)_{(i) j k}+P O(S M)_{(i) j(k) l}\]</span>
+where <span class="math inline">\(\mu_{i k l}\)</span> are constants representing the average effect of the
+<span class="math inline">\(l^{\text {th }}\)</span> order in the <span class="math inline">\(k^{\text {th }}\)</span> method with the
+<span class="math inline">\(i^{\text {th }}\)</span> skill level, <span class="math inline">\(P(S)_{(i) j}, P M(S)_{(i) j k}\)</span>, and
+<span class="math inline">\(P O(S M)_{(i) j(k) l}\)</span> are random variables representing the effects of
+people nested in skill levels, the interaction of methods and people
+nested in skill levels, and the interaction of order and people nested
+in skill levels and methods. (a) Derive <span class="math inline">\(\boldsymbol{\mu}\)</span> and
+<span class="math inline">\(\boldsymbol{\Sigma}\)</span>. (b) Write out the ANOVA table and define the
+matrices <span class="math inline">\(\mathbf{A}_{m}\)</span> used in the sums of squares
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 12\)</span>
+where <span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{12} \mathbf{Y}\)</span> is the sum of
+squares total. (c) Derive the distributions of
+<span class="math inline">\(\mathbf{Y}^{\prime} \mathbf{A}_{m} \mathbf{Y}\)</span> for <span class="math inline">\(m=1, \ldots, 11\)</span>.
+(d) Calculate all the expected mean squares. (e) Construct all
+"appropriate" <span class="math inline">\(F\)</span> statistics and explicitly define the hypothesis
+being tested in each case. Prove that all the statistics constructed
+above have <span class="math inline">\(F\)</span> distributions. 8. Consider Exercise <span class="math inline">\(7 .\)</span> (a) Calculate
+the standard error of <span class="math inline">\(\bar{Y}_{1 \ldots}-\bar{Y}_{2 \ldots}\)</span> where
+<span class="math inline">\(\bar{Y}_{i \ldots}=\sum_{j=1}^{5} \sum_{k=1}^{2} \sum_{l=1}^{2}\)</span>
+<span class="math inline">\(Y_{i j k l} / 20\)</span> for <span class="math inline">\(i=1,2\)</span>. (b) Find an unbiased estimator of
+<span class="math inline">\(\bar{\mu}_{1.12}-\bar{\mu}_{2.12}\)</span> where
+<span class="math inline">\(\bar{\mu}_{i . k l}=\sum_{j=1}^{5} \mu_{i j k l} / 5\)</span> and calculate the
+standard error of the estimator. 9. Prove that the necessary and
+sufficient conditions of Bhat’s Lemma <span class="math inline">\(3.4 .1\)</span> are satisfied in the
+following situation. Consider any complete, balanced factorial
+experiment with <span class="math inline">\(n\)</span> observations where the <span class="math inline">\(n \times 1\)</span> random vector
+<span class="math inline">\(\mathbf{Y} \sim \mathrm{N}_{n}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>.
+The covariance matrix algorithm rules
+<span class="math inline">\(\Sigma 1, \Sigma 2, \Sigma 2.1, \Sigma 2.2\)</span>, and <span class="math inline">\(\Sigma 2.3\)</span> are used
+to derive <span class="math inline">\(\Sigma\)</span>. The sum of squares algorithm rules A1, A2, A2.1,
+A2.2, and A2.3 are used to derive the <span class="math inline">\(k\)</span> sum of squares matrices
+<span class="math inline">\(\mathbf{A}_{1} \ldots, \mathbf{A}_{k}\)</span> with
+<span class="math inline">\(\sum_{i=1}^{k} \mathbf{A}_{i}=\mathbf{I}_{n}\)</span>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distributions-of-quadratic-forms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="least-squares-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
